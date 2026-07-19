@@ -102,7 +102,7 @@ const css = `
   }
   html, body, #root { height: 100%; background: var(--bg); }
   body { font-family: 'Inter', sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
-  .app { max-width: 430px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); }
+  .app { max-width: 700px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); }
 
   /* Header */
   .header { padding: 14px 20px 10px; display: flex; align-items: center; justify-content: space-between; background: var(--card); border-bottom: 1px solid var(--rim); }
@@ -274,14 +274,14 @@ const css = `
   .equip-name { font-size: 13px; font-weight: 600; color: var(--ink); }
   .equip-type-pill { font-size: 11px; font-weight: 700; color: #00c2ff; background: rgba(0,194,255,0.1); border: 1px solid rgba(0,194,255,0.25); border-radius: 20px; padding: 3px 10px; cursor: pointer; white-space: nowrap; }
   .equip-type-sheet { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; display: flex; align-items: flex-end; justify-content: center; }
-  .equip-type-panel { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 430px; padding: 16px 0 32px; }
+  .equip-type-panel { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; padding: 16px 0 32px; }
   .equip-type-title { font-size: 13px; font-weight: 700; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 12px; border-bottom: 1px solid #e5e5ea; margin-bottom: 8px; }
   .equip-type-option { padding: 14px 20px; font-size: 15px; font-weight: 500; color: #000; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
   .equip-type-option:active { background: #e5e5ea; }
   .equip-type-option.selected { color: #00c2ff; font-weight: 700; }
 
   .swap-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 120; display: flex; align-items: flex-end; justify-content: center; }
-  .swap-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 430px; max-height: 70vh; display: flex; flex-direction: column; overflow: hidden; }
+  .swap-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 70vh; display: flex; flex-direction: column; overflow: hidden; }
   .swap-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; flex-shrink: 0; }
   .swap-header { padding: 14px 18px 10px; flex-shrink: 0; }
   .swap-title { font-size: 13px; font-weight: 600; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
@@ -295,7 +295,7 @@ const css = `
   .swap-item-name { font-size: 14px; font-weight: 600; color: #000; }
   .swap-item-sub { font-size: 11px; color: #8e8e93; margin-top: 2px; }
   .swap-item-check { margin-left: auto; color: #00c2ff; flex-shrink: 0; }
-  .picker-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: flex; flex-direction: column; max-width: 430px; margin: 0 auto; }
+  .picker-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: flex; flex-direction: column; max-width: 700px; margin: 0 auto; }
   .picker-topbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 12px; border-bottom: 1px solid var(--rim); flex-shrink: 0; background: var(--card); }
   .picker-close { background: #e5e5ea; border: none; color: #555; font-size: 14px; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
   .picker-title { font-size: 17px; font-weight: 700; color: var(--ink); }
@@ -343,7 +343,7 @@ const css = `
 
   /* -- Plate Calculator -- */
   .plate-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: flex; align-items: flex-end; justify-content: center; }
-  .plate-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 430px; padding-bottom: 28px; max-height: 92vh; overflow-y: auto; }
+  .plate-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; padding-bottom: 28px; max-height: 92vh; overflow-y: auto; }
   .plate-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; }
   .plate-header { padding: 12px 18px 8px; display: flex; align-items: center; justify-content: space-between; }
   .plate-header-title { font-size: 18px; font-weight: 700; color: #000; letter-spacing: -0.3px; }
@@ -398,7 +398,7 @@ const css = `
 
   /* -- Warm Up Sheet -- */
   .warmup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: flex; align-items: flex-end; justify-content: center; }
-  .warmup-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 430px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; }
+  .warmup-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; }
   .warmup-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; flex-shrink: 0; }
   .warmup-header { padding: 14px 18px 12px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 1px solid #e5e5ea; }
   .warmup-title { font-size: 18px; font-weight: 700; color: #000; }
@@ -413,7 +413,7 @@ const css = `
   .warmup-tag.general { background: rgba(0,229,204,0.15); color: #00b8a0; }
   .warmup-tag.feeder { background: rgba(0,194,255,0.12); color: #00c2ff; }
   .db-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: flex; align-items: flex-end; justify-content: center; }
-  .db-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 430px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; padding-bottom: 28px; }
+  .db-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; padding-bottom: 28px; }
   .db-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; flex-shrink: 0; }
   .db-header { padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .db-title { font-size: 18px; font-weight: 700; color: #000; }
@@ -435,7 +435,7 @@ const css = `
   .db-weight-btn:hover { border-color: #00c2ff; }
   .db-weight-btn.current { background: #000; color: #fff; border-color: #00c2ff; box-shadow: 0 0 0 2px #00c2ff, 0 0 12px rgba(0,194,255,0.3); }
   .stack-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: flex; align-items: flex-end; justify-content: center; }
-  .stack-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 430px; max-height: 92vh; overflow-y: auto; padding-bottom: 28px; }
+  .stack-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 92vh; overflow-y: auto; padding-bottom: 28px; }
   .stack-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; }
   .stack-header { padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; }
   .stack-title { font-size: 18px; font-weight: 700; color: #000; }
@@ -470,7 +470,7 @@ const css = `
   .stack-use-btn:active { transform: scale(0.98); }
 
   /* -- PICKER MODAL (white theme) -- */
-  .picker-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: flex; flex-direction: column; max-width: 430px; margin: 0 auto; }
+  .picker-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: flex; flex-direction: column; max-width: 700px; margin: 0 auto; }
   .picker-topbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 12px; border-bottom: 1px solid var(--rim); flex-shrink: 0; background: #fff; }
   .picker-close { background: #e5e5ea; border: none; color: #555; font-size: 14px; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
   .picker-title { font-size: 17px; font-weight: 700; color: #000; }
@@ -7835,7 +7835,6 @@ function App() {
     ref: importRef,
     type: "file",
     accept: "image/*",
-    capture: "environment",
     onChange: handleWorkoutPhoto,
     style: {
       display: "none"
@@ -10989,7 +10988,7 @@ function App() {
       style: {
         background: "#fff",
         width: "100%",
-        maxWidth: 520,
+        maxWidth: 700,
         borderRadius: "20px 20px 0 0",
         padding: "18px 16px 24px",
         maxHeight: "70vh",
@@ -11276,7 +11275,7 @@ function App() {
       background: "#F0F0F0",
       borderRadius: "24px 24px 0 0",
       width: "100%",
-      maxWidth: 430,
+      maxWidth: 700,
       padding: "0 0 36px"
     },
     onClick: e => e.stopPropagation()
@@ -11916,7 +11915,7 @@ function App() {
         background: "#F0F0F0",
         borderRadius: "24px 24px 0 0",
         width: "100%",
-        maxWidth: 430,
+        maxWidth: 700,
         maxHeight: "80vh",
         display: "flex",
         flexDirection: "column",
@@ -12244,7 +12243,7 @@ function App() {
       background: "#F0F0F0",
       borderRadius: "24px 24px 0 0",
       width: "100%",
-      maxWidth: 430,
+      maxWidth: 700,
       paddingBottom: 32
     },
     onClick: e => e.stopPropagation()
