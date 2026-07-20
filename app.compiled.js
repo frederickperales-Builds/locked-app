@@ -7120,8 +7120,8 @@ function App() {
   // Filtered exercises
   const ALL_EXERCISES_LIST = [...EXERCISES, ...customExercises];
   const filtered = ALL_EXERCISES_LIST.filter(ex => {
-    const s = search.toLowerCase();
-    const matchSearch = !search || ex.name.toLowerCase().includes(s) || ex.primaryMuscle.toLowerCase().includes(s) || ex.equipment.toLowerCase().includes(s);
+    const s = (search || "").toLowerCase();
+    const matchSearch = !search || (ex.name || "").toLowerCase().includes(s) || (ex.primaryMuscle || ex.muscle || "").toLowerCase().includes(s) || (ex.equipment || "").toLowerCase().includes(s);
     const matchMuscle = !filterMuscle || ex.muscleId === filterMuscle;
     const matchGroup = !filterGroup || ex.group === filterGroup;
     const matchEquip = !filterEquip || ex.equipment === filterEquip;
@@ -13890,7 +13890,7 @@ function App() {
     })), /*#__PURE__*/React.createElement("div", {
       className: "picker-list"
     }, heads.map(head => {
-      const headExs = exs.filter(e => e.muscleHead === head && (!search || e.name.toLowerCase().includes(search.toLowerCase())));
+      const headExs = exs.filter(e => e.muscleHead === head && (!search || (e.name || "").toLowerCase().includes((search || "").toLowerCase())));
       if (!headExs.length) return null;
       return /*#__PURE__*/React.createElement("div", {
         key: head
