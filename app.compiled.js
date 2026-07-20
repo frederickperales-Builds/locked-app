@@ -216,6 +216,7 @@ const css = `
   .splash.fade-out { animation: splashFade 0.6s ease forwards; }
   @keyframes splashFade { to { opacity: 0; pointer-events: none; } }
   @keyframes restPulse { 0%,100% { box-shadow: 0 0 0 3px rgba(0,194,255,0.3), 0 4px 20px rgba(0,0,0,0.4); } 50% { box-shadow: 0 0 0 6px rgba(0,194,255,0.15), 0 4px 20px rgba(0,0,0,0.4); } }
+  @keyframes cardGlow { 0% { box-shadow: 0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3); } 80% { box-shadow: 0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3); } 100% { box-shadow: 0 1px 4px rgba(0,0,0,0.06); } }
 
   .splash-logo { font-family: 'DM Mono', monospace; font-size: 48px; font-weight: 500; letter-spacing: 0.15em; color: #fff; text-transform: uppercase; opacity: 0; animation: logoIn 0.6s ease 0.3s forwards; }
   .splash-lock { opacity: 0; animation: lockIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.1s forwards; margin-bottom: 16px; }
@@ -8718,9 +8719,9 @@ function App() {
     const ExIcon = EX_ICON[ex.equipment] || Dumbbell;
     const progression = progressionSuggestion(ex.id);
     const pr = personalRecord(ex.id);
-    const isGlowing = lastTouchedId === ex.id && Date.now() - lastTouchedTime < 60000;
+    const isGlowing = lastTouchedId === ex.id;
     return /*#__PURE__*/React.createElement("div", {
-      key: ex.id,
+      key: isGlowing ? ex.id + "-g-" + lastTouchedTime : ex.id,
       className: "exercise-card",
       "data-card-id": ex.id,
       style: {
@@ -8729,8 +8730,7 @@ function App() {
           boxShadow: "0 0 0 1px #00c2ff, 0 1px 6px rgba(0,194,255,0.15)"
         } : {}),
         ...(isGlowing ? {
-          boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.25)",
-          transition: "box-shadow 0.3s"
+          animation: "cardGlow 60s ease-out forwards"
         } : {})
       }
     }, /*#__PURE__*/React.createElement("div", {
@@ -8787,7 +8787,7 @@ function App() {
       className: "exercise-name"
     }, /*#__PURE__*/React.createElement("span", {
       style: {
-        color: "#c7c7cc",
+        color: "#636366",
         fontWeight: 800,
         fontSize: 13,
         marginRight: 6,
