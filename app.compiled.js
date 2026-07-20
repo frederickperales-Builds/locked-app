@@ -6365,6 +6365,20 @@ function App() {
 
   // State for attachment picker sheet
   const [attachmentSheetExId, setAttachmentSheetExId] = useState(null);
+  const [lastTouchedId, setLastTouchedId] = useState(null);
+  const [lastTouchedTime, setLastTouchedTime] = useState(0);
+  const [linkingExId, setLinkingExId] = useState(null); // exercise being re-linked via import
+  const touchExercise = exId => {
+    setLastTouchedId(exId);
+    setLastTouchedTime(Date.now());
+  };
+  useEffect(() => {
+    if (!lastTouchedId) return;
+    const timer = setTimeout(() => {
+      setLastTouchedId(null);
+    }, 60000);
+    return () => clearTimeout(timer);
+  }, [lastTouchedId, lastTouchedTime]);
   function lastSets(exId) {
     for (let i = history.length - 1; i >= 0; i--) {
       const f = history[i].exercises.find(e => e.id === exId);
@@ -7034,6 +7048,30 @@ function App() {
       const isCompound = compound.includes(ex.equipment) && !["curl", "raise", "extension", "pushdown", "pulldown", "fly", "crossover", "shrug", "face pull"].some(k => (ex.name || "").toLowerCase().includes(k));
       return isCompound ? 4 : 3;
     };
+
+    // If linking (replacing an unlinked imported exercise), swap in-place
+    if (linkingExId && toAdd.length > 0) {
+      const replacement = toAdd[0];
+      setExercises(p => p.map(ex => {
+        if (ex.id !== linkingExId) return ex;
+        // Keep the original sets (reps/weight from import), swap identity
+        return {
+          ...replacement,
+          sets: ex.sets,
+          importedName: ex.name
+        };
+      }));
+      setShowPicker(false);
+      setPendingIds([]);
+      setLinkingExId(null);
+      window._varExercises = {};
+      setPickerStep(1);
+      setPickerMuscle(null);
+      setPickerEquip(null);
+      setPickerExercise(null);
+      showToast(`Linked → ${replacement.name}`);
+      return;
+    }
     const newExs = toAdd.map(ex => {
       const prev = lastSets(ex.id);
       if (prev) return {
@@ -7059,6 +7097,7 @@ function App() {
     setExercises(p => [...p, ...newExs]);
     setShowPicker(false);
     setPendingIds([]);
+    setLinkingExId(null);
     window._varExercises = {};
     setPickerStep(1);
     setPickerMuscle(null);
@@ -7066,13 +7105,16 @@ function App() {
     setPickerExercise(null);
     showToast(`Added ${newExs.length} exercise${newExs.length !== 1 ? "s" : ""}`);
   };
-  const updateSet = (exId, si, field, val) => setExercises(p => p.map(ex => ex.id !== exId ? ex : {
-    ...ex,
-    sets: ex.sets.map((s, i) => i !== si ? s : {
-      ...s,
-      [field]: val
-    })
-  }));
+  const updateSet = (exId, si, field, val) => {
+    touchExercise(exId);
+    setExercises(p => p.map(ex => ex.id !== exId ? ex : {
+      ...ex,
+      sets: ex.sets.map((s, i) => i !== si ? s : {
+        ...s,
+        [field]: val
+      })
+    }));
+  };
   const addSet = exId => {
     setExercises(p => p.map(ex => {
       if (ex.id !== exId) return ex;
@@ -7096,6 +7138,7 @@ function App() {
     }));
   };
   const toggleDone = (exId, si) => {
+    touchExercise(exId);
     const ex = exercises.find(e => e.id === exId);
     const set = ex?.sets[si];
     const wasDone = set?.done;
@@ -8669,20 +8712,27 @@ function App() {
       textAlign: "center",
       boxShadow: "0 0 8px rgba(0,194,255,0.3)"
     }
-  }, "check Warm up complete -- let's go!"), exercises.map(ex => {
+  }, "check Warm up complete -- let's go!"), exercises.map((ex, exIdx) => {
     const lw = lastWeightLabel(ex.id);
     const open = expanded[ex.id];
     const ExIcon = EX_ICON[ex.equipment] || Dumbbell;
     const progression = progressionSuggestion(ex.id);
     const pr = personalRecord(ex.id);
+    const isGlowing = lastTouchedId === ex.id && Date.now() - lastTouchedTime < 60000;
     return /*#__PURE__*/React.createElement("div", {
       key: ex.id,
       className: "exercise-card",
       "data-card-id": ex.id,
-      style: ex.supersetGroup ? {
-        borderColor: "#00c2ff",
-        boxShadow: "0 0 0 1px #00c2ff, 0 1px 6px rgba(0,194,255,0.15)"
-      } : {}
+      style: {
+        ...(ex.supersetGroup ? {
+          borderColor: "#00c2ff",
+          boxShadow: "0 0 0 1px #00c2ff, 0 1px 6px rgba(0,194,255,0.15)"
+        } : {}),
+        ...(isGlowing ? {
+          boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.25)",
+          transition: "box-shadow 0.3s"
+        } : {})
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: "exercise-header",
       onClick: () => {
@@ -8735,7 +8785,15 @@ function App() {
       }
     }, ex.supersetGroup, ex.supersetPosition), /*#__PURE__*/React.createElement("div", {
       className: "exercise-name"
-    }, ex.isMainLift && /*#__PURE__*/React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#c7c7cc",
+        fontWeight: 800,
+        fontSize: 13,
+        marginRight: 6,
+        fontFamily: "DM Mono,monospace"
+      }
+    }, exIdx + 1), ex.isMainLift && /*#__PURE__*/React.createElement("span", {
       style: {
         color: "#00c2ff",
         marginRight: 4,
@@ -8768,6 +8826,7 @@ function App() {
       className: "exercise-pill",
       onClick: e => {
         e.stopPropagation();
+        setLinkingExId(ex.id);
         openPicker();
       },
       style: {
