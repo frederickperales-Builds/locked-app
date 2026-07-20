@@ -862,7 +862,7 @@ const EXERCISE_DB = [{
   bench: "Seated (cable station)",
   variations: ["V-bar", "Wide bar", "Single arm", "Rope"]
 }, {
-  id: "face-pull",
+  id: "face-pull-back",
   name: "Face Pull",
   section: "Upper",
   muscle: "Back",
@@ -2325,7 +2325,7 @@ const EXERCISE_DB = [{
   bench: "N/A - on floor",
   variations: ["Bodyweight", "Band-resisted", "Weighted"]
 }, {
-  id: "cable-lateral-raise",
+  id: "cable-lateral-raise-2",
   name: "Cable Lateral Raise",
   section: "Upper",
   muscle: "Shoulders",
@@ -2391,7 +2391,7 @@ const EXERCISE_DB = [{
   bench: "Flat on machine",
   variations: ["Standard", "Alternating"]
 }, {
-  id: "good-morning",
+  id: "good-morning-ham",
   name: "Good Morning",
   section: "Lower",
   muscle: "Hamstrings",
@@ -6645,20 +6645,38 @@ function App() {
       if (!resp.ok || data.error) throw new Error(data.error || "Analysis failed");
       const text = data.data || "{}";
       const clean = text.replace(/```json|```/g, "").trim();
-      const parsed = JSON.parse(clean);
-      const title = parsed.title || "Imported Workout";
-      const items = parsed.exercises || [];
+      let parsed;
+      try {
+        parsed = JSON.parse(clean);
+      } catch (pe) {
+        console.error("Parse error:", pe, clean);
+        parsed = {};
+      }
+      // Edge Function returns array format from analyze-photo prompt
+      const items = Array.isArray(parsed) ? parsed : parsed.exercises || [];
+      const title = Array.isArray(parsed) ? "Imported Workout" : parsed.title || "Imported Workout";
       const newExs = items.map((item, idx) => {
+        if (!item || !item.name) return null;
         const nameLower = item.name.toLowerCase();
-        const match = EXERCISES.find(ex => ex.name.toLowerCase().includes(nameLower.split(" ").slice(0, 2).join(" ")) || nameLower.includes(ex.name.toLowerCase().split(" ").slice(0, 2).join(" ")));
-        const repParts = item.reps ? item.reps.split("-") : [];
-        const sets = Array.from({
-          length: item.sets || 3
-        }, (_, i) => ({
-          weight: "",
-          reps: repParts[i] || repParts[0] || "",
-          done: false
-        }));
+        const match = EXERCISE_DB.find(ex => ex.name.toLowerCase().includes(nameLower.split(" ").slice(0, 2).join(" ")) || nameLower.includes(ex.name.toLowerCase().split(" ").slice(0, 2).join(" ")));
+        // Handle both formats: sets as array [{weight,reps}] or sets as number + reps as string
+        let sets;
+        if (Array.isArray(item.sets)) {
+          sets = item.sets.map(s => ({
+            weight: String(s.weight || ""),
+            reps: String(s.reps || ""),
+            done: false
+          }));
+        } else {
+          const repParts = item.reps ? String(item.reps).split("-") : [];
+          sets = Array.from({
+            length: item.sets || 3
+          }, (_, i) => ({
+            weight: "",
+            reps: repParts[i] || repParts[0] || "",
+            done: false
+          }));
+        }
         if (match) return {
           ...match,
           sets
@@ -6667,14 +6685,14 @@ function App() {
           id: `import-${idx}-${Date.now()}`,
           name: item.name,
           equipment: "Accessories",
-          primaryMuscle: "Various",
-          secondaryMuscle: "",
+          muscle: "Various",
+          muscleHead: "",
           muscleId: "fullbody",
-          group: "Full Body",
-          note: `Imported . ${item.sets} sets x ${item.reps} reps`,
+          section: "Full Body",
+          calculator: "plate",
           sets
         };
-      });
+      }).filter(Boolean);
       if (newExs.length === 0) {
         showToast("No exercises found -- try a clearer photo");
         return;
@@ -12316,7 +12334,7 @@ function App() {
       if (libraryFilterMuscle && ex.muscle !== libraryFilterMuscle) return false;
       if (librarySearch) {
         const s = librarySearch.toLowerCase();
-        return ex.name.toLowerCase().includes(s) || ex.muscle.toLowerCase().includes(s) || ex.muscleHead.toLowerCase().includes(s) || ex.equipment.toLowerCase().includes(s);
+        return (ex.name || "").toLowerCase().includes(s) || (ex.muscle || "").toLowerCase().includes(s) || (ex.muscleHead || "").toLowerCase().includes(s) || (ex.equipment || "").toLowerCase().includes(s);
       }
       return true;
     });
@@ -13646,10 +13664,10 @@ function App() {
         color: "#8e8e93",
         fontSize: 14
       }
-    }, "No exercises found") : searchResults.map(ex => {
+    }, "No exercises found") : searchResults.map((ex, ri) => {
       const isPending = pendingIds.includes(ex.id);
       return /*#__PURE__*/React.createElement("div", {
-        key: ex.id,
+        key: ex.id + "-" + ri,
         className: "picker-item",
         style: {
           background: isPending ? "rgba(0,194,255,0.06)" : undefined
