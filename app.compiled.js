@@ -5871,6 +5871,15 @@ function App() {
       return [];
     }
   });
+  const [sessionNote, setSessionNote] = useState(() => {
+    try {
+      const d = JSON.parse(localStorage.getItem("locked_workout_draft") || "null");
+      return d?.sessionNote || "";
+    } catch (e) {
+      return "";
+    }
+  });
+  const [sessionNoteOpen, setSessionNoteOpen] = useState(false);
   // Auto-save draft to localStorage whenever workout name/exercises change
   useEffect(() => {
     if (workoutType && workoutName) {
@@ -5964,15 +5973,6 @@ function App() {
   const [highlightHistoryId, setHighlightHistoryId] = useState(null);
   const [scheduleOpen, setScheduleOpen] = useState(false);
   const [progressChartExId, setProgressChartExId] = useState(null);
-  const [sessionNote, setSessionNote] = useState(() => {
-    try {
-      const d = JSON.parse(localStorage.getItem("locked_workout_draft") || "null");
-      return d?.sessionNote || "";
-    } catch (e) {
-      return "";
-    }
-  });
-  const [sessionNoteOpen, setSessionNoteOpen] = useState(false);
   const [supersetPickerExId, setSupersetPickerExId] = useState(null);
   const [plansBrowseOpen, setPlansBrowseOpen] = useState(false);
   const [planDetailId, setPlanDetailId] = useState(null);
