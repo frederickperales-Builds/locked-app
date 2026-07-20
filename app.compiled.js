@@ -6663,23 +6663,26 @@ function App() {
         // Strategy 1: exact name match
         let match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase() === nameLower);
 
-        // Strategy 2: name contains imported name or vice versa
-        if (!match) match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase().includes(nameLower) || nameLower.includes((ex.name || "").toLowerCase()));
+        // Strategy 2: name contains imported name or vice versa (must be substantial overlap)
+        if (!match) match = EXERCISE_DB.find(ex => {
+          const exLower = (ex.name || "").toLowerCase();
+          return exLower.length > 5 && nameLower.includes(exLower) || nameLower.length > 5 && exLower.includes(nameLower);
+        });
 
-        // Strategy 3: first two words match
+        // Strategy 3: first two words match exactly in DB exercise name
         if (!match) {
           const first2 = nameWords.slice(0, 2).join(" ");
-          if (first2.length > 3) match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase().includes(first2));
+          if (first2.length > 5) match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase().startsWith(first2));
         }
 
-        // Strategy 4: word overlap scoring — pick best match with 2+ shared words
-        if (!match && nameWords.length >= 2) {
+        // Strategy 4: word overlap scoring — need 3+ shared words for confidence
+        if (!match && nameWords.length >= 3) {
           let bestScore = 0,
             bestMatch = null;
           EXERCISE_DB.forEach(ex => {
             const exWords = (ex.name || "").toLowerCase().split(/[\s\-\/]+/).filter(w => w.length > 2);
-            const overlap = nameWords.filter(w => exWords.some(ew => ew.includes(w) || w.includes(ew))).length;
-            if (overlap > bestScore && overlap >= 2) {
+            const overlap = nameWords.filter(w => exWords.some(ew => ew === w)).length;
+            if (overlap > bestScore && overlap >= 3) {
               bestScore = overlap;
               bestMatch = ex;
             }
@@ -6687,9 +6690,9 @@ function App() {
           if (bestMatch) match = bestMatch;
         }
 
-        // Strategy 5: key exercise words (bench, squat, deadlift, curl, press, row, fly, pulldown, extension, raise, shrug)
+        // Strategy 5: key exercise words
         if (!match) {
-          const keywords = ["bench press", "squat", "deadlift", "romanian deadlift", "overhead press", "barbell row", "lat pulldown", "leg press", "leg curl", "leg extension", "bicep curl", "hammer curl", "tricep pushdown", "lateral raise", "cable fly", "pec deck", "face pull", "shrug", "cable row", "pull-up", "chin-up", "dip"];
+          const keywords = ["bench press", "squat", "deadlift", "romanian deadlift", "overhead press", "lat pulldown", "leg press", "leg curl", "leg extension", "bicep curl", "hammer curl", "tricep pushdown", "lateral raise", "cable fly", "pec deck", "face pull", "shrug", "pull-up", "chin-up", "dip", "cable row", "cable crunch"];
           for (const kw of keywords) {
             if (nameLower.includes(kw)) {
               match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase().includes(kw));
