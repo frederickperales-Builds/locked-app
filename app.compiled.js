@@ -7,7 +7,7 @@ import { Dumbbell, Zap, ArrowUp, Layers, RotateCcw, Activity, HeartPulse, Chevro
 // Data is local-first: every read/write hits localStorage immediately (works
 // offline, instant UI). Writes are also debounced out to Supabase in the
 // background so the same data is available from any device/browser.
-import { jsxDEV as _jsxDEV, Fragment as _Fragment } from "react/jsx-dev-runtime";
+
 const SYNC = () => typeof window !== "undefined" ? window.__LOCKED_SYNC__ : null;
 const pendingSync = {}; // key -> timeout id, for debouncing
 const syncQueue = {}; // key -> latest value waiting to be sent
@@ -3904,7 +3904,7 @@ function BigPlateToggle({
   const [pressing, setPressing] = useState(null); // "add" | "remove" | null
   const neon = "#00c2ff";
   const active = count > 0;
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       width: 110,
       height: 110,
@@ -3915,78 +3915,73 @@ function BigPlateToggle({
       flexShrink: 0,
       userSelect: "none",
       WebkitTapHighlightColor: "transparent"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onPointerDown: () => {
+      setPressing("add");
+      onAdd();
     },
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      onPointerDown: () => {
-        setPressing("add");
-        onAdd();
-      },
-      onPointerUp: () => setPressing(null),
-      onPointerLeave: () => setPressing(null),
-      style: {
-        height: "50%",
-        background: pressing === "add" ? neon : "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        transition: "background 0.1s",
-        borderBottom: `1.5px solid ${active ? neon : "#e5e5ea"}`
-      },
-      children: /*#__PURE__*/_jsxDEV("svg", {
-        width: "36",
-        height: "36",
-        viewBox: "0 0 36 36",
-        children: [/*#__PURE__*/_jsxDEV("line", {
-          x1: "18",
-          y1: "6",
-          x2: "18",
-          y2: "30",
-          stroke: pressing === "add" ? "#fff" : active ? neon : "#bbb",
-          strokeWidth: "3.5",
-          strokeLinecap: "round"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("line", {
-          x1: "6",
-          y1: "18",
-          x2: "30",
-          y2: "18",
-          stroke: pressing === "add" ? "#fff" : active ? neon : "#bbb",
-          strokeWidth: "3.5",
-          strokeLinecap: "round"
-        }, void 0, false)]
-      }, void 0, true)
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-      onPointerDown: () => {
-        setPressing("remove");
-        onRemove();
-      },
-      onPointerUp: () => setPressing(null),
-      onPointerLeave: () => setPressing(null),
-      style: {
-        height: "50%",
-        background: pressing === "remove" ? neon : "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        transition: "background 0.1s"
-      },
-      children: /*#__PURE__*/_jsxDEV("svg", {
-        width: "36",
-        height: "36",
-        viewBox: "0 0 36 36",
-        children: /*#__PURE__*/_jsxDEV("line", {
-          x1: "6",
-          y1: "18",
-          x2: "30",
-          y2: "18",
-          stroke: pressing === "remove" ? "#fff" : active ? neon : "#bbb",
-          strokeWidth: "3.5",
-          strokeLinecap: "round"
-        }, void 0, false)
-      }, void 0, false)
-    }, void 0, false)]
-  }, void 0, true);
+    onPointerUp: () => setPressing(null),
+    onPointerLeave: () => setPressing(null),
+    style: {
+      height: "50%",
+      background: pressing === "add" ? neon : "#fff",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "pointer",
+      transition: "background 0.1s",
+      borderBottom: `1.5px solid ${active ? neon : "#e5e5ea"}`
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: "18",
+    y1: "6",
+    x2: "18",
+    y2: "30",
+    stroke: pressing === "add" ? "#fff" : active ? neon : "#bbb",
+    strokeWidth: "3.5",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "6",
+    y1: "18",
+    x2: "30",
+    y2: "18",
+    stroke: pressing === "add" ? "#fff" : active ? neon : "#bbb",
+    strokeWidth: "3.5",
+    strokeLinecap: "round"
+  }))), /*#__PURE__*/React.createElement("div", {
+    onPointerDown: () => {
+      setPressing("remove");
+      onRemove();
+    },
+    onPointerUp: () => setPressing(null),
+    onPointerLeave: () => setPressing(null),
+    style: {
+      height: "50%",
+      background: pressing === "remove" ? neon : "#fff",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "pointer",
+      transition: "background 0.1s"
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: "6",
+    y1: "18",
+    x2: "30",
+    y2: "18",
+    stroke: pressing === "remove" ? "#fff" : active ? neon : "#bbb",
+    strokeWidth: "3.5",
+    strokeLinecap: "round"
+  }))));
 }
 
 // -- Small Plate Toggle (kept for reference, unused) ------------------------
@@ -4041,7 +4036,7 @@ function WeeklyStats({
     core: "#00E5CC",
     traps: "#30d158"
   };
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#fff",
       borderRadius: 16,
@@ -4049,132 +4044,118 @@ function WeeklyStats({
       padding: "14px 14px 16px",
       marginBottom: 16,
       boxShadow: "0 1px 4px rgba(0,0,0,0.08)"
-    },
-    children: [/*#__PURE__*/_jsxDEV("div", {
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 700,
+      color: "#000",
+      marginBottom: 4
+    }
+  }, "This Week"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginBottom: 12
+    }
+  }, recent.length, " workout", recent.length !== 1 ? "s" : "", " . Sets per muscle group"), muscles.map(([mid, count]) => {
+    const pct = Math.min(count / OPTIMAL_MAX * 100, 100);
+    const color = muscleColors[mid] || "#c7c7cc";
+    const status = count < OPTIMAL_MIN ? "Under" : count <= OPTIMAL_MAX ? "Optimal" : "High";
+    const statusColor = count < OPTIMAL_MIN ? "#ff3b30" : count <= OPTIMAL_MAX ? "#30d158" : "#ff9f0a";
+    return /*#__PURE__*/React.createElement("div", {
+      key: mid,
       style: {
-        fontSize: 15,
-        fontWeight: 700,
-        color: "#000",
-        marginBottom: 4
-      },
-      children: "This Week"
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
+        marginBottom: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
       style: {
-        fontSize: 11,
-        color: "#8e8e93",
-        marginBottom: 12
-      },
-      children: [recent.length, " workout", recent.length !== 1 ? "s" : "", " . Sets per muscle group"]
-    }, void 0, true), muscles.map(([mid, count]) => {
-      const pct = Math.min(count / OPTIMAL_MAX * 100, 100);
-      const color = muscleColors[mid] || "#c7c7cc";
-      const status = count < OPTIMAL_MIN ? "Under" : count <= OPTIMAL_MAX ? "Optimal" : "High";
-      const statusColor = count < OPTIMAL_MIN ? "#ff3b30" : count <= OPTIMAL_MAX ? "#30d158" : "#ff9f0a";
-      return /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          marginBottom: 10
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: 4
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              fontWeight: 600,
-              color: "#000",
-              textTransform: "capitalize"
-            },
-            children: mid
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              alignItems: "center",
-              gap: 6
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 10,
-                fontWeight: 700,
-                color: statusColor,
-                background: statusColor + "18",
-                borderRadius: 5,
-                padding: "1px 6px"
-              },
-              children: status
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                fontWeight: 700,
-                color: "#000",
-                fontFamily: "DM Mono,monospace"
-              },
-              children: [count, " sets"]
-            }, void 0, true)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            height: 6,
-            background: "#F0F0F0",
-            borderRadius: 3,
-            overflow: "hidden"
-          },
-          children: /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              height: "100%",
-              width: `${pct}%`,
-              background: color,
-              borderRadius: 3,
-              transition: "width 0.4s ease"
-            }
-          }, void 0, false)
-        }, void 0, false)]
-      }, mid, true);
-    }), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        fontSize: 10,
-        color: "#8e8e93",
-        textAlign: "right",
-        marginTop: 4
-      },
-      children: ["Optimal range: ", OPTIMAL_MIN, "-", OPTIMAL_MAX, " sets/week per muscle"]
-    }, void 0, true), bestTime && /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        marginTop: 12,
-        paddingTop: 10,
-        borderTop: "1px solid #F0F0F0",
         display: "flex",
         alignItems: "center",
-        gap: 8
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 11,
-          color: "#8e8e93"
-        },
-        children: "You train most in the"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 12,
-          fontWeight: 700,
-          color: "#000",
-          background: "#F0F0F0",
-          borderRadius: 6,
-          padding: "2px 8px"
-        },
-        children: bestTime[0]
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 11,
-          color: "#8e8e93"
-        },
-        children: ["(", bestTime[1], " session", bestTime[1] !== 1 ? "s" : "", ")"]
-      }, void 0, true)]
-    }, void 0, true)]
-  }, void 0, true);
+        justifyContent: "space-between",
+        marginBottom: 4
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 600,
+        color: "#000",
+        textTransform: "capitalize"
+      }
+    }, mid), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: statusColor,
+        background: statusColor + "18",
+        borderRadius: 5,
+        padding: "1px 6px"
+      }
+    }, status), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: "#000",
+        fontFamily: "DM Mono,monospace"
+      }
+    }, count, " sets"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 6,
+        background: "#F0F0F0",
+        borderRadius: 3,
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: "100%",
+        width: `${pct}%`,
+        background: color,
+        borderRadius: 3,
+        transition: "width 0.4s ease"
+      }
+    })));
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#8e8e93",
+      textAlign: "right",
+      marginTop: 4
+    }
+  }, "Optimal range: ", OPTIMAL_MIN, "-", OPTIMAL_MAX, " sets/week per muscle"), bestTime && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 12,
+      paddingTop: 10,
+      borderTop: "1px solid #F0F0F0",
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "You train most in the"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#000",
+      background: "#F0F0F0",
+      borderRadius: 6,
+      padding: "2px 8px"
+    }
+  }, bestTime[0]), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "(", bestTime[1], " session", bestTime[1] !== 1 ? "s" : "", ")")));
 }
 
 // -- Muscle Intelligence Panel ---------------------------------------------
@@ -4192,7 +4173,7 @@ function MuscleIntelligence({
     orange: "Due soon",
     green: "Fresh"
   };
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#fff",
       borderRadius: 16,
@@ -4200,124 +4181,113 @@ function MuscleIntelligence({
       padding: "14px 14px 16px",
       marginBottom: 16,
       boxShadow: "0 1px 4px rgba(0,0,0,0.08)"
-    },
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      style: {
-        marginBottom: 14
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 15,
-          fontWeight: 700,
-          color: "#000"
-        },
-        children: "Muscle Intelligence"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 11,
-          color: "#8e8e93",
-          marginTop: 2
-        },
-        children: "Training frequency . target 2x/week per muscle"
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        display: "flex",
-        flexDirection: "column",
-        gap: 6
-      },
-      children: MUSCLE_GROUPS.map(muscle => {
-        const s = status[muscle];
-        const c = colors[s.priority];
-        const timeText = s.daysSince >= 999 ? "Never trained" : s.daysSince === 0 ? "Trained today" : s.daysSince === 1 ? "Trained yesterday" : `${s.daysSince} days ago`;
-        return /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "10px 12px",
-            background: "#fafafa",
-            borderRadius: 10,
-            border: "1px solid #f0f0f0"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              width: 32,
-              height: 32,
-              borderRadius: "50%",
-              background: c,
-              flexShrink: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 12,
-              fontWeight: 800,
-              color: "#fff",
-              boxShadow: `0 0 8px ${c}66`
-            },
-            children: s.sessionsLast14Days
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1,
-              minWidth: 0
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 13,
-                fontWeight: 700,
-                color: "#000"
-              },
-              children: muscle
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93",
-                marginTop: 1
-              },
-              children: [timeText, " · ", s.sessionsLast14Days, " session", s.sessionsLast14Days !== 1 ? "s" : "", " last 14 days"]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 10,
-              fontWeight: 700,
-              padding: "3px 10px",
-              borderRadius: 20,
-              background: c + "22",
-              color: c,
-              flexShrink: 0
-            },
-            children: labels[s.priority]
-          }, void 0, false)]
-        }, muscle, true);
-      })
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, "Muscle Intelligence"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 2
+    }
+  }, "Training frequency . target 2x/week per muscle")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 6
+    }
+  }, MUSCLE_GROUPS.map(muscle => {
+    const s = status[muscle];
+    const c = colors[s.priority];
+    const timeText = s.daysSince >= 999 ? "Never trained" : s.daysSince === 0 ? "Trained today" : s.daysSince === 1 ? "Trained yesterday" : `${s.daysSince} days ago`;
+    return /*#__PURE__*/React.createElement("div", {
+      key: muscle,
       style: {
         display: "flex",
-        gap: 12,
+        alignItems: "center",
+        gap: 10,
+        padding: "10px 12px",
+        background: "#fafafa",
+        borderRadius: 10,
+        border: "1px solid #f0f0f0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 32,
+        height: 32,
+        borderRadius: "50%",
+        background: c,
+        flexShrink: 0,
+        display: "flex",
+        alignItems: "center",
         justifyContent: "center",
-        marginTop: 12,
-        paddingTop: 10,
-        borderTop: "1px solid #F0F0F0"
-      },
-      children: [["#30d158", "Fresh (<7 days, 2+/wk)"], ["#ff9f0a", "Due soon"], ["#ff3b30", "Overdue"]].map(([c, l]) => /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 4,
-          fontSize: 10,
-          color: "#8e8e93"
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 10,
-            height: 10,
-            borderRadius: "50%",
-            background: c
-          }
-        }, void 0, false), l]
-      }, l, true))
-    }, void 0, false)]
-  }, void 0, true);
+        fontSize: 12,
+        fontWeight: 800,
+        color: "#fff",
+        boxShadow: `0 0 8px ${c}66`
+      }
+    }, s.sessionsLast14Days), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, muscle), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 1
+      }
+    }, timeText, " · ", s.sessionsLast14Days, " session", s.sessionsLast14Days !== 1 ? "s" : "", " last 14 days")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        padding: "3px 10px",
+        borderRadius: 20,
+        background: c + "22",
+        color: c,
+        flexShrink: 0
+      }
+    }, labels[s.priority]));
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 12,
+      justifyContent: "center",
+      marginTop: 12,
+      paddingTop: 10,
+      borderTop: "1px solid #F0F0F0"
+    }
+  }, [["#30d158", "Fresh (<7 days, 2+/wk)"], ["#ff9f0a", "Due soon"], ["#ff3b30", "Overdue"]].map(([c, l]) => /*#__PURE__*/React.createElement("div", {
+    key: l,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4,
+      fontSize: 10,
+      color: "#8e8e93"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 10,
+      height: 10,
+      borderRadius: "50%",
+      background: c
+    }
+  }), l))));
 }
 
 // -- PRs Panel ----------------------------------------------------------
@@ -4345,7 +4315,7 @@ function PRsPanel({
     day: "numeric"
   }) : "--";
   if (Object.keys(prs).length === 0) {
-    return /*#__PURE__*/_jsxDEV("div", {
+    return /*#__PURE__*/React.createElement("div", {
       style: {
         background: "#fff",
         borderRadius: 16,
@@ -4354,25 +4324,22 @@ function PRsPanel({
         marginBottom: 16,
         textAlign: "center",
         boxShadow: "0 1px 4px rgba(0,0,0,0.08)"
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 15,
-          fontWeight: 700,
-          color: "#000",
-          marginBottom: 4
-        },
-        children: "Personal Records"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 11,
-          color: "#8e8e93"
-        },
-        children: "Log workouts and PRs will appear here."
-      }, void 0, false)]
-    }, void 0, true);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 15,
+        fontWeight: 700,
+        color: "#000",
+        marginBottom: 4
+      }
+    }, "Personal Records"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93"
+      }
+    }, "Log workouts and PRs will appear here."));
   }
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#fff",
       borderRadius: 16,
@@ -4380,365 +4347,320 @@ function PRsPanel({
       padding: "14px 14px 16px",
       marginBottom: 16,
       boxShadow: "0 1px 4px rgba(0,0,0,0.08)"
-    },
-    children: [/*#__PURE__*/_jsxDEV("div", {
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, "Personal Records"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 2
+    }
+  }, "Best set per exercise . e1RM = estimated 1-rep max")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#00c2ff",
+      padding: "3px 8px",
+      background: "rgba(0,194,255,0.08)",
+      borderRadius: 10
+    }
+  }, Object.keys(prs).length)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 3,
+      background: "#F0F0F0",
+      borderRadius: 8,
+      padding: 3,
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setTab("recent"),
+    style: {
+      flex: 1,
+      padding: "7px 10px",
+      borderRadius: 6,
+      border: "none",
+      cursor: "pointer",
+      fontSize: 12,
+      fontWeight: 700,
+      fontFamily: "Inter,sans-serif",
+      background: tab === "recent" ? "#fff" : "transparent",
+      color: tab === "recent" ? "#000" : "#8e8e93",
+      boxShadow: tab === "recent" ? "0 1px 2px rgba(0,0,0,0.08)" : "none"
+    }
+  }, "Recent (", recentPRs.length, ")"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setTab("all"),
+    style: {
+      flex: 1,
+      padding: "7px 10px",
+      borderRadius: 6,
+      border: "none",
+      cursor: "pointer",
+      fontSize: 12,
+      fontWeight: 700,
+      fontFamily: "Inter,sans-serif",
+      background: tab === "all" ? "#fff" : "transparent",
+      color: tab === "all" ? "#000" : "#8e8e93",
+      boxShadow: tab === "all" ? "0 1px 2px rgba(0,0,0,0.08)" : "none"
+    }
+  }, "All-Time")), tab === "recent" && /*#__PURE__*/React.createElement(React.Fragment, null, recentPRs.length === 0 ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      padding: "12px",
+      fontSize: 12,
+      color: "#8e8e93"
+    }
+  }, "No PRs in the last 30 days. Time to lift heavy.") : /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 6
+    }
+  }, recentPRs.map(p => /*#__PURE__*/React.createElement("div", {
+    key: p.id,
+    onClick: () => onOpenChart && onOpenChart(p.id),
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      padding: "10px 12px",
+      background: "linear-gradient(90deg, rgba(0,194,255,0.06) 0%, transparent 100%)",
+      borderRadius: 10,
+      border: "1px solid rgba(0,194,255,0.2)",
+      cursor: "pointer"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18
+    }
+  }, "🏆"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, p.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 1
+    }
+  }, p.e1RMSet.weight, "lb × ", p.e1RMSet.reps, " · ", fmtDate(p.e1RMDate))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "right"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      fontWeight: 800,
+      color: "#00c2ff",
+      fontFamily: "DM Mono,monospace"
+    }
+  }, Math.round(p.bestE1RM), "lb"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: "#8e8e93",
+      fontWeight: 700,
+      letterSpacing: "0.05em"
+    }
+  }, "e1RM")))))), tab === "all" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 6
+    }
+  }, MUSCLE_GROUPS.filter(m => byMuscle[m]?.length).map(muscle => {
+    const isOpen = expandedMuscle === muscle;
+    const exs = byMuscle[muscle];
+    const topE1RM = Math.round(exs[0]?.bestE1RM || 0);
+    return /*#__PURE__*/React.createElement("div", {
+      key: muscle,
+      style: {
+        border: "1px solid #f0f0f0",
+        borderRadius: 10,
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      onClick: () => setExpandedMuscle(isOpen ? null : muscle),
       style: {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        marginBottom: 12
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 15,
-            fontWeight: 700,
-            color: "#000"
-          },
-          children: "Personal Records"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 11,
-            color: "#8e8e93",
-            marginTop: 2
-          },
-          children: "Best set per exercise . e1RM = estimated 1-rep max"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 11,
-          fontWeight: 700,
-          color: "#00c2ff",
-          padding: "3px 8px",
-          background: "rgba(0,194,255,0.08)",
-          borderRadius: 10
-        },
-        children: Object.keys(prs).length
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
+        padding: "10px 12px",
+        background: "#fafafa",
+        cursor: "pointer"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
-        gap: 3,
-        background: "#F0F0F0",
-        borderRadius: 8,
-        padding: 3,
-        marginBottom: 12
-      },
-      children: [/*#__PURE__*/_jsxDEV("button", {
-        onClick: () => setTab("recent"),
-        style: {
-          flex: 1,
-          padding: "7px 10px",
-          borderRadius: 6,
-          border: "none",
-          cursor: "pointer",
-          fontSize: 12,
-          fontWeight: 700,
-          fontFamily: "Inter,sans-serif",
-          background: tab === "recent" ? "#fff" : "transparent",
-          color: tab === "recent" ? "#000" : "#8e8e93",
-          boxShadow: tab === "recent" ? "0 1px 2px rgba(0,0,0,0.08)" : "none"
-        },
-        children: ["Recent (", recentPRs.length, ")"]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        onClick: () => setTab("all"),
-        style: {
-          flex: 1,
-          padding: "7px 10px",
-          borderRadius: 6,
-          border: "none",
-          cursor: "pointer",
-          fontSize: 12,
-          fontWeight: 700,
-          fontFamily: "Inter,sans-serif",
-          background: tab === "all" ? "#fff" : "transparent",
-          color: tab === "all" ? "#000" : "#8e8e93",
-          boxShadow: tab === "all" ? "0 1px 2px rgba(0,0,0,0.08)" : "none"
-        },
-        children: "All-Time"
-      }, void 0, false)]
-    }, void 0, true), tab === "recent" && /*#__PURE__*/_jsxDEV(_Fragment, {
-      children: recentPRs.length === 0 ? /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          textAlign: "center",
-          padding: "12px",
-          fontSize: 12,
-          color: "#8e8e93"
-        },
-        children: "No PRs in the last 30 days. Time to lift heavy."
-      }, void 0, false) : /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          flexDirection: "column",
-          gap: 6
-        },
-        children: recentPRs.map(p => /*#__PURE__*/_jsxDEV("div", {
-          onClick: () => onOpenChart && onOpenChart(p.id),
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "10px 12px",
-            background: "linear-gradient(90deg, rgba(0,194,255,0.06) 0%, transparent 100%)",
-            borderRadius: 10,
-            border: "1px solid rgba(0,194,255,0.2)",
-            cursor: "pointer"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 18
-            },
-            children: "🏆"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1,
-              minWidth: 0
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 13,
-                fontWeight: 700,
-                color: "#000"
-              },
-              children: p.name
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93",
-                marginTop: 1
-              },
-              children: [p.e1RMSet.weight, "lb × ", p.e1RMSet.reps, " · ", fmtDate(p.e1RMDate)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              textAlign: "right"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 14,
-                fontWeight: 800,
-                color: "#00c2ff",
-                fontFamily: "DM Mono,monospace"
-              },
-              children: [Math.round(p.bestE1RM), "lb"]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 9,
-                color: "#8e8e93",
-                fontWeight: 700,
-                letterSpacing: "0.05em"
-              },
-              children: "e1RM"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, p.id, true))
-      }, void 0, false)
-    }, void 0, false), tab === "all" && /*#__PURE__*/_jsxDEV("div", {
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, muscle), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        padding: "1px 8px",
+        background: "#fff",
+        borderRadius: 8
+      }
+    }, exs.length)), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
-        flexDirection: "column",
-        gap: 6
-      },
-      children: MUSCLE_GROUPS.filter(m => byMuscle[m]?.length).map(muscle => {
-        const isOpen = expandedMuscle === muscle;
-        const exs = byMuscle[muscle];
-        const topE1RM = Math.round(exs[0]?.bestE1RM || 0);
-        return /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            border: "1px solid #f0f0f0",
-            borderRadius: 10,
-            overflow: "hidden"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            onClick: () => setExpandedMuscle(isOpen ? null : muscle),
-            style: {
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "10px 12px",
-              background: "#fafafa",
-              cursor: "pointer"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 10
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 13,
-                  fontWeight: 700,
-                  color: "#000"
-                },
-                children: muscle
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  color: "#8e8e93",
-                  padding: "1px 8px",
-                  background: "#fff",
-                  borderRadius: 8
-                },
-                children: exs.length
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 8
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  color: "#8e8e93"
-                },
-                children: ["top ", topE1RM, "lb"]
-              }, void 0, true), /*#__PURE__*/_jsxDEV(ChevronDown, {
-                size: 14,
-                strokeWidth: 2.5,
-                color: "#00c2ff",
-                style: {
-                  transform: isOpen ? "rotate(180deg)" : "none",
-                  transition: "transform 0.2s"
-                }
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true), isOpen && /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff"
-            },
-            children: exs.map(p => /*#__PURE__*/_jsxDEV("div", {
-              onClick: () => onOpenChart && onOpenChart(p.id),
-              style: {
-                padding: "10px 12px",
-                borderTop: "1px solid #f5f5f7",
-                cursor: "pointer"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 8
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    flex: 1,
-                    minWidth: 0
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 12,
-                      fontWeight: 700,
-                      color: "#000"
-                    },
-                    children: p.name
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 10,
-                      color: "#8e8e93",
-                      marginTop: 1
-                    },
-                    children: [p.totalSessions, " session", p.totalSessions !== 1 ? "s" : ""]
-                  }, void 0, true)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    textAlign: "right",
-                    flexShrink: 0
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 13,
-                      fontWeight: 800,
-                      color: "#00c2ff",
-                      fontFamily: "DM Mono,monospace"
-                    },
-                    children: [Math.round(p.bestE1RM), "lb"]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 9,
-                      color: "#8e8e93",
-                      fontWeight: 700,
-                      letterSpacing: "0.05em"
-                    },
-                    children: "e1RM"
-                  }, void 0, false)]
-                }, void 0, true)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  gap: 12,
-                  marginTop: 6,
-                  paddingTop: 6,
-                  borderTop: "1px dashed #f0f0f0"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    flex: 1
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 9,
-                      color: "#8e8e93",
-                      fontWeight: 700,
-                      letterSpacing: "0.05em"
-                    },
-                    children: "BEST WEIGHT"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 12,
-                      fontWeight: 700,
-                      color: "#000",
-                      fontFamily: "DM Mono,monospace",
-                      marginTop: 1
-                    },
-                    children: [p.weightSet.weight, "lb × ", p.weightSet.reps]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 10,
-                      color: "#8e8e93",
-                      marginTop: 1
-                    },
-                    children: fmtDate(p.weightDate)
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    flex: 1
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 9,
-                      color: "#8e8e93",
-                      fontWeight: 700,
-                      letterSpacing: "0.05em"
-                    },
-                    children: "BEST e1RM SET"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 12,
-                      fontWeight: 700,
-                      color: "#000",
-                      fontFamily: "DM Mono,monospace",
-                      marginTop: 1
-                    },
-                    children: [p.e1RMSet.weight, "lb × ", p.e1RMSet.reps]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 10,
-                      color: "#8e8e93",
-                      marginTop: 1
-                    },
-                    children: fmtDate(p.e1RMDate)
-                  }, void 0, false)]
-                }, void 0, true)]
-              }, void 0, true)]
-            }, p.id, true))
-          }, void 0, false)]
-        }, muscle, true);
-      })
-    }, void 0, false)]
-  }, void 0, true);
+        alignItems: "center",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93"
+      }
+    }, "top ", topE1RM, "lb"), /*#__PURE__*/React.createElement(ChevronDown, {
+      size: 14,
+      strokeWidth: 2.5,
+      color: "#00c2ff",
+      style: {
+        transform: isOpen ? "rotate(180deg)" : "none",
+        transition: "transform 0.2s"
+      }
+    }))), isOpen && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff"
+      }
+    }, exs.map(p => /*#__PURE__*/React.createElement("div", {
+      key: p.id,
+      onClick: () => onOpenChart && onOpenChart(p.id),
+      style: {
+        padding: "10px 12px",
+        borderTop: "1px solid #f5f5f7",
+        cursor: "pointer"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, p.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8e8e93",
+        marginTop: 1
+      }
+    }, p.totalSessions, " session", p.totalSessions !== 1 ? "s" : "")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "right",
+        flexShrink: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 800,
+        color: "#00c2ff",
+        fontFamily: "DM Mono,monospace"
+      }
+    }, Math.round(p.bestE1RM), "lb"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: "#8e8e93",
+        fontWeight: 700,
+        letterSpacing: "0.05em"
+      }
+    }, "e1RM"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 12,
+        marginTop: 6,
+        paddingTop: 6,
+        borderTop: "1px dashed #f0f0f0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: "#8e8e93",
+        fontWeight: 700,
+        letterSpacing: "0.05em"
+      }
+    }, "BEST WEIGHT"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: "#000",
+        fontFamily: "DM Mono,monospace",
+        marginTop: 1
+      }
+    }, p.weightSet.weight, "lb × ", p.weightSet.reps), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8e8e93",
+        marginTop: 1
+      }
+    }, fmtDate(p.weightDate))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: "#8e8e93",
+        fontWeight: 700,
+        letterSpacing: "0.05em"
+      }
+    }, "BEST e1RM SET"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: "#000",
+        fontFamily: "DM Mono,monospace",
+        marginTop: 1
+      }
+    }, p.e1RMSet.weight, "lb × ", p.e1RMSet.reps), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8e8e93",
+        marginTop: 1
+      }
+    }, fmtDate(p.e1RMDate))))))));
+  })));
 }
 
 // -- Plan Schedule View ----------------------------------------------------------
@@ -4819,279 +4741,256 @@ function PlanScheduleView({
   const isCurrentWeek = weekNum => {
     return activePlan && weekNum === activePlan.currentWeek;
   };
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#000",
       borderRadius: 14,
       padding: "14px 12px",
       border: "1.5px solid #1c1c1e",
       boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-    },
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      style: {
-        padding: "0 4px",
-        marginBottom: 10
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 11,
-          fontWeight: 700,
-          color: "#8e8e93",
-          letterSpacing: "0.05em",
-          textTransform: "uppercase"
-        },
-        children: "Full Schedule"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 11,
-          color: "#8e8e93",
-          marginTop: 2
-        },
-        children: [plan.duration, " weeks · Sessions on your training days · Cardio overlay"]
-      }, void 0, true)]
-    }, void 0, true), insufficient && /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        background: "#fff9e6",
-        border: "1px solid #ffd580",
-        borderRadius: 8,
-        padding: "8px 10px",
-        marginBottom: 10,
-        fontSize: 11,
-        color: "#000",
-        lineHeight: 1.4
-      },
-      children: [/*#__PURE__*/_jsxDEV("strong", {
-        children: "Heads up:"
-      }, void 0, false), " This plan needs ", plan.daysPerWeek, " training days/week but you have ", sortedTrainingDays.length, " set. Update schedule in Calendar tab."]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "0 4px",
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase"
+    }
+  }, "Full Schedule"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 2
+    }
+  }, plan.duration, " weeks · Sessions on your training days · Cardio overlay")), insufficient && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff9e6",
+      border: "1px solid #ffd580",
+      borderRadius: 8,
+      padding: "8px 10px",
+      marginBottom: 10,
+      fontSize: 11,
+      color: "#000",
+      lineHeight: 1.4
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "Heads up:"), " This plan needs ", plan.daysPerWeek, " training days/week but you have ", sortedTrainingDays.length, " set. Update schedule in Calendar tab."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "36px repeat(7, 1fr)",
+      gap: 3,
+      padding: "0 4px",
+      marginBottom: 6
+    }
+  }, /*#__PURE__*/React.createElement("div", null), dayLabels.map((label, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      textAlign: "center",
+      fontSize: 9,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.04em"
+    }
+  }, label))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 3
+    }
+  }, Array.from({
+    length: plan.duration
+  }, (_, wIdx) => {
+    const weekNum = wIdx + 1;
+    const highlight = isCurrentWeek(weekNum);
+    return /*#__PURE__*/React.createElement("div", {
+      key: weekNum,
       style: {
         display: "grid",
         gridTemplateColumns: "36px repeat(7, 1fr)",
         gap: 3,
-        padding: "0 4px",
-        marginBottom: 6
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {}, void 0, false), dayLabels.map((label, i) => /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          textAlign: "center",
-          fontSize: 9,
-          fontWeight: 700,
-          color: "#8e8e93",
-          letterSpacing: "0.04em"
-        },
-        children: label
-      }, i, false))]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
+        padding: "3px 4px",
+        borderRadius: 6,
+        background: highlight ? "rgba(0,194,255,0.12)" : "transparent",
+        border: highlight ? "1px solid rgba(0,194,255,0.35)" : "1px solid transparent"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
-        flexDirection: "column",
-        gap: 3
-      },
-      children: Array.from({
-        length: plan.duration
-      }, (_, wIdx) => {
-        const weekNum = wIdx + 1;
-        const highlight = isCurrentWeek(weekNum);
-        return /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "grid",
-            gridTemplateColumns: "36px repeat(7, 1fr)",
-            gap: 3,
-            padding: "3px 4px",
-            borderRadius: 6,
-            background: highlight ? "rgba(0,194,255,0.12)" : "transparent",
-            border: highlight ? "1px solid rgba(0,194,255,0.35)" : "1px solid transparent"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 10,
-              fontWeight: 700,
-              color: highlight ? "#00c2ff" : "#8e8e93",
-              fontFamily: "DM Mono,monospace"
-            },
-            children: ["W", weekNum]
-          }, void 0, true), dayLabels.map((_, dow) => {
-            const session = getPlanSessionForDow(dow);
-            const isCardio = cardioDays.includes(dow);
-            const cellIsToday = isToday(weekNum, dow);
-            const done = isSessionDone(weekNum, dow);
-            let bg, borderColor, textColor, cellType;
-            if (session) {
-              bg = done ? "rgba(16,185,129,0.12)" : cellIsToday ? "#00c2ff" : "rgba(0,194,255,0.08)";
-              borderColor = done ? "#10b981" : cellIsToday ? "#00c2ff" : "rgba(0,194,255,0.3)";
-              textColor = done ? "#059669" : cellIsToday ? "#000" : "#00c2ff";
-              cellType = done ? "done" : "session";
-            } else if (isCardio) {
-              bg = "rgba(244,63,94,0.08)";
-              borderColor = "rgba(244,63,94,0.35)";
-              textColor = "#e11d48";
-              cellType = "cardio";
-            } else {
-              bg = "#1c1c1e";
-              borderColor = "#2c2c2e";
-              textColor = "#48484a";
-              cellType = "rest";
-            }
-            return /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                aspectRatio: "1",
-                borderRadius: 6,
-                background: bg,
-                border: `1.5px solid ${borderColor}`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 10,
-                fontWeight: 800,
-                color: textColor,
-                fontFamily: "DM Mono,monospace",
-                letterSpacing: "0.02em",
-                boxShadow: cellIsToday ? "0 0 6px rgba(0,194,255,0.4)" : "none"
-              },
-              children: cellType === "cardio" ? /*#__PURE__*/_jsxDEV(HeartPulse, {
-                size: 11,
-                strokeWidth: 2.5,
-                color: textColor
-              }, void 0, false) : cellType === "done" ? "✓" : cellType === "session" ? shortLabel(session.day.name) : "·"
-            }, dow, false);
-          })]
-        }, weekNum, true);
-      })
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        display: "flex",
-        gap: 10,
+        alignItems: "center",
         justifyContent: "center",
-        flexWrap: "wrap",
-        marginTop: 12,
-        paddingTop: 10,
-        borderTop: "1px solid #1c1c1e",
-        fontSize: 9
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
+        fontSize: 10,
+        fontWeight: 700,
+        color: highlight ? "#00c2ff" : "#8e8e93",
+        fontFamily: "DM Mono,monospace"
+      }
+    }, "W", weekNum), dayLabels.map((_, dow) => {
+      const session = getPlanSessionForDow(dow);
+      const isCardio = cardioDays.includes(dow);
+      const cellIsToday = isToday(weekNum, dow);
+      const done = isSessionDone(weekNum, dow);
+      let bg, borderColor, textColor, cellType;
+      if (session) {
+        bg = done ? "rgba(16,185,129,0.12)" : cellIsToday ? "#00c2ff" : "rgba(0,194,255,0.08)";
+        borderColor = done ? "#10b981" : cellIsToday ? "#00c2ff" : "rgba(0,194,255,0.3)";
+        textColor = done ? "#059669" : cellIsToday ? "#000" : "#00c2ff";
+        cellType = done ? "done" : "session";
+      } else if (isCardio) {
+        bg = "rgba(244,63,94,0.08)";
+        borderColor = "rgba(244,63,94,0.35)";
+        textColor = "#e11d48";
+        cellType = "cardio";
+      } else {
+        bg = "#1c1c1e";
+        borderColor = "#2c2c2e";
+        textColor = "#48484a";
+        cellType = "rest";
+      }
+      return /*#__PURE__*/React.createElement("div", {
+        key: dow,
         style: {
+          aspectRatio: "1",
+          borderRadius: 6,
+          background: bg,
+          border: `1.5px solid ${borderColor}`,
           display: "flex",
           alignItems: "center",
-          gap: 4
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 10,
-            height: 10,
-            borderRadius: 3,
-            background: "rgba(0,194,255,0.08)",
-            border: "1.5px solid rgba(0,194,255,0.3)"
-          }
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          style: {
-            color: "#8e8e93",
-            fontWeight: 600
-          },
-          children: "Session"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 4
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 10,
-            height: 10,
-            borderRadius: 3,
-            background: "rgba(16,185,129,0.12)",
-            border: "1.5px solid #10b981"
-          }
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          style: {
-            color: "#8e8e93",
-            fontWeight: 600
-          },
-          children: "Done"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 4
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 10,
-            height: 10,
-            borderRadius: 3,
-            background: "rgba(244,63,94,0.08)",
-            border: "1.5px solid rgba(244,63,94,0.35)"
-          }
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          style: {
-            color: "#8e8e93",
-            fontWeight: 600
-          },
-          children: "Cardio"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 4
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 10,
-            height: 10,
-            borderRadius: 3,
-            background: "#00c2ff",
-            border: "1.5px solid #00c2ff"
-          }
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          style: {
-            color: "#8e8e93",
-            fontWeight: 600
-          },
-          children: "Today"
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        marginTop: 10,
-        paddingTop: 10,
-        borderTop: "1px solid #1c1c1e",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 6
-      },
-      children: plan.days.map((day, i) => /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 5,
+          justifyContent: "center",
           fontSize: 10,
-          color: "#8e8e93"
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 9,
-            fontWeight: 800,
-            color: "#00c2ff",
-            fontFamily: "DM Mono,monospace",
-            background: "rgba(0,194,255,0.08)",
-            padding: "2px 6px",
-            borderRadius: 4,
-            minWidth: 22,
-            textAlign: "center"
-          },
-          children: shortLabel(day.name)
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          children: day.name
-        }, void 0, false)]
-      }, i, true))
-    }, void 0, false)]
-  }, void 0, true);
+          fontWeight: 800,
+          color: textColor,
+          fontFamily: "DM Mono,monospace",
+          letterSpacing: "0.02em",
+          boxShadow: cellIsToday ? "0 0 6px rgba(0,194,255,0.4)" : "none"
+        }
+      }, cellType === "cardio" ? /*#__PURE__*/React.createElement(HeartPulse, {
+        size: 11,
+        strokeWidth: 2.5,
+        color: textColor
+      }) : cellType === "done" ? "✓" : cellType === "session" ? shortLabel(session.day.name) : "·");
+    }));
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      justifyContent: "center",
+      flexWrap: "wrap",
+      marginTop: 12,
+      paddingTop: 10,
+      borderTop: "1px solid #1c1c1e",
+      fontSize: 9
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 10,
+      height: 10,
+      borderRadius: 3,
+      background: "rgba(0,194,255,0.08)",
+      border: "1.5px solid rgba(0,194,255,0.3)"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#8e8e93",
+      fontWeight: 600
+    }
+  }, "Session")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 10,
+      height: 10,
+      borderRadius: 3,
+      background: "rgba(16,185,129,0.12)",
+      border: "1.5px solid #10b981"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#8e8e93",
+      fontWeight: 600
+    }
+  }, "Done")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 10,
+      height: 10,
+      borderRadius: 3,
+      background: "rgba(244,63,94,0.08)",
+      border: "1.5px solid rgba(244,63,94,0.35)"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#8e8e93",
+      fontWeight: 600
+    }
+  }, "Cardio")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 10,
+      height: 10,
+      borderRadius: 3,
+      background: "#00c2ff",
+      border: "1.5px solid #00c2ff"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#8e8e93",
+      fontWeight: 600
+    }
+  }, "Today"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10,
+      paddingTop: 10,
+      borderTop: "1px solid #1c1c1e",
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 6
+    }
+  }, plan.days.map((day, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 5,
+      fontSize: 10,
+      color: "#8e8e93"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      fontWeight: 800,
+      color: "#00c2ff",
+      fontFamily: "DM Mono,monospace",
+      background: "rgba(0,194,255,0.08)",
+      padding: "2px 6px",
+      borderRadius: 4,
+      minWidth: 22,
+      textAlign: "center"
+    }
+  }, shortLabel(day.name)), /*#__PURE__*/React.createElement("span", null, day.name)))));
 }
 
 // -- Progress Chart Modal ----------------------------------------------------------
@@ -5174,7 +5073,7 @@ function ProgressChartModal({
   const bestV = Math.max(...values, 0);
   const bestSession = filtered.find(s => s[valKey] === bestV);
   const unit = "lb";
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       position: "fixed",
       inset: 0,
@@ -5184,450 +5083,394 @@ function ProgressChartModal({
       alignItems: "stretch",
       justifyContent: "stretch"
     },
+    onClick: onClose
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#F0F0F0",
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      overflow: "hidden"
+    },
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      padding: "14px 16px",
+      borderBottom: "1px solid #e5e5ea",
+      display: "flex",
+      alignItems: "center",
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
-    children: /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        background: "#F0F0F0",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden"
-      },
-      onClick: e => e.stopPropagation(),
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          background: "#fff",
-          padding: "14px 16px",
-          borderBottom: "1px solid #e5e5ea",
-          display: "flex",
-          alignItems: "center",
-          gap: 12
-        },
-        children: [/*#__PURE__*/_jsxDEV("button", {
-          onClick: onClose,
-          style: {
-            background: "none",
-            border: "none",
-            fontSize: 20,
-            color: "#00c2ff",
-            cursor: "pointer",
-            padding: 0,
-            fontWeight: 400,
-            lineHeight: 1
-          },
-          children: "‹"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            flex: 1,
-            minWidth: 0
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 15,
-              fontWeight: 700,
-              color: "#000"
-            },
-            children: ex.name
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 11,
-              color: "#8e8e93",
-              marginTop: 1
-            },
-            children: [ex.muscle, " · ", ex.muscleHead]
-          }, void 0, true)]
-        }, void 0, true)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          flex: 1,
-          overflowY: "auto",
-          padding: "14px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 12
-        },
-        children: sessions.length < 2 ? /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#fff",
-            borderRadius: 14,
-            padding: "30px 20px",
-            textAlign: "center",
-            border: "1.5px solid #e5e5ea"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 14,
-              fontWeight: 600,
-              color: "#8e8e93"
-            },
-            children: "Not enough data yet"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#c7c7cc",
-              marginTop: 6
-            },
-            children: "Log this exercise at least twice to see progress."
-          }, void 0, false)]
-        }, void 0, true) : /*#__PURE__*/_jsxDEV(_Fragment, {
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 3,
-              background: "#fff",
-              borderRadius: 10,
-              padding: 3,
-              border: "1px solid #e5e5ea"
-            },
-            children: [["weight", "Weight"], ["volume", "Volume"], ["e1rm", "e1RM"]].map(([k, l]) => /*#__PURE__*/_jsxDEV("button", {
-              onClick: () => setView(k),
-              style: {
-                flex: 1,
-                padding: "8px 12px",
-                borderRadius: 7,
-                border: "none",
-                cursor: "pointer",
-                fontSize: 12,
-                fontWeight: 700,
-                fontFamily: "Inter,sans-serif",
-                background: view === k ? "#000" : "transparent",
-                color: view === k ? "#00c2ff" : "#8e8e93",
-                transition: "all 0.15s"
-              },
-              children: l
-            }, k, false))
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 6,
-              justifyContent: "space-between"
-            },
-            children: [["1m", "1M"], ["3m", "3M"], ["6m", "6M"], ["1y", "1Y"], ["all", "All"]].map(([k, l]) => /*#__PURE__*/_jsxDEV("button", {
-              onClick: () => setRange(k),
-              style: {
-                flex: 1,
-                padding: "6px 4px",
-                borderRadius: 7,
-                border: range === k ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
-                cursor: "pointer",
-                fontSize: 11,
-                fontWeight: 700,
-                fontFamily: "DM Mono,monospace",
-                background: "#fff",
-                color: range === k ? "#00c2ff" : "#8e8e93",
-                boxShadow: range === k ? "0 0 8px rgba(0,194,255,0.15)" : "none",
-                transition: "all 0.15s"
-              },
-              children: l
-            }, k, false))
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              padding: "14px 12px",
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: filtered.length < 2 ? /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "30px 10px",
-                textAlign: "center",
-                fontSize: 12,
-                color: "#8e8e93"
-              },
-              children: "Not enough data in this range."
-            }, void 0, false) : /*#__PURE__*/_jsxDEV("svg", {
-              width: "100%",
-              viewBox: `0 0 ${W} ${H}`,
-              style: {
-                display: "block",
-                overflow: "visible"
-              },
-              children: [tickValues.map((tv, i) => /*#__PURE__*/_jsxDEV("g", {
-                children: [/*#__PURE__*/_jsxDEV("line", {
-                  x1: padL,
-                  y1: y(tv),
-                  x2: W - padR,
-                  y2: y(tv),
-                  stroke: "#f0f0f0",
-                  strokeWidth: "1"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("text", {
-                  x: padL - 6,
-                  y: y(tv) + 3,
-                  fontSize: "9",
-                  fill: "#8e8e93",
-                  textAnchor: "end",
-                  fontFamily: "DM Mono,monospace",
-                  children: Math.round(tv)
-                }, void 0, false)]
-              }, i, true)), /*#__PURE__*/_jsxDEV("path", {
-                d: fillPath,
-                fill: "rgba(0,194,255,0.08)"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-                d: path,
-                fill: "none",
-                stroke: "#00c2ff",
-                strokeWidth: "2",
-                strokeLinecap: "round",
-                strokeLinejoin: "round"
-              }, void 0, false), filtered.map((s, i) => /*#__PURE__*/_jsxDEV("circle", {
-                cx: x(i),
-                cy: y(s[valKey]),
-                r: "3.5",
-                fill: "#00c2ff",
-                stroke: "#fff",
-                strokeWidth: "1.5"
-              }, i, false)), filtered.length > 0 && /*#__PURE__*/_jsxDEV(_Fragment, {
-                children: [/*#__PURE__*/_jsxDEV("text", {
-                  x: x(0),
-                  y: H - 10,
-                  fontSize: "9",
-                  fill: "#8e8e93",
-                  textAnchor: "start",
-                  children: filtered[0].date.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric"
-                  })
-                }, void 0, false), filtered.length > 2 && /*#__PURE__*/_jsxDEV("text", {
-                  x: x(Math.floor(filtered.length / 2)),
-                  y: H - 10,
-                  fontSize: "9",
-                  fill: "#8e8e93",
-                  textAnchor: "middle",
-                  children: filtered[Math.floor(filtered.length / 2)].date.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric"
-                  })
-                }, void 0, false), filtered.length > 1 && /*#__PURE__*/_jsxDEV("text", {
-                  x: x(filtered.length - 1),
-                  y: H - 10,
-                  fontSize: "9",
-                  fill: "#8e8e93",
-                  textAnchor: "end",
-                  children: filtered[filtered.length - 1].date.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric"
-                  })
-                }, void 0, false)]
-              }, void 0, true)]
-            }, void 0, true)
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              padding: "14px 14px",
-              border: "1.5px solid #e5e5ea",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 12,
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase"
-                },
-                children: "Starting"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 18,
-                  fontWeight: 800,
-                  color: "#000",
-                  fontFamily: "DM Mono,monospace",
-                  marginTop: 2
-                },
-                children: [Math.round(firstV), unit]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase"
-                },
-                children: "Current"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 18,
-                  fontWeight: 800,
-                  color: "#000",
-                  fontFamily: "DM Mono,monospace",
-                  marginTop: 2
-                },
-                children: [Math.round(lastV), unit]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase"
-                },
-                children: "Change"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 18,
-                  fontWeight: 800,
-                  color: change >= 0 ? "#34c759" : "#ff3b30",
-                  fontFamily: "DM Mono,monospace",
-                  marginTop: 2
-                },
-                children: [change >= 0 ? "+" : "", Math.round(change), unit]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  color: change >= 0 ? "#34c759" : "#ff3b30",
-                  fontWeight: 600
-                },
-                children: [change >= 0 ? "+" : "", changePct, "%"]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase"
-                },
-                children: "Best"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 18,
-                  fontWeight: 800,
-                  color: "#00c2ff",
-                  fontFamily: "DM Mono,monospace",
-                  marginTop: 2
-                },
-                children: [Math.round(bestV), unit]
-              }, void 0, true), bestSession && /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  color: "#8e8e93"
-                },
-                children: bestSession.date.toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric"
-                })
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              border: "1.5px solid #e5e5ea",
-              overflow: "hidden",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "10px 14px",
-                borderBottom: "1px solid #f0f0f0",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#000"
-                },
-                children: "Recent Sessions"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  color: "#8e8e93"
-                },
-                children: [filtered.length, " total"]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr 1fr",
-                padding: "8px 14px",
-                background: "#fafafa",
-                fontSize: 9,
-                fontWeight: 700,
-                color: "#8e8e93",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                children: "Date"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  textAlign: "right"
-                },
-                children: "Best"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  textAlign: "right"
-                },
-                children: "Volume"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  textAlign: "right"
-                },
-                children: "e1RM"
-              }, void 0, false)]
-            }, void 0, true), filtered.slice().reverse().slice(0, 10).map((s, i) => /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr 1fr",
-                padding: "9px 14px",
-                borderTop: "1px solid #f5f5f7",
-                fontSize: 11,
-                alignItems: "center"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  color: "#000",
-                  fontWeight: 600
-                },
-                children: s.date.toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric"
-                })
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  textAlign: "right",
-                  fontFamily: "DM Mono,monospace",
-                  color: "#000",
-                  fontWeight: 700
-                },
-                children: [s.weight, "×", s.reps]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  textAlign: "right",
-                  fontFamily: "DM Mono,monospace",
-                  color: "#8e8e93"
-                },
-                children: Math.round(s.volume).toLocaleString()
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  textAlign: "right",
-                  fontFamily: "DM Mono,monospace",
-                  color: "#00c2ff",
-                  fontWeight: 700
-                },
-                children: s.e1rm
-              }, void 0, false)]
-            }, i, true))]
-          }, void 0, true)]
-        }, void 0, true)
-      }, void 0, false)]
-    }, void 0, true)
-  }, void 0, false);
+    style: {
+      background: "none",
+      border: "none",
+      fontSize: 20,
+      color: "#00c2ff",
+      cursor: "pointer",
+      padding: 0,
+      fontWeight: 400,
+      lineHeight: 1
+    }
+  }, "‹"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, ex.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 1
+    }
+  }, ex.muscle, " · ", ex.muscleHead))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      overflowY: "auto",
+      padding: "14px",
+      display: "flex",
+      flexDirection: "column",
+      gap: 12
+    }
+  }, sessions.length < 2 ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      padding: "30px 20px",
+      textAlign: "center",
+      border: "1.5px solid #e5e5ea"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      fontWeight: 600,
+      color: "#8e8e93"
+    }
+  }, "Not enough data yet"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#c7c7cc",
+      marginTop: 6
+    }
+  }, "Log this exercise at least twice to see progress.")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 3,
+      background: "#fff",
+      borderRadius: 10,
+      padding: 3,
+      border: "1px solid #e5e5ea"
+    }
+  }, [["weight", "Weight"], ["volume", "Volume"], ["e1rm", "e1RM"]].map(([k, l]) => /*#__PURE__*/React.createElement("button", {
+    key: k,
+    onClick: () => setView(k),
+    style: {
+      flex: 1,
+      padding: "8px 12px",
+      borderRadius: 7,
+      border: "none",
+      cursor: "pointer",
+      fontSize: 12,
+      fontWeight: 700,
+      fontFamily: "Inter,sans-serif",
+      background: view === k ? "#000" : "transparent",
+      color: view === k ? "#00c2ff" : "#8e8e93",
+      transition: "all 0.15s"
+    }
+  }, l))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      justifyContent: "space-between"
+    }
+  }, [["1m", "1M"], ["3m", "3M"], ["6m", "6M"], ["1y", "1Y"], ["all", "All"]].map(([k, l]) => /*#__PURE__*/React.createElement("button", {
+    key: k,
+    onClick: () => setRange(k),
+    style: {
+      flex: 1,
+      padding: "6px 4px",
+      borderRadius: 7,
+      border: range === k ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
+      cursor: "pointer",
+      fontSize: 11,
+      fontWeight: 700,
+      fontFamily: "DM Mono,monospace",
+      background: "#fff",
+      color: range === k ? "#00c2ff" : "#8e8e93",
+      boxShadow: range === k ? "0 0 8px rgba(0,194,255,0.15)" : "none",
+      transition: "all 0.15s"
+    }
+  }, l))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      padding: "14px 12px",
+      border: "1.5px solid #e5e5ea",
+      boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+    }
+  }, filtered.length < 2 ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "30px 10px",
+      textAlign: "center",
+      fontSize: 12,
+      color: "#8e8e93"
+    }
+  }, "Not enough data in this range.") : /*#__PURE__*/React.createElement("svg", {
+    width: "100%",
+    viewBox: `0 0 ${W} ${H}`,
+    style: {
+      display: "block",
+      overflow: "visible"
+    }
+  }, tickValues.map((tv, i) => /*#__PURE__*/React.createElement("g", {
+    key: i
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: padL,
+    y1: y(tv),
+    x2: W - padR,
+    y2: y(tv),
+    stroke: "#f0f0f0",
+    strokeWidth: "1"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: padL - 6,
+    y: y(tv) + 3,
+    fontSize: "9",
+    fill: "#8e8e93",
+    textAnchor: "end",
+    fontFamily: "DM Mono,monospace"
+  }, Math.round(tv)))), /*#__PURE__*/React.createElement("path", {
+    d: fillPath,
+    fill: "rgba(0,194,255,0.08)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: path,
+    fill: "none",
+    stroke: "#00c2ff",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), filtered.map((s, i) => /*#__PURE__*/React.createElement("circle", {
+    key: i,
+    cx: x(i),
+    cy: y(s[valKey]),
+    r: "3.5",
+    fill: "#00c2ff",
+    stroke: "#fff",
+    strokeWidth: "1.5"
+  })), filtered.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("text", {
+    x: x(0),
+    y: H - 10,
+    fontSize: "9",
+    fill: "#8e8e93",
+    textAnchor: "start"
+  }, filtered[0].date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
+  })), filtered.length > 2 && /*#__PURE__*/React.createElement("text", {
+    x: x(Math.floor(filtered.length / 2)),
+    y: H - 10,
+    fontSize: "9",
+    fill: "#8e8e93",
+    textAnchor: "middle"
+  }, filtered[Math.floor(filtered.length / 2)].date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
+  })), filtered.length > 1 && /*#__PURE__*/React.createElement("text", {
+    x: x(filtered.length - 1),
+    y: H - 10,
+    fontSize: "9",
+    fill: "#8e8e93",
+    textAnchor: "end"
+  }, filtered[filtered.length - 1].date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
+  }))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      padding: "14px 14px",
+      border: "1.5px solid #e5e5ea",
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 12,
+      boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase"
+    }
+  }, "Starting"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 800,
+      color: "#000",
+      fontFamily: "DM Mono,monospace",
+      marginTop: 2
+    }
+  }, Math.round(firstV), unit)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase"
+    }
+  }, "Current"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 800,
+      color: "#000",
+      fontFamily: "DM Mono,monospace",
+      marginTop: 2
+    }
+  }, Math.round(lastV), unit)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase"
+    }
+  }, "Change"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 800,
+      color: change >= 0 ? "#34c759" : "#ff3b30",
+      fontFamily: "DM Mono,monospace",
+      marginTop: 2
+    }
+  }, change >= 0 ? "+" : "", Math.round(change), unit), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: change >= 0 ? "#34c759" : "#ff3b30",
+      fontWeight: 600
+    }
+  }, change >= 0 ? "+" : "", changePct, "%")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase"
+    }
+  }, "Best"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 800,
+      color: "#00c2ff",
+      fontFamily: "DM Mono,monospace",
+      marginTop: 2
+    }
+  }, Math.round(bestV), unit), bestSession && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#8e8e93"
+    }
+  }, bestSession.date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      border: "1.5px solid #e5e5ea",
+      overflow: "hidden",
+      boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "10px 14px",
+      borderBottom: "1px solid #f0f0f0",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, "Recent Sessions"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, filtered.length, " total")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      padding: "8px 14px",
+      background: "#fafafa",
+      fontSize: 9,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase"
+    }
+  }, /*#__PURE__*/React.createElement("div", null, "Date"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "right"
+    }
+  }, "Best"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "right"
+    }
+  }, "Volume"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "right"
+    }
+  }, "e1RM")), filtered.slice().reverse().slice(0, 10).map((s, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      padding: "9px 14px",
+      borderTop: "1px solid #f5f5f7",
+      fontSize: 11,
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: "#000",
+      fontWeight: 600
+    }
+  }, s.date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "right",
+      fontFamily: "DM Mono,monospace",
+      color: "#000",
+      fontWeight: 700
+    }
+  }, s.weight, "×", s.reps), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "right",
+      fontFamily: "DM Mono,monospace",
+      color: "#8e8e93"
+    }
+  }, Math.round(s.volume).toLocaleString()), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "right",
+      fontFamily: "DM Mono,monospace",
+      color: "#00c2ff",
+      fontWeight: 700
+    }
+  }, s.e1rm))))))));
 }
 
 // -- Volume Chart ----------------------------------------------------------
@@ -5674,7 +5517,7 @@ function VolumeChart({
 
   // Fill path
   const fill = `${path} L${x(points.length - 1)},${PAD.t + chartH} L${x(0)},${PAD.t + chartH} Z`;
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#fff",
       borderRadius: 16,
@@ -5682,164 +5525,141 @@ function VolumeChart({
       padding: "14px 14px 10px",
       marginBottom: 16,
       boxShadow: "0 1px 4px rgba(0,0,0,0.08)"
-    },
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        marginBottom: 12
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 13,
-            fontWeight: 700,
-            color: "#000"
-          },
-          children: "Training Volume"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 11,
-            color: "#8e8e93",
-            marginTop: 1
-          },
-          children: ["Last ", points.length, " workouts"]
-        }, void 0, true)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          gap: 6
-        },
-        children: [4, 8, 16].map(r => /*#__PURE__*/_jsxDEV("button", {
-          onClick: () => setRange(r),
-          style: {
-            padding: "4px 10px",
-            borderRadius: 20,
-            border: "1.5px solid",
-            borderColor: range === r ? "#00c2ff" : "#e5e5ea",
-            background: range === r ? "#000" : "#fff",
-            color: range === r ? "#fff" : "#8e8e93",
-            fontSize: 11,
-            fontWeight: 700,
-            cursor: "pointer",
-            fontFamily: "Inter,sans-serif"
-          },
-          children: r
-        }, r, false))
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("svg", {
-      width: "100%",
-      viewBox: `0 0 ${W} ${H}`,
-      style: {
-        overflow: "visible"
-      },
-      children: [[0, 0.25, 0.5, 0.75, 1].map(t => {
-        const yv = PAD.t + chartH * (1 - t);
-        const val = Math.round(minVal + range2 * t);
-        return /*#__PURE__*/_jsxDEV("g", {
-          children: [/*#__PURE__*/_jsxDEV("line", {
-            x1: PAD.l,
-            y1: yv,
-            x2: W - PAD.r,
-            y2: yv,
-            stroke: "#F0F0F0",
-            strokeWidth: "1"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("text", {
-            x: PAD.l - 4,
-            y: yv + 4,
-            textAnchor: "end",
-            fontSize: "9",
-            fill: "#c7c7cc",
-            children: view === "volume" ? val >= 1000 ? `${(val / 1000).toFixed(1)}k` : val : val
-          }, void 0, false)]
-        }, t, true);
-      }), /*#__PURE__*/_jsxDEV("path", {
-        d: fill,
-        fill: "rgba(0,194,255,0.08)"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-        d: path,
-        fill: "none",
-        stroke: "#00c2ff",
-        strokeWidth: "2",
-        strokeLinecap: "round",
-        strokeLinejoin: "round"
-      }, void 0, false), points.map((p, i) => /*#__PURE__*/_jsxDEV("g", {
-        children: [/*#__PURE__*/_jsxDEV("circle", {
-          cx: x(i),
-          cy: y(values[i]),
-          r: "4",
-          fill: "#00c2ff",
-          stroke: "#fff",
-          strokeWidth: "2"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("text", {
-          x: x(i),
-          y: PAD.t + chartH + 16,
-          textAnchor: "middle",
-          fontSize: "9",
-          fill: "#8e8e93",
-          children: p.label
-        }, void 0, false)]
-      }, i, true))]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        display: "flex",
-        gap: 16,
-        marginTop: 8,
-        paddingTop: 10,
-        borderTop: "1px solid #F0F0F0"
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 18,
-            fontWeight: 700,
-            color: "#000",
-            fontFamily: "DM Mono,monospace"
-          },
-          children: Math.round(values.reduce((a, b) => a + b, 0) / values.length).toLocaleString()
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 10,
-            color: "#8e8e93"
-          },
-          children: "avg per session"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 18,
-            fontWeight: 700,
-            color: "#00c2ff",
-            fontFamily: "DM Mono,monospace"
-          },
-          children: Math.max(...values).toLocaleString()
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 10,
-            color: "#8e8e93"
-          },
-          children: "best session"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 18,
-            fontWeight: 700,
-            color: "#000",
-            fontFamily: "DM Mono,monospace"
-          },
-          children: values.reduce((a, b) => a + b, 0).toLocaleString()
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 10,
-            color: "#8e8e93"
-          },
-          children: "total lb moved"
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true)]
-  }, void 0, true);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, "Training Volume"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 1
+    }
+  }, "Last ", points.length, " workouts")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6
+    }
+  }, [4, 8, 16].map(r => /*#__PURE__*/React.createElement("button", {
+    key: r,
+    onClick: () => setRange(r),
+    style: {
+      padding: "4px 10px",
+      borderRadius: 20,
+      border: "1.5px solid",
+      borderColor: range === r ? "#00c2ff" : "#e5e5ea",
+      background: range === r ? "#000" : "#fff",
+      color: range === r ? "#fff" : "#8e8e93",
+      fontSize: 11,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif"
+    }
+  }, r)))), /*#__PURE__*/React.createElement("svg", {
+    width: "100%",
+    viewBox: `0 0 ${W} ${H}`,
+    style: {
+      overflow: "visible"
+    }
+  }, [0, 0.25, 0.5, 0.75, 1].map(t => {
+    const yv = PAD.t + chartH * (1 - t);
+    const val = Math.round(minVal + range2 * t);
+    return /*#__PURE__*/React.createElement("g", {
+      key: t
+    }, /*#__PURE__*/React.createElement("line", {
+      x1: PAD.l,
+      y1: yv,
+      x2: W - PAD.r,
+      y2: yv,
+      stroke: "#F0F0F0",
+      strokeWidth: "1"
+    }), /*#__PURE__*/React.createElement("text", {
+      x: PAD.l - 4,
+      y: yv + 4,
+      textAnchor: "end",
+      fontSize: "9",
+      fill: "#c7c7cc"
+    }, view === "volume" ? val >= 1000 ? `${(val / 1000).toFixed(1)}k` : val : val));
+  }), /*#__PURE__*/React.createElement("path", {
+    d: fill,
+    fill: "rgba(0,194,255,0.08)"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: path,
+    fill: "none",
+    stroke: "#00c2ff",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), points.map((p, i) => /*#__PURE__*/React.createElement("g", {
+    key: i
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: x(i),
+    cy: y(values[i]),
+    r: "4",
+    fill: "#00c2ff",
+    stroke: "#fff",
+    strokeWidth: "2"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: x(i),
+    y: PAD.t + chartH + 16,
+    textAnchor: "middle",
+    fontSize: "9",
+    fill: "#8e8e93"
+  }, p.label)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 16,
+      marginTop: 8,
+      paddingTop: 10,
+      borderTop: "1px solid #F0F0F0"
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 700,
+      color: "#000",
+      fontFamily: "DM Mono,monospace"
+    }
+  }, Math.round(values.reduce((a, b) => a + b, 0) / values.length).toLocaleString()), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#8e8e93"
+    }
+  }, "avg per session")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 700,
+      color: "#00c2ff",
+      fontFamily: "DM Mono,monospace"
+    }
+  }, Math.max(...values).toLocaleString()), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#8e8e93"
+    }
+  }, "best session")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 700,
+      color: "#000",
+      fontFamily: "DM Mono,monospace"
+    }
+  }, values.reduce((a, b) => a + b, 0).toLocaleString()), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#8e8e93"
+    }
+  }, "total lb moved"))));
 }
 
 // -- Saved Workout Card ----------------------------------------------------
@@ -5849,7 +5669,7 @@ function SavedWorkoutCard({
   onDelete
 }) {
   const [expanded, setExpanded] = useState(false);
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#fff",
       borderRadius: 14,
@@ -5857,165 +5677,144 @@ function SavedWorkoutCard({
       marginBottom: 8,
       boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
       overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "12px 14px",
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0,
+      cursor: "pointer"
     },
-    children: [/*#__PURE__*/_jsxDEV("div", {
-      style: {
-        padding: "12px 14px",
-        display: "flex",
-        alignItems: "center",
-        gap: 10
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        style: {
-          flex: 1,
-          minWidth: 0,
-          cursor: "pointer"
-        },
-        onClick: () => setExpanded(e => !e),
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 14,
-            fontWeight: 700,
-            color: "#000",
-            display: "flex",
-            alignItems: "center",
-            gap: 6
-          },
-          children: [/*#__PURE__*/_jsxDEV("span", {
-            style: {
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap"
-            },
-            children: workout.name
-          }, void 0, false), /*#__PURE__*/_jsxDEV(ChevronDown, {
-            size: 13,
-            strokeWidth: 2.5,
-            color: "#8e8e93",
-            style: {
-              flexShrink: 0,
-              transform: expanded ? "rotate(180deg)" : "none",
-              transition: "transform 0.2s"
-            }
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 11,
-            color: "#8e8e93",
-            marginTop: 3,
-            display: "flex",
-            gap: 6,
-            alignItems: "center"
-          },
-          children: [/*#__PURE__*/_jsxDEV("span", {
-            children: workout.date
-          }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-            children: "."
-          }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-            children: [workout.exerciseList.length, " exercises"]
-          }, void 0, true), workout.source === "imported" && /*#__PURE__*/_jsxDEV("span", {
-            style: {
-              color: "#00c2ff",
-              fontWeight: 700,
-              fontSize: 10,
-              background: "rgba(0,194,255,0.1)",
-              borderRadius: 4,
-              padding: "1px 5px"
-            },
-            children: "IMPORTED"
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        onClick: onLoad,
-        style: {
-          flexShrink: 0,
-          background: "#000",
-          color: "#fff",
-          border: "none",
-          borderRadius: 10,
-          padding: "8px 16px",
-          fontSize: 13,
-          fontWeight: 700,
-          cursor: "pointer",
-          fontFamily: "Inter,sans-serif",
-          boxShadow: "0 0 0 1.5px #00c2ff, 0 0 8px rgba(0,194,255,0.25)"
-        },
-        children: "Load"
-      }, void 0, false)]
-    }, void 0, true), expanded && /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        borderTop: "1px solid #F0F0F0",
-        padding: "8px 14px 12px"
-      },
-      children: [workout.exerciseList.map((ex, i) => /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          padding: "7px 0",
-          borderBottom: i < workout.exerciseList.length - 1 ? "1px solid #F0F0F0" : "none"
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 20,
-            height: 20,
-            borderRadius: "50%",
-            background: "#F0F0F0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0
-          },
-          children: /*#__PURE__*/_jsxDEV("span", {
-            style: {
-              fontSize: 10,
-              fontWeight: 700,
-              color: "#8e8e93"
-            },
-            children: i + 1
-          }, void 0, false)
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            flex: 1,
-            minWidth: 0
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 13,
-              fontWeight: 600,
-              color: "#000",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis"
-            },
-            children: ex.name
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 11,
-              color: "#8e8e93",
-              marginTop: 1
-            },
-            children: [ex.sets.length, " sets", ex.sets[0]?.reps ? ` . ${ex.sets.map(s => s.reps).filter(Boolean).join("-")} reps` : ""]
-          }, void 0, true)]
-        }, void 0, true)]
-      }, ex.id, true)), /*#__PURE__*/_jsxDEV("button", {
-        onClick: onDelete,
-        style: {
-          marginTop: 10,
-          background: "none",
-          border: "1px solid #e5e5ea",
-          borderRadius: 8,
-          padding: "6px 12px",
-          fontSize: 11,
-          color: "#c7c7cc",
-          cursor: "pointer",
-          fontFamily: "Inter,sans-serif",
-          width: "100%"
-        },
-        children: "Remove this workout"
-      }, void 0, false)]
-    }, void 0, true)]
-  }, void 0, true);
+    onClick: () => setExpanded(e => !e)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      fontWeight: 700,
+      color: "#000",
+      display: "flex",
+      alignItems: "center",
+      gap: 6
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, workout.name), /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 13,
+    strokeWidth: 2.5,
+    color: "#8e8e93",
+    style: {
+      flexShrink: 0,
+      transform: expanded ? "rotate(180deg)" : "none",
+      transition: "transform 0.2s"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 3,
+      display: "flex",
+      gap: 6,
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("span", null, workout.date), /*#__PURE__*/React.createElement("span", null, "."), /*#__PURE__*/React.createElement("span", null, workout.exerciseList.length, " exercises"), workout.source === "imported" && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#00c2ff",
+      fontWeight: 700,
+      fontSize: 10,
+      background: "rgba(0,194,255,0.1)",
+      borderRadius: 4,
+      padding: "1px 5px"
+    }
+  }, "IMPORTED"))), /*#__PURE__*/React.createElement("button", {
+    onClick: onLoad,
+    style: {
+      flexShrink: 0,
+      background: "#000",
+      color: "#fff",
+      border: "none",
+      borderRadius: 10,
+      padding: "8px 16px",
+      fontSize: 13,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      boxShadow: "0 0 0 1.5px #00c2ff, 0 0 8px rgba(0,194,255,0.25)"
+    }
+  }, "Load")), expanded && /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderTop: "1px solid #F0F0F0",
+      padding: "8px 14px 12px"
+    }
+  }, workout.exerciseList.map((ex, i) => /*#__PURE__*/React.createElement("div", {
+    key: ex.id,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "7px 0",
+      borderBottom: i < workout.exerciseList.length - 1 ? "1px solid #F0F0F0" : "none"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 20,
+      height: 20,
+      borderRadius: "50%",
+      background: "#F0F0F0",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: "#8e8e93"
+    }
+  }, i + 1)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: "#000",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis"
+    }
+  }, ex.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 1
+    }
+  }, ex.sets.length, " sets", ex.sets[0]?.reps ? ` . ${ex.sets.map(s => s.reps).filter(Boolean).join("-")} reps` : "")))), /*#__PURE__*/React.createElement("button", {
+    onClick: onDelete,
+    style: {
+      marginTop: 10,
+      background: "none",
+      border: "1px solid #e5e5ea",
+      borderRadius: 8,
+      padding: "6px 12px",
+      fontSize: 11,
+      color: "#c7c7cc",
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      width: "100%"
+    }
+  }, "Remove this workout")));
 }
 function youtubeUrl(exerciseName) {
   const query = encodeURIComponent(`${exerciseName} exercise jeff nippard`);
@@ -7362,7780 +7161,6924 @@ function App() {
       setTab(TABS[cur - 1]);
     }
   };
-  return /*#__PURE__*/_jsxDEV("div", {
-    className: "app",
-    children: [/*#__PURE__*/_jsxDEV("style", {
-      children: css
-    }, void 0, false), toast && /*#__PURE__*/_jsxDEV("div", {
-      className: "toast",
-      children: toast
-    }, void 0, false), splash && /*#__PURE__*/_jsxDEV("div", {
-      className: `splash ${splashFading ? "fade-out" : ""}`,
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        className: "splash-lock",
-        children: /*#__PURE__*/_jsxDEV("svg", {
-          width: "72",
-          height: "72",
-          viewBox: "0 0 72 72",
-          className: "neon-ring",
-          children: [/*#__PURE__*/_jsxDEV("rect", {
-            x: "14",
-            y: "34",
-            width: "44",
-            height: "30",
-            rx: "6",
-            fill: "none",
-            stroke: "#00c2ff",
-            strokeWidth: "3"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-            d: "M22 34V26a14 14 0 0 1 28 0v8",
-            fill: "none",
-            stroke: "#00c2ff",
-            strokeWidth: "3",
-            strokeLinecap: "round"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("circle", {
-            cx: "36",
-            cy: "50",
-            r: "4",
-            fill: "#00c2ff"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("line", {
-            x1: "36",
-            y1: "54",
-            x2: "36",
-            y2: "58",
-            stroke: "#00c2ff",
-            strokeWidth: "3",
-            strokeLinecap: "round"
-          }, void 0, false)]
-        }, void 0, true)
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "splash-logo",
-        children: "Locked"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "splash-tagline",
-        children: "Lock in . Lift heavy . Repeat"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "splash-bar"
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      className: "header",
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        className: "header-logo",
-        children: "Locked"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "app"
+  }, /*#__PURE__*/React.createElement("style", null, css), toast && /*#__PURE__*/React.createElement("div", {
+    className: "toast"
+  }, toast), splash && /*#__PURE__*/React.createElement("div", {
+    className: `splash ${splashFading ? "fade-out" : ""}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "splash-lock"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "72",
+    height: "72",
+    viewBox: "0 0 72 72",
+    className: "neon-ring"
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "14",
+    y: "34",
+    width: "44",
+    height: "30",
+    rx: "6",
+    fill: "none",
+    stroke: "#00c2ff",
+    strokeWidth: "3"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M22 34V26a14 14 0 0 1 28 0v8",
+    fill: "none",
+    stroke: "#00c2ff",
+    strokeWidth: "3",
+    strokeLinecap: "round"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "36",
+    cy: "50",
+    r: "4",
+    fill: "#00c2ff"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "36",
+    y1: "54",
+    x2: "36",
+    y2: "58",
+    stroke: "#00c2ff",
+    strokeWidth: "3",
+    strokeLinecap: "round"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "splash-logo"
+  }, "Locked"), /*#__PURE__*/React.createElement("div", {
+    className: "splash-tagline"
+  }, "Lock in . Lift heavy . Repeat"), /*#__PURE__*/React.createElement("div", {
+    className: "splash-bar"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "header-logo"
+  }, "Locked"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://claude.ai",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 4,
+      background: "#000",
+      color: "#fff",
+      border: "1.5px solid #00c2ff",
+      borderRadius: 20,
+      padding: "4px 10px",
+      fontSize: 11,
+      fontWeight: 700,
+      textDecoration: "none",
+      fontFamily: "Inter,sans-serif",
+      boxShadow: "0 0 8px rgba(0,194,255,0.3)"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13
+    }
+  }, "*"), " Claude"), /*#__PURE__*/React.createElement("div", {
+    className: "header-date"
+  }, today()))), restActive && /*#__PURE__*/React.createElement("div", {
+    className: "rest-timer"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "rest-timer-label"
+  }, "REST"), /*#__PURE__*/React.createElement("div", {
+    className: "rest-timer-display"
+  }, fmtTime(restSeconds)), /*#__PURE__*/React.createElement("button", {
+    className: "rest-timer-skip",
+    onClick: skipRest
+  }, "Skip ", '>')), restActive && tab === "myworkout" && /*#__PURE__*/React.createElement("div", {
+    onClick: skipRest,
+    style: {
+      position: "fixed",
+      bottom: 90,
+      right: 16,
+      zIndex: 500,
+      width: 68,
+      height: 68,
+      borderRadius: "50%",
+      background: "#000",
+      border: "3px solid #00c2ff",
+      boxShadow: "0 0 0 3px rgba(0,194,255,0.3), 0 4px 20px rgba(0,0,0,0.4)",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "pointer",
+      animation: "restPulse 1s ease-in-out infinite"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      fontWeight: 700,
+      color: "#00c2ff",
+      letterSpacing: "0.08em",
+      textTransform: "uppercase",
+      lineHeight: 1
+    }
+  }, "REST"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 17,
+      fontWeight: 700,
+      color: "#fff",
+      fontFamily: "DM Mono,monospace",
+      lineHeight: 1.2
+    }
+  }, fmtTime(restSeconds)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 8,
+      color: "#8e8e93",
+      marginTop: 1
+    }
+  }, "tap skip")), /*#__PURE__*/React.createElement("div", {
+    className: "tabs"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === "workout" ? "active" : ""}`,
+    onClick: () => setTab("workout")
+  }, /*#__PURE__*/React.createElement(Dumbbell, {
+    size: 14,
+    strokeWidth: 2.5
+  }), /*#__PURE__*/React.createElement("span", null, "Workouts")), /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === "myworkout" ? "active" : ""}`,
+    onClick: () => setTab("myworkout"),
+    style: {
+      position: "relative"
+    }
+  }, /*#__PURE__*/React.createElement(Zap, {
+    size: 14,
+    strokeWidth: 2.5
+  }), /*#__PURE__*/React.createElement("span", null, "Session"), exercises.length > 0 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "absolute",
+      top: 6,
+      right: "calc(50% - 26px)",
+      width: 6,
+      height: 6,
+      borderRadius: "50%",
+      background: "#00c2ff"
+    }
+  })), /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === "calendar" ? "active" : ""}`,
+    onClick: () => setTab("calendar")
+  }, /*#__PURE__*/React.createElement(Calendar, {
+    size: 14,
+    strokeWidth: 2.5
+  }), /*#__PURE__*/React.createElement("span", null, "Calendar")), /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === "history" ? "active" : ""}`,
+    onClick: () => setTab("history")
+  }, /*#__PURE__*/React.createElement(ClipboardList, {
+    size: 14,
+    strokeWidth: 2.5
+  }), /*#__PURE__*/React.createElement("span", null, "History")), /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === "gym" ? "active" : ""}`,
+    onClick: () => setTab("gym")
+  }, /*#__PURE__*/React.createElement(BarChart2, {
+    size: 14,
+    strokeWidth: 2.5
+  }), /*#__PURE__*/React.createElement("span", null, "My Gym"))), /*#__PURE__*/React.createElement("div", {
+    className: "content",
+    ref: contentRef,
+    onTouchStart: handleTouchStart,
+    onTouchEnd: handleTouchEnd
+  }, tab === "workout" && /*#__PURE__*/React.createElement("div", null, (() => {
+    const now = new Date();
+    const dayIdx = now.getDay();
+    const dateKey = now.toISOString().slice(0, 10);
+    const dateDisplay = now.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric"
+    });
+    const isTrainingDay = scheduleDays.includes(dayIdx);
+    const isCardioDay = cardioDays.includes(dayIdx);
+    const cardioDone = !!cardioLog[dateKey];
+    const todayRecovery = recoveryLog[dateKey];
+    const todayLogged = history.some(h => h.date === dateKey);
+
+    // Streak calc -- consecutive days with a workout OR cardio
+    let streak = 0;
+    const daysSet = new Set(history.map(h => h.date));
+    const cardioDaysSet = new Set(Object.keys(cardioLog));
+    for (let i = 0; i < 90; i++) {
+      const d = new Date(now);
+      d.setDate(d.getDate() - i);
+      const k = d.toISOString().slice(0, 10);
+      if (daysSet.has(k) || cardioDaysSet.has(k)) streak++;else if (i > 0) break; // allow today to be empty without breaking streak
+    }
+
+    // Last workout for the recap card
+    const lastWorkout = history[history.length - 1];
+
+    // Motivational images (rotated by day of year for stability during a session)
+    const motivationalImages = ["https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1517964603305-11c0f6f66012?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=800&auto=format&fit=crop&q=60"];
+    const motivationalQuotes = [{
+      q: "The pain you feel today is the strength you feel tomorrow.",
+      a: "Arnold Schwarzenegger"
+    }, {
+      q: "Everybody wants to be a bodybuilder but nobody wants to lift no heavy-ass weights.",
+      a: "Ronnie Coleman"
+    }, {
+      q: "Strength does not come from winning. Your struggles develop your strengths.",
+      a: "Arnold Schwarzenegger"
+    }, {
+      q: "The last three or four reps is what makes the muscle grow.",
+      a: "Arnold Schwarzenegger"
+    }, {
+      q: "You must do what others don't to achieve what others won't.",
+      a: "Anonymous"
+    }, {
+      q: "Discipline is choosing between what you want now and what you want most.",
+      a: "Abraham Lincoln"
+    }];
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    const heroImg = motivationalImages[dayOfYear % motivationalImages.length];
+    const heroQuote = motivationalQuotes[dayOfYear % motivationalQuotes.length];
+    const recoveryEmojis = ["", "💀", "😓", "😐", "💪", "⚡"];
+    const recoveryLabels = ["", "Dead", "Rough", "OK", "Good", "Fired up"];
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#000",
+        borderRadius: 16,
+        padding: "16px 18px",
+        marginBottom: 10,
+        boxShadow: "0 0 0 2px #00c2ff, 0 0 20px rgba(0,194,255,0.25)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#00c2ff",
+        letterSpacing: "0.08em",
+        textTransform: "uppercase"
+      }
+    }, "Today"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 22,
+        fontWeight: 800,
+        color: "#fff",
+        marginTop: 2,
+        letterSpacing: "-0.5px"
+      }
+    }, dateDisplay), streak > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#00c2ff",
+        marginTop: 4,
+        fontWeight: 600,
+        display: "flex",
+        alignItems: "center",
+        gap: 4
+      }
+    }, "🔥 ", streak, " day streak")), activePlan ? (() => {
+      const plan = PLAN_TEMPLATES.find(p => p.id === activePlan.planId);
+      if (!plan) return null;
+      const day = plan.days[activePlan.currentDayIndex];
+      const progressPct = (activePlan.currentWeek - 1) / plan.duration * 100;
+      return /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "linear-gradient(135deg, #000 0%, #1a1a1a 100%)",
+          borderRadius: 16,
+          padding: "14px 16px",
+          marginBottom: 10,
+          boxShadow: "0 0 0 1.5px #00c2ff, 0 0 20px rgba(0,194,255,0.25)"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
         style: {
           display: "flex",
           alignItems: "center",
-          gap: 8
+          justifyContent: "space-between",
+          marginBottom: 10
+        }
+      }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          fontWeight: 700,
+          color: "#00c2ff",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase"
+        }
+      }, "Active Plan"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 16,
+          fontWeight: 800,
+          color: "#fff",
+          marginTop: 2
+        }
+      }, plan.name)), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93",
+          textAlign: "right"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontWeight: 700,
+          color: "#fff"
+        }
+      }, "W", activePlan.currentWeek, " / ", plan.duration), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10
+        }
+      }, "Day ", activePlan.currentDayIndex + 1, " of ", plan.days.length))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          height: 4,
+          background: "rgba(255,255,255,0.1)",
+          borderRadius: 2,
+          marginBottom: 12,
+          overflow: "hidden"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          height: "100%",
+          width: `${progressPct}%`,
+          background: "#00c2ff",
+          borderRadius: 2,
+          boxShadow: "0 0 8px rgba(0,194,255,0.6)"
+        }
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "rgba(255,255,255,0.05)",
+          borderRadius: 10,
+          padding: "10px 12px",
+          marginBottom: 10
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          fontWeight: 700,
+          color: "#8e8e93",
+          letterSpacing: "0.05em",
+          textTransform: "uppercase"
+        }
+      }, "Next Session"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 15,
+          fontWeight: 700,
+          color: "#fff",
+          marginTop: 2
+        }
+      }, day.name), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93",
+          marginTop: 2
+        }
+      }, day.exercises.length, " exercises · Focus: ", day.focus)), /*#__PURE__*/React.createElement("button", {
+        onClick: loadPlanSession,
+        style: {
+          width: "100%",
+          padding: "11px",
+          background: "#00c2ff",
+          color: "#000",
+          border: "none",
+          borderRadius: 10,
+          fontSize: 13,
+          fontWeight: 800,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif",
+          letterSpacing: "0.02em"
+        }
+      }, "Start Session"), planCancelConfirm ? /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 6,
+          alignItems: "center",
+          marginTop: 10,
+          padding: "8px 10px",
+          background: "rgba(255,59,48,0.1)",
+          borderRadius: 8
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 11,
+          color: "#ff3b30",
+          fontWeight: 600,
+          flex: 1
+        }
+      }, "End this plan?"), /*#__PURE__*/React.createElement("button", {
+        onClick: cancelPlan,
+        style: {
+          background: "#ff3b30",
+          color: "#fff",
+          border: "none",
+          borderRadius: 6,
+          padding: "5px 10px",
+          fontSize: 11,
+          fontWeight: 700,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif"
+        }
+      }, "Yes, end"), /*#__PURE__*/React.createElement("button", {
+        onClick: () => setPlanCancelConfirm(false),
+        style: {
+          background: "transparent",
+          border: "1px solid rgba(255,255,255,0.2)",
+          color: "#8e8e93",
+          borderRadius: 6,
+          padding: "5px 10px",
+          fontSize: 11,
+          fontWeight: 600,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif"
+        }
+      }, "Cancel")) : /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 8,
+          marginTop: 10
+        }
+      }, /*#__PURE__*/React.createElement("button", {
+        onClick: () => setPlanDetailId(activePlan.planId),
+        style: {
+          flex: 1,
+          background: "transparent",
+          border: "1px solid rgba(255,255,255,0.2)",
+          color: "#8e8e93",
+          borderRadius: 8,
+          padding: "7px",
+          fontSize: 11,
+          fontWeight: 600,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif"
+        }
+      }, "View plan"), /*#__PURE__*/React.createElement("button", {
+        onClick: () => setPlanCancelConfirm(true),
+        style: {
+          flex: 1,
+          background: "transparent",
+          border: "1px solid rgba(255,59,48,0.3)",
+          color: "#ff8c85",
+          borderRadius: 8,
+          padding: "7px",
+          fontSize: 11,
+          fontWeight: 600,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif"
+        }
+      }, "End plan")), /*#__PURE__*/React.createElement("button", {
+        onClick: () => setPlansBrowseOpen(true),
+        style: {
+          width: "100%",
+          background: "transparent",
+          border: "none",
+          color: "#8e8e93",
+          fontSize: 11,
+          fontWeight: 600,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif",
+          marginTop: 10,
+          padding: "4px",
+          textDecoration: "underline",
+          textUnderlineOffset: 2
+        }
+      }, "Browse other plans"));
+    })() : /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 16,
+        padding: "14px 16px",
+        marginBottom: 10,
+        border: "1.5px dashed #c7c7cc",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.04)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom: 6
+      }
+    }, "Workout Plan"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "#000",
+        marginBottom: 10,
+        fontWeight: 600
+      }
+    }, "No plan active"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginBottom: 12,
+        lineHeight: 1.5
+      }
+    }, "A structured 12-week plan takes the guesswork out. It knows what to do each day and progresses you week by week."), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setPlansBrowseOpen(true),
+      style: {
+        width: "100%",
+        padding: "11px",
+        background: "#000",
+        color: "#fff",
+        border: "none",
+        borderRadius: 10,
+        fontSize: 13,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        boxShadow: "0 0 0 2px #00c2ff, 0 0 12px rgba(0,194,255,0.25)"
+      }
+    }, "Browse Plans")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 16,
+        padding: "14px 16px",
+        marginBottom: 10,
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom: 8
+      }
+    }, "Scheduled today"), !isTrainingDay && !isCardioDay && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "6px 0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 22
+      }
+    }, "🌿"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, "Recovery day"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 1
+      }
+    }, "No training scheduled. Rest up."))), isTrainingDay && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "6px 0",
+        borderBottom: isCardioDay ? "1px solid #F0F0F0" : "none",
+        paddingBottom: isCardioDay ? 10 : 6
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 22
+      }
+    }, "🏋️"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, todayLogged ? "Training done" : "Weight training"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: todayLogged ? "#1a9e3f" : "#8e8e93",
+        marginTop: 1,
+        fontWeight: 600
+      }
+    }, todayLogged ? "✓ Logged in history" : "Scheduled workout"), !todayLogged && !activePlan && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 4,
+        lineHeight: 1.4
+      }
+    }, "Pick a preset, build a custom workout, or import one below to get started."))), isCardioDay && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: isTrainingDay ? "10px 0 6px" : "6px 0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 22
+      }
+    }, "🏃"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, cardioDone ? "Cardio done" : "Cardio reminder"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: cardioDone ? "#1a9e3f" : "#8e8e93",
+        marginTop: 1,
+        fontWeight: 600
+      }
+    }, cardioDone ? "✓ Marked done — details in Whoop" : "Get your cardio in — tracked in Whoop")), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        if (cardioDone) {
+          setCardioLog(p => {
+            const n = {
+              ...p
+            };
+            delete n[dateKey];
+            return n;
+          });
+          showToast("Cardio unmarked");
+        } else {
+          setCardioLog(p => ({
+            ...p,
+            [dateKey]: {
+              time: new Date().toISOString()
+            }
+          }));
+          showToast("Cardio marked done");
+        }
+      },
+      style: {
+        background: cardioDone ? "#34c759" : "#fff",
+        color: cardioDone ? "#fff" : "#00c2ff",
+        border: cardioDone ? "none" : "1.5px solid #00c2ff",
+        borderRadius: 8,
+        padding: "6px 12px",
+        fontSize: 12,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        display: "flex",
+        alignItems: "center",
+        gap: 4,
+        flexShrink: 0
+      }
+    }, cardioDone ? /*#__PURE__*/React.createElement(React.Fragment, null, "✓ Done") : "Mark done"))), (() => {
+      const neglected = getNeglectedMuscles(history, 3);
+      if (neglected.length === 0) return null;
+      const priorityColors = {
+        red: "#ff3b30",
+        orange: "#ff9f0a"
+      };
+      const priorityEmoji = {
+        red: "🔴",
+        orange: "🟠"
+      };
+      return /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "#fff",
+          borderRadius: 16,
+          padding: "14px 16px",
+          marginBottom: 10,
+          border: "1.5px solid #e5e5ea",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 10
+        }
+      }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          fontWeight: 700,
+          color: "#8e8e93",
+          letterSpacing: "0.05em",
+          textTransform: "uppercase"
+        }
+      }, "Muscle Focus"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          color: "#000",
+          fontWeight: 600,
+          marginTop: 2
+        }
+      }, "Time to work on these")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          fontWeight: 700,
+          color: "#ff9f0a",
+          padding: "3px 8px",
+          background: "rgba(255,159,10,0.1)",
+          borderRadius: 10
+        }
+      }, neglected.length)), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          gap: 6,
+          marginBottom: 10
+        }
+      }, neglected.map(n => /*#__PURE__*/React.createElement("div", {
+        key: n.muscle,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "6px 10px",
+          background: "#fafafa",
+          borderRadius: 8
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 12
+        }
+      }, priorityEmoji[n.priority]), /*#__PURE__*/React.createElement("span", {
+        style: {
+          flex: 1,
+          fontSize: 13,
+          fontWeight: 700,
+          color: "#000"
+        }
+      }, n.muscle), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 11,
+          color: priorityColors[n.priority],
+          fontWeight: 600
+        }
+      }, n.reason)))), /*#__PURE__*/React.createElement("button", {
+        onClick: () => {
+          const catchUp = generateCatchUpWorkout(history);
+          if (catchUp.length === 0) {
+            showToast("Not enough data — pick some exercises manually");
+            return;
+          }
+          const newExs = catchUp.map(ex => {
+            const prev = lastSets(ex.id);
+            const initSets = prev ? prev.map(s => ({
+              ...s,
+              done: false
+            })) : [{
+              weight: "",
+              reps: "",
+              done: false
+            }];
+            return {
+              ...ex,
+              sets: initSets
+            };
+          });
+          setWorkoutType("catchup");
+          setWorkoutName(`Catch-Up · ${new Date().toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric"
+          })}`);
+          setExercises(newExs);
+          setExpanded({});
+          setWorkoutStartTime(Date.now());
+          setTab("myworkout");
+          setTimeout(() => {
+            if (contentRef.current) contentRef.current.scrollTo({
+              top: 0,
+              behavior: "instant"
+            });
+          }, 50);
+          showToast(`Generated: ${catchUp.length} exercises for neglected muscles`);
         },
-        children: [/*#__PURE__*/_jsxDEV("a", {
-          href: "https://claude.ai",
-          target: "_blank",
-          rel: "noopener noreferrer",
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 4,
-            background: "#000",
-            color: "#fff",
-            border: "1.5px solid #00c2ff",
-            borderRadius: 20,
-            padding: "4px 10px",
-            fontSize: 11,
-            fontWeight: 700,
-            textDecoration: "none",
-            fontFamily: "Inter,sans-serif",
-            boxShadow: "0 0 8px rgba(0,194,255,0.3)"
-          },
-          children: [/*#__PURE__*/_jsxDEV("span", {
-            style: {
-              fontSize: 13
-            },
-            children: "*"
-          }, void 0, false), " Claude"]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "header-date",
-          children: today()
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true), restActive && /*#__PURE__*/_jsxDEV("div", {
-      className: "rest-timer",
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        className: "rest-timer-label",
-        children: "REST"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "rest-timer-display",
-        children: fmtTime(restSeconds)
-      }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-        className: "rest-timer-skip",
-        onClick: skipRest,
-        children: ["Skip ", '>']
-      }, void 0, true)]
-    }, void 0, true), restActive && tab === "myworkout" && /*#__PURE__*/_jsxDEV("div", {
+        style: {
+          width: "100%",
+          padding: "11px",
+          background: "#000",
+          color: "#fff",
+          border: "none",
+          borderRadius: 10,
+          fontSize: 13,
+          fontWeight: 700,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif",
+          boxShadow: "0 0 0 2px #00c2ff, 0 0 12px rgba(0,194,255,0.25)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 8
+        }
+      }, /*#__PURE__*/React.createElement(Zap, {
+        size: 15,
+        strokeWidth: 2.5,
+        color: "#00c2ff"
+      }), " Generate Catch-Up Workout"));
+    })(), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "relative",
+        height: 180,
+        borderRadius: 16,
+        overflow: "hidden",
+        marginBottom: 10,
+        backgroundImage: `url(${heroImg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "absolute",
+        inset: 0,
+        background: "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%)"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: "16px 18px"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#fff",
+        fontStyle: "italic",
+        lineHeight: 1.3
+      }
+    }, "\"", heroQuote.q, "\""), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#00c2ff",
+        marginTop: 6,
+        fontWeight: 700,
+        letterSpacing: "0.05em",
+        textTransform: "uppercase"
+      }
+    }, "— ", heroQuote.a))), lastWorkout && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 14,
+        padding: "12px 14px",
+        marginBottom: 16,
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom: 4
+      }
+    }, "Last workout"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, lastWorkout.type), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 2
+      }
+    }, lastWorkout.date, " · ", lastWorkout.exercises?.length || 0, " exercises", lastWorkout.duration && ` · ${fmtDuration(lastWorkout.duration)}`)), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        // Open the month folder containing this workout
+        const d = lastWorkout.dateISO ? new Date(lastWorkout.dateISO) : new Date(lastWorkout.id);
+        const monthKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+        setHistoryMonthOpen(p => ({
+          ...p,
+          [monthKey]: true
+        }));
+        setHighlightHistoryId(lastWorkout.id);
+        setTab("history");
+        // Scroll to the workout after render
+        setTimeout(() => {
+          const el = document.querySelector(`[data-history-id="${lastWorkout.id}"]`);
+          if (el) {
+            el.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+          // Clear highlight after animation
+          setTimeout(() => setHighlightHistoryId(null), 3000);
+        }, 200);
+      },
+      style: {
+        background: "none",
+        border: "1.5px solid #e5e5ea",
+        color: "#00c2ff",
+        borderRadius: 8,
+        padding: "6px 12px",
+        fontSize: 11,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "View"))));
+  })(), /*#__PURE__*/React.createElement("input", {
+    ref: importRef,
+    type: "file",
+    accept: "image/*",
+    onChange: handleWorkoutPhoto,
+    style: {
+      display: "none"
+    }
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: () => importRef.current.click(),
+    disabled: importing,
+    style: {
+      width: "100%",
+      padding: "14px 16px",
+      marginBottom: 8,
+      background: importing ? "#F0F0F0" : "#000",
+      color: importing ? "#8e8e93" : "#fff",
+      border: "none",
+      borderRadius: 14,
+      cursor: importing ? "default" : "pointer",
+      fontFamily: "Inter,sans-serif",
+      fontSize: 14,
+      fontWeight: 700,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8,
+      boxShadow: importing ? "none" : "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)",
+      transition: "all 0.2s"
+    }
+  }, importing ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 16,
+      height: 16,
+      border: "2px solid #c7c7cc",
+      borderTopColor: "#00c2ff",
+      borderRadius: "50%",
+      animation: "spin 0.8s linear infinite"
+    }
+  }), " Reading workout...") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Camera, {
+    size: 18,
+    strokeWidth: 2.5
+  }), " Import from Photo")), showNameInput ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      border: "1.5px solid #00c2ff",
+      padding: "14px 16px",
+      marginBottom: 16,
+      boxShadow: "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: "#000",
+      marginBottom: 10
+    }
+  }, "Name your workout"), /*#__PURE__*/React.createElement("input", {
+    autoFocus: true,
+    value: newWorkoutName,
+    onFocus: e => e.target.select(),
+    onChange: e => setNewWorkoutName(e.target.value),
+    placeholder: "e.g. Monday Push, Heavy Day...",
+    style: {
+      width: "100%",
+      padding: "10px 14px",
+      borderRadius: 10,
+      border: "1.5px solid #e5e5ea",
+      fontSize: 14,
+      fontFamily: "Inter,sans-serif",
+      outline: "none",
+      marginBottom: 10,
+      boxSizing: "border-box"
+    },
+    onKeyDown: e => {
+      if (e.key === "Enter" && newWorkoutName.trim()) {
+        setWorkoutType("custom");
+        setWorkoutName(newWorkoutName.trim());
+        setExercises([]);
+        setShowNameInput(false);
+        setNewWorkoutName("");
+        setTab("myworkout");
+        setTimeout(() => openPicker(), 100);
+      }
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setShowNameInput(false);
+      setNewWorkoutName("");
+    },
+    style: {
+      flex: 1,
+      padding: "10px",
+      borderRadius: 10,
+      border: "1.5px solid #e5e5ea",
+      background: "#fff",
+      fontSize: 13,
+      fontWeight: 600,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      color: "#8e8e93"
+    }
+  }, "Cancel"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      if (!newWorkoutName.trim()) return;
+      setWorkoutType("custom");
+      setWorkoutName(newWorkoutName.trim());
+      setExercises([]);
+      setShowNameInput(false);
+      setNewWorkoutName("");
+      setTab("myworkout");
+      setTimeout(() => openPicker(), 100);
+    },
+    style: {
+      flex: 2,
+      padding: "10px",
+      borderRadius: 10,
+      border: "none",
+      background: "#000",
+      color: "#fff",
+      fontSize: 13,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      boxShadow: "0 0 0 1.5px #00c2ff"
+    }
+  }, "Start Building"))) : /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      const d = new Date();
+      const dateName = d.toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      });
+      setNewWorkoutName(dateName);
+      setShowNameInput(true);
+    },
+    style: {
+      width: "100%",
+      padding: "14px 16px",
+      marginBottom: 16,
+      background: "#fff",
+      color: "#000",
+      border: "1.5px solid #e5e5ea",
+      borderRadius: 14,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      fontSize: 14,
+      fontWeight: 700,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8,
+      boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+      transition: "all 0.2s"
+    }
+  }, /*#__PURE__*/React.createElement(Zap, {
+    size: 18,
+    strokeWidth: 2.5
+  }), " Create Workout"), savedWorkouts.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setWorkoutsExpanded(e => !e),
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      cursor: "pointer",
+      marginBottom: workoutsExpanded ? 8 : 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "section-label",
+    style: {
+      margin: 0
+    }
+  }, "My Workouts (", savedWorkouts.length, ")"), /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 16,
+    strokeWidth: 2.5,
+    color: "#8e8e93",
+    style: {
+      transform: workoutsExpanded ? "rotate(180deg)" : "none",
+      transition: "transform 0.2s"
+    }
+  })), workoutsExpanded && /*#__PURE__*/React.createElement(React.Fragment, null, savedWorkouts.length >= 3 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    value: workoutSearch,
+    onChange: e => setWorkoutSearch(e.target.value),
+    placeholder: "Search workouts...",
+    style: {
+      width: "100%",
+      padding: "9px 14px 9px 36px",
+      borderRadius: 10,
+      border: "1.5px solid #e5e5ea",
+      fontSize: 13,
+      fontFamily: "Inter,sans-serif",
+      outline: "none",
+      boxSizing: "border-box",
+      background: "#fff"
+    }
+  }), /*#__PURE__*/React.createElement("svg", {
+    style: {
+      position: "absolute",
+      left: 12,
+      top: "50%",
+      transform: "translateY(-50%)"
+    },
+    width: "14",
+    height: "14",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "#8e8e93",
+    strokeWidth: "2"
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: "11",
+    cy: "11",
+    r: "8"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "21",
+    y1: "21",
+    x2: "16.65",
+    y2: "16.65"
+  })), workoutSearch && /*#__PURE__*/React.createElement("button", {
+    onClick: () => setWorkoutSearch(""),
+    style: {
+      position: "absolute",
+      right: 10,
+      top: "50%",
+      transform: "translateY(-50%)",
+      background: "none",
+      border: "none",
+      cursor: "pointer",
+      color: "#8e8e93",
+      fontSize: 16,
+      lineHeight: 1
+    }
+  }, "x")), savedWorkouts.filter(w => !workoutSearch || w.name.toLowerCase().includes(workoutSearch.toLowerCase())).map(w => /*#__PURE__*/React.createElement(SavedWorkoutCard, {
+    key: w.id,
+    workout: w,
+    onLoad: () => loadSaved(w),
+    onDelete: () => {
+      if (window.confirm(`Remove "${w.name}" from your library?\n\nThis can't be undone.`)) deleteSaved(w.id);
+    }
+  })), workoutSearch && savedWorkouts.filter(w => w.name.toLowerCase().includes(workoutSearch.toLowerCase())).length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      padding: "20px 0",
+      fontSize: 13,
+      color: "#8e8e93"
+    }
+  }, "No workouts matching \"", workoutSearch, "\""))), /*#__PURE__*/React.createElement("div", {
+    className: "section-label"
+  }, "Presets"), /*#__PURE__*/React.createElement("div", {
+    className: "type-grid"
+  }, PRESET_WORKOUTS.map(p => /*#__PURE__*/React.createElement("div", {
+    key: p.id,
+    className: `type-card ${workoutType === p.id ? "selected" : ""}`,
+    onClick: () => loadPreset(p)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "type-icon"
+  }, /*#__PURE__*/React.createElement(p.Icon, {
+    size: 22,
+    strokeWidth: 2.5,
+    color: workoutType === p.id ? "#00c2ff" : "#000"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "type-name"
+  }, p.name), /*#__PURE__*/React.createElement("div", {
+    className: "type-tag"
+  }, p.tag)))), exercises.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 14,
+      background: "#fff",
+      borderRadius: 14,
+      border: "1.5px solid #00c2ff",
+      padding: "14px 16px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      cursor: "pointer",
+      boxShadow: "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)"
+    },
+    onClick: () => setTab("myworkout")
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: "#00c2ff"
+    }
+  }, "Workout in progress"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      marginTop: 2
+    }
+  }, workoutName, " . ", exercises.length, " exercises")), /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 16,
+    strokeWidth: 2.5,
+    color: "#00c2ff",
+    style: {
+      transform: "rotate(-90deg)"
+    }
+  }))), tab === "myworkout" && /*#__PURE__*/React.createElement(React.Fragment, null, exercises.length === 0 ? /*#__PURE__*/React.createElement("div", {
+    className: "empty-state"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "empty-icon"
+  }, /*#__PURE__*/React.createElement(Zap, {
+    size: 36,
+    strokeWidth: 1.5,
+    color: "#c7c7cc"
+  })), "No session in progress", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12
+    }
+  }, "Go to Workouts to start one"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 16
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    style: {
+      width: "auto",
+      padding: "12px 24px"
+    },
+    onClick: () => setTab("workout")
+  }, "Go to Workouts"))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 17,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, workoutName || "My Workout"), workoutStartTime && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      marginTop: 2,
+      fontFamily: "DM Mono,monospace"
+    }
+  }, fmtDuration(workoutElapsed))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-end",
+      gap: 4,
+      flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase"
+    }
+  }, "Rest"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 3,
+      background: "#fff",
+      border: "1.5px solid #e5e5ea",
+      borderRadius: 8,
+      padding: 2,
+      boxShadow: "0 1px 2px rgba(0,0,0,0.05)"
+    }
+  }, [60, 90, 120, 180].map(s => /*#__PURE__*/React.createElement("button", {
+    key: s,
+    onClick: () => {
+      setRestDuration(s);
+      showToast(`Rest -> ${fmtTime(s)}`);
+    },
+    style: {
+      padding: "4px 8px",
+      borderRadius: 6,
+      border: "none",
+      cursor: "pointer",
+      fontSize: 11,
+      fontWeight: 700,
+      fontFamily: "DM Mono,monospace",
+      background: restDuration === s ? "#000" : "transparent",
+      color: restDuration === s ? "#00c2ff" : "#8e8e93",
+      transition: "all 0.15s"
+    }
+  }, fmtTime(s)))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 12,
+      border: "1.5px solid #e5e5ea",
+      boxShadow: "0 1px 2px rgba(0,0,0,0.05)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setSessionNoteOpen(!sessionNoteOpen),
+    style: {
+      padding: "10px 14px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      cursor: "pointer",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#8e8e93",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase"
+    }
+  }, "Session Note"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: sessionNote ? "#000" : "#c7c7cc",
+      marginTop: 2,
+      fontStyle: sessionNote ? "normal" : "italic",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, sessionNote || "How does today feel?")), /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 14,
+    strokeWidth: 2.5,
+    color: "#00c2ff",
+    style: {
+      transform: sessionNoteOpen ? "rotate(180deg)" : "none",
+      transition: "transform 0.2s",
+      flexShrink: 0
+    }
+  })), sessionNoteOpen && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "0 14px 12px",
+      borderTop: "1px solid #F0F0F0"
+    }
+  }, /*#__PURE__*/React.createElement("textarea", {
+    value: sessionNote,
+    onChange: e => setSessionNote(e.target.value),
+    placeholder: "Energy, mood, tightness, anything worth remembering...",
+    rows: 3,
+    style: {
+      width: "100%",
+      border: "1px solid #e5e5ea",
+      borderRadius: 8,
+      padding: "8px 10px",
+      fontSize: 13,
+      fontFamily: "Inter,sans-serif",
+      resize: "none",
+      marginTop: 10,
+      boxSizing: "border-box",
+      outline: "none",
+      color: "#000"
+    },
+    onFocus: e => e.target.style.borderColor = "#00c2ff",
+    onBlur: e => e.target.style.borderColor = "#e5e5ea"
+  }))), !warmupDone ? /*#__PURE__*/React.createElement("button", {
+    onClick: generateWarmup,
+    style: {
+      width: "100%",
+      padding: "12px",
+      borderRadius: 12,
+      border: "1.5px solid #00c2ff",
+      background: "#fff",
+      color: "#00c2ff",
+      fontSize: 13,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8,
+      boxShadow: "0 0 8px rgba(0,194,255,0.3)"
+    }
+  }, /*#__PURE__*/React.createElement(Zap, {
+    size: 15,
+    strokeWidth: 2.5,
+    color: "#00c2ff"
+  }), " Warm Up") : /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "8px 12px",
+      borderRadius: 10,
+      background: "#fff",
+      border: "1px solid #00c2ff",
+      fontSize: 12,
+      fontWeight: 600,
+      color: "#00c2ff",
+      textAlign: "center",
+      boxShadow: "0 0 8px rgba(0,194,255,0.3)"
+    }
+  }, "check Warm up complete -- let's go!"), exercises.map(ex => {
+    const lw = lastWeightLabel(ex.id);
+    const open = expanded[ex.id];
+    const ExIcon = EX_ICON[ex.equipment] || Dumbbell;
+    const progression = progressionSuggestion(ex.id);
+    const pr = personalRecord(ex.id);
+    return /*#__PURE__*/React.createElement("div", {
+      key: ex.id,
+      className: "exercise-card",
+      "data-card-id": ex.id,
+      style: ex.supersetGroup ? {
+        borderColor: "#00c2ff",
+        boxShadow: "0 0 0 1px #00c2ff, 0 1px 6px rgba(0,194,255,0.15)"
+      } : {}
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-header",
+      onClick: () => {
+        const wasOpen = open;
+        setExpanded(p => ({
+          ...p,
+          [ex.id]: !wasOpen
+        }));
+        if (!wasOpen) {
+          // Yield to React render, then scroll
+          setTimeout(() => {
+            const cardEl = document.querySelector(`[data-card-id="${CSS.escape(ex.id)}"]`);
+            if (cardEl) cardEl.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }, 0);
+        }
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6
+      }
+    }, ex.supersetGroup && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#000",
+        color: "#00c2ff",
+        fontSize: 10,
+        fontWeight: 800,
+        padding: "2px 7px",
+        borderRadius: 5,
+        letterSpacing: "0.05em",
+        border: "1.5px solid #00c2ff",
+        boxShadow: "0 0 8px rgba(0,194,255,0.35)",
+        flexShrink: 0
+      }
+    }, ex.supersetGroup, ex.supersetPosition), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-name"
+    }, ex.isMainLift && /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#00c2ff",
+        marginRight: 4,
+        fontWeight: 800
+      }
+    }, "★"), ex.name)), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-muscle-head"
+    }, ex.muscleHead || ex.primaryMuscle, ex.planTargetReps && /*#__PURE__*/React.createElement("span", {
+      style: {
+        marginLeft: 8,
+        fontSize: 10,
+        fontWeight: 800,
+        color: "#00c2ff",
+        padding: "2px 8px",
+        background: "rgba(0,194,255,0.1)",
+        borderRadius: 6,
+        letterSpacing: "0.03em",
+        fontFamily: "DM Mono,monospace"
+      }
+    }, "Target: ", ex.sets.length, "×", ex.planTargetReps))), /*#__PURE__*/React.createElement("div", {
+      className: `exercise-chevron ${open ? "open" : ""}`
+    }, /*#__PURE__*/React.createElement(ChevronDown, {
+      size: 18,
+      strokeWidth: 3,
+      color: "#00c2ff"
+    }))), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pills",
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill blue",
+      onClick: e => {
+        e.stopPropagation();
+        setSwapSheet(ex.id);
+      },
+      style: {
+        justifyContent: "center",
+        boxShadow: "0 0 8px rgba(0,194,255,0.35)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-label",
+      style: {
+        color: "#00c2ff"
+      }
+    }, "Swap"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-val",
+      style: {
+        color: "#00c2ff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }
+    }, /*#__PURE__*/React.createElement(ArrowLeftRight, {
+      size: 16,
+      strokeWidth: 2.5,
+      color: "#00c2ff"
+    }))), ex.equipment === "Cable Machine" && (() => {
+      const att = getAttachment(ex.baseId || ex.id);
+      return /*#__PURE__*/React.createElement("div", {
+        className: "exercise-pill",
+        onClick: e => {
+          e.stopPropagation();
+          setAttachmentSheetExId(ex.id);
+        },
+        style: {
+          borderColor: "#ff9f0a",
+          boxShadow: "0 0 8px rgba(255,159,10,0.35)",
+          cursor: "pointer",
+          minWidth: 0,
+          flex: 1.5
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "exercise-pill-label",
+        style: {
+          color: "#ff9f0a"
+        }
+      }, "Attachment"), /*#__PURE__*/React.createElement("div", {
+        className: "exercise-pill-val",
+        style: {
+          color: "#ff9f0a",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          fontSize: 10
+        }
+      }, att ? att.name : "Set preference"));
+    })(), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill",
+      style: {
+        borderColor: "#000",
+        cursor: EQUIPMENT_ALTERNATIVES[ex.baseId || ex.id]?.length ? "pointer" : "default"
+      },
+      onClick: e => {
+        e.stopPropagation();
+        if (EQUIPMENT_ALTERNATIVES[ex.baseId || ex.id]?.length) setEquipSheet(ex.id);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-label",
+      style: {
+        color: "#000"
+      }
+    }, "Setup"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-val",
+      style: {
+        color: "#000"
+      }
+    }, ex.equipment || "—")), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill green",
+      style: {
+        boxShadow: "0 0 8px rgba(0,255,136,0.4)"
+      },
+      onClick: e => {
+        e.stopPropagation();
+        const prev = lastSets(ex.id);
+        if (!prev) return showToast("No previous sets found");
+        setExercises(p => p.map(e => e.id !== ex.id ? e : {
+          ...e,
+          sets: prev.map(s => ({
+            ...s,
+            done: false
+          }))
+        }));
+        showToast("Last session sets loaded");
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-label",
+      style: {
+        color: "#00c76b"
+      }
+    }, "Last"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-val",
+      style: {
+        color: "#00c76b"
+      }
+    }, lastSets(ex.id)?.length || "—")), /*#__PURE__*/React.createElement("a", {
+      href: youtubeUrl(ex.name),
+      target: "_blank",
+      rel: "noopener noreferrer",
+      onClick: e => e.stopPropagation(),
+      className: "exercise-pill",
+      style: {
+        textDecoration: "none",
+        borderColor: "#ff0844",
+        background: "#fff",
+        boxShadow: "0 0 8px rgba(255,8,68,0.35)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-label",
+      style: {
+        color: "#ff0844"
+      }
+    }, "Video"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-val",
+      style: {
+        color: "#ff0844",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 2
+      }
+    }, /*#__PURE__*/React.createElement(Youtube, {
+      size: 11,
+      strokeWidth: 2,
+      color: "#ff0844"
+    }), "Demo"))), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-row",
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-chip"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-label"
+    }, "Rest"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-val"
+    }, fmtTime(restDuration))), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-chip"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-label"
+    }, "PR"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-val"
+    }, pr ? `${pr.weight}lb` : "—")), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-chip"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-label"
+    }, "Set 1 Last"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-val"
+    }, lastSets(ex.id)?.[0]?.weight ? `${lastSets(ex.id)[0].weight}lb` : "—")), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-chip"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-label"
+    }, "Best Last"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-val"
+    }, lw ? lw.replace("lb x ", " x ") : "—")))), /*#__PURE__*/React.createElement("div", {
+      className: `sets-area-wrapper ${open ? "open" : ""}`
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "sets-area"
+    }, (() => {
+      const trend = [];
+      for (let i = history.length - 1; i >= 0 && trend.length < 8; i--) {
+        const hEx = history[i].exercises.find(e => e.id === ex.id);
+        if (hEx?.sets?.length) {
+          const best = Math.max(...hEx.sets.map(s => parseFloat(s.weight) || 0));
+          if (best > 0) trend.unshift({
+            w: best,
+            date: history[i].date
+          });
+        }
+      }
+      if (trend.length < 2) return null;
+      const maxW = Math.max(...trend.map(t => t.w));
+      const minW = Math.min(...trend.map(t => t.w));
+      const range = maxW - minW || 1;
+      const W = 280,
+        H = 64,
+        padX = 10,
+        padTop = 14,
+        padBottom = 8;
+      const x = i => padX + i / (trend.length - 1) * (W - padX * 2);
+      const y = v => H - padBottom - (v - minW) / range * (H - padTop - padBottom);
+      const path = trend.map((t, i) => `${i === 0 ? "M" : "L"}${x(i)},${y(t.w)}`).join(" ");
+      const fillPath = `${path} L${x(trend.length - 1)},${H} L${x(0)},${H} Z`;
+      const diff = trend[trend.length - 1].w - trend[0].w;
+      const pct = trend[0].w > 0 ? (diff / trend[0].w * 100).toFixed(1) : 0;
+      const lastX = x(trend.length - 1);
+      const lastY = y(trend[trend.length - 1].w);
+      // Position label above if there's room, otherwise below
+      const labelAbove = lastY > padTop + 12;
+      return /*#__PURE__*/React.createElement("div", {
+        onClick: e => {
+          e.stopPropagation();
+          setProgressChartExId(ex.baseId || ex.id);
+        },
+        style: {
+          background: "#f9f9f9",
+          borderRadius: 8,
+          padding: "10px 12px",
+          marginBottom: 8,
+          border: "1px solid #f0f0f0",
+          cursor: "pointer"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 6,
+          gap: 8
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 9,
+          fontWeight: 700,
+          color: "#8e8e93",
+          textTransform: "uppercase",
+          letterSpacing: "0.06em"
+        }
+      }, "Weight Trend · Last ", trend.length, " sessions · Tap to expand"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          fontWeight: 700,
+          color: diff >= 0 ? "#34c759" : "#ff3b30",
+          whiteSpace: "nowrap"
+        }
+      }, diff >= 0 ? "+" : "", diff, "lb (", pct, "%)")), /*#__PURE__*/React.createElement("svg", {
+        width: "100%",
+        viewBox: `0 0 ${W} ${H}`,
+        style: {
+          overflow: "visible",
+          display: "block"
+        }
+      }, /*#__PURE__*/React.createElement("path", {
+        d: fillPath,
+        fill: "rgba(0,194,255,0.08)"
+      }), /*#__PURE__*/React.createElement("path", {
+        d: path,
+        fill: "none",
+        stroke: "#00c2ff",
+        strokeWidth: "1.5",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }), trend.map((t, i) => /*#__PURE__*/React.createElement("circle", {
+        key: i,
+        cx: x(i),
+        cy: y(t.w),
+        r: "3",
+        fill: "#00c2ff",
+        stroke: "#fff",
+        strokeWidth: "1.5"
+      })), /*#__PURE__*/React.createElement("text", {
+        x: lastX,
+        y: labelAbove ? lastY - 7 : lastY + 14,
+        fontSize: "10",
+        fill: "#00c2ff",
+        fontWeight: "700",
+        textAnchor: trend.length > 1 ? "end" : "middle"
+      }, trend[trend.length - 1].w, "lb")));
+    })(), progression && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        background: "rgba(52,199,89,0.08)",
+        border: "1.5px solid rgba(52,199,89,0.3)",
+        borderRadius: 10,
+        padding: "10px 12px",
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement(TrendingUp, {
+      size: 14,
+      strokeWidth: 2.5,
+      color: "#34c759",
+      style: {
+        flexShrink: 0
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        fontSize: 13,
+        fontWeight: 600,
+        color: "#1a9e3f"
+      }
+    }, progression.text), /*#__PURE__*/React.createElement("button", {
+      style: {
+        background: "#34c759",
+        color: "#fff",
+        border: "none",
+        borderRadius: 8,
+        padding: "7px 16px",
+        fontSize: 13,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        flexShrink: 0
+      },
+      onClick: () => {
+        setExercises(p => p.map(e => e.id !== ex.id ? e : {
+          ...e,
+          sets: e.sets.map(s => ({
+            ...s,
+            weight: String(progression.suggestedWeight)
+          }))
+        }));
+        showToast(`Applied ${progression.suggestedWeight}lb to all sets`);
+      }
+    }, "Apply")), ex.bench && ex.bench !== "N/A" && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#00c2ff",
+        fontWeight: 600,
+        padding: "2px 0 4px",
+        display: "flex",
+        alignItems: "center",
+        gap: 4
+      }
+    }, /*#__PURE__*/React.createElement(Lightbulb, {
+      size: 11,
+      strokeWidth: 2.5
+    }), ex.bench), ["bw-pullup", "bw-pullup-close", "bw-chinup", "bw-neutralwide", "bw-neutralclose", "bw-angled", "bw-fatbar", "bw-fatbar-under", "bw-weighted-pu", "bw-eccentric-pu", "bw-lsit-pu", "bw-scapular"].includes(ex.id) && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "6px 10px",
+        background: "#f9f9f9",
+        borderRadius: 8,
+        marginBottom: 2
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        fontWeight: 600
+      }
+    }, "Body weight:"), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      value: bodyWeight,
+      onChange: e => setBodyWeight(parseFloat(e.target.value) || 0),
+      style: {
+        width: 60,
+        padding: "4px 8px",
+        borderRadius: 6,
+        border: "1.5px solid #e5e5ea",
+        fontSize: 13,
+        fontFamily: "DM Mono,monospace",
+        fontWeight: 700,
+        textAlign: "center",
+        outline: "none"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93"
+      }
+    }, "lb")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        marginBottom: 6,
+        padding: "6px 10px",
+        background: "#f9f9f9",
+        borderRadius: 8,
+        border: "1px solid #f0f0f0"
+      },
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement(Target, {
+      size: 12,
+      strokeWidth: 2.5,
+      color: "#8e8e93"
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.05em",
+        flexShrink: 0
+      }
+    }, "Target Reps"), /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      placeholder: "e.g. 8-12",
+      value: ex.targetRepRange || "",
+      onChange: e => {
+        const val = e.target.value;
+        const parsed = val.match(/^(\d+)\s*[-\u2013]\s*(\d+)$/);
+        setExercises(p => p.map(x => x.id !== ex.id ? x : {
+          ...x,
+          targetRepRange: val,
+          sets: x.sets.map(s => ({
+            ...s,
+            targetRepsLow: parsed ? parseInt(parsed[1]) : null,
+            targetRepsHigh: parsed ? parseInt(parsed[2]) : null
+          }))
+        }));
+      },
+      style: {
+        flex: 1,
+        border: "none",
+        background: "transparent",
+        fontSize: 13,
+        fontFamily: "DM Mono,monospace",
+        fontWeight: 700,
+        color: "#00c2ff",
+        outline: "none",
+        textAlign: "center",
+        minWidth: 0
+      }
+    }), ex.targetRepRange ? /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 9,
+        fontWeight: 700,
+        color: "#8e8e93",
+        whiteSpace: "nowrap"
+      }
+    }, (() => {
+      const p = ex.targetRepRange.match(/^(\d+)\s*[-\u2013]\s*(\d+)$/);
+      return p ? "in range = green" : "invalid format";
+    })()) : null), /*#__PURE__*/React.createElement("div", {
+      className: "sets-header"
+    }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null, "WEIGHT LB"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        textAlign: "center"
+      }
+    }, "LB"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        textAlign: "center"
+      }
+    }, "REPS"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        textAlign: "center"
+      }
+    }, "REPS"), /*#__PURE__*/React.createElement("span", null)), ex.planTargetReps && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 12,
+        padding: "6px 10px",
+        marginBottom: 6,
+        background: "rgba(0,194,255,0.04)",
+        borderRadius: 6,
+        fontSize: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#8e8e93",
+        fontWeight: 600
+      }
+    }, "Target: ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#00c2ff",
+        fontWeight: 800,
+        fontFamily: "DM Mono,monospace"
+      }
+    }, ex.planTargetReps, " reps")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#ff3b30",
+        fontWeight: 600
+      }
+    }, "· under"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#1a9e3f",
+        fontWeight: 600
+      }
+    }, "· in range"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#00c2ff",
+        fontWeight: 600
+      }
+    }, "· over"))), ex.sets.map((set, i) => /*#__PURE__*/React.createElement(React.Fragment, {
+      key: i
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "set-row"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "set-num"
+    }, i + 1), /*#__PURE__*/React.createElement("div", {
+      className: "set-input",
+      style: {
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        userSelect: "none"
+      },
+      onClick: () => {
+        const pref = calcPrefs[ex.id];
+        if (pref === "stack") return openStackCalc(ex.id, i, set.weight, ex.equipment);
+        if (pref === "dumbbell") return openDumbbellPicker(ex.id, i, set.weight);
+        if (pref === "plate") return openPlateCalc(ex.id, i, set.weight);
+        if (pref === "mx100") return openMX100Picker(ex.id, i, set.weight);
+        if (ex.calculator === "bodyweight") {
+          setBwAdded(0);
+          setBwSheetTarget({
+            exId: ex.id,
+            setIdx: i
+          });
+          return;
+        }
+        if (ex.equipment === "MX100 Barbell" || ex.equipment === "Adjustable Barbell") return openMX100Picker(ex.id, i, set.weight);
+        if (EQUIPMENT_TO_MACHINE[ex.equipment]) openStackCalc(ex.id, i, set.weight, ex.equipment);else if (ex.equipment === "Dumbbells" || ex.equipment === "Adjustable Dumbbells" || ex.equipment === "Fixed Dumbbells") openDumbbellPicker(ex.id, i, set.weight);else openPlateCalc(ex.id, i, set.weight);
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: set.weight ? "#000" : "#c7c7cc"
+      }
+    }, set.weight || "0")), /*#__PURE__*/React.createElement("div", {
+      className: "set-last"
+    }, lastSets(ex.id)?.[i]?.weight || "—"), /*#__PURE__*/React.createElement("div", {
+      className: "set-last"
+    }, lastSets(ex.id)?.[i]?.reps || "—"), /*#__PURE__*/React.createElement("input", {
+      className: "set-input",
+      type: "number",
+      inputMode: "numeric",
+      placeholder: "",
+      maxLength: 3,
+      value: set.reps,
+      style: (() => {
+        const baseStyle = {
+          textAlign: "center",
+          padding: "6px 4px",
+          fontSize: 16,
+          fontWeight: 700
+        };
+        if (!set.targetRepsLow || !set.reps) return baseStyle;
+        const r = parseInt(set.reps);
+        if (isNaN(r) || r === 0) return baseStyle;
+        if (r >= set.targetRepsLow && r <= set.targetRepsHigh) {
+          return {
+            ...baseStyle,
+            borderColor: "#34c759",
+            background: "#f0faf3",
+            color: "#1a9e3f"
+          };
+        }
+        if (r < set.targetRepsLow) {
+          return {
+            ...baseStyle,
+            borderColor: "#ff3b30",
+            background: "#fff5f5",
+            color: "#ff3b30"
+          };
+        }
+        // Above target range
+        return {
+          ...baseStyle,
+          borderColor: "#00c2ff",
+          background: "#f0f9ff",
+          color: "#00c2ff"
+        };
+      })(),
+      onChange: e => {
+        const v = e.target.value.slice(0, 3);
+        updateSet(ex.id, i, "reps", v);
+      },
+      onKeyDown: e => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const inputs = document.querySelectorAll(".set-input[type='number']");
+          const idx = [...inputs].indexOf(e.target);
+          if (idx >= 0 && idx < inputs.length - 1) inputs[idx + 1].focus();else e.target.blur();
+        }
+      }
+    }), /*#__PURE__*/React.createElement("button", {
+      key: `${ex.id}-${i}-${set.done ? "done" : "pending"}`,
+      onClick: () => toggleDone(ex.id, i),
+      className: set.done ? "set-done-bounce" : "",
+      style: {
+        width: 30,
+        height: 30,
+        borderRadius: "50%",
+        flexShrink: 0,
+        cursor: "pointer",
+        border: set.done ? "none" : "2px solid #c7c7cc",
+        background: set.done ? "#34c759" : "transparent",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 14,
+        color: "#fff",
+        fontWeight: 700,
+        padding: 0,
+        justifySelf: "end"
+      }
+    }, set.done ? "✓" : "")), (set.stackConfig?.band || set.plateBand) && /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginLeft: 30,
+        marginTop: 2,
+        marginBottom: 2,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 5,
+        background: "rgba(0,194,255,0.08)",
+        border: "1px solid rgba(0,194,255,0.25)",
+        borderRadius: 6,
+        padding: "3px 8px"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        color: "#00c2ff",
+        fontWeight: 700,
+        textTransform: "uppercase",
+        letterSpacing: "0.04em"
+      }
+    }, "Band"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: "#000",
+        fontWeight: 600
+      }
+    }, set.stackConfig?.band || set.plateBand)), (set.drops || []).map((drop, di) => /*#__PURE__*/React.createElement("div", {
+      key: `drop-${di}`,
+      style: {
+        display: "grid",
+        gridTemplateColumns: "18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px",
+        gap: 6,
+        alignItems: "center",
+        marginLeft: 20,
+        marginTop: 4,
+        padding: "4px 0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        fontWeight: 700,
+        color: "#af52de",
+        letterSpacing: "0.04em"
+      }
+    }, "↓", di + 1), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      inputMode: "decimal",
+      placeholder: "wt",
+      value: drop.weight,
+      onChange: e => {
+        setExercises(p => p.map(x => x.id !== ex.id ? x : {
+          ...x,
+          sets: x.sets.map((s, si) => si !== i ? s : {
+            ...s,
+            drops: s.drops.map((d, ddi) => ddi !== di ? d : {
+              ...d,
+              weight: e.target.value
+            })
+          })
+        }));
+      },
+      style: {
+        background: "#faf5ff",
+        border: "1px solid #e0c9f5",
+        borderRadius: 6,
+        padding: "4px 8px",
+        fontSize: 13,
+        fontWeight: 600,
+        fontFamily: "DM Mono,monospace",
+        textAlign: "center",
+        color: "#000",
+        outline: "none",
+        width: "100%",
+        boxSizing: "border-box"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#c7c7cc",
+        textAlign: "center"
+      }
+    }, "—"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#c7c7cc",
+        textAlign: "center"
+      }
+    }, "—"), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      inputMode: "numeric",
+      placeholder: "reps",
+      maxLength: 3,
+      value: drop.reps,
+      onChange: e => {
+        const v = e.target.value.slice(0, 3);
+        setExercises(p => p.map(x => x.id !== ex.id ? x : {
+          ...x,
+          sets: x.sets.map((s, si) => si !== i ? s : {
+            ...s,
+            drops: s.drops.map((d, ddi) => ddi !== di ? d : {
+              ...d,
+              reps: v
+            })
+          })
+        }));
+      },
+      style: {
+        background: "#fff",
+        border: "1px solid #e5e5ea",
+        borderRadius: 6,
+        padding: "4px 8px",
+        fontSize: 13,
+        fontWeight: 700,
+        fontFamily: "DM Mono,monospace",
+        textAlign: "center",
+        color: "#000",
+        outline: "none",
+        width: "100%",
+        boxSizing: "border-box"
+      }
+    }), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setExercises(p => p.map(x => x.id !== ex.id ? x : {
+          ...x,
+          sets: x.sets.map((s, si) => si !== i ? s : {
+            ...s,
+            drops: s.drops.map((d, ddi) => ddi !== di ? d : {
+              ...d,
+              done: !d.done
+            })
+          })
+        }));
+        if (!drop.done) startRest();
+      },
+      style: {
+        width: 22,
+        height: 22,
+        borderRadius: "50%",
+        flexShrink: 0,
+        cursor: "pointer",
+        border: drop.done ? "none" : "2px solid #c7c7cc",
+        background: drop.done ? "#af52de" : "transparent",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 11,
+        color: "#fff",
+        fontWeight: 700,
+        justifySelf: "end",
+        padding: 0
+      }
+    }, drop.done ? "✓" : ""))), set.done && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6,
+        marginLeft: 20,
+        marginTop: 4
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        // Suggest 20% less than last weight
+        const lastW = set.drops && set.drops.length > 0 ? parseFloat(set.drops[set.drops.length - 1].weight) : parseFloat(set.weight);
+        const suggested = lastW ? Math.max(5, Math.round(lastW * 0.8 / 5) * 5) : "";
+        setExercises(p => p.map(x => x.id !== ex.id ? x : {
+          ...x,
+          sets: x.sets.map((s, si) => si !== i ? s : {
+            ...s,
+            drops: [...(s.drops || []), {
+              weight: String(suggested),
+              reps: "",
+              done: false
+            }]
+          })
+        }));
+      },
+      style: {
+        background: "transparent",
+        border: "1px dashed #af52de",
+        color: "#af52de",
+        borderRadius: 6,
+        padding: "3px 10px",
+        fontSize: 11,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        display: "flex",
+        alignItems: "center",
+        gap: 4
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12
+      }
+    }, "↓"), " drop")))), /*#__PURE__*/React.createElement("button", {
+      className: "add-set-btn",
+      onClick: () => addSet(ex.id)
+    }, "+ set"), restActive && /*#__PURE__*/React.createElement("div", {
+      className: "card-rest-timer"
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.05em"
+      }
+    }, "Rest"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 26,
+        fontWeight: 800,
+        fontFamily: "DM Mono,monospace",
+        color: "#000",
+        letterSpacing: "-1px"
+      }
+    }, fmtTime(restSeconds)), /*#__PURE__*/React.createElement("button", {
       onClick: skipRest,
       style: {
-        position: "fixed",
-        bottom: 90,
-        right: 16,
-        zIndex: 500,
-        width: 68,
-        height: 68,
-        borderRadius: "50%",
         background: "#000",
-        border: "3px solid #00c2ff",
-        boxShadow: "0 0 0 3px rgba(0,194,255,0.3), 0 4px 20px rgba(0,0,0,0.4)",
+        color: "#fff",
+        border: "none",
+        borderRadius: 7,
+        padding: "6px 14px",
+        fontSize: 12,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        boxShadow: "0 0 0 1.5px #00c2ff"
+      }
+    }, "Skip")), /*#__PURE__*/React.createElement("textarea", {
+      className: "exercise-notes",
+      placeholder: "Notes for this exercise (saved permanently)...",
+      value: exerciseNotes[ex.id] || "",
+      onChange: e => setExerciseNotes(p => ({
+        ...p,
+        [ex.id]: e.target.value
+      })),
+      onClick: e => e.stopPropagation(),
+      rows: 2
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 8,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 14
+      }
+    }, removeConfirm === ex.id ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        justifyContent: "center",
+        alignItems: "center"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: "#ff3b30",
+        fontWeight: 600
+      }
+    }, "Remove \"", ex.name, "\"?"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setExercises(p => p.filter(x => x.id !== ex.id));
+        setRemoveConfirm(null);
+        showToast(`Removed ${ex.name}`);
+      },
+      style: {
+        background: "#ff3b30",
+        color: "#fff",
+        border: "none",
+        borderRadius: 6,
+        padding: "4px 12px",
+        fontSize: 11,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Yes, remove"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setRemoveConfirm(null),
+      style: {
+        background: "none",
+        border: "1.5px solid #e5e5ea",
+        color: "#8e8e93",
+        borderRadius: 6,
+        padding: "4px 10px",
+        fontSize: 11,
+        fontWeight: 600,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Cancel")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        if (ex.supersetGroup) {
+          const groupToRemove = ex.supersetGroup;
+          setExercises(p => p.map(x => x.supersetGroup === groupToRemove ? {
+            ...x,
+            supersetGroup: null,
+            supersetPosition: null
+          } : x));
+          showToast(`Superset ${groupToRemove} unlinked`);
+        } else {
+          setSupersetPickerExId(ex.id);
+        }
+      },
+      style: {
+        background: "none",
+        border: "none",
+        color: ex.supersetGroup ? "#00c2ff" : "#c7c7cc",
+        fontSize: 11,
+        fontWeight: 600,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        padding: "4px 8px",
+        display: "flex",
+        alignItems: "center",
+        gap: 4
+      }
+    }, /*#__PURE__*/React.createElement(Link, {
+      size: 11,
+      strokeWidth: 2.5
+    }), ex.supersetGroup ? `Unlink superset ${ex.supersetGroup}` : "Link as superset"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setRemoveConfirm(ex.id),
+      style: {
+        background: "none",
+        border: "none",
+        color: "#c7c7cc",
+        fontSize: 11,
+        fontWeight: 600,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        padding: "4px 8px"
+      }
+    }, "Remove exercise"))))));
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "add-exercise-btn",
+    onClick: openPicker
+  }, "+ Add exercise"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: 16
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderTop: "1.5px solid #e5e5ea",
+      marginBottom: 16
+    }
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: finishWorkout
+  }, "Finish Workout"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setExercises([]);
+      setWorkoutType(null);
+      setWorkoutName("");
+      setWorkoutStartTime(null);
+      setWarmupDone(false);
+      try {
+        localStorage.removeItem("locked_workout_draft");
+      } catch (e) {}
+      setTab("workout");
+      showToast("Workout discarded");
+    },
+    style: {
+      background: "none",
+      border: "none",
+      color: "#c7c7cc",
+      fontSize: 12,
+      fontWeight: 600,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      textAlign: "center",
+      width: "100%",
+      padding: "4px 0"
+    }
+  }, "Discard workout"))), tab === "calendar" && (() => {
+    const {
+      year,
+      month
+    } = calMonth;
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrev = new Date(year, month, 0).getDate();
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+
+    // Build logged days map from history
+    const loggedMap = {};
+    history.forEach(h => {
+      const d = new Date(h.id);
+      const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+      loggedMap[key] = h;
+    });
+
+    // Calculate streak -- consecutive training days logged up to today
+    let streak = 0;
+    const checkDate = new Date(today);
+    let streakIterations = 0;
+    while (scheduleDays.length > 0 && streakIterations < 365) {
+      streakIterations++;
+      const key = `${checkDate.getFullYear()}-${checkDate.getMonth()}-${checkDate.getDate()}`;
+      const dayOfWeek = checkDate.getDay();
+      const isTrainingDay = scheduleDays.includes(dayOfWeek);
+      if (isTrainingDay) {
+        if (loggedMap[key]) {
+          streak++;
+          checkDate.setDate(checkDate.getDate() - 1);
+        } else break;
+      } else {
+        checkDate.setDate(checkDate.getDate() - 1);
+      }
+    }
+
+    // Missed days = past training days with no workout logged
+    const isMissed = date => {
+      const d = new Date(date);
+      d.setHours(0, 0, 0, 0);
+      const t = new Date(today);
+      t.setHours(0, 0, 0, 0);
+      if (d >= t) return false; // not past
+      const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+      return scheduleDays.includes(d.getDay()) && !loggedMap[key];
+    };
+
+    // Build calendar cells
+    const cells = [];
+    // Prev month trailing days
+    for (let i = firstDay - 1; i >= 0; i--) {
+      cells.push({
+        day: daysInPrev - i,
+        currentMonth: false,
+        date: new Date(year, month - 1, daysInPrev - i)
+      });
+    }
+    // Current month
+    for (let d = 1; d <= daysInMonth; d++) {
+      cells.push({
+        day: d,
+        currentMonth: true,
+        date: new Date(year, month, d)
+      });
+    }
+    // Next month padding
+    let next = 1;
+    while (cells.length % 7 !== 0) {
+      cells.push({
+        day: next++,
+        currentMonth: false,
+        date: new Date(year, month + 1, next - 1)
+      });
+    }
+    const selectedEntry = calSelected ? loggedMap[calSelected] : null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 16
+      }
+    }, streak > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg, #000 0%, #1a1a1a 100%)",
+        borderRadius: 16,
+        padding: "14px 18px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        boxShadow: "0 0 0 1.5px #ff9500, 0 0 20px rgba(255,149,0,0.25)"
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: "#ff9500",
+        textTransform: "uppercase",
+        letterSpacing: "0.08em"
+      }
+    }, "Streak"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 28,
+        fontWeight: 800,
+        color: "#fff",
+        letterSpacing: "-1px",
+        lineHeight: 1.1,
+        marginTop: 2
+      }
+    }, streak, " ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 13,
+        fontWeight: 600,
+        color: "#8e8e93"
+      }
+    }, "day", streak !== 1 ? "s" : ""))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 42,
+        filter: "drop-shadow(0 0 8px rgba(255,149,0,0.5))"
+      }
+    }, "🔥")), /*#__PURE__*/React.createElement("div", {
+      className: "cal-nav"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "cal-nav-btn",
+      onClick: () => setCalMonth(({
+        year,
+        month
+      }) => month === 0 ? {
+        year: year - 1,
+        month: 11
+      } : {
+        year,
+        month: month - 1
+      })
+    }, /*#__PURE__*/React.createElement(ChevronLeft, {
+      size: 16,
+      strokeWidth: 2.5,
+      color: "#000"
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "cal-month-label"
+    }, monthNames[month], " ", year), /*#__PURE__*/React.createElement("button", {
+      className: "cal-nav-btn",
+      onClick: () => setCalMonth(({
+        year,
+        month
+      }) => month === 11 ? {
+        year: year + 1,
+        month: 0
+      } : {
+        year,
+        month: month + 1
+      })
+    }, /*#__PURE__*/React.createElement(ChevronRight, {
+      size: 16,
+      strokeWidth: 2.5,
+      color: "#000"
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 16,
+        padding: "14px",
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "cal-grid",
+      style: {
+        marginBottom: 4
+      }
+    }, dayNames.map(d => /*#__PURE__*/React.createElement("div", {
+      key: d,
+      className: "cal-dow"
+    }, d))), /*#__PURE__*/React.createElement("div", {
+      className: "cal-grid"
+    }, cells.map((cell, i) => {
+      const key = `${cell.date.getFullYear()}-${cell.date.getMonth()}-${cell.date.getDate()}`;
+      const isToday = key === todayStr;
+      const isLogged = !!loggedMap[key];
+      const isScheduled = scheduleDays.includes(cell.date.getDay());
+      const isRecovery = !isScheduled && cell.currentMonth;
+      const isCardio = cardioDays.includes(cell.date.getDay()) && cell.currentMonth;
+      const isCardioDone = cardioLog[key] && cell.currentMonth;
+      const isMissedDay = isMissed(cell.date) && cell.currentMonth;
+      const isSelected = calSelected === key;
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        className: `cal-day ${!cell.currentMonth ? "other-month" : ""} ${isLogged ? "logged" : ""} ${isMissedDay && !isLogged ? "missed" : ""} ${isScheduled && !isLogged && !isToday && !isMissedDay ? "scheduled" : ""} ${isRecovery && !isLogged && !isToday ? "recovery" : ""} ${isToday ? "today" : ""} ${isCardio && !isCardioDone ? "cardio" : ""} ${isCardioDone ? "cardio-done" : ""}`,
+        style: isSelected ? {
+          outline: "2.5px solid #7b5ea7",
+          outlineOffset: 2
+        } : {},
+        onClick: () => {
+          if (cell.currentMonth) setCalSelected(calSelected === key ? null : key);
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "cal-day-num",
+        style: {
+          color: isToday ? "#fff" : isLogged ? "#fff" : isMissedDay ? "#ff3b30" : "#000"
+        }
+      }, cell.day), isLogged && /*#__PURE__*/React.createElement("div", {
+        className: "cal-dot"
+      }));
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 12,
+        justifyContent: "center",
+        flexWrap: "wrap",
+        background: "#fff",
+        borderRadius: 12,
+        border: "1.5px solid #e5e5ea",
+        padding: "8px 12px",
+        boxShadow: "0 1px 2px rgba(0,0,0,0.04)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 5,
+        fontSize: 11
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 10,
+        height: 10,
+        borderRadius: 3,
+        background: "#5a8f6e"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#000",
+        fontWeight: 600
+      }
+    }, "Logged")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 5,
+        fontSize: 11
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 10,
+        height: 10,
+        borderRadius: 3,
+        background: "#ff3b30"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#000",
+        fontWeight: 600
+      }
+    }, "Missed")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 5,
+        fontSize: 11
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 10,
+        height: 10,
+        borderRadius: 3,
+        border: "1.5px solid #00c2ff"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#8e8e93",
+        fontWeight: 600
+      }
+    }, "Training")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 5,
+        fontSize: 11
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 10,
+        height: 10,
+        borderRadius: 3,
+        background: "#8a63d2"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#8e8e93",
+        fontWeight: 600
+      }
+    }, "Cardio")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 5,
+        fontSize: 11
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 10,
+        height: 10,
+        borderRadius: 3,
+        background: "#000"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#8e8e93",
+        fontWeight: 600
+      }
+    }, "Today"))), calSelected && /*#__PURE__*/React.createElement("div", {
+      className: "cal-detail"
+    }, selectedEntry ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "cal-detail-date"
+    }, new Date(selectedEntry.id).toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric"
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "cal-detail-name"
+    }, selectedEntry.type), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 16,
+        margin: "8px 0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "stat"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "stat-val"
+    }, selectedEntry.exercises.length), /*#__PURE__*/React.createElement("div", {
+      className: "stat-key"
+    }, "exercises")), /*#__PURE__*/React.createElement("div", {
+      className: "stat"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "stat-val"
+    }, selectedEntry.exercises.reduce((n, e) => n + e.sets.length, 0)), /*#__PURE__*/React.createElement("div", {
+      className: "stat-key"
+    }, "sets")), /*#__PURE__*/React.createElement("div", {
+      className: "stat"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "stat-val"
+    }, Math.round(selectedEntry.volume).toLocaleString()), /*#__PURE__*/React.createElement("div", {
+      className: "stat-key"
+    }, "lb volume"))), /*#__PURE__*/React.createElement("div", {
+      className: "cal-detail-exlist"
+    }, selectedEntry.exercises.map(e => e.name).join(" . ")), selectedEntry.note && /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 10,
+        padding: "10px 12px",
+        background: "rgba(0,194,255,0.06)",
+        border: "1px solid rgba(0,194,255,0.2)",
+        borderRadius: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        fontWeight: 700,
+        color: "#00c2ff",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom: 4
+      }
+    }, "Session Note"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#000",
+        lineHeight: 1.5,
+        fontStyle: "italic"
+      }
+    }, "\"", selectedEntry.note, "\""))) : /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "#8e8e93",
+        textAlign: "center",
+        padding: "8px 0"
+      }
+    }, scheduleDays.includes(new Date(...calSelected.split("-").map(Number)).getDay()) ? "📅 Training day -- no workout logged yet" : "🟢 Recovery day -- full rest, no weight training"), cardioDays.includes(new Date(...calSelected.split("-").map(Number)).getDay()) && /*#__PURE__*/React.createElement("button", {
+      onClick: () => setCardioLog(prev => ({
+        ...prev,
+        [calSelected]: !prev[calSelected]
+      })),
+      style: {
+        marginTop: 12,
+        width: "100%",
+        padding: "10px",
+        borderRadius: 10,
+        border: `1.5px solid ${cardioLog[calSelected] ? "#8a63d2" : "#e5e5ea"}`,
+        background: cardioLog[calSelected] ? "#f1ecfb" : "#fff",
+        color: cardioLog[calSelected] ? "#8a63d2" : "#8e8e93",
+        fontSize: 13,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 8,
+        transition: "all 0.15s"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 8,
+        height: 8,
+        borderRadius: "50%",
+        background: cardioLog[calSelected] ? "#8a63d2" : "#c7c7cc"
+      }
+    }), cardioLog[calSelected] ? "Cardio completed check" : "Mark cardio done")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 14,
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      onClick: () => setScheduleOpen(!scheduleOpen),
+      style: {
+        padding: "12px 16px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        cursor: "pointer"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, "Schedule"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 2
+      }
+    }, scheduleDays.length, " training · ", cardioDays.length, " cardio days/week")), /*#__PURE__*/React.createElement(ChevronDown, {
+      size: 16,
+      strokeWidth: 2.5,
+      color: "#00c2ff",
+      style: {
+        transform: scheduleOpen ? "rotate(180deg)" : "none",
+        transition: "transform 0.2s"
+      }
+    })), scheduleOpen && /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "0 16px 14px",
+        borderTop: "1px solid #F0F0F0"
+      },
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "section-label",
+      style: {
+        marginBottom: 6,
+        marginTop: 0
+      }
+    }, "Training days"), /*#__PURE__*/React.createElement("div", {
+      className: "schedule-grid"
+    }, dayNames.map((name, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      className: `schedule-day-btn ${scheduleDays.includes(i) ? "on" : ""}`,
+      onClick: e => {
+        e.stopPropagation();
+        setScheduleDays(prev => prev.includes(i) ? prev.filter(d => d !== i) : [...prev, i]);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "schedule-day-label"
+    }, name))))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "section-label",
+      style: {
+        marginBottom: 6,
+        marginTop: 0
+      }
+    }, "Cardio days"), /*#__PURE__*/React.createElement("div", {
+      className: "schedule-grid"
+    }, dayNames.map((name, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      onClick: e => {
+        e.stopPropagation();
+        setCardioDays(prev => prev.includes(i) ? prev.filter(d => d !== i) : [...prev, i]);
+      },
+      style: {
+        aspectRatio: "1",
+        borderRadius: 10,
+        border: cardioDays.includes(i) ? "2px solid #8a63d2" : "1.5px solid #e5e5ea",
+        background: cardioDays.includes(i) ? "#f1ecfb" : "#fff",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         cursor: "pointer",
-        animation: "restPulse 1s ease-in-out infinite"
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
+        transition: "all 0.15s",
+        gap: 2
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: cardioDays.includes(i) ? "#8a63d2" : "#8e8e93",
+        letterSpacing: "0.04em"
+      }
+    }, name))))))), activePlan && (() => {
+      const plan = PLAN_TEMPLATES.find(p => p.id === activePlan.planId);
+      if (!plan) return null;
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "4px 4px 0",
+          display: "flex",
+          alignItems: "center",
+          gap: 6
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          fontWeight: 700,
+          color: "#8e8e93",
+          letterSpacing: "0.05em",
+          textTransform: "uppercase"
+        }
+      }, "Schedule from"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          fontWeight: 800,
+          color: "#00c2ff"
+        }
+      }, plan.name)), /*#__PURE__*/React.createElement(PlanScheduleView, {
+        plan: plan,
+        activePlan: activePlan,
+        scheduleDays: scheduleDays,
+        cardioDays: cardioDays,
+        history: history
+      }));
+    })());
+  })(), tab === "history" && /*#__PURE__*/React.createElement(React.Fragment, null, history.length === 0 ? /*#__PURE__*/React.createElement("div", {
+    className: "empty-state"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "empty-icon"
+  }, /*#__PURE__*/React.createElement(ClipboardList, {
+    size: 36,
+    strokeWidth: 1.5,
+    color: "#c7c7cc"
+  })), "Finish your first workout", /*#__PURE__*/React.createElement("br", null), "and it'll appear here.") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(WeeklyStats, {
+    history: history
+  }), /*#__PURE__*/React.createElement(PRsPanel, {
+    history: history,
+    onOpenChart: setProgressChartExId
+  }), /*#__PURE__*/React.createElement(MuscleIntelligence, {
+    history: history
+  }), (() => {
+    // Group by month-year
+    const grouped = {};
+    [...history].reverse().forEach(entry => {
+      // Parse the date -- entry.date is a display string like "Wed, Jul 15"
+      // Better: use entry.id timestamp or entry.dateISO if available
+      let d;
+      if (entry.dateISO) d = new Date(entry.dateISO);else if (typeof entry.id === "number") d = new Date(entry.id);else d = new Date(entry.date + ", " + new Date().getFullYear());
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+      const label = d.toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric"
+      });
+      if (!grouped[key]) grouped[key] = {
+        label,
+        entries: [],
+        sortKey: key
+      };
+      grouped[key].entries.push(entry);
+    });
+    const groups = Object.values(grouped).sort((a, b) => b.sortKey.localeCompare(a.sortKey));
+    return groups.map(g => {
+      const isOpen = historyMonthOpen[g.sortKey] === true; // default closed
+      return /*#__PURE__*/React.createElement("div", {
+        key: g.sortKey,
+        style: {
+          marginBottom: 16
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        onClick: () => setHistoryMonthOpen(p => ({
+          ...p,
+          [g.sortKey]: !isOpen
+        })),
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          cursor: "pointer",
+          padding: "10px 14px",
+          background: "#fff",
+          borderRadius: 12,
+          border: "1.5px solid #e5e5ea",
+          marginBottom: isOpen ? 8 : 0,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 10
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 15,
+          fontWeight: 800,
+          color: "#000"
+        }
+      }, g.label), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          fontWeight: 600,
+          color: "#8e8e93",
+          padding: "2px 8px",
+          background: "#F0F0F0",
+          borderRadius: 10
+        }
+      }, g.entries.length, " workout", g.entries.length !== 1 ? "s" : "")), /*#__PURE__*/React.createElement(ChevronDown, {
+        size: 16,
+        strokeWidth: 2.5,
+        color: "#00c2ff",
+        style: {
+          transform: isOpen ? "rotate(180deg)" : "none",
+          transition: "transform 0.2s"
+        }
+      })), isOpen && g.entries.map(entry => /*#__PURE__*/React.createElement("div", {
+        key: entry.id,
+        className: "history-card",
+        "data-history-id": entry.id,
+        style: highlightHistoryId === entry.id ? {
+          border: "2px solid #00c2ff",
+          boxShadow: "0 0 0 4px rgba(0,194,255,0.15), 0 0 20px rgba(0,194,255,0.3)",
+          transition: "box-shadow 0.4s"
+        } : {
+          transition: "box-shadow 0.4s"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "history-top"
+      }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        className: "history-type"
+      }, entry.type), entry.timeOfDay && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93",
+          marginTop: 2,
+          display: "flex",
+          alignItems: "center",
+          gap: 4
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          background: "#F0F0F0",
+          borderRadius: 5,
+          padding: "1px 6px",
+          fontWeight: 600
+        }
+      }, entry.timeLabel), /*#__PURE__*/React.createElement("span", null, entry.timeOfDay))), /*#__PURE__*/React.createElement("div", {
+        className: "history-date"
+      }, entry.date)), /*#__PURE__*/React.createElement("div", {
+        className: "history-stats"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "stat"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "stat-val"
+      }, entry.exercises.length), /*#__PURE__*/React.createElement("div", {
+        className: "stat-key"
+      }, "exercises")), /*#__PURE__*/React.createElement("div", {
+        className: "stat"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "stat-val"
+      }, entry.exercises.reduce((n, e) => n + e.sets.length, 0)), /*#__PURE__*/React.createElement("div", {
+        className: "stat-key"
+      }, "total sets")), /*#__PURE__*/React.createElement("div", {
+        className: "stat"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "stat-val"
+      }, Math.round(entry.volume).toLocaleString()), /*#__PURE__*/React.createElement("div", {
+        className: "stat-key"
+      }, "lbs moved")), entry.duration && /*#__PURE__*/React.createElement("div", {
+        className: "stat"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "stat-val"
+      }, fmtDuration(entry.duration)), /*#__PURE__*/React.createElement("div", {
+        className: "stat-key"
+      }, "duration"))), /*#__PURE__*/React.createElement("div", {
+        className: "history-exlist"
+      }, entry.exercises.map(e => e.name).join(" . ")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginTop: 8,
+          padding: "8px 10px",
+          background: entry.note ? "rgba(0,194,255,0.05)" : "transparent",
+          borderRadius: 8,
+          border: entry.note ? "1px solid rgba(0,194,255,0.15)" : "1px dashed #e5e5ea"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
         style: {
           fontSize: 9,
           fontWeight: 700,
-          color: "#00c2ff",
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          lineHeight: 1
-        },
-        children: "REST"
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 17,
-          fontWeight: 700,
-          color: "#fff",
-          fontFamily: "DM Mono,monospace",
-          lineHeight: 1.2
-        },
-        children: fmtTime(restSeconds)
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          fontSize: 8,
           color: "#8e8e93",
-          marginTop: 1
+          letterSpacing: "0.05em",
+          textTransform: "uppercase",
+          marginBottom: 4
+        }
+      }, "Session Note"), /*#__PURE__*/React.createElement("textarea", {
+        value: entry.note || "",
+        onChange: e => {
+          const newNote = e.target.value;
+          setHistory(p => p.map(h => h.id === entry.id ? {
+            ...h,
+            note: newNote.trim() || null
+          } : h));
         },
-        children: "tap skip"
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      className: "tabs",
-      children: [/*#__PURE__*/_jsxDEV("button", {
-        className: `tab ${tab === "workout" ? "active" : ""}`,
-        onClick: () => setTab("workout"),
-        children: [/*#__PURE__*/_jsxDEV(Dumbbell, {
-          size: 14,
-          strokeWidth: 2.5
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          children: "Workouts"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        className: `tab ${tab === "myworkout" ? "active" : ""}`,
-        onClick: () => setTab("myworkout"),
+        placeholder: "Add a note about how this session felt...",
+        rows: entry.note ? Math.min(3, Math.ceil(entry.note.length / 50)) : 1,
         style: {
-          position: "relative"
-        },
-        children: [/*#__PURE__*/_jsxDEV(Zap, {
-          size: 14,
-          strokeWidth: 2.5
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          children: "Session"
-        }, void 0, false), exercises.length > 0 && /*#__PURE__*/_jsxDEV("span", {
-          style: {
-            position: "absolute",
-            top: 6,
-            right: "calc(50% - 26px)",
-            width: 6,
-            height: 6,
-            borderRadius: "50%",
-            background: "#00c2ff"
-          }
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        className: `tab ${tab === "calendar" ? "active" : ""}`,
-        onClick: () => setTab("calendar"),
-        children: [/*#__PURE__*/_jsxDEV(Calendar, {
-          size: 14,
-          strokeWidth: 2.5
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          children: "Calendar"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        className: `tab ${tab === "history" ? "active" : ""}`,
-        onClick: () => setTab("history"),
-        children: [/*#__PURE__*/_jsxDEV(ClipboardList, {
-          size: 14,
-          strokeWidth: 2.5
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          children: "History"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-        className: `tab ${tab === "gym" ? "active" : ""}`,
-        onClick: () => setTab("gym"),
-        children: [/*#__PURE__*/_jsxDEV(BarChart2, {
-          size: 14,
-          strokeWidth: 2.5
-        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-          children: "My Gym"
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-      className: "content",
-      ref: contentRef,
-      onTouchStart: handleTouchStart,
-      onTouchEnd: handleTouchEnd,
-      children: [tab === "workout" && /*#__PURE__*/_jsxDEV("div", {
-        children: [(() => {
-          const now = new Date();
-          const dayIdx = now.getDay();
-          const dateKey = now.toISOString().slice(0, 10);
-          const dateDisplay = now.toLocaleDateString("en-US", {
-            weekday: "long",
-            month: "long",
-            day: "numeric"
-          });
-          const isTrainingDay = scheduleDays.includes(dayIdx);
-          const isCardioDay = cardioDays.includes(dayIdx);
-          const cardioDone = !!cardioLog[dateKey];
-          const todayRecovery = recoveryLog[dateKey];
-          const todayLogged = history.some(h => h.date === dateKey);
-
-          // Streak calc -- consecutive days with a workout OR cardio
-          let streak = 0;
-          const daysSet = new Set(history.map(h => h.date));
-          const cardioDaysSet = new Set(Object.keys(cardioLog));
-          for (let i = 0; i < 90; i++) {
-            const d = new Date(now);
-            d.setDate(d.getDate() - i);
-            const k = d.toISOString().slice(0, 10);
-            if (daysSet.has(k) || cardioDaysSet.has(k)) streak++;else if (i > 0) break; // allow today to be empty without breaking streak
-          }
-
-          // Last workout for the recap card
-          const lastWorkout = history[history.length - 1];
-
-          // Motivational images (rotated by day of year for stability during a session)
-          const motivationalImages = ["https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1517964603305-11c0f6f66012?w=800&auto=format&fit=crop&q=60", "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=800&auto=format&fit=crop&q=60"];
-          const motivationalQuotes = [{
-            q: "The pain you feel today is the strength you feel tomorrow.",
-            a: "Arnold Schwarzenegger"
-          }, {
-            q: "Everybody wants to be a bodybuilder but nobody wants to lift no heavy-ass weights.",
-            a: "Ronnie Coleman"
-          }, {
-            q: "Strength does not come from winning. Your struggles develop your strengths.",
-            a: "Arnold Schwarzenegger"
-          }, {
-            q: "The last three or four reps is what makes the muscle grow.",
-            a: "Arnold Schwarzenegger"
-          }, {
-            q: "You must do what others don't to achieve what others won't.",
-            a: "Anonymous"
-          }, {
-            q: "Discipline is choosing between what you want now and what you want most.",
-            a: "Abraham Lincoln"
-          }];
-          const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
-          const heroImg = motivationalImages[dayOfYear % motivationalImages.length];
-          const heroQuote = motivationalQuotes[dayOfYear % motivationalQuotes.length];
-          const recoveryEmojis = ["", "💀", "😓", "😐", "💪", "⚡"];
-          const recoveryLabels = ["", "Dead", "Rough", "OK", "Good", "Fired up"];
-          return /*#__PURE__*/_jsxDEV(_Fragment, {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                background: "#000",
-                borderRadius: 16,
-                padding: "16px 18px",
-                marginBottom: 10,
-                boxShadow: "0 0 0 2px #00c2ff, 0 0 20px rgba(0,194,255,0.25)"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#00c2ff",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase"
-                },
-                children: "Today"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 22,
-                  fontWeight: 800,
-                  color: "#fff",
-                  marginTop: 2,
-                  letterSpacing: "-0.5px"
-                },
-                children: dateDisplay
-              }, void 0, false), streak > 0 && /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 12,
-                  color: "#00c2ff",
-                  marginTop: 4,
-                  fontWeight: 600,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 4
-                },
-                children: ["🔥 ", streak, " day streak"]
-              }, void 0, true)]
-            }, void 0, true), activePlan ? (() => {
-              const plan = PLAN_TEMPLATES.find(p => p.id === activePlan.planId);
-              if (!plan) return null;
-              const day = plan.days[activePlan.currentDayIndex];
-              const progressPct = (activePlan.currentWeek - 1) / plan.duration * 100;
-              return /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  background: "linear-gradient(135deg, #000 0%, #1a1a1a 100%)",
-                  borderRadius: 16,
-                  padding: "14px 16px",
-                  marginBottom: 10,
-                  boxShadow: "0 0 0 1.5px #00c2ff, 0 0 20px rgba(0,194,255,0.25)"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginBottom: 10
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 10,
-                        fontWeight: 700,
-                        color: "#00c2ff",
-                        letterSpacing: "0.08em",
-                        textTransform: "uppercase"
-                      },
-                      children: "Active Plan"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 16,
-                        fontWeight: 800,
-                        color: "#fff",
-                        marginTop: 2
-                      },
-                      children: plan.name
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: "#8e8e93",
-                      textAlign: "right"
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontWeight: 700,
-                        color: "#fff"
-                      },
-                      children: ["W", activePlan.currentWeek, " / ", plan.duration]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 10
-                      },
-                      children: ["Day ", activePlan.currentDayIndex + 1, " of ", plan.days.length]
-                    }, void 0, true)]
-                  }, void 0, true)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    height: 4,
-                    background: "rgba(255,255,255,0.1)",
-                    borderRadius: 2,
-                    marginBottom: 12,
-                    overflow: "hidden"
-                  },
-                  children: /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      height: "100%",
-                      width: `${progressPct}%`,
-                      background: "#00c2ff",
-                      borderRadius: 2,
-                      boxShadow: "0 0 8px rgba(0,194,255,0.6)"
-                    }
-                  }, void 0, false)
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    background: "rgba(255,255,255,0.05)",
-                    borderRadius: 10,
-                    padding: "10px 12px",
-                    marginBottom: 10
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 10,
-                      fontWeight: 700,
-                      color: "#8e8e93",
-                      letterSpacing: "0.05em",
-                      textTransform: "uppercase"
-                    },
-                    children: "Next Session"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 15,
-                      fontWeight: 700,
-                      color: "#fff",
-                      marginTop: 2
-                    },
-                    children: day.name
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: "#8e8e93",
-                      marginTop: 2
-                    },
-                    children: [day.exercises.length, " exercises · Focus: ", day.focus]
-                  }, void 0, true)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-                  onClick: loadPlanSession,
-                  style: {
-                    width: "100%",
-                    padding: "11px",
-                    background: "#00c2ff",
-                    color: "#000",
-                    border: "none",
-                    borderRadius: 10,
-                    fontSize: 13,
-                    fontWeight: 800,
-                    cursor: "pointer",
-                    fontFamily: "Inter,sans-serif",
-                    letterSpacing: "0.02em"
-                  },
-                  children: "Start Session"
-                }, void 0, false), planCancelConfirm ? /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    display: "flex",
-                    gap: 6,
-                    alignItems: "center",
-                    marginTop: 10,
-                    padding: "8px 10px",
-                    background: "rgba(255,59,48,0.1)",
-                    borderRadius: 8
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("span", {
-                    style: {
-                      fontSize: 11,
-                      color: "#ff3b30",
-                      fontWeight: 600,
-                      flex: 1
-                    },
-                    children: "End this plan?"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                    onClick: cancelPlan,
-                    style: {
-                      background: "#ff3b30",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: 6,
-                      padding: "5px 10px",
-                      fontSize: 11,
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      fontFamily: "Inter,sans-serif"
-                    },
-                    children: "Yes, end"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                    onClick: () => setPlanCancelConfirm(false),
-                    style: {
-                      background: "transparent",
-                      border: "1px solid rgba(255,255,255,0.2)",
-                      color: "#8e8e93",
-                      borderRadius: 6,
-                      padding: "5px 10px",
-                      fontSize: 11,
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      fontFamily: "Inter,sans-serif"
-                    },
-                    children: "Cancel"
-                  }, void 0, false)]
-                }, void 0, true) : /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    display: "flex",
-                    gap: 8,
-                    marginTop: 10
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("button", {
-                    onClick: () => setPlanDetailId(activePlan.planId),
-                    style: {
-                      flex: 1,
-                      background: "transparent",
-                      border: "1px solid rgba(255,255,255,0.2)",
-                      color: "#8e8e93",
-                      borderRadius: 8,
-                      padding: "7px",
-                      fontSize: 11,
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      fontFamily: "Inter,sans-serif"
-                    },
-                    children: "View plan"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                    onClick: () => setPlanCancelConfirm(true),
-                    style: {
-                      flex: 1,
-                      background: "transparent",
-                      border: "1px solid rgba(255,59,48,0.3)",
-                      color: "#ff8c85",
-                      borderRadius: 8,
-                      padding: "7px",
-                      fontSize: 11,
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      fontFamily: "Inter,sans-serif"
-                    },
-                    children: "End plan"
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-                  onClick: () => setPlansBrowseOpen(true),
-                  style: {
-                    width: "100%",
-                    background: "transparent",
-                    border: "none",
-                    color: "#8e8e93",
-                    fontSize: 11,
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    fontFamily: "Inter,sans-serif",
-                    marginTop: 10,
-                    padding: "4px",
-                    textDecoration: "underline",
-                    textUnderlineOffset: 2
-                  },
-                  children: "Browse other plans"
-                }, void 0, false)]
-              }, void 0, true);
-            })() : /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                background: "#fff",
-                borderRadius: 16,
-                padding: "14px 16px",
-                marginBottom: 10,
-                border: "1.5px dashed #c7c7cc",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.04)"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  marginBottom: 6
-                },
-                children: "Workout Plan"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 13,
-                  color: "#000",
-                  marginBottom: 10,
-                  fontWeight: 600
-                },
-                children: "No plan active"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  color: "#8e8e93",
-                  marginBottom: 12,
-                  lineHeight: 1.5
-                },
-                children: "A structured 12-week plan takes the guesswork out. It knows what to do each day and progresses you week by week."
-              }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                onClick: () => setPlansBrowseOpen(true),
-                style: {
-                  width: "100%",
-                  padding: "11px",
-                  background: "#000",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: 10,
-                  fontSize: 13,
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  fontFamily: "Inter,sans-serif",
-                  boxShadow: "0 0 0 2px #00c2ff, 0 0 12px rgba(0,194,255,0.25)"
-                },
-                children: "Browse Plans"
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                background: "#fff",
-                borderRadius: 16,
-                padding: "14px 16px",
-                marginBottom: 10,
-                border: "1.5px solid #e5e5ea",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  marginBottom: 8
-                },
-                children: "Scheduled today"
-              }, void 0, false), !isTrainingDay && !isCardioDay && /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  padding: "6px 0"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 22
-                  },
-                  children: "🌿"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#000"
-                    },
-                    children: "Recovery day"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: "#8e8e93",
-                      marginTop: 1
-                    },
-                    children: "No training scheduled. Rest up."
-                  }, void 0, false)]
-                }, void 0, true)]
-              }, void 0, true), isTrainingDay && /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  padding: "6px 0",
-                  borderBottom: isCardioDay ? "1px solid #F0F0F0" : "none",
-                  paddingBottom: isCardioDay ? 10 : 6
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 22
-                  },
-                  children: "🏋️"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    flex: 1
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#000"
-                    },
-                    children: todayLogged ? "Training done" : "Weight training"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: todayLogged ? "#1a9e3f" : "#8e8e93",
-                      marginTop: 1,
-                      fontWeight: 600
-                    },
-                    children: todayLogged ? "✓ Logged in history" : "Scheduled workout"
-                  }, void 0, false), !todayLogged && !activePlan && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: "#8e8e93",
-                      marginTop: 4,
-                      lineHeight: 1.4
-                    },
-                    children: "Pick a preset, build a custom workout, or import one below to get started."
-                  }, void 0, false)]
-                }, void 0, true)]
-              }, void 0, true), isCardioDay && /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  padding: isTrainingDay ? "10px 0 6px" : "6px 0"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 22
-                  },
-                  children: "🏃"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    flex: 1
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#000"
-                    },
-                    children: cardioDone ? "Cardio done" : "Cardio reminder"
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: cardioDone ? "#1a9e3f" : "#8e8e93",
-                      marginTop: 1,
-                      fontWeight: 600
-                    },
-                    children: cardioDone ? "✓ Marked done — details in Whoop" : "Get your cardio in — tracked in Whoop"
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-                  onClick: () => {
-                    if (cardioDone) {
-                      setCardioLog(p => {
-                        const n = {
-                          ...p
-                        };
-                        delete n[dateKey];
-                        return n;
-                      });
-                      showToast("Cardio unmarked");
-                    } else {
-                      setCardioLog(p => ({
-                        ...p,
-                        [dateKey]: {
-                          time: new Date().toISOString()
-                        }
-                      }));
-                      showToast("Cardio marked done");
-                    }
-                  },
-                  style: {
-                    background: cardioDone ? "#34c759" : "#fff",
-                    color: cardioDone ? "#fff" : "#00c2ff",
-                    border: cardioDone ? "none" : "1.5px solid #00c2ff",
-                    borderRadius: 8,
-                    padding: "6px 12px",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    fontFamily: "Inter,sans-serif",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 4,
-                    flexShrink: 0
-                  },
-                  children: cardioDone ? /*#__PURE__*/_jsxDEV(_Fragment, {
-                    children: "✓ Done"
-                  }, void 0, false) : "Mark done"
-                }, void 0, false)]
-              }, void 0, true)]
-            }, void 0, true), (() => {
-              const neglected = getNeglectedMuscles(history, 3);
-              if (neglected.length === 0) return null;
-              const priorityColors = {
-                red: "#ff3b30",
-                orange: "#ff9f0a"
-              };
-              const priorityEmoji = {
-                red: "🔴",
-                orange: "🟠"
-              };
-              return /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  background: "#fff",
-                  borderRadius: 16,
-                  padding: "14px 16px",
-                  marginBottom: 10,
-                  border: "1.5px solid #e5e5ea",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginBottom: 10
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 10,
-                        fontWeight: 700,
-                        color: "#8e8e93",
-                        letterSpacing: "0.05em",
-                        textTransform: "uppercase"
-                      },
-                      children: "Muscle Focus"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 13,
-                        color: "#000",
-                        fontWeight: 600,
-                        marginTop: 2
-                      },
-                      children: "Time to work on these"
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 10,
-                      fontWeight: 700,
-                      color: "#ff9f0a",
-                      padding: "3px 8px",
-                      background: "rgba(255,159,10,0.1)",
-                      borderRadius: 10
-                    },
-                    children: neglected.length
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 6,
-                    marginBottom: 10
-                  },
-                  children: neglected.map(n => /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                      padding: "6px 10px",
-                      background: "#fafafa",
-                      borderRadius: 8
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        fontSize: 12
-                      },
-                      children: priorityEmoji[n.priority]
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        flex: 1,
-                        fontSize: 13,
-                        fontWeight: 700,
-                        color: "#000"
-                      },
-                      children: n.muscle
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        fontSize: 11,
-                        color: priorityColors[n.priority],
-                        fontWeight: 600
-                      },
-                      children: n.reason
-                    }, void 0, false)]
-                  }, n.muscle, true))
-                }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                  onClick: () => {
-                    const catchUp = generateCatchUpWorkout(history);
-                    if (catchUp.length === 0) {
-                      showToast("Not enough data — pick some exercises manually");
-                      return;
-                    }
-                    const newExs = catchUp.map(ex => {
-                      const prev = lastSets(ex.id);
-                      const initSets = prev ? prev.map(s => ({
-                        ...s,
-                        done: false
-                      })) : [{
-                        weight: "",
-                        reps: "",
-                        done: false
-                      }];
-                      return {
-                        ...ex,
-                        sets: initSets
-                      };
-                    });
-                    setWorkoutType("catchup");
-                    setWorkoutName(`Catch-Up · ${new Date().toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric"
-                    })}`);
-                    setExercises(newExs);
-                    setExpanded({});
-                    setWorkoutStartTime(Date.now());
-                    setTab("myworkout");
-                    setTimeout(() => {
-                      if (contentRef.current) contentRef.current.scrollTo({
-                        top: 0,
-                        behavior: "instant"
-                      });
-                    }, 50);
-                    showToast(`Generated: ${catchUp.length} exercises for neglected muscles`);
-                  },
-                  style: {
-                    width: "100%",
-                    padding: "11px",
-                    background: "#000",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: 10,
-                    fontSize: 13,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    fontFamily: "Inter,sans-serif",
-                    boxShadow: "0 0 0 2px #00c2ff, 0 0 12px rgba(0,194,255,0.25)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 8
-                  },
-                  children: [/*#__PURE__*/_jsxDEV(Zap, {
-                    size: 15,
-                    strokeWidth: 2.5,
-                    color: "#00c2ff"
-                  }, void 0, false), " Generate Catch-Up Workout"]
-                }, void 0, true)]
-              }, void 0, true);
-            })(), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                position: "relative",
-                height: 180,
-                borderRadius: 16,
-                overflow: "hidden",
-                marginBottom: 10,
-                backgroundImage: `url(${heroImg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  position: "absolute",
-                  inset: 0,
-                  background: "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%)"
-                }
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  padding: "16px 18px"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 14,
-                    fontWeight: 700,
-                    color: "#fff",
-                    fontStyle: "italic",
-                    lineHeight: 1.3
-                  },
-                  children: ["\"", heroQuote.q, "\""]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    color: "#00c2ff",
-                    marginTop: 6,
-                    fontWeight: 700,
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase"
-                  },
-                  children: ["— ", heroQuote.a]
-                }, void 0, true)]
-              }, void 0, true)]
-            }, void 0, true), lastWorkout && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                background: "#fff",
-                borderRadius: 14,
-                padding: "12px 14px",
-                marginBottom: 16,
-                border: "1.5px solid #e5e5ea",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  marginBottom: 4
-                },
-                children: "Last workout"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 8
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    flex: 1,
-                    minWidth: 0
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#000"
-                    },
-                    children: lastWorkout.type
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: "#8e8e93",
-                      marginTop: 2
-                    },
-                    children: [lastWorkout.date, " · ", lastWorkout.exercises?.length || 0, " exercises", lastWorkout.duration && ` · ${fmtDuration(lastWorkout.duration)}`]
-                  }, void 0, true)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-                  onClick: () => {
-                    // Open the month folder containing this workout
-                    const d = lastWorkout.dateISO ? new Date(lastWorkout.dateISO) : new Date(lastWorkout.id);
-                    const monthKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-                    setHistoryMonthOpen(p => ({
-                      ...p,
-                      [monthKey]: true
-                    }));
-                    setHighlightHistoryId(lastWorkout.id);
-                    setTab("history");
-                    // Scroll to the workout after render
-                    setTimeout(() => {
-                      const el = document.querySelector(`[data-history-id="${lastWorkout.id}"]`);
-                      if (el) {
-                        el.scrollIntoView({
-                          behavior: "smooth",
-                          block: "start"
-                        });
-                      }
-                      // Clear highlight after animation
-                      setTimeout(() => setHighlightHistoryId(null), 3000);
-                    }, 200);
-                  },
-                  style: {
-                    background: "none",
-                    border: "1.5px solid #e5e5ea",
-                    color: "#00c2ff",
-                    borderRadius: 8,
-                    padding: "6px 12px",
-                    fontSize: 11,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    fontFamily: "Inter,sans-serif"
-                  },
-                  children: "View"
-                }, void 0, false)]
-              }, void 0, true)]
-            }, void 0, true)]
-          }, void 0, true);
-        })(), /*#__PURE__*/_jsxDEV("input", {
-          ref: importRef,
-          type: "file",
-          accept: "image/*",
-          onChange: handleWorkoutPhoto,
-          style: {
-            display: "none"
-          }
-        }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-          onClick: () => importRef.current.click(),
-          disabled: importing,
-          style: {
-            width: "100%",
-            padding: "14px 16px",
-            marginBottom: 8,
-            background: importing ? "#F0F0F0" : "#000",
-            color: importing ? "#8e8e93" : "#fff",
-            border: "none",
-            borderRadius: 14,
-            cursor: importing ? "default" : "pointer",
-            fontFamily: "Inter,sans-serif",
-            fontSize: 14,
-            fontWeight: 700,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            boxShadow: importing ? "none" : "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)",
-            transition: "all 0.2s"
-          },
-          children: importing ? /*#__PURE__*/_jsxDEV(_Fragment, {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                width: 16,
-                height: 16,
-                border: "2px solid #c7c7cc",
-                borderTopColor: "#00c2ff",
-                borderRadius: "50%",
-                animation: "spin 0.8s linear infinite"
-              }
-            }, void 0, false), " Reading workout..."]
-          }, void 0, true) : /*#__PURE__*/_jsxDEV(_Fragment, {
-            children: [/*#__PURE__*/_jsxDEV(Camera, {
-              size: 18,
-              strokeWidth: 2.5
-            }, void 0, false), " Import from Photo"]
-          }, void 0, true)
-        }, void 0, false), showNameInput ? /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#fff",
-            borderRadius: 14,
-            border: "1.5px solid #00c2ff",
-            padding: "14px 16px",
-            marginBottom: 16,
-            boxShadow: "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 13,
-              fontWeight: 700,
-              color: "#000",
-              marginBottom: 10
-            },
-            children: "Name your workout"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-            autoFocus: true,
-            value: newWorkoutName,
-            onFocus: e => e.target.select(),
-            onChange: e => setNewWorkoutName(e.target.value),
-            placeholder: "e.g. Monday Push, Heavy Day...",
-            style: {
-              width: "100%",
-              padding: "10px 14px",
-              borderRadius: 10,
-              border: "1.5px solid #e5e5ea",
-              fontSize: 14,
-              fontFamily: "Inter,sans-serif",
-              outline: "none",
-              marginBottom: 10,
-              boxSizing: "border-box"
-            },
-            onKeyDown: e => {
-              if (e.key === "Enter" && newWorkoutName.trim()) {
-                setWorkoutType("custom");
-                setWorkoutName(newWorkoutName.trim());
-                setExercises([]);
-                setShowNameInput(false);
-                setNewWorkoutName("");
-                setTab("myworkout");
-                setTimeout(() => openPicker(), 100);
-              }
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 8
-            },
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              onClick: () => {
-                setShowNameInput(false);
-                setNewWorkoutName("");
-              },
-              style: {
-                flex: 1,
-                padding: "10px",
-                borderRadius: 10,
-                border: "1.5px solid #e5e5ea",
-                background: "#fff",
-                fontSize: 13,
-                fontWeight: 600,
-                cursor: "pointer",
-                fontFamily: "Inter,sans-serif",
-                color: "#8e8e93"
-              },
-              children: "Cancel"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-              onClick: () => {
-                if (!newWorkoutName.trim()) return;
-                setWorkoutType("custom");
-                setWorkoutName(newWorkoutName.trim());
-                setExercises([]);
-                setShowNameInput(false);
-                setNewWorkoutName("");
-                setTab("myworkout");
-                setTimeout(() => openPicker(), 100);
-              },
-              style: {
-                flex: 2,
-                padding: "10px",
-                borderRadius: 10,
-                border: "none",
-                background: "#000",
-                color: "#fff",
-                fontSize: 13,
-                fontWeight: 700,
-                cursor: "pointer",
-                fontFamily: "Inter,sans-serif",
-                boxShadow: "0 0 0 1.5px #00c2ff"
-              },
-              children: "Start Building"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true) : /*#__PURE__*/_jsxDEV("button", {
-          onClick: () => {
-            const d = new Date();
-            const dateName = d.toLocaleDateString("en-US", {
-              weekday: "long",
-              month: "short",
-              day: "numeric",
-              year: "numeric"
-            });
-            setNewWorkoutName(dateName);
-            setShowNameInput(true);
-          },
-          style: {
-            width: "100%",
-            padding: "14px 16px",
-            marginBottom: 16,
-            background: "#fff",
-            color: "#000",
-            border: "1.5px solid #e5e5ea",
-            borderRadius: 14,
-            cursor: "pointer",
-            fontFamily: "Inter,sans-serif",
-            fontSize: 14,
-            fontWeight: 700,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
-            transition: "all 0.2s"
-          },
-          children: [/*#__PURE__*/_jsxDEV(Zap, {
-            size: 18,
-            strokeWidth: 2.5
-          }, void 0, false), " Create Workout"]
-        }, void 0, true), savedWorkouts.length > 0 && /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            marginBottom: 20
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            onClick: () => setWorkoutsExpanded(e => !e),
-            style: {
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              cursor: "pointer",
-              marginBottom: workoutsExpanded ? 8 : 0
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "section-label",
-              style: {
-                margin: 0
-              },
-              children: ["My Workouts (", savedWorkouts.length, ")"]
-            }, void 0, true), /*#__PURE__*/_jsxDEV(ChevronDown, {
-              size: 16,
-              strokeWidth: 2.5,
-              color: "#8e8e93",
-              style: {
-                transform: workoutsExpanded ? "rotate(180deg)" : "none",
-                transition: "transform 0.2s"
-              }
-            }, void 0, false)]
-          }, void 0, true), workoutsExpanded && /*#__PURE__*/_jsxDEV(_Fragment, {
-            children: [savedWorkouts.length >= 3 && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                position: "relative",
-                marginBottom: 10
-              },
-              children: [/*#__PURE__*/_jsxDEV("input", {
-                value: workoutSearch,
-                onChange: e => setWorkoutSearch(e.target.value),
-                placeholder: "Search workouts...",
-                style: {
-                  width: "100%",
-                  padding: "9px 14px 9px 36px",
-                  borderRadius: 10,
-                  border: "1.5px solid #e5e5ea",
-                  fontSize: 13,
-                  fontFamily: "Inter,sans-serif",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  background: "#fff"
-                }
-              }, void 0, false), /*#__PURE__*/_jsxDEV("svg", {
-                style: {
-                  position: "absolute",
-                  left: 12,
-                  top: "50%",
-                  transform: "translateY(-50%)"
-                },
-                width: "14",
-                height: "14",
-                viewBox: "0 0 24 24",
-                fill: "none",
-                stroke: "#8e8e93",
-                strokeWidth: "2",
-                children: [/*#__PURE__*/_jsxDEV("circle", {
-                  cx: "11",
-                  cy: "11",
-                  r: "8"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("line", {
-                  x1: "21",
-                  y1: "21",
-                  x2: "16.65",
-                  y2: "16.65"
-                }, void 0, false)]
-              }, void 0, true), workoutSearch && /*#__PURE__*/_jsxDEV("button", {
-                onClick: () => setWorkoutSearch(""),
-                style: {
-                  position: "absolute",
-                  right: 10,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  color: "#8e8e93",
-                  fontSize: 16,
-                  lineHeight: 1
-                },
-                children: "x"
-              }, void 0, false)]
-            }, void 0, true), savedWorkouts.filter(w => !workoutSearch || w.name.toLowerCase().includes(workoutSearch.toLowerCase())).map(w => /*#__PURE__*/_jsxDEV(SavedWorkoutCard, {
-              workout: w,
-              onLoad: () => loadSaved(w),
-              onDelete: () => {
-                if (window.confirm(`Remove "${w.name}" from your library?\n\nThis can't be undone.`)) deleteSaved(w.id);
-              }
-            }, w.id, false)), workoutSearch && savedWorkouts.filter(w => w.name.toLowerCase().includes(workoutSearch.toLowerCase())).length === 0 && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                textAlign: "center",
-                padding: "20px 0",
-                fontSize: 13,
-                color: "#8e8e93"
-              },
-              children: ["No workouts matching \"", workoutSearch, "\""]
-            }, void 0, true)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "section-label",
-          children: "Presets"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "type-grid",
-          children: PRESET_WORKOUTS.map(p => /*#__PURE__*/_jsxDEV("div", {
-            className: `type-card ${workoutType === p.id ? "selected" : ""}`,
-            onClick: () => loadPreset(p),
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "type-icon",
-              children: /*#__PURE__*/_jsxDEV(p.Icon, {
-                size: 22,
-                strokeWidth: 2.5,
-                color: workoutType === p.id ? "#00c2ff" : "#000"
-              }, void 0, false)
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "type-name",
-              children: p.name
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "type-tag",
-              children: p.tag
-            }, void 0, false)]
-          }, p.id, true))
-        }, void 0, false), exercises.length > 0 && /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            marginTop: 14,
-            background: "#fff",
-            borderRadius: 14,
-            border: "1.5px solid #00c2ff",
-            padding: "14px 16px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            cursor: "pointer",
-            boxShadow: "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)"
-          },
-          onClick: () => setTab("myworkout"),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 13,
-                fontWeight: 700,
-                color: "#00c2ff"
-              },
-              children: "Workout in progress"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#8e8e93",
-                marginTop: 2
-              },
-              children: [workoutName, " . ", exercises.length, " exercises"]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV(ChevronDown, {
-            size: 16,
-            strokeWidth: 2.5,
-            color: "#00c2ff",
-            style: {
-              transform: "rotate(-90deg)"
-            }
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true), tab === "myworkout" && /*#__PURE__*/_jsxDEV(_Fragment, {
-        children: exercises.length === 0 ? /*#__PURE__*/_jsxDEV("div", {
-          className: "empty-state",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "empty-icon",
-            children: /*#__PURE__*/_jsxDEV(Zap, {
-              size: 36,
-              strokeWidth: 1.5,
-              color: "#c7c7cc"
-            }, void 0, false)
-          }, void 0, false), "No session in progress", /*#__PURE__*/_jsxDEV("br", {}, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-            style: {
-              fontSize: 12
-            },
-            children: "Go to Workouts to start one"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              marginTop: 16
-            },
-            children: /*#__PURE__*/_jsxDEV("button", {
-              className: "btn btn-primary",
-              style: {
-                width: "auto",
-                padding: "12px 24px"
-              },
-              onClick: () => setTab("workout"),
-              children: "Go to Workouts"
-            }, void 0, false)
-          }, void 0, false)]
-        }, void 0, true) : /*#__PURE__*/_jsxDEV(_Fragment, {
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 8
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                flex: 1,
-                minWidth: 0
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 17,
-                  fontWeight: 700,
-                  color: "#000"
-                },
-                children: workoutName || "My Workout"
-              }, void 0, false), workoutStartTime && /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 12,
-                  color: "#8e8e93",
-                  marginTop: 2,
-                  fontFamily: "DM Mono,monospace"
-                },
-                children: fmtDuration(workoutElapsed)
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                gap: 4,
-                flexShrink: 0
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 9,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase"
-                },
-                children: "Rest"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  gap: 3,
-                  background: "#fff",
-                  border: "1.5px solid #e5e5ea",
-                  borderRadius: 8,
-                  padding: 2,
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.05)"
-                },
-                children: [60, 90, 120, 180].map(s => /*#__PURE__*/_jsxDEV("button", {
-                  onClick: () => {
-                    setRestDuration(s);
-                    showToast(`Rest -> ${fmtTime(s)}`);
-                  },
-                  style: {
-                    padding: "4px 8px",
-                    borderRadius: 6,
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: 11,
-                    fontWeight: 700,
-                    fontFamily: "DM Mono,monospace",
-                    background: restDuration === s ? "#000" : "transparent",
-                    color: restDuration === s ? "#00c2ff" : "#8e8e93",
-                    transition: "all 0.15s"
-                  },
-                  children: fmtTime(s)
-                }, s, false))
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 12,
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 2px rgba(0,0,0,0.05)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              onClick: () => setSessionNoteOpen(!sessionNoteOpen),
-              style: {
-                padding: "10px 14px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                cursor: "pointer",
-                gap: 8
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  flex: 1,
-                  minWidth: 0
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    fontWeight: 700,
-                    color: "#8e8e93",
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase"
-                  },
-                  children: "Session Note"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 12,
-                    color: sessionNote ? "#000" : "#c7c7cc",
-                    marginTop: 2,
-                    fontStyle: sessionNote ? "normal" : "italic",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap"
-                  },
-                  children: sessionNote || "How does today feel?"
-                }, void 0, false)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV(ChevronDown, {
-                size: 14,
-                strokeWidth: 2.5,
-                color: "#00c2ff",
-                style: {
-                  transform: sessionNoteOpen ? "rotate(180deg)" : "none",
-                  transition: "transform 0.2s",
-                  flexShrink: 0
-                }
-              }, void 0, false)]
-            }, void 0, true), sessionNoteOpen && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "0 14px 12px",
-                borderTop: "1px solid #F0F0F0"
-              },
-              children: /*#__PURE__*/_jsxDEV("textarea", {
-                value: sessionNote,
-                onChange: e => setSessionNote(e.target.value),
-                placeholder: "Energy, mood, tightness, anything worth remembering...",
-                rows: 3,
-                style: {
-                  width: "100%",
-                  border: "1px solid #e5e5ea",
-                  borderRadius: 8,
-                  padding: "8px 10px",
-                  fontSize: 13,
-                  fontFamily: "Inter,sans-serif",
-                  resize: "none",
-                  marginTop: 10,
-                  boxSizing: "border-box",
-                  outline: "none",
-                  color: "#000"
-                },
-                onFocus: e => e.target.style.borderColor = "#00c2ff",
-                onBlur: e => e.target.style.borderColor = "#e5e5ea"
-              }, void 0, false)
-            }, void 0, false)]
-          }, void 0, true), !warmupDone ? /*#__PURE__*/_jsxDEV("button", {
-            onClick: generateWarmup,
-            style: {
-              width: "100%",
-              padding: "12px",
-              borderRadius: 12,
-              border: "1.5px solid #00c2ff",
-              background: "#fff",
-              color: "#00c2ff",
-              fontSize: 13,
-              fontWeight: 700,
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 8,
-              boxShadow: "0 0 8px rgba(0,194,255,0.3)"
-            },
-            children: [/*#__PURE__*/_jsxDEV(Zap, {
-              size: 15,
-              strokeWidth: 2.5,
-              color: "#00c2ff"
-            }, void 0, false), " Warm Up"]
-          }, void 0, true) : /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              padding: "8px 12px",
-              borderRadius: 10,
-              background: "#fff",
-              border: "1px solid #00c2ff",
-              fontSize: 12,
-              fontWeight: 600,
-              color: "#00c2ff",
-              textAlign: "center",
-              boxShadow: "0 0 8px rgba(0,194,255,0.3)"
-            },
-            children: "check Warm up complete -- let's go!"
-          }, void 0, false), exercises.map(ex => {
-            const lw = lastWeightLabel(ex.id);
-            const open = expanded[ex.id];
-            const ExIcon = EX_ICON[ex.equipment] || Dumbbell;
-            const progression = progressionSuggestion(ex.id);
-            const pr = personalRecord(ex.id);
-            return /*#__PURE__*/_jsxDEV("div", {
-              className: "exercise-card",
-              "data-card-id": ex.id,
-              style: ex.supersetGroup ? {
-                borderColor: "#00c2ff",
-                boxShadow: "0 0 0 1px #00c2ff, 0 1px 6px rgba(0,194,255,0.15)"
-              } : {},
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                className: "exercise-header",
-                onClick: () => {
-                  const wasOpen = open;
-                  setExpanded(p => ({
-                    ...p,
-                    [ex.id]: !wasOpen
-                  }));
-                  if (!wasOpen) {
-                    // Yield to React render, then scroll
-                    setTimeout(() => {
-                      const cardEl = document.querySelector(`[data-card-id="${CSS.escape(ex.id)}"]`);
-                      if (cardEl) cardEl.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                      });
-                    }, 0);
-                  }
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "space-between",
-                    gap: 8
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      flex: 1,
-                      minWidth: 0
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 6
-                      },
-                      children: [ex.supersetGroup && /*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          background: "#000",
-                          color: "#00c2ff",
-                          fontSize: 10,
-                          fontWeight: 800,
-                          padding: "2px 7px",
-                          borderRadius: 5,
-                          letterSpacing: "0.05em",
-                          border: "1.5px solid #00c2ff",
-                          boxShadow: "0 0 8px rgba(0,194,255,0.35)",
-                          flexShrink: 0
-                        },
-                        children: [ex.supersetGroup, ex.supersetPosition]
-                      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                        className: "exercise-name",
-                        children: [ex.isMainLift && /*#__PURE__*/_jsxDEV("span", {
-                          style: {
-                            color: "#00c2ff",
-                            marginRight: 4,
-                            fontWeight: 800
-                          },
-                          children: "★"
-                        }, void 0, false), ex.name]
-                      }, void 0, true)]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-muscle-head",
-                      children: [ex.muscleHead || ex.primaryMuscle, ex.planTargetReps && /*#__PURE__*/_jsxDEV("span", {
-                        style: {
-                          marginLeft: 8,
-                          fontSize: 10,
-                          fontWeight: 800,
-                          color: "#00c2ff",
-                          padding: "2px 8px",
-                          background: "rgba(0,194,255,0.1)",
-                          borderRadius: 6,
-                          letterSpacing: "0.03em",
-                          fontFamily: "DM Mono,monospace"
-                        },
-                        children: ["Target: ", ex.sets.length, "×", ex.planTargetReps]
-                      }, void 0, true)]
-                    }, void 0, true)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    className: `exercise-chevron ${open ? "open" : ""}`,
-                    children: /*#__PURE__*/_jsxDEV(ChevronDown, {
-                      size: 18,
-                      strokeWidth: 3,
-                      color: "#00c2ff"
-                    }, void 0, false)
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  className: "exercise-pills",
-                  onClick: e => e.stopPropagation(),
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "exercise-pill blue",
-                    onClick: e => {
-                      e.stopPropagation();
-                      setSwapSheet(ex.id);
-                    },
-                    style: {
-                      justifyContent: "center",
-                      boxShadow: "0 0 8px rgba(0,194,255,0.35)"
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill-label",
-                      style: {
-                        color: "#00c2ff"
-                      },
-                      children: "Swap"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill-val",
-                      style: {
-                        color: "#00c2ff",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      },
-                      children: /*#__PURE__*/_jsxDEV(ArrowLeftRight, {
-                        size: 16,
-                        strokeWidth: 2.5,
-                        color: "#00c2ff"
-                      }, void 0, false)
-                    }, void 0, false)]
-                  }, void 0, true), ex.equipment === "Cable Machine" && (() => {
-                    const att = getAttachment(ex.baseId || ex.id);
-                    return /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill",
-                      onClick: e => {
-                        e.stopPropagation();
-                        setAttachmentSheetExId(ex.id);
-                      },
-                      style: {
-                        borderColor: "#ff9f0a",
-                        boxShadow: "0 0 8px rgba(255,159,10,0.35)",
-                        cursor: "pointer",
-                        minWidth: 0,
-                        flex: 1.5
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "exercise-pill-label",
-                        style: {
-                          color: "#ff9f0a"
-                        },
-                        children: "Attachment"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "exercise-pill-val",
-                        style: {
-                          color: "#ff9f0a",
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          whiteSpace: "nowrap",
-                          fontSize: 10
-                        },
-                        children: att ? att.name : "Set preference"
-                      }, void 0, false)]
-                    }, void 0, true);
-                  })(), /*#__PURE__*/_jsxDEV("div", {
-                    className: "exercise-pill",
-                    style: {
-                      borderColor: "#000",
-                      cursor: EQUIPMENT_ALTERNATIVES[ex.baseId || ex.id]?.length ? "pointer" : "default"
-                    },
-                    onClick: e => {
-                      e.stopPropagation();
-                      if (EQUIPMENT_ALTERNATIVES[ex.baseId || ex.id]?.length) setEquipSheet(ex.id);
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill-label",
-                      style: {
-                        color: "#000"
-                      },
-                      children: "Setup"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill-val",
-                      style: {
-                        color: "#000"
-                      },
-                      children: ex.equipment || "—"
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    className: "exercise-pill green",
-                    style: {
-                      boxShadow: "0 0 8px rgba(0,255,136,0.4)"
-                    },
-                    onClick: e => {
-                      e.stopPropagation();
-                      const prev = lastSets(ex.id);
-                      if (!prev) return showToast("No previous sets found");
-                      setExercises(p => p.map(e => e.id !== ex.id ? e : {
-                        ...e,
-                        sets: prev.map(s => ({
-                          ...s,
-                          done: false
-                        }))
-                      }));
-                      showToast("Last session sets loaded");
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill-label",
-                      style: {
-                        color: "#00c76b"
-                      },
-                      children: "Last"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill-val",
-                      style: {
-                        color: "#00c76b"
-                      },
-                      children: lastSets(ex.id)?.length || "—"
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("a", {
-                    href: youtubeUrl(ex.name),
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    onClick: e => e.stopPropagation(),
-                    className: "exercise-pill",
-                    style: {
-                      textDecoration: "none",
-                      borderColor: "#ff0844",
-                      background: "#fff",
-                      boxShadow: "0 0 8px rgba(255,8,68,0.35)"
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill-label",
-                      style: {
-                        color: "#ff0844"
-                      },
-                      children: "Video"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-pill-val",
-                      style: {
-                        color: "#ff0844",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: 2
-                      },
-                      children: [/*#__PURE__*/_jsxDEV(Youtube, {
-                        size: 11,
-                        strokeWidth: 2,
-                        color: "#ff0844"
-                      }, void 0, false), "Demo"]
-                    }, void 0, true)]
-                  }, void 0, true)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  className: "exercise-info-row",
-                  onClick: e => e.stopPropagation(),
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "exercise-info-chip",
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-info-label",
-                      children: "Rest"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-info-val",
-                      children: fmtTime(restDuration)
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    className: "exercise-info-chip",
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-info-label",
-                      children: "PR"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-info-val",
-                      children: pr ? `${pr.weight}lb` : "—"
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    className: "exercise-info-chip",
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-info-label",
-                      children: "Set 1 Last"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-info-val",
-                      children: lastSets(ex.id)?.[0]?.weight ? `${lastSets(ex.id)[0].weight}lb` : "—"
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    className: "exercise-info-chip",
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-info-label",
-                      children: "Best Last"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "exercise-info-val",
-                      children: lw ? lw.replace("lb x ", " x ") : "—"
-                    }, void 0, false)]
-                  }, void 0, true)]
-                }, void 0, true)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                className: `sets-area-wrapper ${open ? "open" : ""}`,
-                children: /*#__PURE__*/_jsxDEV("div", {
-                  className: "sets-area",
-                  children: [(() => {
-                    const trend = [];
-                    for (let i = history.length - 1; i >= 0 && trend.length < 8; i--) {
-                      const hEx = history[i].exercises.find(e => e.id === ex.id);
-                      if (hEx?.sets?.length) {
-                        const best = Math.max(...hEx.sets.map(s => parseFloat(s.weight) || 0));
-                        if (best > 0) trend.unshift({
-                          w: best,
-                          date: history[i].date
-                        });
-                      }
-                    }
-                    if (trend.length < 2) return null;
-                    const maxW = Math.max(...trend.map(t => t.w));
-                    const minW = Math.min(...trend.map(t => t.w));
-                    const range = maxW - minW || 1;
-                    const W = 280,
-                      H = 64,
-                      padX = 10,
-                      padTop = 14,
-                      padBottom = 8;
-                    const x = i => padX + i / (trend.length - 1) * (W - padX * 2);
-                    const y = v => H - padBottom - (v - minW) / range * (H - padTop - padBottom);
-                    const path = trend.map((t, i) => `${i === 0 ? "M" : "L"}${x(i)},${y(t.w)}`).join(" ");
-                    const fillPath = `${path} L${x(trend.length - 1)},${H} L${x(0)},${H} Z`;
-                    const diff = trend[trend.length - 1].w - trend[0].w;
-                    const pct = trend[0].w > 0 ? (diff / trend[0].w * 100).toFixed(1) : 0;
-                    const lastX = x(trend.length - 1);
-                    const lastY = y(trend[trend.length - 1].w);
-                    // Position label above if there's room, otherwise below
-                    const labelAbove = lastY > padTop + 12;
-                    return /*#__PURE__*/_jsxDEV("div", {
-                      onClick: e => {
-                        e.stopPropagation();
-                        setProgressChartExId(ex.baseId || ex.id);
-                      },
-                      style: {
-                        background: "#f9f9f9",
-                        borderRadius: 8,
-                        padding: "10px 12px",
-                        marginBottom: 8,
-                        border: "1px solid #f0f0f0",
-                        cursor: "pointer"
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          marginBottom: 6,
-                          gap: 8
-                        },
-                        children: [/*#__PURE__*/_jsxDEV("div", {
-                          style: {
-                            fontSize: 9,
-                            fontWeight: 700,
-                            color: "#8e8e93",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.06em"
-                          },
-                          children: ["Weight Trend · Last ", trend.length, " sessions · Tap to expand"]
-                        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                          style: {
-                            fontSize: 11,
-                            fontWeight: 700,
-                            color: diff >= 0 ? "#34c759" : "#ff3b30",
-                            whiteSpace: "nowrap"
-                          },
-                          children: [diff >= 0 ? "+" : "", diff, "lb (", pct, "%)"]
-                        }, void 0, true)]
-                      }, void 0, true), /*#__PURE__*/_jsxDEV("svg", {
-                        width: "100%",
-                        viewBox: `0 0 ${W} ${H}`,
-                        style: {
-                          overflow: "visible",
-                          display: "block"
-                        },
-                        children: [/*#__PURE__*/_jsxDEV("path", {
-                          d: fillPath,
-                          fill: "rgba(0,194,255,0.08)"
-                        }, void 0, false), /*#__PURE__*/_jsxDEV("path", {
-                          d: path,
-                          fill: "none",
-                          stroke: "#00c2ff",
-                          strokeWidth: "1.5",
-                          strokeLinecap: "round",
-                          strokeLinejoin: "round"
-                        }, void 0, false), trend.map((t, i) => /*#__PURE__*/_jsxDEV("circle", {
-                          cx: x(i),
-                          cy: y(t.w),
-                          r: "3",
-                          fill: "#00c2ff",
-                          stroke: "#fff",
-                          strokeWidth: "1.5"
-                        }, i, false)), /*#__PURE__*/_jsxDEV("text", {
-                          x: lastX,
-                          y: labelAbove ? lastY - 7 : lastY + 14,
-                          fontSize: "10",
-                          fill: "#00c2ff",
-                          fontWeight: "700",
-                          textAnchor: trend.length > 1 ? "end" : "middle",
-                          children: [trend[trend.length - 1].w, "lb"]
-                        }, void 0, true)]
-                      }, void 0, true)]
-                    }, void 0, true);
-                  })(), progression && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                      background: "rgba(52,199,89,0.08)",
-                      border: "1.5px solid rgba(52,199,89,0.3)",
-                      borderRadius: 10,
-                      padding: "10px 12px",
-                      marginBottom: 6
-                    },
-                    children: [/*#__PURE__*/_jsxDEV(TrendingUp, {
-                      size: 14,
-                      strokeWidth: 2.5,
-                      color: "#34c759",
-                      style: {
-                        flexShrink: 0
-                      }
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        flex: 1,
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: "#1a9e3f"
-                      },
-                      children: progression.text
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                      style: {
-                        background: "#34c759",
-                        color: "#fff",
-                        border: "none",
-                        borderRadius: 8,
-                        padding: "7px 16px",
-                        fontSize: 13,
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        fontFamily: "Inter,sans-serif",
-                        flexShrink: 0
-                      },
-                      onClick: () => {
-                        setExercises(p => p.map(e => e.id !== ex.id ? e : {
-                          ...e,
-                          sets: e.sets.map(s => ({
-                            ...s,
-                            weight: String(progression.suggestedWeight)
-                          }))
-                        }));
-                        showToast(`Applied ${progression.suggestedWeight}lb to all sets`);
-                      },
-                      children: "Apply"
-                    }, void 0, false)]
-                  }, void 0, true), ex.bench && ex.bench !== "N/A" && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: "#00c2ff",
-                      fontWeight: 600,
-                      padding: "2px 0 4px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 4
-                    },
-                    children: [/*#__PURE__*/_jsxDEV(Lightbulb, {
-                      size: 11,
-                      strokeWidth: 2.5
-                    }, void 0, false), ex.bench]
-                  }, void 0, true), ["bw-pullup", "bw-pullup-close", "bw-chinup", "bw-neutralwide", "bw-neutralclose", "bw-angled", "bw-fatbar", "bw-fatbar-under", "bw-weighted-pu", "bw-eccentric-pu", "bw-lsit-pu", "bw-scapular"].includes(ex.id) && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                      padding: "6px 10px",
-                      background: "#f9f9f9",
-                      borderRadius: 8,
-                      marginBottom: 2
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        fontSize: 11,
-                        color: "#8e8e93",
-                        fontWeight: 600
-                      },
-                      children: "Body weight:"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-                      type: "number",
-                      value: bodyWeight,
-                      onChange: e => setBodyWeight(parseFloat(e.target.value) || 0),
-                      style: {
-                        width: 60,
-                        padding: "4px 8px",
-                        borderRadius: 6,
-                        border: "1.5px solid #e5e5ea",
-                        fontSize: 13,
-                        fontFamily: "DM Mono,monospace",
-                        fontWeight: 700,
-                        textAlign: "center",
-                        outline: "none"
-                      }
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        fontSize: 11,
-                        color: "#8e8e93"
-                      },
-                      children: "lb"
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                      marginBottom: 6,
-                      padding: "6px 10px",
-                      background: "#f9f9f9",
-                      borderRadius: 8,
-                      border: "1px solid #f0f0f0"
-                    },
-                    onClick: e => e.stopPropagation(),
-                    children: [/*#__PURE__*/_jsxDEV(Target, {
-                      size: 12,
-                      strokeWidth: 2.5,
-                      color: "#8e8e93"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        fontSize: 11,
-                        fontWeight: 700,
-                        color: "#8e8e93",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                        flexShrink: 0
-                      },
-                      children: "Target Reps"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-                      type: "text",
-                      placeholder: "e.g. 8-12",
-                      value: ex.targetRepRange || "",
-                      onChange: e => {
-                        const val = e.target.value;
-                        const parsed = val.match(/^(\d+)\s*[-\u2013]\s*(\d+)$/);
-                        setExercises(p => p.map(x => x.id !== ex.id ? x : {
-                          ...x,
-                          targetRepRange: val,
-                          sets: x.sets.map(s => ({
-                            ...s,
-                            targetRepsLow: parsed ? parseInt(parsed[1]) : null,
-                            targetRepsHigh: parsed ? parseInt(parsed[2]) : null
-                          }))
-                        }));
-                      },
-                      style: {
-                        flex: 1,
-                        border: "none",
-                        background: "transparent",
-                        fontSize: 13,
-                        fontFamily: "DM Mono,monospace",
-                        fontWeight: 700,
-                        color: "#00c2ff",
-                        outline: "none",
-                        textAlign: "center",
-                        minWidth: 0
-                      }
-                    }, void 0, false), ex.targetRepRange ? /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        fontSize: 9,
-                        fontWeight: 700,
-                        color: "#8e8e93",
-                        whiteSpace: "nowrap"
-                      },
-                      children: (() => {
-                        const p = ex.targetRepRange.match(/^(\d+)\s*[-\u2013]\s*(\d+)$/);
-                        return p ? "in range = green" : "invalid format";
-                      })()
-                    }, void 0, false) : null]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    className: "sets-header",
-                    children: [/*#__PURE__*/_jsxDEV("span", {}, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                      children: "WEIGHT LB"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        textAlign: "center"
-                      },
-                      children: "LB"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        textAlign: "center"
-                      },
-                      children: "REPS"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        textAlign: "center"
-                      },
-                      children: "REPS"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("span", {}, void 0, false)]
-                  }, void 0, true), ex.planTargetReps && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: 12,
-                      padding: "6px 10px",
-                      marginBottom: 6,
-                      background: "rgba(0,194,255,0.04)",
-                      borderRadius: 6,
-                      fontSize: 10
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#8e8e93",
-                        fontWeight: 600
-                      },
-                      children: ["Target: ", /*#__PURE__*/_jsxDEV("span", {
-                        style: {
-                          color: "#00c2ff",
-                          fontWeight: 800,
-                          fontFamily: "DM Mono,monospace"
-                        },
-                        children: [ex.planTargetReps, " reps"]
-                      }, void 0, true)]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        display: "flex",
-                        gap: 8
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("span", {
-                        style: {
-                          color: "#ff3b30",
-                          fontWeight: 600
-                        },
-                        children: "· under"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                        style: {
-                          color: "#1a9e3f",
-                          fontWeight: 600
-                        },
-                        children: "· in range"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                        style: {
-                          color: "#00c2ff",
-                          fontWeight: 600
-                        },
-                        children: "· over"
-                      }, void 0, false)]
-                    }, void 0, true)]
-                  }, void 0, true), ex.sets.map((set, i) => /*#__PURE__*/_jsxDEV(React.Fragment, {
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "set-row",
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "set-num",
-                        children: i + 1
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "set-input",
-                        style: {
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          userSelect: "none"
-                        },
-                        onClick: () => {
-                          const pref = calcPrefs[ex.id];
-                          if (pref === "stack") return openStackCalc(ex.id, i, set.weight, ex.equipment);
-                          if (pref === "dumbbell") return openDumbbellPicker(ex.id, i, set.weight);
-                          if (pref === "plate") return openPlateCalc(ex.id, i, set.weight);
-                          if (pref === "mx100") return openMX100Picker(ex.id, i, set.weight);
-                          if (ex.calculator === "bodyweight") {
-                            setBwAdded(0);
-                            setBwSheetTarget({
-                              exId: ex.id,
-                              setIdx: i
-                            });
-                            return;
-                          }
-                          if (ex.equipment === "MX100 Barbell" || ex.equipment === "Adjustable Barbell") return openMX100Picker(ex.id, i, set.weight);
-                          if (EQUIPMENT_TO_MACHINE[ex.equipment]) openStackCalc(ex.id, i, set.weight, ex.equipment);else if (ex.equipment === "Dumbbells" || ex.equipment === "Adjustable Dumbbells" || ex.equipment === "Fixed Dumbbells") openDumbbellPicker(ex.id, i, set.weight);else openPlateCalc(ex.id, i, set.weight);
-                        },
-                        children: /*#__PURE__*/_jsxDEV("span", {
-                          style: {
-                            color: set.weight ? "#000" : "#c7c7cc"
-                          },
-                          children: set.weight || "0"
-                        }, void 0, false)
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "set-last",
-                        children: lastSets(ex.id)?.[i]?.weight || "—"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "set-last",
-                        children: lastSets(ex.id)?.[i]?.reps || "—"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-                        className: "set-input",
-                        type: "number",
-                        inputMode: "numeric",
-                        placeholder: "",
-                        maxLength: 3,
-                        value: set.reps,
-                        style: (() => {
-                          const baseStyle = {
-                            textAlign: "center",
-                            padding: "6px 4px",
-                            fontSize: 16,
-                            fontWeight: 700
-                          };
-                          if (!set.targetRepsLow || !set.reps) return baseStyle;
-                          const r = parseInt(set.reps);
-                          if (isNaN(r) || r === 0) return baseStyle;
-                          if (r >= set.targetRepsLow && r <= set.targetRepsHigh) {
-                            return {
-                              ...baseStyle,
-                              borderColor: "#34c759",
-                              background: "#f0faf3",
-                              color: "#1a9e3f"
-                            };
-                          }
-                          if (r < set.targetRepsLow) {
-                            return {
-                              ...baseStyle,
-                              borderColor: "#ff3b30",
-                              background: "#fff5f5",
-                              color: "#ff3b30"
-                            };
-                          }
-                          // Above target range
-                          return {
-                            ...baseStyle,
-                            borderColor: "#00c2ff",
-                            background: "#f0f9ff",
-                            color: "#00c2ff"
-                          };
-                        })(),
-                        onChange: e => {
-                          const v = e.target.value.slice(0, 3);
-                          updateSet(ex.id, i, "reps", v);
-                        },
-                        onKeyDown: e => {
-                          if (e.key === "Enter") {
-                            e.preventDefault();
-                            const inputs = document.querySelectorAll(".set-input[type='number']");
-                            const idx = [...inputs].indexOf(e.target);
-                            if (idx >= 0 && idx < inputs.length - 1) inputs[idx + 1].focus();else e.target.blur();
-                          }
-                        }
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                        onClick: () => toggleDone(ex.id, i),
-                        className: set.done ? "set-done-bounce" : "",
-                        style: {
-                          width: 30,
-                          height: 30,
-                          borderRadius: "50%",
-                          flexShrink: 0,
-                          cursor: "pointer",
-                          border: set.done ? "none" : "2px solid #c7c7cc",
-                          background: set.done ? "#34c759" : "transparent",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: 14,
-                          color: "#fff",
-                          fontWeight: 700,
-                          padding: 0,
-                          justifySelf: "end"
-                        },
-                        children: set.done ? "✓" : ""
-                      }, `${ex.id}-${i}-${set.done ? "done" : "pending"}`, false)]
-                    }, void 0, true), (set.stackConfig?.band || set.plateBand) && /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        marginLeft: 30,
-                        marginTop: 2,
-                        marginBottom: 2,
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 5,
-                        background: "rgba(0,194,255,0.08)",
-                        border: "1px solid rgba(0,194,255,0.25)",
-                        borderRadius: 6,
-                        padding: "3px 8px"
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("span", {
-                        style: {
-                          fontSize: 10,
-                          color: "#00c2ff",
-                          fontWeight: 700,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.04em"
-                        },
-                        children: "Band"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                        style: {
-                          fontSize: 11,
-                          color: "#000",
-                          fontWeight: 600
-                        },
-                        children: set.stackConfig?.band || set.plateBand
-                      }, void 0, false)]
-                    }, void 0, true), (set.drops || []).map((drop, di) => /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        display: "grid",
-                        gridTemplateColumns: "18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px",
-                        gap: 6,
-                        alignItems: "center",
-                        marginLeft: 20,
-                        marginTop: 4,
-                        padding: "4px 0"
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          fontSize: 9,
-                          fontWeight: 700,
-                          color: "#af52de",
-                          letterSpacing: "0.04em"
-                        },
-                        children: ["↓", di + 1]
-                      }, void 0, true), /*#__PURE__*/_jsxDEV("input", {
-                        type: "number",
-                        inputMode: "decimal",
-                        placeholder: "wt",
-                        value: drop.weight,
-                        onChange: e => {
-                          setExercises(p => p.map(x => x.id !== ex.id ? x : {
-                            ...x,
-                            sets: x.sets.map((s, si) => si !== i ? s : {
-                              ...s,
-                              drops: s.drops.map((d, ddi) => ddi !== di ? d : {
-                                ...d,
-                                weight: e.target.value
-                              })
-                            })
-                          }));
-                        },
-                        style: {
-                          background: "#faf5ff",
-                          border: "1px solid #e0c9f5",
-                          borderRadius: 6,
-                          padding: "4px 8px",
-                          fontSize: 13,
-                          fontWeight: 600,
-                          fontFamily: "DM Mono,monospace",
-                          textAlign: "center",
-                          color: "#000",
-                          outline: "none",
-                          width: "100%",
-                          boxSizing: "border-box"
-                        }
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          fontSize: 10,
-                          color: "#c7c7cc",
-                          textAlign: "center"
-                        },
-                        children: "—"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          fontSize: 10,
-                          color: "#c7c7cc",
-                          textAlign: "center"
-                        },
-                        children: "—"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-                        type: "number",
-                        inputMode: "numeric",
-                        placeholder: "reps",
-                        maxLength: 3,
-                        value: drop.reps,
-                        onChange: e => {
-                          const v = e.target.value.slice(0, 3);
-                          setExercises(p => p.map(x => x.id !== ex.id ? x : {
-                            ...x,
-                            sets: x.sets.map((s, si) => si !== i ? s : {
-                              ...s,
-                              drops: s.drops.map((d, ddi) => ddi !== di ? d : {
-                                ...d,
-                                reps: v
-                              })
-                            })
-                          }));
-                        },
-                        style: {
-                          background: "#fff",
-                          border: "1px solid #e5e5ea",
-                          borderRadius: 6,
-                          padding: "4px 8px",
-                          fontSize: 13,
-                          fontWeight: 700,
-                          fontFamily: "DM Mono,monospace",
-                          textAlign: "center",
-                          color: "#000",
-                          outline: "none",
-                          width: "100%",
-                          boxSizing: "border-box"
-                        }
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                        onClick: () => {
-                          setExercises(p => p.map(x => x.id !== ex.id ? x : {
-                            ...x,
-                            sets: x.sets.map((s, si) => si !== i ? s : {
-                              ...s,
-                              drops: s.drops.map((d, ddi) => ddi !== di ? d : {
-                                ...d,
-                                done: !d.done
-                              })
-                            })
-                          }));
-                          if (!drop.done) startRest();
-                        },
-                        style: {
-                          width: 22,
-                          height: 22,
-                          borderRadius: "50%",
-                          flexShrink: 0,
-                          cursor: "pointer",
-                          border: drop.done ? "none" : "2px solid #c7c7cc",
-                          background: drop.done ? "#af52de" : "transparent",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: 11,
-                          color: "#fff",
-                          fontWeight: 700,
-                          justifySelf: "end",
-                          padding: 0
-                        },
-                        children: drop.done ? "✓" : ""
-                      }, void 0, false)]
-                    }, `drop-${di}`, true)), set.done && /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        display: "flex",
-                        gap: 6,
-                        marginLeft: 20,
-                        marginTop: 4
-                      },
-                      children: /*#__PURE__*/_jsxDEV("button", {
-                        onClick: () => {
-                          // Suggest 20% less than last weight
-                          const lastW = set.drops && set.drops.length > 0 ? parseFloat(set.drops[set.drops.length - 1].weight) : parseFloat(set.weight);
-                          const suggested = lastW ? Math.max(5, Math.round(lastW * 0.8 / 5) * 5) : "";
-                          setExercises(p => p.map(x => x.id !== ex.id ? x : {
-                            ...x,
-                            sets: x.sets.map((s, si) => si !== i ? s : {
-                              ...s,
-                              drops: [...(s.drops || []), {
-                                weight: String(suggested),
-                                reps: "",
-                                done: false
-                              }]
-                            })
-                          }));
-                        },
-                        style: {
-                          background: "transparent",
-                          border: "1px dashed #af52de",
-                          color: "#af52de",
-                          borderRadius: 6,
-                          padding: "3px 10px",
-                          fontSize: 11,
-                          fontWeight: 700,
-                          cursor: "pointer",
-                          fontFamily: "Inter,sans-serif",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 4
-                        },
-                        children: [/*#__PURE__*/_jsxDEV("span", {
-                          style: {
-                            fontSize: 12
-                          },
-                          children: "↓"
-                        }, void 0, false), " drop"]
-                      }, void 0, true)
-                    }, void 0, false)]
-                  }, i, true)), /*#__PURE__*/_jsxDEV("button", {
-                    className: "add-set-btn",
-                    onClick: () => addSet(ex.id),
-                    children: "+ set"
-                  }, void 0, false), restActive && /*#__PURE__*/_jsxDEV("div", {
-                    className: "card-rest-timer",
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 11,
-                        fontWeight: 700,
-                        color: "#8e8e93",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em"
-                      },
-                      children: "Rest"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 26,
-                        fontWeight: 800,
-                        fontFamily: "DM Mono,monospace",
-                        color: "#000",
-                        letterSpacing: "-1px"
-                      },
-                      children: fmtTime(restSeconds)
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                      onClick: skipRest,
-                      style: {
-                        background: "#000",
-                        color: "#fff",
-                        border: "none",
-                        borderRadius: 7,
-                        padding: "6px 14px",
-                        fontSize: 12,
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        fontFamily: "Inter,sans-serif",
-                        boxShadow: "0 0 0 1.5px #00c2ff"
-                      },
-                      children: "Skip"
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("textarea", {
-                    className: "exercise-notes",
-                    placeholder: "Notes for this exercise (saved permanently)...",
-                    value: exerciseNotes[ex.id] || "",
-                    onChange: e => setExerciseNotes(p => ({
-                      ...p,
-                      [ex.id]: e.target.value
-                    })),
-                    onClick: e => e.stopPropagation(),
-                    rows: 2
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      marginTop: 8,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: 14
-                    },
-                    children: removeConfirm === ex.id ? /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        display: "flex",
-                        gap: 8,
-                        justifyContent: "center",
-                        alignItems: "center"
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("span", {
-                        style: {
-                          fontSize: 12,
-                          color: "#ff3b30",
-                          fontWeight: 600
-                        },
-                        children: ["Remove \"", ex.name, "\"?"]
-                      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-                        onClick: () => {
-                          setExercises(p => p.filter(x => x.id !== ex.id));
-                          setRemoveConfirm(null);
-                          showToast(`Removed ${ex.name}`);
-                        },
-                        style: {
-                          background: "#ff3b30",
-                          color: "#fff",
-                          border: "none",
-                          borderRadius: 6,
-                          padding: "4px 12px",
-                          fontSize: 11,
-                          fontWeight: 700,
-                          cursor: "pointer",
-                          fontFamily: "Inter,sans-serif"
-                        },
-                        children: "Yes, remove"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                        onClick: () => setRemoveConfirm(null),
-                        style: {
-                          background: "none",
-                          border: "1.5px solid #e5e5ea",
-                          color: "#8e8e93",
-                          borderRadius: 6,
-                          padding: "4px 10px",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          cursor: "pointer",
-                          fontFamily: "Inter,sans-serif"
-                        },
-                        children: "Cancel"
-                      }, void 0, false)]
-                    }, void 0, true) : /*#__PURE__*/_jsxDEV(_Fragment, {
-                      children: [/*#__PURE__*/_jsxDEV("button", {
-                        onClick: () => {
-                          if (ex.supersetGroup) {
-                            const groupToRemove = ex.supersetGroup;
-                            setExercises(p => p.map(x => x.supersetGroup === groupToRemove ? {
-                              ...x,
-                              supersetGroup: null,
-                              supersetPosition: null
-                            } : x));
-                            showToast(`Superset ${groupToRemove} unlinked`);
-                          } else {
-                            setSupersetPickerExId(ex.id);
-                          }
-                        },
-                        style: {
-                          background: "none",
-                          border: "none",
-                          color: ex.supersetGroup ? "#00c2ff" : "#c7c7cc",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          cursor: "pointer",
-                          fontFamily: "Inter,sans-serif",
-                          padding: "4px 8px",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 4
-                        },
-                        children: [/*#__PURE__*/_jsxDEV(Link, {
-                          size: 11,
-                          strokeWidth: 2.5
-                        }, void 0, false), ex.supersetGroup ? `Unlink superset ${ex.supersetGroup}` : "Link as superset"]
-                      }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-                        onClick: () => setRemoveConfirm(ex.id),
-                        style: {
-                          background: "none",
-                          border: "none",
-                          color: "#c7c7cc",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          cursor: "pointer",
-                          fontFamily: "Inter,sans-serif",
-                          padding: "4px 8px"
-                        },
-                        children: "Remove exercise"
-                      }, void 0, false)]
-                    }, void 0, true)
-                  }, void 0, false)]
-                }, void 0, true)
-              }, void 0, false)]
-            }, ex.id, true);
-          }), /*#__PURE__*/_jsxDEV("button", {
-            className: "add-exercise-btn",
-            onClick: openPicker,
-            children: "+ Add exercise"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              height: 16
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              borderTop: "1.5px solid #e5e5ea",
-              marginBottom: 16
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-            className: "btn btn-primary",
-            onClick: finishWorkout,
-            children: "Finish Workout"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => {
-              setExercises([]);
-              setWorkoutType(null);
-              setWorkoutName("");
-              setWorkoutStartTime(null);
-              setWarmupDone(false);
-              try {
-                localStorage.removeItem("locked_workout_draft");
-              } catch (e) {}
-              setTab("workout");
-              showToast("Workout discarded");
-            },
-            style: {
-              background: "none",
-              border: "none",
-              color: "#c7c7cc",
-              fontSize: 12,
-              fontWeight: 600,
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              textAlign: "center",
-              width: "100%",
-              padding: "4px 0"
-            },
-            children: "Discard workout"
-          }, void 0, false)]
-        }, void 0, true)
-      }, void 0, false), tab === "calendar" && (() => {
-        const {
-          year,
-          month
-        } = calMonth;
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const daysInPrev = new Date(year, month, 0).getDate();
-        const today = new Date();
-        const todayStr = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-
-        // Build logged days map from history
-        const loggedMap = {};
-        history.forEach(h => {
-          const d = new Date(h.id);
-          const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-          loggedMap[key] = h;
-        });
-
-        // Calculate streak -- consecutive training days logged up to today
-        let streak = 0;
-        const checkDate = new Date(today);
-        let streakIterations = 0;
-        while (scheduleDays.length > 0 && streakIterations < 365) {
-          streakIterations++;
-          const key = `${checkDate.getFullYear()}-${checkDate.getMonth()}-${checkDate.getDate()}`;
-          const dayOfWeek = checkDate.getDay();
-          const isTrainingDay = scheduleDays.includes(dayOfWeek);
-          if (isTrainingDay) {
-            if (loggedMap[key]) {
-              streak++;
-              checkDate.setDate(checkDate.getDate() - 1);
-            } else break;
-          } else {
-            checkDate.setDate(checkDate.getDate() - 1);
+          width: "100%",
+          border: "none",
+          background: "transparent",
+          fontSize: 12,
+          fontFamily: "Inter,sans-serif",
+          resize: "none",
+          outline: "none",
+          color: "#000",
+          padding: 0,
+          fontStyle: entry.note ? "normal" : "italic",
+          boxSizing: "border-box"
+        }
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          borderTop: "1px solid #F0F0F0",
+          paddingTop: 10,
+          marginTop: 10,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 8,
+          alignItems: "center"
+        }
+      }, /*#__PURE__*/React.createElement("button", {
+        onClick: () => setHistory(p => p.filter(h => h.id !== entry.id)),
+        style: {
+          fontSize: 11,
+          color: "#ff3b30",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif",
+          fontWeight: 600
+        }
+      }, "Delete"), /*#__PURE__*/React.createElement("button", {
+        className: "export-btn-sm",
+        onClick: () => showToast("^ Sent to Google Health")
+      }, "Export"))))));
+    });
+  })())), tab === "gym" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "section-label"
+  }, "Exercise Library"), /*#__PURE__*/React.createElement("div", {
+    onClick: () => setLibraryOpen(true),
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      border: "1.5px solid #00c2ff",
+      padding: "14px 16px",
+      cursor: "pointer",
+      boxShadow: "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 12,
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, "Browse all exercises"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 2
+    }
+  }, EXERCISE_DB.length, " exercises · muscle heads · equipment · variations")), /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 16,
+    strokeWidth: 2.5,
+    color: "#00c2ff",
+    style: {
+      transform: "rotate(-90deg)"
+    }
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "section-label"
+  }, "My Preferences"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      border: "1.5px solid #e5e5ea",
+      padding: "12px 16px",
+      marginBottom: 10,
+      boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#8e8e93",
+      marginBottom: 10
+    }
+  }, "BODY & EQUIPMENT"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: "#000"
+    }
+  }, "Body Weight"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "Used for pull-up volume tracking")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 6
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    value: bodyWeight,
+    onChange: e => setBodyWeight(parseFloat(e.target.value) || 0),
+    style: {
+      width: 64,
+      padding: "6px 8px",
+      borderRadius: 8,
+      border: "1.5px solid #e5e5ea",
+      fontSize: 14,
+      fontFamily: "DM Mono,monospace",
+      fontWeight: 700,
+      textAlign: "center",
+      outline: "none"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "lb"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between"
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: "#000"
+    }
+  }, "Smith Machine Bar"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "Counterbalanced bars are typically 15-20 lbs")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 6
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    value: smithBarWeight,
+    onChange: e => setSmithBarWeight(parseFloat(e.target.value) || 0),
+    style: {
+      width: 64,
+      padding: "6px 8px",
+      borderRadius: 8,
+      border: "1.5px solid #e5e5ea",
+      fontSize: 14,
+      fontFamily: "DM Mono,monospace",
+      fontWeight: 700,
+      textAlign: "center",
+      outline: "none"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "lb")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      border: "1.5px solid #e5e5ea",
+      overflow: "hidden",
+      boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "10px 16px",
+      fontSize: 12,
+      color: "#8e8e93",
+      borderBottom: "1px solid #e5e5ea",
+      fontWeight: 600
+    }
+  }, "Set permanent exercise swaps -- these load automatically in every workout"), Object.entries(ALTERNATIVES).filter(([from]) => EXERCISES.find(e => e.id === from)).map(([from, to]) => {
+    const fromEx = EXERCISES.find(e => e.id === from);
+    const toEx = EXERCISES.find(e => e.id === to);
+    if (!fromEx || !toEx) return null;
+    const isPref = preferences[from] === to;
+    return /*#__PURE__*/React.createElement("div", {
+      key: from,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "12px 16px",
+        borderBottom: "1px solid #F0F0F0",
+        gap: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 600,
+        color: "#000"
+      }
+    }, fromEx.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 2
+      }
+    }, '->', " ", toEx.name)), /*#__PURE__*/React.createElement("button", {
+      onClick: () => togglePref(from, to),
+      style: {
+        flexShrink: 0,
+        padding: "6px 14px",
+        borderRadius: 20,
+        border: "none",
+        fontSize: 12,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        background: isPref ? "#00c2ff" : "#e5e5ea",
+        color: isPref ? "#fff" : "#8e8e93",
+        boxShadow: isPref ? "0 0 0 1.5px #00c2ff, 0 0 10px rgba(0,194,255,0.3)" : "none",
+        transition: "all 0.15s"
+      }
+    }, isPref ? "Always use check" : "Always use"));
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "section-label"
+  }, "Your equipment -- tap type to edit"), /*#__PURE__*/React.createElement("div", {
+    className: "equip-list"
+  }, EQUIPMENT_LIST.map(e => /*#__PURE__*/React.createElement("div", {
+    key: e,
+    className: "equip-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "equip-name"
+  }, e), /*#__PURE__*/React.createElement("div", {
+    className: "equip-type-pill",
+    onClick: () => setEquipEditTarget(e)
+  }, equipConfig[e] || "Tap to set", " ", '>')))), /*#__PURE__*/React.createElement("div", {
+    className: "section-label"
+  }, "Exercise library (", EXERCISES.length, " movements)"), gymGroups.map(({
+    group,
+    exs
+  }) => /*#__PURE__*/React.createElement("div", {
+    key: group
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ex-group-title"
+  }, group, " ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#8e8e93",
+      fontWeight: 400,
+      fontSize: 11
+    }
+  }, "(", exs.length, ")")), exs.map(ex => /*#__PURE__*/React.createElement("div", {
+    key: ex.id,
+    className: "ex-row"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, ex.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#00c2ff",
+      marginTop: 2
+    }
+  }, ex.equipment)), /*#__PURE__*/React.createElement("div", {
+    className: "ex-row-right"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ex-row-muscle"
+  }, ex.primaryMuscle)))))), /*#__PURE__*/React.createElement("div", {
+    className: "section-label",
+    style: {
+      marginTop: 24
+    }
+  }, "Cable Attachment Preferences"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      border: "1.5px solid #e5e5ea",
+      padding: "14px 16px",
+      boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      lineHeight: 1.5,
+      marginBottom: 12
+    }
+  }, "Your preferred attachment per cable exercise. Set once in-session — saves here automatically. Tap any to change."), EXERCISE_DB.filter(e => e.equipment === "Cable Machine").map(ex => {
+    const att = getAttachment(ex.id);
+    const isDefault = !attachmentPrefs[ex.id];
+    return /*#__PURE__*/React.createElement("div", {
+      key: ex.id,
+      onClick: () => setAttachmentSheetExId(ex.id),
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "10px 0",
+        borderBottom: "1px solid #f5f5f5",
+        cursor: "pointer"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 600,
+        color: "#000",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, ex.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93"
+      }
+    }, ex.muscleHead)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        flexShrink: 0,
+        marginLeft: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: isDefault ? "#c7c7cc" : "#ff9f0a",
+        padding: "2px 8px",
+        background: isDefault ? "#f5f5f5" : "rgba(255,159,10,0.1)",
+        borderRadius: 6
+      }
+    }, att?.name || "—"), /*#__PURE__*/React.createElement(ChevronDown, {
+      size: 12,
+      strokeWidth: 2.5,
+      color: "#c7c7cc",
+      style: {
+        transform: "rotate(-90deg)"
+      }
+    })));
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "section-label",
+    style: {
+      marginTop: 24
+    }
+  }, "Backup & Restore"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 14,
+      border: "1.5px solid #e5e5ea",
+      padding: "14px 16px",
+      boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      lineHeight: 1.5,
+      marginBottom: 12
+    }
+  }, "Export all your data (history, workouts, preferences, equipment) to a JSON file. Save it anywhere -- Google Drive, email, etc. Import to restore."), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      const LOCKED_KEYS = ["locked_history", "locked_schedule", "locked_cardio_days", "locked_cardio_log", "locked_recovery", "locked_saved_workouts", "locked_preferences", "locked_custom_exercises", "locked_exercise_notes", "locked_bodyweight", "locked_smith_bar", "locked_equip_config", "locked_calc_prefs", "locked_attachment_prefs", "locked_active_plan"];
+      const backup = {
+        app: "Locked",
+        version: "1.0",
+        exportedAt: new Date().toISOString(),
+        data: {}
+      };
+      LOCKED_KEYS.forEach(k => {
+        const raw = localStorage.getItem(k);
+        if (raw !== null) {
+          try {
+            backup.data[k] = JSON.parse(raw);
+          } catch {
+            backup.data[k] = raw;
           }
         }
-
-        // Missed days = past training days with no workout logged
-        const isMissed = date => {
-          const d = new Date(date);
-          d.setHours(0, 0, 0, 0);
-          const t = new Date(today);
-          t.setHours(0, 0, 0, 0);
-          if (d >= t) return false; // not past
-          const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-          return scheduleDays.includes(d.getDay()) && !loggedMap[key];
-        };
-
-        // Build calendar cells
-        const cells = [];
-        // Prev month trailing days
-        for (let i = firstDay - 1; i >= 0; i--) {
-          cells.push({
-            day: daysInPrev - i,
-            currentMonth: false,
-            date: new Date(year, month - 1, daysInPrev - i)
+      });
+      const blob = new Blob([JSON.stringify(backup, null, 2)], {
+        type: "application/json"
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const ts = new Date().toISOString().slice(0, 10);
+      a.href = url;
+      a.download = `locked-backup-${ts}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Backup downloaded");
+    },
+    style: {
+      width: "100%",
+      padding: "12px",
+      background: "#000",
+      color: "#fff",
+      border: "none",
+      borderRadius: 10,
+      fontSize: 13,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      boxShadow: "0 0 0 2px #00c2ff, 0 0 12px rgba(0,194,255,0.25)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8,
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement(Download, {
+    size: 15,
+    strokeWidth: 2.5,
+    color: "#00c2ff"
+  }), " Export backup (JSON)"), /*#__PURE__*/React.createElement("label", {
+    style: {
+      width: "100%",
+      padding: "12px",
+      background: "#fff",
+      color: "#000",
+      border: "1.5px solid #e5e5ea",
+      borderRadius: 10,
+      fontSize: 13,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement(Upload, {
+    size: 15,
+    strokeWidth: 2.5,
+    color: "#000"
+  }), " Import backup", /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    accept: ".json,application/json",
+    style: {
+      display: "none"
+    },
+    onChange: e => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        try {
+          const backup = JSON.parse(ev.target.result);
+          if (!backup.data || typeof backup.data !== "object") {
+            showToast("Invalid backup file");
+            return;
+          }
+          const keys = Object.keys(backup.data);
+          if (keys.length === 0) {
+            showToast("Backup is empty");
+            return;
+          }
+          if (!window.confirm(`Import will REPLACE all current data with ${keys.length} keys from the backup.\n\nExported: ${backup.exportedAt || "unknown date"}\n\nContinue?`)) return;
+          keys.forEach(k => {
+            localStorage.setItem(k, typeof backup.data[k] === "string" ? backup.data[k] : JSON.stringify(backup.data[k]));
           });
+          showToast("Backup restored -- reloading app...");
+          setTimeout(() => window.location.reload(), 1200);
+        } catch (err) {
+          showToast("Could not read file");
+          console.error(err);
         }
-        // Current month
-        for (let d = 1; d <= daysInMonth; d++) {
-          cells.push({
-            day: d,
-            currentMonth: true,
-            date: new Date(year, month, d)
-          });
-        }
-        // Next month padding
-        let next = 1;
-        while (cells.length % 7 !== 0) {
-          cells.push({
-            day: next++,
-            currentMonth: false,
-            date: new Date(year, month + 1, next - 1)
-          });
-        }
-        const selectedEntry = calSelected ? loggedMap[calSelected] : null;
-        return /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            flexDirection: "column",
-            gap: 16
-          },
-          children: [streak > 0 && /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "linear-gradient(135deg, #000 0%, #1a1a1a 100%)",
-              borderRadius: 16,
-              padding: "14px 18px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              boxShadow: "0 0 0 1.5px #ff9500, 0 0 20px rgba(255,149,0,0.25)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: "#ff9500",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em"
-                },
-                children: "Streak"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 28,
-                  fontWeight: 800,
-                  color: "#fff",
-                  letterSpacing: "-1px",
-                  lineHeight: 1.1,
-                  marginTop: 2
-                },
-                children: [streak, " ", /*#__PURE__*/_jsxDEV("span", {
-                  style: {
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: "#8e8e93"
-                  },
-                  children: ["day", streak !== 1 ? "s" : ""]
-                }, void 0, true)]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 42,
-                filter: "drop-shadow(0 0 8px rgba(255,149,0,0.5))"
-              },
-              children: "🔥"
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "cal-nav",
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              className: "cal-nav-btn",
-              onClick: () => setCalMonth(({
-                year,
-                month
-              }) => month === 0 ? {
-                year: year - 1,
-                month: 11
-              } : {
-                year,
-                month: month - 1
-              }),
-              children: /*#__PURE__*/_jsxDEV(ChevronLeft, {
-                size: 16,
-                strokeWidth: 2.5,
-                color: "#000"
-              }, void 0, false)
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "cal-month-label",
-              children: [monthNames[month], " ", year]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-              className: "cal-nav-btn",
-              onClick: () => setCalMonth(({
-                year,
-                month
-              }) => month === 11 ? {
-                year: year + 1,
-                month: 0
-              } : {
-                year,
-                month: month + 1
-              }),
-              children: /*#__PURE__*/_jsxDEV(ChevronRight, {
-                size: 16,
-                strokeWidth: 2.5,
-                color: "#000"
-              }, void 0, false)
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 16,
-              padding: "14px",
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "cal-grid",
-              style: {
-                marginBottom: 4
-              },
-              children: dayNames.map(d => /*#__PURE__*/_jsxDEV("div", {
-                className: "cal-dow",
-                children: d
-              }, d, false))
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "cal-grid",
-              children: cells.map((cell, i) => {
-                const key = `${cell.date.getFullYear()}-${cell.date.getMonth()}-${cell.date.getDate()}`;
-                const isToday = key === todayStr;
-                const isLogged = !!loggedMap[key];
-                const isScheduled = scheduleDays.includes(cell.date.getDay());
-                const isRecovery = !isScheduled && cell.currentMonth;
-                const isCardio = cardioDays.includes(cell.date.getDay()) && cell.currentMonth;
-                const isCardioDone = cardioLog[key] && cell.currentMonth;
-                const isMissedDay = isMissed(cell.date) && cell.currentMonth;
-                const isSelected = calSelected === key;
-                return /*#__PURE__*/_jsxDEV("div", {
-                  className: `cal-day ${!cell.currentMonth ? "other-month" : ""} ${isLogged ? "logged" : ""} ${isMissedDay && !isLogged ? "missed" : ""} ${isScheduled && !isLogged && !isToday && !isMissedDay ? "scheduled" : ""} ${isRecovery && !isLogged && !isToday ? "recovery" : ""} ${isToday ? "today" : ""} ${isCardio && !isCardioDone ? "cardio" : ""} ${isCardioDone ? "cardio-done" : ""}`,
-                  style: isSelected ? {
-                    outline: "2.5px solid #7b5ea7",
-                    outlineOffset: 2
-                  } : {},
-                  onClick: () => {
-                    if (cell.currentMonth) setCalSelected(calSelected === key ? null : key);
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "cal-day-num",
-                    style: {
-                      color: isToday ? "#fff" : isLogged ? "#fff" : isMissedDay ? "#ff3b30" : "#000"
-                    },
-                    children: cell.day
-                  }, void 0, false), isLogged && /*#__PURE__*/_jsxDEV("div", {
-                    className: "cal-dot"
-                  }, void 0, false)]
-                }, i, true);
-              })
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 12,
-              justifyContent: "center",
-              flexWrap: "wrap",
-              background: "#fff",
-              borderRadius: 12,
-              border: "1.5px solid #e5e5ea",
-              padding: "8px 12px",
-              boxShadow: "0 1px 2px rgba(0,0,0,0.04)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                fontSize: 11
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  width: 10,
-                  height: 10,
-                  borderRadius: 3,
-                  background: "#5a8f6e"
-                }
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  color: "#000",
-                  fontWeight: 600
-                },
-                children: "Logged"
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                fontSize: 11
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  width: 10,
-                  height: 10,
-                  borderRadius: 3,
-                  background: "#ff3b30"
-                }
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  color: "#000",
-                  fontWeight: 600
-                },
-                children: "Missed"
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                fontSize: 11
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  width: 10,
-                  height: 10,
-                  borderRadius: 3,
-                  border: "1.5px solid #00c2ff"
-                }
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  color: "#8e8e93",
-                  fontWeight: 600
-                },
-                children: "Training"
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                fontSize: 11
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  width: 10,
-                  height: 10,
-                  borderRadius: 3,
-                  background: "#8a63d2"
-                }
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  color: "#8e8e93",
-                  fontWeight: 600
-                },
-                children: "Cardio"
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                fontSize: 11
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  width: 10,
-                  height: 10,
-                  borderRadius: 3,
-                  background: "#000"
-                }
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  color: "#8e8e93",
-                  fontWeight: 600
-                },
-                children: "Today"
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true), calSelected && /*#__PURE__*/_jsxDEV("div", {
-            className: "cal-detail",
-            children: [selectedEntry ? /*#__PURE__*/_jsxDEV(_Fragment, {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                className: "cal-detail-date",
-                children: new Date(selectedEntry.id).toLocaleDateString("en-US", {
-                  weekday: "long",
-                  month: "long",
-                  day: "numeric"
-                })
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                className: "cal-detail-name",
-                children: selectedEntry.type
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  gap: 16,
-                  margin: "8px 0"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  className: "stat",
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "stat-val",
-                    children: selectedEntry.exercises.length
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    className: "stat-key",
-                    children: "exercises"
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  className: "stat",
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "stat-val",
-                    children: selectedEntry.exercises.reduce((n, e) => n + e.sets.length, 0)
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    className: "stat-key",
-                    children: "sets"
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  className: "stat",
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "stat-val",
-                    children: Math.round(selectedEntry.volume).toLocaleString()
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    className: "stat-key",
-                    children: "lb volume"
-                  }, void 0, false)]
-                }, void 0, true)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                className: "cal-detail-exlist",
-                children: selectedEntry.exercises.map(e => e.name).join(" . ")
-              }, void 0, false), selectedEntry.note && /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  marginTop: 10,
-                  padding: "10px 12px",
-                  background: "rgba(0,194,255,0.06)",
-                  border: "1px solid rgba(0,194,255,0.2)",
-                  borderRadius: 10
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 9,
-                    fontWeight: 700,
-                    color: "#00c2ff",
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase",
-                    marginBottom: 4
-                  },
-                  children: "Session Note"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 12,
-                    color: "#000",
-                    lineHeight: 1.5,
-                    fontStyle: "italic"
-                  },
-                  children: ["\"", selectedEntry.note, "\""]
-                }, void 0, true)]
-              }, void 0, true)]
-            }, void 0, true) : /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 13,
-                color: "#8e8e93",
-                textAlign: "center",
-                padding: "8px 0"
-              },
-              children: scheduleDays.includes(new Date(...calSelected.split("-").map(Number)).getDay()) ? "📅 Training day -- no workout logged yet" : "🟢 Recovery day -- full rest, no weight training"
-            }, void 0, false), cardioDays.includes(new Date(...calSelected.split("-").map(Number)).getDay()) && /*#__PURE__*/_jsxDEV("button", {
-              onClick: () => setCardioLog(prev => ({
-                ...prev,
-                [calSelected]: !prev[calSelected]
-              })),
-              style: {
-                marginTop: 12,
-                width: "100%",
-                padding: "10px",
-                borderRadius: 10,
-                border: `1.5px solid ${cardioLog[calSelected] ? "#8a63d2" : "#e5e5ea"}`,
-                background: cardioLog[calSelected] ? "#f1ecfb" : "#fff",
-                color: cardioLog[calSelected] ? "#8a63d2" : "#8e8e93",
-                fontSize: 13,
-                fontWeight: 700,
-                cursor: "pointer",
-                fontFamily: "Inter,sans-serif",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 8,
-                transition: "all 0.15s"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  width: 8,
-                  height: 8,
-                  borderRadius: "50%",
-                  background: cardioLog[calSelected] ? "#8a63d2" : "#c7c7cc"
-                }
-              }, void 0, false), cardioLog[calSelected] ? "Cardio completed check" : "Mark cardio done"]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              onClick: () => setScheduleOpen(!scheduleOpen),
-              style: {
-                padding: "12px 16px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                cursor: "pointer"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  flex: 1
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 13,
-                    fontWeight: 700,
-                    color: "#000"
-                  },
-                  children: "Schedule"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    color: "#8e8e93",
-                    marginTop: 2
-                  },
-                  children: [scheduleDays.length, " training · ", cardioDays.length, " cardio days/week"]
-                }, void 0, true)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV(ChevronDown, {
-                size: 16,
-                strokeWidth: 2.5,
-                color: "#00c2ff",
-                style: {
-                  transform: scheduleOpen ? "rotate(180deg)" : "none",
-                  transition: "transform 0.2s"
-                }
-              }, void 0, false)]
-            }, void 0, true), scheduleOpen && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "0 16px 14px",
-                borderTop: "1px solid #F0F0F0"
-              },
-              onClick: e => e.stopPropagation(),
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  marginTop: 12
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  className: "section-label",
-                  style: {
-                    marginBottom: 6,
-                    marginTop: 0
-                  },
-                  children: "Training days"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  className: "schedule-grid",
-                  children: dayNames.map((name, i) => /*#__PURE__*/_jsxDEV("div", {
-                    className: `schedule-day-btn ${scheduleDays.includes(i) ? "on" : ""}`,
-                    onClick: e => {
-                      e.stopPropagation();
-                      setScheduleDays(prev => prev.includes(i) ? prev.filter(d => d !== i) : [...prev, i]);
-                    },
-                    children: /*#__PURE__*/_jsxDEV("div", {
-                      className: "schedule-day-label",
-                      children: name
-                    }, void 0, false)
-                  }, i, false))
-                }, void 0, false)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  marginTop: 12
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  className: "section-label",
-                  style: {
-                    marginBottom: 6,
-                    marginTop: 0
-                  },
-                  children: "Cardio days"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  className: "schedule-grid",
-                  children: dayNames.map((name, i) => /*#__PURE__*/_jsxDEV("div", {
-                    onClick: e => {
-                      e.stopPropagation();
-                      setCardioDays(prev => prev.includes(i) ? prev.filter(d => d !== i) : [...prev, i]);
-                    },
-                    style: {
-                      aspectRatio: "1",
-                      borderRadius: 10,
-                      border: cardioDays.includes(i) ? "2px solid #8a63d2" : "1.5px solid #e5e5ea",
-                      background: cardioDays.includes(i) ? "#f1ecfb" : "#fff",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
-                      transition: "all 0.15s",
-                      gap: 2
-                    },
-                    children: /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 10,
-                        fontWeight: 700,
-                        color: cardioDays.includes(i) ? "#8a63d2" : "#8e8e93",
-                        letterSpacing: "0.04em"
-                      },
-                      children: name
-                    }, void 0, false)
-                  }, i, false))
-                }, void 0, false)]
-              }, void 0, true)]
-            }, void 0, true)]
-          }, void 0, true), activePlan && (() => {
-            const plan = PLAN_TEMPLATES.find(p => p.id === activePlan.planId);
-            if (!plan) return null;
-            return /*#__PURE__*/_jsxDEV(_Fragment, {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  padding: "4px 4px 0",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    fontWeight: 700,
-                    color: "#8e8e93",
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase"
-                  },
-                  children: "Schedule from"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 12,
-                    fontWeight: 800,
-                    color: "#00c2ff"
-                  },
-                  children: plan.name
-                }, void 0, false)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV(PlanScheduleView, {
-                plan: plan,
-                activePlan: activePlan,
-                scheduleDays: scheduleDays,
-                cardioDays: cardioDays,
-                history: history
-              }, void 0, false)]
-            }, void 0, true);
-          })()]
-        }, void 0, true);
-      })(), tab === "history" && /*#__PURE__*/_jsxDEV(_Fragment, {
-        children: history.length === 0 ? /*#__PURE__*/_jsxDEV("div", {
-          className: "empty-state",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "empty-icon",
-            children: /*#__PURE__*/_jsxDEV(ClipboardList, {
-              size: 36,
-              strokeWidth: 1.5,
-              color: "#c7c7cc"
-            }, void 0, false)
-          }, void 0, false), "Finish your first workout", /*#__PURE__*/_jsxDEV("br", {}, void 0, false), "and it'll appear here."]
-        }, void 0, true) : /*#__PURE__*/_jsxDEV(_Fragment, {
-          children: [/*#__PURE__*/_jsxDEV(WeeklyStats, {
-            history: history
-          }, void 0, false), /*#__PURE__*/_jsxDEV(PRsPanel, {
-            history: history,
-            onOpenChart: setProgressChartExId
-          }, void 0, false), /*#__PURE__*/_jsxDEV(MuscleIntelligence, {
-            history: history
-          }, void 0, false), (() => {
-            // Group by month-year
-            const grouped = {};
-            [...history].reverse().forEach(entry => {
-              // Parse the date -- entry.date is a display string like "Wed, Jul 15"
-              // Better: use entry.id timestamp or entry.dateISO if available
-              let d;
-              if (entry.dateISO) d = new Date(entry.dateISO);else if (typeof entry.id === "number") d = new Date(entry.id);else d = new Date(entry.date + ", " + new Date().getFullYear());
-              const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-              const label = d.toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric"
-              });
-              if (!grouped[key]) grouped[key] = {
-                label,
-                entries: [],
-                sortKey: key
-              };
-              grouped[key].entries.push(entry);
-            });
-            const groups = Object.values(grouped).sort((a, b) => b.sortKey.localeCompare(a.sortKey));
-            return groups.map(g => {
-              const isOpen = historyMonthOpen[g.sortKey] === true; // default closed
-              return /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  marginBottom: 16
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  onClick: () => setHistoryMonthOpen(p => ({
-                    ...p,
-                    [g.sortKey]: !isOpen
-                  })),
-                  style: {
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    cursor: "pointer",
-                    padding: "10px 14px",
-                    background: "#fff",
-                    borderRadius: 12,
-                    border: "1.5px solid #e5e5ea",
-                    marginBottom: isOpen ? 8 : 0,
-                    boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 10
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 15,
-                        fontWeight: 800,
-                        color: "#000"
-                      },
-                      children: g.label
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 11,
-                        fontWeight: 600,
-                        color: "#8e8e93",
-                        padding: "2px 8px",
-                        background: "#F0F0F0",
-                        borderRadius: 10
-                      },
-                      children: [g.entries.length, " workout", g.entries.length !== 1 ? "s" : ""]
-                    }, void 0, true)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV(ChevronDown, {
-                    size: 16,
-                    strokeWidth: 2.5,
-                    color: "#00c2ff",
-                    style: {
-                      transform: isOpen ? "rotate(180deg)" : "none",
-                      transition: "transform 0.2s"
-                    }
-                  }, void 0, false)]
-                }, void 0, true), isOpen && g.entries.map(entry => /*#__PURE__*/_jsxDEV("div", {
-                  className: "history-card",
-                  "data-history-id": entry.id,
-                  style: highlightHistoryId === entry.id ? {
-                    border: "2px solid #00c2ff",
-                    boxShadow: "0 0 0 4px rgba(0,194,255,0.15), 0 0 20px rgba(0,194,255,0.3)",
-                    transition: "box-shadow 0.4s"
-                  } : {
-                    transition: "box-shadow 0.4s"
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "history-top",
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "history-type",
-                        children: entry.type
-                      }, void 0, false), entry.timeOfDay && /*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          fontSize: 11,
-                          color: "#8e8e93",
-                          marginTop: 2,
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 4
-                        },
-                        children: [/*#__PURE__*/_jsxDEV("span", {
-                          style: {
-                            background: "#F0F0F0",
-                            borderRadius: 5,
-                            padding: "1px 6px",
-                            fontWeight: 600
-                          },
-                          children: entry.timeLabel
-                        }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                          children: entry.timeOfDay
-                        }, void 0, false)]
-                      }, void 0, true)]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      className: "history-date",
-                      children: entry.date
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    className: "history-stats",
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "stat",
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "stat-val",
-                        children: entry.exercises.length
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "stat-key",
-                        children: "exercises"
-                      }, void 0, false)]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      className: "stat",
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "stat-val",
-                        children: entry.exercises.reduce((n, e) => n + e.sets.length, 0)
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "stat-key",
-                        children: "total sets"
-                      }, void 0, false)]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      className: "stat",
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "stat-val",
-                        children: Math.round(entry.volume).toLocaleString()
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "stat-key",
-                        children: "lbs moved"
-                      }, void 0, false)]
-                    }, void 0, true), entry.duration && /*#__PURE__*/_jsxDEV("div", {
-                      className: "stat",
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "stat-val",
-                        children: fmtDuration(entry.duration)
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "stat-key",
-                        children: "duration"
-                      }, void 0, false)]
-                    }, void 0, true)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    className: "history-exlist",
-                    children: entry.exercises.map(e => e.name).join(" . ")
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      marginTop: 8,
-                      padding: "8px 10px",
-                      background: entry.note ? "rgba(0,194,255,0.05)" : "transparent",
-                      borderRadius: 8,
-                      border: entry.note ? "1px solid rgba(0,194,255,0.15)" : "1px dashed #e5e5ea"
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 9,
-                        fontWeight: 700,
-                        color: "#8e8e93",
-                        letterSpacing: "0.05em",
-                        textTransform: "uppercase",
-                        marginBottom: 4
-                      },
-                      children: "Session Note"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("textarea", {
-                      value: entry.note || "",
-                      onChange: e => {
-                        const newNote = e.target.value;
-                        setHistory(p => p.map(h => h.id === entry.id ? {
-                          ...h,
-                          note: newNote.trim() || null
-                        } : h));
-                      },
-                      placeholder: "Add a note about how this session felt...",
-                      rows: entry.note ? Math.min(3, Math.ceil(entry.note.length / 50)) : 1,
-                      style: {
-                        width: "100%",
-                        border: "none",
-                        background: "transparent",
-                        fontSize: 12,
-                        fontFamily: "Inter,sans-serif",
-                        resize: "none",
-                        outline: "none",
-                        color: "#000",
-                        padding: 0,
-                        fontStyle: entry.note ? "normal" : "italic",
-                        boxSizing: "border-box"
-                      }
-                    }, void 0, false)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      borderTop: "1px solid #F0F0F0",
-                      paddingTop: 10,
-                      marginTop: 10,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-end"
-                    },
-                    children: /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        display: "flex",
-                        gap: 8,
-                        alignItems: "center"
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("button", {
-                        onClick: () => setHistory(p => p.filter(h => h.id !== entry.id)),
-                        style: {
-                          fontSize: 11,
-                          color: "#ff3b30",
-                          background: "none",
-                          border: "none",
-                          cursor: "pointer",
-                          fontFamily: "Inter,sans-serif",
-                          fontWeight: 600
-                        },
-                        children: "Delete"
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                        className: "export-btn-sm",
-                        onClick: () => showToast("^ Sent to Google Health"),
-                        children: "Export"
-                      }, void 0, false)]
-                    }, void 0, true)
-                  }, void 0, false)]
-                }, entry.id, true))]
-              }, g.sortKey, true);
-            });
-          })()]
-        }, void 0, true)
-      }, void 0, false), tab === "gym" && /*#__PURE__*/_jsxDEV(_Fragment, {
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          className: "section-label",
-          children: "Exercise Library"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          onClick: () => setLibraryOpen(true),
-          style: {
-            background: "#fff",
-            borderRadius: 14,
-            border: "1.5px solid #00c2ff",
-            padding: "14px 16px",
-            cursor: "pointer",
-            boxShadow: "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 12,
-            marginBottom: 20
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1,
-              minWidth: 0
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 14,
-                fontWeight: 700,
-                color: "#000"
-              },
-              children: "Browse all exercises"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93",
-                marginTop: 2
-              },
-              children: [EXERCISE_DB.length, " exercises · muscle heads · equipment · variations"]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV(ChevronDown, {
-            size: 16,
-            strokeWidth: 2.5,
-            color: "#00c2ff",
-            style: {
-              transform: "rotate(-90deg)"
-            }
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "section-label",
-            children: "My Preferences"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              border: "1.5px solid #e5e5ea",
-              padding: "12px 16px",
-              marginBottom: 10,
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                fontWeight: 700,
-                color: "#8e8e93",
-                marginBottom: 10
-              },
-              children: "BODY & EQUIPMENT"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginBottom: 10
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: "#000"
-                  },
-                  children: "Body Weight"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    color: "#8e8e93"
-                  },
-                  children: "Used for pull-up volume tracking"
-                }, void 0, false)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6
-                },
-                children: [/*#__PURE__*/_jsxDEV("input", {
-                  type: "number",
-                  value: bodyWeight,
-                  onChange: e => setBodyWeight(parseFloat(e.target.value) || 0),
-                  style: {
-                    width: 64,
-                    padding: "6px 8px",
-                    borderRadius: 8,
-                    border: "1.5px solid #e5e5ea",
-                    fontSize: 14,
-                    fontFamily: "DM Mono,monospace",
-                    fontWeight: 700,
-                    textAlign: "center",
-                    outline: "none"
-                  }
-                }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                  style: {
-                    fontSize: 11,
-                    color: "#8e8e93"
-                  },
-                  children: "lb"
-                }, void 0, false)]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: "#000"
-                  },
-                  children: "Smith Machine Bar"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    color: "#8e8e93"
-                  },
-                  children: "Counterbalanced bars are typically 15-20 lbs"
-                }, void 0, false)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6
-                },
-                children: [/*#__PURE__*/_jsxDEV("input", {
-                  type: "number",
-                  value: smithBarWeight,
-                  onChange: e => setSmithBarWeight(parseFloat(e.target.value) || 0),
-                  style: {
-                    width: 64,
-                    padding: "6px 8px",
-                    borderRadius: 8,
-                    border: "1.5px solid #e5e5ea",
-                    fontSize: 14,
-                    fontFamily: "DM Mono,monospace",
-                    fontWeight: 700,
-                    textAlign: "center",
-                    outline: "none"
-                  }
-                }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                  style: {
-                    fontSize: 11,
-                    color: "#8e8e93"
-                  },
-                  children: "lb"
-                }, void 0, false)]
-              }, void 0, true)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              border: "1.5px solid #e5e5ea",
-              overflow: "hidden",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "10px 16px",
-                fontSize: 12,
-                color: "#8e8e93",
-                borderBottom: "1px solid #e5e5ea",
-                fontWeight: 600
-              },
-              children: "Set permanent exercise swaps -- these load automatically in every workout"
-            }, void 0, false), Object.entries(ALTERNATIVES).filter(([from]) => EXERCISES.find(e => e.id === from)).map(([from, to]) => {
-              const fromEx = EXERCISES.find(e => e.id === from);
-              const toEx = EXERCISES.find(e => e.id === to);
-              if (!fromEx || !toEx) return null;
-              const isPref = preferences[from] === to;
-              return /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "12px 16px",
-                  borderBottom: "1px solid #F0F0F0",
-                  gap: 12
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    flex: 1,
-                    minWidth: 0
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: "#000"
-                    },
-                    children: fromEx.name
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: "#8e8e93",
-                      marginTop: 2
-                    },
-                    children: ['->', " ", toEx.name]
-                  }, void 0, true)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-                  onClick: () => togglePref(from, to),
-                  style: {
-                    flexShrink: 0,
-                    padding: "6px 14px",
-                    borderRadius: 20,
-                    border: "none",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    fontFamily: "Inter,sans-serif",
-                    background: isPref ? "#00c2ff" : "#e5e5ea",
-                    color: isPref ? "#fff" : "#8e8e93",
-                    boxShadow: isPref ? "0 0 0 1.5px #00c2ff, 0 0 10px rgba(0,194,255,0.3)" : "none",
-                    transition: "all 0.15s"
-                  },
-                  children: isPref ? "Always use check" : "Always use"
-                }, void 0, false)]
-              }, from, true);
-            })]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "section-label",
-          children: "Your equipment -- tap type to edit"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "equip-list",
-          children: EQUIPMENT_LIST.map(e => /*#__PURE__*/_jsxDEV("div", {
-            className: "equip-row",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "equip-name",
-              children: e
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "equip-type-pill",
-              onClick: () => setEquipEditTarget(e),
-              children: [equipConfig[e] || "Tap to set", " ", '>']
-            }, void 0, true)]
-          }, e, true))
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "section-label",
-          children: ["Exercise library (", EXERCISES.length, " movements)"]
-        }, void 0, true), gymGroups.map(({
-          group,
-          exs
-        }) => /*#__PURE__*/_jsxDEV("div", {
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "ex-group-title",
-            children: [group, " ", /*#__PURE__*/_jsxDEV("span", {
-              style: {
-                color: "#8e8e93",
-                fontWeight: 400,
-                fontSize: 11
-              },
-              children: ["(", exs.length, ")"]
-            }, void 0, true)]
-          }, void 0, true), exs.map(ex => /*#__PURE__*/_jsxDEV("div", {
-            className: "ex-row",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                children: ex.name
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  color: "#00c2ff",
-                  marginTop: 2
-                },
-                children: ex.equipment
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              className: "ex-row-right",
-              children: /*#__PURE__*/_jsxDEV("div", {
-                className: "ex-row-muscle",
-                children: ex.primaryMuscle
-              }, void 0, false)
-            }, void 0, false)]
-          }, ex.id, true))]
-        }, group, true)), /*#__PURE__*/_jsxDEV("div", {
-          className: "section-label",
-          style: {
-            marginTop: 24
-          },
-          children: "Cable Attachment Preferences"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#fff",
-            borderRadius: 14,
-            border: "1.5px solid #e5e5ea",
-            padding: "14px 16px",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
-            marginBottom: 8
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#8e8e93",
-              lineHeight: 1.5,
-              marginBottom: 12
-            },
-            children: "Your preferred attachment per cable exercise. Set once in-session — saves here automatically. Tap any to change."
-          }, void 0, false), EXERCISE_DB.filter(e => e.equipment === "Cable Machine").map(ex => {
-            const att = getAttachment(ex.id);
-            const isDefault = !attachmentPrefs[ex.id];
-            return /*#__PURE__*/_jsxDEV("div", {
-              onClick: () => setAttachmentSheetExId(ex.id),
-              style: {
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "10px 0",
-                borderBottom: "1px solid #f5f5f5",
-                cursor: "pointer"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  minWidth: 0
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: "#000",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap"
-                  },
-                  children: ex.name
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    color: "#8e8e93"
-                  },
-                  children: ex.muscleHead
-                }, void 0, false)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6,
-                  flexShrink: 0,
-                  marginLeft: 8
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    fontWeight: 700,
-                    color: isDefault ? "#c7c7cc" : "#ff9f0a",
-                    padding: "2px 8px",
-                    background: isDefault ? "#f5f5f5" : "rgba(255,159,10,0.1)",
-                    borderRadius: 6
-                  },
-                  children: att?.name || "—"
-                }, void 0, false), /*#__PURE__*/_jsxDEV(ChevronDown, {
-                  size: 12,
-                  strokeWidth: 2.5,
-                  color: "#c7c7cc",
-                  style: {
-                    transform: "rotate(-90deg)"
-                  }
-                }, void 0, false)]
-              }, void 0, true)]
-            }, ex.id, true);
-          })]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "section-label",
-          style: {
-            marginTop: 24
-          },
-          children: "Backup & Restore"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#fff",
-            borderRadius: 14,
-            border: "1.5px solid #e5e5ea",
-            padding: "14px 16px",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#8e8e93",
-              lineHeight: 1.5,
-              marginBottom: 12
-            },
-            children: "Export all your data (history, workouts, preferences, equipment) to a JSON file. Save it anywhere -- Google Drive, email, etc. Import to restore."
-          }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => {
-              const LOCKED_KEYS = ["locked_history", "locked_schedule", "locked_cardio_days", "locked_cardio_log", "locked_recovery", "locked_saved_workouts", "locked_preferences", "locked_custom_exercises", "locked_exercise_notes", "locked_bodyweight", "locked_smith_bar", "locked_equip_config", "locked_calc_prefs", "locked_attachment_prefs", "locked_active_plan"];
-              const backup = {
-                app: "Locked",
-                version: "1.0",
-                exportedAt: new Date().toISOString(),
-                data: {}
-              };
-              LOCKED_KEYS.forEach(k => {
-                const raw = localStorage.getItem(k);
-                if (raw !== null) {
-                  try {
-                    backup.data[k] = JSON.parse(raw);
-                  } catch {
-                    backup.data[k] = raw;
-                  }
-                }
-              });
-              const blob = new Blob([JSON.stringify(backup, null, 2)], {
-                type: "application/json"
-              });
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement("a");
-              const ts = new Date().toISOString().slice(0, 10);
-              a.href = url;
-              a.download = `locked-backup-${ts}.json`;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-              showToast("Backup downloaded");
-            },
-            style: {
-              width: "100%",
-              padding: "12px",
-              background: "#000",
-              color: "#fff",
-              border: "none",
-              borderRadius: 10,
-              fontSize: 13,
-              fontWeight: 700,
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              boxShadow: "0 0 0 2px #00c2ff, 0 0 12px rgba(0,194,255,0.25)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 8,
-              marginBottom: 8
-            },
-            children: [/*#__PURE__*/_jsxDEV(Download, {
-              size: 15,
-              strokeWidth: 2.5,
-              color: "#00c2ff"
-            }, void 0, false), " Export backup (JSON)"]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("label", {
-            style: {
-              width: "100%",
-              padding: "12px",
-              background: "#fff",
-              color: "#000",
-              border: "1.5px solid #e5e5ea",
-              borderRadius: 10,
-              fontSize: 13,
-              fontWeight: 700,
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 8
-            },
-            children: [/*#__PURE__*/_jsxDEV(Upload, {
-              size: 15,
-              strokeWidth: 2.5,
-              color: "#000"
-            }, void 0, false), " Import backup", /*#__PURE__*/_jsxDEV("input", {
-              type: "file",
-              accept: ".json,application/json",
-              style: {
-                display: "none"
-              },
-              onChange: e => {
-                const file = e.target.files?.[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = ev => {
-                  try {
-                    const backup = JSON.parse(ev.target.result);
-                    if (!backup.data || typeof backup.data !== "object") {
-                      showToast("Invalid backup file");
-                      return;
-                    }
-                    const keys = Object.keys(backup.data);
-                    if (keys.length === 0) {
-                      showToast("Backup is empty");
-                      return;
-                    }
-                    if (!window.confirm(`Import will REPLACE all current data with ${keys.length} keys from the backup.\n\nExported: ${backup.exportedAt || "unknown date"}\n\nContinue?`)) return;
-                    keys.forEach(k => {
-                      localStorage.setItem(k, typeof backup.data[k] === "string" ? backup.data[k] : JSON.stringify(backup.data[k]));
-                    });
-                    showToast("Backup restored -- reloading app...");
-                    setTimeout(() => window.location.reload(), 1200);
-                  } catch (err) {
-                    showToast("Could not read file");
-                    console.error(err);
-                  }
-                };
-                reader.readAsText(file);
-                e.target.value = "";
-              }
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 10,
-              color: "#c7c7cc",
-              marginTop: 10,
-              textAlign: "center",
-              lineHeight: 1.4
-            },
-            children: "Import replaces all current data. Export first if you want to keep it."
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true)]
-    }, void 0, true), plansBrowseOpen && /*#__PURE__*/_jsxDEV("div", {
+      };
+      reader.readAsText(file);
+      e.target.value = "";
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#c7c7cc",
+      marginTop: 10,
+      textAlign: "center",
+      lineHeight: 1.4
+    }
+  }, "Import replaces all current data. Export first if you want to keep it.")))), plansBrowseOpen && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "#F0F0F0",
+      zIndex: 1900,
+      display: "flex",
+      flexDirection: "column",
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      padding: "14px 16px",
+      borderBottom: "1px solid #e5e5ea",
+      display: "flex",
+      alignItems: "center",
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setPlansBrowseOpen(false),
+    style: {
+      background: "none",
+      border: "none",
+      fontSize: 22,
+      color: "#00c2ff",
+      cursor: "pointer",
+      padding: 0,
+      fontWeight: 400,
+      lineHeight: 1
+    }
+  }, "‹"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 800,
+      color: "#000"
+    }
+  }, "Workout Plans"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93",
+      marginTop: 1
+    }
+  }, "Structured programs with progression built in"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      overflowY: "auto",
+      padding: "14px",
+      display: "flex",
+      flexDirection: "column",
+      gap: 12
+    }
+  }, PLAN_TEMPLATES.map(plan => /*#__PURE__*/React.createElement("div", {
+    key: plan.id,
+    onClick: () => setPlanDetailId(plan.id),
+    style: {
+      background: "#fff",
+      borderRadius: 16,
+      padding: "16px",
+      border: "1.5px solid #e5e5ea",
+      cursor: "pointer",
+      boxShadow: "0 1px 4px rgba(0,0,0,0.08)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "space-between",
+      gap: 12,
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 800,
+      color: "#000"
+    }
+  }, plan.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      marginTop: 2
+    }
+  }, plan.fullName)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: "#00c2ff",
+      padding: "3px 8px",
+      background: "rgba(0,194,255,0.1)",
+      borderRadius: 10,
+      whiteSpace: "nowrap",
+      flexShrink: 0
+    }
+  }, plan.goalLabel)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      marginBottom: 10,
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#000",
+      padding: "3px 8px",
+      background: "#F0F0F0",
+      borderRadius: 8
+    }
+  }, plan.duration, " weeks"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#000",
+      padding: "3px 8px",
+      background: "#F0F0F0",
+      borderRadius: 8
+    }
+  }, plan.daysPerWeek, " days/week"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#000",
+      padding: "3px 8px",
+      background: "#F0F0F0",
+      borderRadius: 8
+    }
+  }, plan.level)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      lineHeight: 1.5
+    }
+  }, plan.description), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#00c2ff",
+      fontWeight: 700,
+      marginTop: 10,
+      textAlign: "right"
+    }
+  }, "View details ›"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#c7c7cc",
+      textAlign: "center",
+      padding: "14px 0"
+    }
+  }, "More plans coming soon"))), planDetailId && (() => {
+    const plan = PLAN_TEMPLATES.find(p => p.id === planDetailId);
+    if (!plan) return null;
+    const canStart = !activePlan;
+    return /*#__PURE__*/React.createElement("div", {
       style: {
         position: "fixed",
         inset: 0,
         background: "#F0F0F0",
-        zIndex: 1900,
+        zIndex: 1950,
         display: "flex",
         flexDirection: "column",
         overflow: "hidden"
-      },
-      children: [/*#__PURE__*/_jsxDEV("div", {
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        padding: "14px 16px",
+        borderBottom: "1px solid #e5e5ea",
+        display: "flex",
+        alignItems: "center",
+        gap: 12
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => setPlanDetailId(null),
+      style: {
+        background: "none",
+        border: "none",
+        fontSize: 22,
+        color: "#00c2ff",
+        cursor: "pointer",
+        padding: 0,
+        fontWeight: 400,
+        lineHeight: 1
+      }
+    }, "‹"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 15,
+        fontWeight: 800,
+        color: "#000"
+      }
+    }, plan.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 1
+      }
+    }, plan.fullName))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        overflowY: "auto",
+        padding: "14px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        paddingBottom: 100
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 14,
+        padding: "14px 16px",
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        marginBottom: 10,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#fff",
+        padding: "4px 10px",
+        background: "#000",
+        borderRadius: 8
+      }
+    }, plan.goalLabel), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#000",
+        padding: "4px 10px",
+        background: "#F0F0F0",
+        borderRadius: 8
+      }
+    }, plan.duration, " weeks"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#000",
+        padding: "4px 10px",
+        background: "#F0F0F0",
+        borderRadius: 8
+      }
+    }, plan.daysPerWeek, " days/week"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#000",
+        padding: "4px 10px",
+        background: "#F0F0F0",
+        borderRadius: 8
+      }
+    }, plan.level)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "#000",
+        lineHeight: 1.55,
+        marginBottom: 8
+      }
+    }, plan.description), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        fontStyle: "italic"
+      }
+    }, "Created by ", plan.author, " · ", plan.levelDetail)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 14,
+        padding: "14px 16px",
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom: 8
+      }
+    }, "Key Principles"), plan.principles.map((p, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        gap: 8,
+        fontSize: 12,
+        color: "#000",
+        lineHeight: 1.5,
+        marginBottom: 5
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#00c2ff",
+        fontWeight: 700
+      }
+    }, "·"), /*#__PURE__*/React.createElement("span", null, p)))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 14,
+        padding: "14px 16px",
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom: 10
+      }
+    }, "Weekly Structure"), plan.days.map((day, di) => /*#__PURE__*/React.createElement("div", {
+      key: day.id,
+      style: {
+        padding: "10px 0",
+        borderTop: di > 0 ? "1px solid #F0F0F0" : "none"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, "Day ", di + 1, ": ", day.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: day.focus === "Strength" ? "#ff3b30" : "#00c2ff",
+        padding: "2px 8px",
+        background: day.focus === "Strength" ? "rgba(255,59,48,0.08)" : "rgba(0,194,255,0.08)",
+        borderRadius: 8
+      }
+    }, day.focus)), day.exercises.map((ex, ei) => {
+      const exData = EXERCISE_DB.find(e => e.id === ex.id);
+      if (!exData) return null;
+      return /*#__PURE__*/React.createElement("div", {
+        key: ei,
         style: {
-          background: "#fff",
-          padding: "14px 16px",
-          borderBottom: "1px solid #e5e5ea",
           display: "flex",
-          alignItems: "center",
-          gap: 12
-        },
-        children: [/*#__PURE__*/_jsxDEV("button", {
-          onClick: () => setPlansBrowseOpen(false),
-          style: {
-            background: "none",
-            border: "none",
-            fontSize: 22,
-            color: "#00c2ff",
-            cursor: "pointer",
-            padding: 0,
-            fontWeight: 400,
-            lineHeight: 1
-          },
-          children: "‹"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            flex: 1
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 15,
-              fontWeight: 800,
-              color: "#000"
-            },
-            children: "Workout Plans"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 11,
-              color: "#8e8e93",
-              marginTop: 1
-            },
-            children: "Structured programs with progression built in"
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
+          justifyContent: "space-between",
+          padding: "4px 0",
+          fontSize: 12
+        }
+      }, /*#__PURE__*/React.createElement("span", {
         style: {
-          flex: 1,
-          overflowY: "auto",
-          padding: "14px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 12
-        },
-        children: [PLAN_TEMPLATES.map(plan => /*#__PURE__*/_jsxDEV("div", {
-          onClick: () => setPlanDetailId(plan.id),
-          style: {
-            background: "#fff",
-            borderRadius: 16,
-            padding: "16px",
-            border: "1.5px solid #e5e5ea",
-            cursor: "pointer",
-            boxShadow: "0 1px 4px rgba(0,0,0,0.08)"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              alignItems: "flex-start",
-              justifyContent: "space-between",
-              gap: 12,
-              marginBottom: 8
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                flex: 1,
-                minWidth: 0
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 18,
-                  fontWeight: 800,
-                  color: "#000"
-                },
-                children: plan.name
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 12,
-                  color: "#8e8e93",
-                  marginTop: 2
-                },
-                children: plan.fullName
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 10,
-                fontWeight: 700,
-                color: "#00c2ff",
-                padding: "3px 8px",
-                background: "rgba(0,194,255,0.1)",
-                borderRadius: 10,
-                whiteSpace: "nowrap",
-                flexShrink: 0
-              },
-              children: plan.goalLabel
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 8,
-              marginBottom: 10,
-              flexWrap: "wrap"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#000",
-                padding: "3px 8px",
-                background: "#F0F0F0",
-                borderRadius: 8
-              },
-              children: [plan.duration, " weeks"]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#000",
-                padding: "3px 8px",
-                background: "#F0F0F0",
-                borderRadius: 8
-              },
-              children: [plan.daysPerWeek, " days/week"]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#000",
-                padding: "3px 8px",
-                background: "#F0F0F0",
-                borderRadius: 8
-              },
-              children: plan.level
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#8e8e93",
-              lineHeight: 1.5
-            },
-            children: plan.description
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 11,
-              color: "#00c2ff",
-              fontWeight: 700,
-              marginTop: 10,
-              textAlign: "right"
-            },
-            children: "View details ›"
-          }, void 0, false)]
-        }, plan.id, true)), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 10,
-            color: "#c7c7cc",
-            textAlign: "center",
-            padding: "14px 0"
-          },
-          children: "More plans coming soon"
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true), planDetailId && (() => {
-      const plan = PLAN_TEMPLATES.find(p => p.id === planDetailId);
-      if (!plan) return null;
-      const canStart = !activePlan;
-      return /*#__PURE__*/_jsxDEV("div", {
+          color: "#000"
+        }
+      }, ex.isMainLift && /*#__PURE__*/React.createElement("span", {
         style: {
-          position: "fixed",
-          inset: 0,
-          background: "#F0F0F0",
-          zIndex: 1950,
-          display: "flex",
-          flexDirection: "column",
-          overflow: "hidden"
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#fff",
-            padding: "14px 16px",
-            borderBottom: "1px solid #e5e5ea",
-            display: "flex",
-            alignItems: "center",
-            gap: 12
-          },
-          children: [/*#__PURE__*/_jsxDEV("button", {
-            onClick: () => setPlanDetailId(null),
-            style: {
-              background: "none",
-              border: "none",
-              fontSize: 22,
-              color: "#00c2ff",
-              cursor: "pointer",
-              padding: 0,
-              fontWeight: 400,
-              lineHeight: 1
-            },
-            children: "‹"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 15,
-                fontWeight: 800,
-                color: "#000"
-              },
-              children: plan.name
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93",
-                marginTop: 1
-              },
-              children: plan.fullName
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            flex: 1,
-            overflowY: "auto",
-            padding: "14px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-            paddingBottom: 100
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              padding: "14px 16px",
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                gap: 8,
-                marginBottom: 10,
-                flexWrap: "wrap"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#fff",
-                  padding: "4px 10px",
-                  background: "#000",
-                  borderRadius: 8
-                },
-                children: plan.goalLabel
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#000",
-                  padding: "4px 10px",
-                  background: "#F0F0F0",
-                  borderRadius: 8
-                },
-                children: [plan.duration, " weeks"]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#000",
-                  padding: "4px 10px",
-                  background: "#F0F0F0",
-                  borderRadius: 8
-                },
-                children: [plan.daysPerWeek, " days/week"]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#000",
-                  padding: "4px 10px",
-                  background: "#F0F0F0",
-                  borderRadius: 8
-                },
-                children: plan.level
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 13,
-                color: "#000",
-                lineHeight: 1.55,
-                marginBottom: 8
-              },
-              children: plan.description
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93",
-                fontStyle: "italic"
-              },
-              children: ["Created by ", plan.author, " · ", plan.levelDetail]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              padding: "14px 16px",
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#8e8e93",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: 8
-              },
-              children: "Key Principles"
-            }, void 0, false), plan.principles.map((p, i) => /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                gap: 8,
-                fontSize: 12,
-                color: "#000",
-                lineHeight: 1.5,
-                marginBottom: 5
-              },
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  color: "#00c2ff",
-                  fontWeight: 700
-                },
-                children: "·"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                children: p
-              }, void 0, false)]
-            }, i, true))]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              padding: "14px 16px",
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#8e8e93",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: 10
-              },
-              children: "Weekly Structure"
-            }, void 0, false), plan.days.map((day, di) => /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "10px 0",
-                borderTop: di > 0 ? "1px solid #F0F0F0" : "none"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  marginBottom: 6
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 13,
-                    fontWeight: 700,
-                    color: "#000"
-                  },
-                  children: ["Day ", di + 1, ": ", day.name]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 10,
-                    fontWeight: 700,
-                    color: day.focus === "Strength" ? "#ff3b30" : "#00c2ff",
-                    padding: "2px 8px",
-                    background: day.focus === "Strength" ? "rgba(255,59,48,0.08)" : "rgba(0,194,255,0.08)",
-                    borderRadius: 8
-                  },
-                  children: day.focus
-                }, void 0, false)]
-              }, void 0, true), day.exercises.map((ex, ei) => {
-                const exData = EXERCISE_DB.find(e => e.id === ex.id);
-                if (!exData) return null;
-                return /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    display: "flex",
-                    justifyContent: "space-between",
-                    padding: "4px 0",
-                    fontSize: 12
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("span", {
-                    style: {
-                      color: "#000"
-                    },
-                    children: [ex.isMainLift && /*#__PURE__*/_jsxDEV("span", {
-                      style: {
-                        color: "#00c2ff",
-                        marginRight: 4,
-                        fontWeight: 700
-                      },
-                      children: "★"
-                    }, void 0, false), exData.name]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV("span", {
-                    style: {
-                      color: "#8e8e93",
-                      fontFamily: "DM Mono,monospace",
-                      fontWeight: 700
-                    },
-                    children: [ex.sets, " × ", ex.repsLow, "-", ex.repsHigh]
-                  }, void 0, true)]
-                }, ei, true);
-              })]
-            }, day.id, true)), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 10,
-                color: "#8e8e93",
-                marginTop: 10,
-                paddingTop: 10,
-                borderTop: "1px solid #F0F0F0"
-              },
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  color: "#00c2ff",
-                  fontWeight: 700
-                },
-                children: "★"
-              }, void 0, false), " = main lift (locked). Others swappable."]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV(PlanScheduleView, {
-            plan: plan,
-            activePlan: activePlan && activePlan.planId === plan.id ? activePlan : null,
-            scheduleDays: scheduleDays,
-            cardioDays: cardioDays,
-            history: history
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              padding: "14px 16px",
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#8e8e93",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: 6
-              },
-              children: "Progression"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 13,
-                fontWeight: 700,
-                color: "#000",
-                marginBottom: 6
-              },
-              children: plan.progression.summary
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#000",
-                lineHeight: 1.5
-              },
-              children: plan.progression.detail
-            }, void 0, false), plan.deload && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                marginTop: 10,
-                padding: "10px 12px",
-                background: "#f9f9f9",
-                borderRadius: 8,
-                fontSize: 11,
-                color: "#8e8e93",
-                lineHeight: 1.4
-              },
-              children: [/*#__PURE__*/_jsxDEV("strong", {
-                style: {
-                  color: "#000"
-                },
-                children: "Deload:"
-              }, void 0, false), " ", plan.deload.note]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              background: "#fff",
-              borderRadius: 14,
-              padding: "14px 16px",
-              border: "1.5px solid #e5e5ea",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#8e8e93",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: 8
-              },
-              children: "Sources"
-            }, void 0, false), plan.sources.map((s, i) => /*#__PURE__*/_jsxDEV("a", {
-              href: s.url,
-              target: "_blank",
-              rel: "noopener noreferrer",
-              style: {
-                display: "block",
-                fontSize: 12,
-                color: "#00c2ff",
-                padding: "4px 0",
-                textDecoration: "none"
-              },
-              children: ["→ ", s.label]
-            }, i, true))]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#fff",
-            padding: "12px 16px",
-            borderTop: "1px solid #e5e5ea",
-            boxShadow: "0 -4px 12px rgba(0,0,0,0.05)"
-          },
-          children: canStart ? /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => startPlan(plan.id),
-            style: {
-              width: "100%",
-              padding: "14px",
-              background: "#000",
-              color: "#fff",
-              border: "none",
-              borderRadius: 12,
-              fontSize: 14,
-              fontWeight: 800,
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)",
-              letterSpacing: "0.02em"
-            },
-            children: "Start This Plan"
-          }, void 0, false) : /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#8e8e93",
-              textAlign: "center",
-              padding: "8px"
-            },
-            children: "You already have an active plan. End it from the Active Plan card on your dashboard to start a new one."
-          }, void 0, false)
-        }, void 0, false)]
-      }, void 0, true);
-    })(), progressChartExId && /*#__PURE__*/_jsxDEV(ProgressChartModal, {
-      exerciseId: progressChartExId,
-      history: history,
-      onClose: () => setProgressChartExId(null)
-    }, void 0, false), supersetPickerExId && (() => {
-      const currentEx = exercises.find(x => x.id === supersetPickerExId);
-      const candidates = exercises.filter(x => x.id !== supersetPickerExId && !x.supersetGroup);
-      return /*#__PURE__*/_jsxDEV("div", {
+          color: "#00c2ff",
+          marginRight: 4,
+          fontWeight: 700
+        }
+      }, "★"), exData.name), /*#__PURE__*/React.createElement("span", {
         style: {
-          position: "fixed",
-          inset: 0,
-          background: "rgba(0,0,0,0.5)",
-          zIndex: 2000,
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center"
-        },
-        onClick: () => setSupersetPickerExId(null),
-        children: /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#fff",
-            width: "100%",
-            maxWidth: 700,
-            borderRadius: "20px 20px 0 0",
-            padding: "18px 16px 24px",
-            maxHeight: "70vh",
-            overflowY: "auto"
-          },
-          onClick: e => e.stopPropagation(),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              width: 36,
-              height: 4,
-              background: "#e5e5ea",
-              borderRadius: 2,
-              margin: "0 auto 14px"
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 15,
-              fontWeight: 700,
-              color: "#000",
-              marginBottom: 4
-            },
-            children: ["Link \"", currentEx?.name, "\" with..."]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 11,
-              color: "#8e8e93",
-              marginBottom: 14
-            },
-            children: "Both exercises will be grouped as a superset. Do each set of both back-to-back with minimal rest between."
-          }, void 0, false), candidates.length === 0 ? /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              padding: "20px",
-              textAlign: "center",
-              fontSize: 13,
-              color: "#8e8e93"
-            },
-            children: "No other unlinked exercises in this workout. Add another exercise first."
-          }, void 0, false) : /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              flexDirection: "column",
-              gap: 6
-            },
-            children: candidates.map(cand => /*#__PURE__*/_jsxDEV("div", {
-              onClick: () => {
-                // Find next available group letter
-                const usedGroups = new Set(exercises.map(x => x.supersetGroup).filter(Boolean));
-                let groupLetter = "A";
-                while (usedGroups.has(groupLetter)) {
-                  groupLetter = String.fromCharCode(groupLetter.charCodeAt(0) + 1);
-                }
-                setExercises(p => p.map(x => {
-                  if (x.id === supersetPickerExId) return {
-                    ...x,
-                    supersetGroup: groupLetter,
-                    supersetPosition: 1
-                  };
-                  if (x.id === cand.id) return {
-                    ...x,
-                    supersetGroup: groupLetter,
-                    supersetPosition: 2
-                  };
-                  return x;
-                }));
-                showToast(`Superset ${groupLetter} created`);
-                setSupersetPickerExId(null);
-              },
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                padding: "12px 14px",
-                background: "#fafafa",
-                borderRadius: 10,
-                cursor: "pointer",
-                border: "1px solid #f0f0f0"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  flex: 1,
-                  minWidth: 0
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 13,
-                    fontWeight: 700,
-                    color: "#000"
-                  },
-                  children: cand.name
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    color: "#8e8e93",
-                    marginTop: 1
-                  },
-                  children: cand.muscleHead || cand.muscle
-                }, void 0, false)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV(Link, {
-                size: 14,
-                strokeWidth: 2.5,
-                color: "#00c2ff"
-              }, void 0, false)]
-            }, cand.id, true))
-          }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => setSupersetPickerExId(null),
-            style: {
-              width: "100%",
-              padding: "10px",
-              background: "#F0F0F0",
-              color: "#8e8e93",
-              border: "none",
-              borderRadius: 10,
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              marginTop: 12
-            },
-            children: "Cancel"
-          }, void 0, false)]
-        }, void 0, true)
-      }, void 0, false);
-    })(), attachmentSheetExId && (() => {
-      const ex = exercises.find(e => e.id === attachmentSheetExId);
-      if (!ex) return null;
-      const baseId = (ex.baseId || ex.id).split("-v")[0];
-      const currentAtt = getAttachment(baseId);
-      const isDefault = !attachmentPrefs[baseId];
-      const categories = [...new Set(CABLE_ATTACHMENTS.map(a => a.category))];
-      return /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          position: "fixed",
-          inset: 0,
-          background: "rgba(0,0,0,0.5)",
-          zIndex: 250,
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center"
-        },
-        onClick: () => setAttachmentSheetExId(null),
-        children: /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#F0F0F0",
-            borderRadius: "24px 24px 0 0",
-            width: "100%",
-            maxWidth: 700,
-            maxHeight: "88vh",
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden"
-          },
-          onClick: e => e.stopPropagation(),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              width: 40,
-              height: 5,
-              background: "#c7c7cc",
-              borderRadius: 3,
-              margin: "12px auto 8px",
-              flexShrink: 0
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              padding: "8px 20px 12px",
-              borderBottom: "1px solid #e5e5ea",
-              flexShrink: 0
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 18,
-                fontWeight: 800,
-                color: "#000"
-              },
-              children: "Attachment"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#8e8e93",
-                marginTop: 2
-              },
-              children: [ex.name, " · your preference saves permanently"]
-            }, void 0, true), currentAtt && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                marginTop: 6,
-                display: "flex",
-                alignItems: "center",
-                gap: 6
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#ff9f0a",
-                  padding: "2px 8px",
-                  background: "rgba(255,159,10,0.12)",
-                  borderRadius: 6
-                },
-                children: [isDefault ? "App default" : "Your preference", ": ", currentAtt.name]
-              }, void 0, true), !isDefault && /*#__PURE__*/_jsxDEV("button", {
-                onClick: () => {
-                  setAttachmentPrefs(p => {
-                    const n = {
-                      ...p
-                    };
-                    delete n[baseId];
-                    return n;
-                  });
-                  showToast("Reset to default");
-                },
-                style: {
-                  fontSize: 10,
-                  color: "#8e8e93",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  fontFamily: "Inter,sans-serif",
-                  fontWeight: 600
-                },
-                children: "Reset"
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1,
-              overflowY: "auto",
-              padding: "8px 14px 32px"
-            },
-            children: categories.map(cat => {
-              const atts = CABLE_ATTACHMENTS.filter(a => a.category === cat);
-              return /*#__PURE__*/_jsxDEV("div", {
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 10,
-                    fontWeight: 700,
-                    color: "#c7c7cc",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.08em",
-                    padding: "10px 4px 4px"
-                  },
-                  children: cat
-                }, void 0, false), atts.map(att => {
-                  const selected = currentAtt?.id === att.id;
-                  return /*#__PURE__*/_jsxDEV("div", {
-                    onClick: () => {
-                      setAttachmentPref(baseId, att.id);
-                      setAttachmentSheetExId(null);
-                      showToast(`check ${ex.name} → ${att.name}`);
-                    },
-                    style: {
-                      background: "#fff",
-                      borderRadius: 12,
-                      padding: "12px 14px",
-                      marginBottom: 6,
-                      border: selected ? "2px solid #ff9f0a" : "1.5px solid #e5e5ea",
-                      boxShadow: selected ? "0 0 0 1px #ff9f0a, 0 0 12px rgba(255,159,10,0.15)" : "0 1px 3px rgba(0,0,0,0.06)",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 12
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        flex: 1,
-                        minWidth: 0
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          fontSize: 14,
-                          fontWeight: 700,
-                          color: "#000"
-                        },
-                        children: att.name
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          fontSize: 11,
-                          color: "#8e8e93",
-                          marginTop: 2
-                        },
-                        children: att.note
-                      }, void 0, false)]
-                    }, void 0, true), selected && /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 11,
-                        color: "#ff9f0a",
-                        fontWeight: 700,
-                        padding: "2px 8px",
-                        background: "rgba(255,159,10,0.1)",
-                        borderRadius: 6,
-                        flexShrink: 0
-                      },
-                      children: "✓ Active"
-                    }, void 0, false)]
-                  }, att.id, true);
-                })]
-              }, cat, true);
-            })
-          }, void 0, false)]
-        }, void 0, true)
-      }, void 0, false);
-    })(), bwSheetTarget && (() => {
-      const ex = exercises.find(e => e.id === bwSheetTarget.exId);
-      const total = bodyWeight + bwAdded;
-      const addOptions = [0, 10, 25, 35, 45, 55, 65];
-      return /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          position: "fixed",
-          inset: 0,
-          background: "rgba(0,0,0,0.5)",
-          zIndex: 150,
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center"
-        },
-        onClick: () => setBwSheetTarget(null),
-        children: /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#F0F0F0",
-            borderRadius: "24px 24px 0 0",
-            width: "100%",
-            maxWidth: 700,
-            padding: "0 0 32px"
-          },
-          onClick: e => e.stopPropagation(),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              width: 40,
-              height: 5,
-              background: "#c7c7cc",
-              borderRadius: 3,
-              margin: "12px auto 16px"
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              padding: "0 20px 16px",
-              borderBottom: "1px solid #e5e5ea"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 18,
-                fontWeight: 800,
-                color: "#000"
-              },
-              children: "Bodyweight"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#8e8e93",
-                marginTop: 2
-              },
-              children: ex?.name
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              padding: "16px 20px"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginBottom: 16
-              },
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  fontSize: 14,
-                  fontWeight: 600,
-                  color: "#000"
-                },
-                children: "Your body weight"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8
-                },
-                children: [/*#__PURE__*/_jsxDEV("input", {
-                  type: "number",
-                  value: bodyWeight,
-                  onChange: e => setBodyWeight(parseFloat(e.target.value) || 0),
-                  style: {
-                    width: 72,
-                    padding: "6px 10px",
-                    borderRadius: 8,
-                    border: "1.5px solid #e5e5ea",
-                    fontSize: 16,
-                    fontFamily: "DM Mono,monospace",
-                    fontWeight: 700,
-                    textAlign: "center",
-                    outline: "none",
-                    background: "#fff"
-                  }
-                }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                  style: {
-                    fontSize: 13,
-                    color: "#8e8e93"
-                  },
-                  children: "lb"
-                }, void 0, false)]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                marginBottom: 16
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                  marginBottom: 8
-                },
-                children: "Added weight (vest / belt / dumbbell)"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  display: "flex",
-                  gap: 8,
-                  flexWrap: "wrap"
-                },
-                children: addOptions.map(w => /*#__PURE__*/_jsxDEV("button", {
-                  onClick: () => setBwAdded(w),
-                  style: {
-                    padding: "8px 14px",
-                    borderRadius: 10,
-                    border: "none",
-                    background: bwAdded === w ? "#000" : "#fff",
-                    color: bwAdded === w ? "#00c2ff" : "#000",
-                    fontSize: 14,
-                    fontWeight: 700,
-                    fontFamily: "DM Mono,monospace",
-                    boxShadow: bwAdded === w ? "0 0 0 1.5px #00c2ff" : "0 1px 3px rgba(0,0,0,0.08)",
-                    cursor: "pointer"
-                  },
-                  children: w === 0 ? "None" : `+${w}`
-                }, w, false))
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                background: "#fff",
-                borderRadius: 14,
-                padding: "14px 16px",
-                marginBottom: 16,
-                border: "1.5px solid #e5e5ea",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
-              },
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  fontSize: 14,
-                  fontWeight: 600,
-                  color: "#8e8e93"
-                },
-                children: "Total logged"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                style: {
-                  fontSize: 28,
-                  fontWeight: 800,
-                  fontFamily: "DM Mono,monospace",
-                  color: "#000"
-                },
-                children: [total, /*#__PURE__*/_jsxDEV("span", {
-                  style: {
-                    fontSize: 14,
-                    color: "#8e8e93",
-                    marginLeft: 4
-                  },
-                  children: "lb"
-                }, void 0, false)]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-              onClick: () => {
-                const {
-                  exId,
-                  setIdx
-                } = bwSheetTarget;
-                setExercises(p => p.map(x => x.id !== exId ? x : {
-                  ...x,
-                  sets: x.sets.map((s, i) => i !== setIdx ? s : {
-                    ...s,
-                    weight: String(total)
-                  })
-                }));
-                setBwSheetTarget(null);
-                showToast(`Logged ${total}lb`);
-              },
-              style: {
-                width: "100%",
-                padding: "16px",
-                background: "#000",
-                color: "#fff",
-                border: "none",
-                borderRadius: 16,
-                fontSize: 17,
-                fontWeight: 700,
-                cursor: "pointer",
-                fontFamily: "Inter,sans-serif",
-                boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)"
-              },
-              children: ["Use ", total, "lb"]
-            }, void 0, true)]
-          }, void 0, true)]
-        }, void 0, true)
-      }, void 0, false);
-    })(), plateOpen && /*#__PURE__*/_jsxDEV("div", {
-      className: "plate-overlay",
-      onClick: () => setPlateOpen(false),
-      children: /*#__PURE__*/_jsxDEV("div", {
-        className: "plate-sheet",
-        onClick: e => e.stopPropagation(),
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          className: "plate-handle"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "plate-header",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "plate-header-title",
-            children: "Plate Calculator"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 8,
-              alignItems: "center"
-            },
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              onClick: () => setCalcSwitchOpen(true),
-              style: {
-                background: "#F0F0F0",
-                border: "1.5px solid #e5e5ea",
-                borderRadius: 8,
-                padding: "5px 10px",
-                fontSize: 12,
-                fontWeight: 700,
-                color: "#8e8e93",
-                cursor: "pointer",
-                fontFamily: "Inter,sans-serif"
-              },
-              children: "Switch"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-              className: "plate-close",
-              onClick: () => setPlateOpen(false),
-              children: "x"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "bar-section",
-          children: /*#__PURE__*/_jsxDEV("div", {
-            className: "bar-pills",
-            children: BARS.map(b => /*#__PURE__*/_jsxDEV("div", {
-              className: `bar-pill ${selectedBar === b.name ? "on" : ""}`,
-              onClick: () => setSelectedBar(selectedBar === b.name ? "No Bar" : b.name),
-              children: [b.name, b.weight > 0 ? ` ${b.weight}lb` : ""]
-            }, b.name, true))
-          }, void 0, false)
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "plate-total-section",
-          style: {
-            alignItems: "center"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "plate-total-label",
-              children: "Total Weight"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                className: "plate-total-num",
-                children: totalWeight % 1 === 0 ? totalWeight : totalWeight.toFixed(2)
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                className: "plate-total-unit",
-                children: "lb"
-              }, void 0, false)]
-            }, void 0, true), (() => {
-              const count = plateCounts[selectedPlate] || 0;
-              if (!count) return null;
-              return /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 12,
-                  color: "#8e8e93",
-                  marginTop: 4
-                },
-                children: [count, " x ", selectedPlate, "lb plate", count !== 1 ? "s" : ""]
-              }, void 0, true);
-            })()]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 2
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 10,
-                fontWeight: 700,
-                color: "#8e8e93",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em"
-              },
-              children: "Last set"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 24,
-                fontWeight: 700,
-                fontFamily: "DM Mono,monospace",
-                lineHeight: 1,
-                color: plateTarget?.prevSetWeight ? "#000" : "#c7c7cc"
-              },
-              children: plateTarget?.prevSetWeight || "--"
-            }, void 0, false), plateTarget?.prevSetWeight && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93"
-              },
-              children: "lb"
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1,
-              display: "flex",
-              justifyContent: "flex-end"
-            },
-            children: (() => {
-              const count = plateCounts[selectedPlate] || 0;
-              return /*#__PURE__*/_jsxDEV(BigPlateToggle, {
-                count: count,
-                onAdd: () => adjustPlate(selectedPlate, 1),
-                onRemove: () => adjustPlate(selectedPlate, -1)
-              }, void 0, false);
-            })()
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "load-mode-row",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "load-mode-label",
-            children: "Loading"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "load-mode-toggle",
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              className: `load-mode-btn ${loadMode === "both" ? "on" : ""}`,
-              onClick: () => setLoadMode("both"),
-              children: "Both sides"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-              className: `load-mode-btn ${loadMode === "single" ? "on" : ""}`,
-              onClick: () => setLoadMode("single"),
-              children: "One side"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "plate-grid-section",
-          children: /*#__PURE__*/_jsxDEV("div", {
-            className: "plate-grid",
-            children: PLATE_SIZES.map(p => {
-              const count = plateCounts[p.weight] || 0;
-              const isSelected = selectedPlate === p.weight;
-              const hasPlates = count > 0;
-              return /*#__PURE__*/_jsxDEV("div", {
-                className: `plate-card ${isSelected ? "selected" : ""}`,
-                onClick: () => setSelectedPlate(p.weight),
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  className: "plate-card-weight",
-                  style: {
-                    color: isSelected ? "#00c2ff" : hasPlates ? "#000" : "#c7c7cc"
-                  },
-                  children: p.label
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  className: "plate-card-unit",
-                  children: "lb"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  className: "plate-card-count",
-                  style: {
-                    color: hasPlates ? "#00c2ff" : "transparent"
-                  },
-                  children: hasPlates ? `x${count}` : "x0"
-                }, void 0, false)]
-              }, p.weight, true);
-            })
-          }, void 0, false)
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-section",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "stack-section-label",
-            children: "Band Add-On (note only)"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "band-row",
-            children: BAND_LEVELS.map(b => /*#__PURE__*/_jsxDEV("button", {
-              className: `band-btn ${plateBand === b ? "on" : ""}`,
-              onClick: () => setPlateBand(plateBand === b ? null : b),
-              children: b
-            }, b, false))
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-          className: "plate-use-btn",
-          onClick: applyPlateWeight,
-          children: ["Use ", totalWeight % 1 === 0 ? totalWeight : totalWeight.toFixed(2), "lb", plateBand ? ` + ${plateBand} band` : ""]
-        }, void 0, true)]
-      }, void 0, true)
-    }, void 0, false), recoveryOpen && /*#__PURE__*/_jsxDEV("div", {
+          color: "#8e8e93",
+          fontFamily: "DM Mono,monospace",
+          fontWeight: 700
+        }
+      }, ex.sets, " × ", ex.repsLow, "-", ex.repsHigh));
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8e8e93",
+        marginTop: 10,
+        paddingTop: 10,
+        borderTop: "1px solid #F0F0F0"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#00c2ff",
+        fontWeight: 700
+      }
+    }, "★"), " = main lift (locked). Others swappable.")), /*#__PURE__*/React.createElement(PlanScheduleView, {
+      plan: plan,
+      activePlan: activePlan && activePlan.planId === plan.id ? activePlan : null,
+      scheduleDays: scheduleDays,
+      cardioDays: cardioDays,
+      history: history
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 14,
+        padding: "14px 16px",
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom: 6
+      }
+    }, "Progression"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#000",
+        marginBottom: 6
+      }
+    }, plan.progression.summary), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#000",
+        lineHeight: 1.5
+      }
+    }, plan.progression.detail), plan.deload && /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 10,
+        padding: "10px 12px",
+        background: "#f9f9f9",
+        borderRadius: 8,
+        fontSize: 11,
+        color: "#8e8e93",
+        lineHeight: 1.4
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: "#000"
+      }
+    }, "Deload:"), " ", plan.deload.note)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 14,
+        padding: "14px 16px",
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        marginBottom: 8
+      }
+    }, "Sources"), plan.sources.map((s, i) => /*#__PURE__*/React.createElement("a", {
+      key: i,
+      href: s.url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        display: "block",
+        fontSize: 12,
+        color: "#00c2ff",
+        padding: "4px 0",
+        textDecoration: "none"
+      }
+    }, "→ ", s.label)))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        padding: "12px 16px",
+        borderTop: "1px solid #e5e5ea",
+        boxShadow: "0 -4px 12px rgba(0,0,0,0.05)"
+      }
+    }, canStart ? /*#__PURE__*/React.createElement("button", {
+      onClick: () => startPlan(plan.id),
+      style: {
+        width: "100%",
+        padding: "14px",
+        background: "#000",
+        color: "#fff",
+        border: "none",
+        borderRadius: 12,
+        fontSize: 14,
+        fontWeight: 800,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)",
+        letterSpacing: "0.02em"
+      }
+    }, "Start This Plan") : /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#8e8e93",
+        textAlign: "center",
+        padding: "8px"
+      }
+    }, "You already have an active plan. End it from the Active Plan card on your dashboard to start a new one.")));
+  })(), progressChartExId && /*#__PURE__*/React.createElement(ProgressChartModal, {
+    exerciseId: progressChartExId,
+    history: history,
+    onClose: () => setProgressChartExId(null)
+  }), supersetPickerExId && (() => {
+    const currentEx = exercises.find(x => x.id === supersetPickerExId);
+    const candidates = exercises.filter(x => x.id !== supersetPickerExId && !x.supersetGroup);
+    return /*#__PURE__*/React.createElement("div", {
       style: {
         position: "fixed",
         inset: 0,
         background: "rgba(0,0,0,0.5)",
-        zIndex: 300,
+        zIndex: 2000,
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "center"
       },
-      children: /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          background: "#F0F0F0",
-          borderRadius: "24px 24px 0 0",
-          width: "100%",
-          maxWidth: 700,
-          padding: "0 0 36px"
-        },
-        onClick: e => e.stopPropagation(),
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 40,
-            height: 5,
-            background: "#c7c7cc",
-            borderRadius: 3,
-            margin: "12px auto 20px"
-          }
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            padding: "0 20px"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 20,
-              fontWeight: 800,
-              color: "#000",
-              marginBottom: 4
-            },
-            children: "How's your recovery?"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 13,
-              color: "#8e8e93",
-              marginBottom: 20
-            },
-            children: "Rate how you feel going into today's session"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 8,
-              marginBottom: 20
-            },
-            children: [{
-              r: 1,
-              label: "💀",
-              sub: "Dead"
-            }, {
-              r: 2,
-              label: "😓",
-              sub: "Rough"
-            }, {
-              r: 3,
-              label: "😐",
-              sub: "OK"
-            }, {
-              r: 4,
-              label: "💪",
-              sub: "Good"
-            }, {
-              r: 5,
-              label: "Z",
-              sub: "Fired up"
-            }].map(({
-              r,
-              label,
-              sub
-            }) => /*#__PURE__*/_jsxDEV("div", {
-              onClick: () => setRecoveryRating(r),
-              style: {
-                flex: 1,
-                padding: "12px 4px",
-                borderRadius: 12,
-                border: recoveryRating === r ? "2px solid #00c2ff" : "1.5px solid #e5e5ea",
-                background: recoveryRating === r ? "#000" : "#fff",
-                cursor: "pointer",
-                textAlign: "center",
-                transition: "all 0.15s",
-                boxShadow: recoveryRating === r ? "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.3)" : "0 1px 3px rgba(0,0,0,0.06)"
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 20,
-                  marginBottom: 2
-                },
-                children: label
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: recoveryRating === r ? "#fff" : "#8e8e93"
-                },
-                children: sub
-              }, void 0, false)]
-            }, r, true))
-          }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => setRecoveryOpen(false),
-            style: {
-              width: "100%",
-              padding: "16px",
-              background: "#000",
-              color: "#fff",
-              border: "none",
-              borderRadius: 14,
-              fontSize: 15,
-              fontWeight: 700,
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)"
-            },
-            children: recoveryRating ? `Let's go -- feeling ${["", "dead", "rough", "OK", "good", "fired up"][recoveryRating]}!` : "Skip"
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true)
-    }, void 0, false), warmupOpen && /*#__PURE__*/_jsxDEV("div", {
-      className: "warmup-overlay",
-      onClick: () => setWarmupOpen(false),
-      children: /*#__PURE__*/_jsxDEV("div", {
-        className: "warmup-sheet",
-        onClick: e => e.stopPropagation(),
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          className: "warmup-handle"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "warmup-header",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "warmup-title",
-              children: "Warm Up"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#8e8e93",
-                marginTop: 2
-              },
-              children: "Auto-generated for your workout"
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => {
-              setWarmupDone(true);
-              setWarmupOpen(false);
-              showToast("check Warm up complete!");
-            },
-            style: {
-              background: "#000",
-              color: "#fff",
-              border: "none",
-              borderRadius: 10,
-              padding: "8px 16px",
-              fontSize: 13,
-              fontWeight: 700,
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              boxShadow: "0 0 0 1.5px #00c2ff"
-            },
-            children: "Done"
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "warmup-body",
-          children: [warmupSets.map((ws, i) => /*#__PURE__*/_jsxDEV("div", {
-            className: `warmup-row ${ws.done ? "done-row" : ""}`,
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              className: `warmup-check ${ws.done ? "checked" : ""}`,
-              onClick: () => setWarmupSets(p => p.map((s, j) => j === i ? {
-                ...s,
-                done: !s.done
-              } : s)),
-              children: ws.done ? "✓" : ""
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                flex: 1,
-                minWidth: 0
-              },
-              children: [ws.editing ? /*#__PURE__*/_jsxDEV("input", {
-                autoFocus: true,
-                value: ws.name,
-                onChange: e => setWarmupSets(p => p.map((s, j) => j === i ? {
-                  ...s,
-                  name: e.target.value
-                } : s)),
-                onBlur: () => setWarmupSets(p => p.map((s, j) => j === i ? {
-                  ...s,
-                  editing: false
-                } : s)),
-                onKeyDown: e => {
-                  if (e.key === "Enter") setWarmupSets(p => p.map((s, j) => j === i ? {
-                    ...s,
-                    editing: false
-                  } : s));
-                },
-                placeholder: "Exercise name...",
-                style: {
-                  width: "100%",
-                  padding: "4px 8px",
-                  border: "1.5px solid #00c2ff",
-                  borderRadius: 6,
-                  fontSize: 14,
-                  fontWeight: 600,
-                  fontFamily: "Inter,sans-serif",
-                  outline: "none"
-                }
-              }, void 0, false) : /*#__PURE__*/_jsxDEV("div", {
-                className: "warmup-label",
-                onClick: () => ws.isCustom && setWarmupSets(p => p.map((s, j) => j === i ? {
-                  ...s,
-                  editing: true
-                } : s)),
-                style: ws.isCustom ? {
-                  cursor: "pointer"
-                } : {},
-                children: ws.name
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                className: "warmup-meta",
-                children: [ws.weight && /*#__PURE__*/_jsxDEV("span", {
-                  children: [ws.weight, " . "]
-                }, void 0, true), ws.reps, " reps"]
-              }, void 0, true)]
-            }, void 0, true), ws.isFeeder && /*#__PURE__*/_jsxDEV("span", {
-              className: "warmup-tag feeder",
-              children: "Feeder"
-            }, void 0, false), ws.isGeneral && /*#__PURE__*/_jsxDEV("span", {
-              className: "warmup-tag general",
-              children: "Mobility"
-            }, void 0, false), ws.isCustom && /*#__PURE__*/_jsxDEV("button", {
-              onClick: () => setWarmupSets(p => p.filter((_, j) => j !== i)),
-              style: {
-                background: "none",
-                border: "none",
-                color: "#ff3b30",
-                fontSize: 16,
-                cursor: "pointer",
-                padding: "4px 8px"
-              },
-              children: "×"
-            }, void 0, false)]
-          }, ws.id, true)), /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => {
-              setWarmupSets(p => [...p, {
-                id: `wu-custom-${Date.now()}`,
-                name: "",
-                weight: "",
-                reps: "10",
-                done: false,
-                isCustom: true,
-                editing: true
-              }]);
-            },
-            style: {
-              background: "#fff",
-              border: "1.5px dashed #e5e5ea",
-              borderRadius: 12,
-              padding: "12px",
-              width: "100%",
-              fontSize: 13,
-              fontWeight: 600,
-              color: "#8e8e93",
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif",
-              marginTop: 4
-            },
-            children: "+ Add exercise"
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true)
-    }, void 0, false), libraryOpen && (() => {
-      // Filter exercises
-      const filtered = EXERCISE_DB.filter(ex => {
-        if (libraryFilterSection && ex.section !== libraryFilterSection) return false;
-        if (libraryFilterMuscle && ex.muscle !== libraryFilterMuscle) return false;
-        if (librarySearch) {
-          const s = librarySearch.toLowerCase();
-          return ex.name.toLowerCase().includes(s) || ex.muscle.toLowerCase().includes(s) || ex.muscleHead.toLowerCase().includes(s) || ex.equipment.toLowerCase().includes(s);
+      onClick: () => setSupersetPickerExId(null)
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        width: "100%",
+        maxWidth: 700,
+        borderRadius: "20px 20px 0 0",
+        padding: "18px 16px 24px",
+        maxHeight: "70vh",
+        overflowY: "auto"
+      },
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 36,
+        height: 4,
+        background: "#e5e5ea",
+        borderRadius: 2,
+        margin: "0 auto 14px"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 15,
+        fontWeight: 700,
+        color: "#000",
+        marginBottom: 4
+      }
+    }, "Link \"", currentEx?.name, "\" with..."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginBottom: 14
+      }
+    }, "Both exercises will be grouped as a superset. Do each set of both back-to-back with minimal rest between."), candidates.length === 0 ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "20px",
+        textAlign: "center",
+        fontSize: 13,
+        color: "#8e8e93"
+      }
+    }, "No other unlinked exercises in this workout. Add another exercise first.") : /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 6
+      }
+    }, candidates.map(cand => /*#__PURE__*/React.createElement("div", {
+      key: cand.id,
+      onClick: () => {
+        // Find next available group letter
+        const usedGroups = new Set(exercises.map(x => x.supersetGroup).filter(Boolean));
+        let groupLetter = "A";
+        while (usedGroups.has(groupLetter)) {
+          groupLetter = String.fromCharCode(groupLetter.charCodeAt(0) + 1);
         }
-        return true;
-      });
-
-      // Group by muscle for display
-      const grouped = {};
-      filtered.forEach(ex => {
-        if (!grouped[ex.muscle]) grouped[ex.muscle] = [];
-        grouped[ex.muscle].push(ex);
-      });
-      const sections = ["Upper", "Lower", "Full Body"];
-      const musclesInDB = [...new Set(EXERCISE_DB.map(e => e.muscle))].sort();
-      return /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          position: "fixed",
-          inset: 0,
-          background: "#F0F0F0",
-          zIndex: 200,
-          display: "flex",
-          flexDirection: "column"
-        },
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            padding: "16px 20px 12px",
-            background: "#fff",
-            borderBottom: "1px solid #e5e5ea",
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            flexShrink: 0
-          },
-          children: [/*#__PURE__*/_jsxDEV("button", {
-            onClick: () => {
-              setLibraryOpen(false);
-              setLibrarySearch("");
-              setLibraryExpanded(null);
-              setLibraryFilterSection(null);
-              setLibraryFilterMuscle(null);
-            },
-            style: {
-              background: "#e5e5ea",
-              border: "none",
-              color: "#555",
-              fontSize: 14,
-              cursor: "pointer",
-              width: 30,
-              height: 30,
-              borderRadius: "50%",
-              fontWeight: 700,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            },
-            children: "×"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 16,
-                fontWeight: 800,
-                color: "#000"
-              },
-              children: "Exercise Library"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93"
-              },
-              children: [filtered.length, " of ", EXERCISE_DB.length, " exercises"]
-            }, void 0, true)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            padding: "10px 14px 6px",
-            background: "#fff",
-            flexShrink: 0
-          },
-          children: /*#__PURE__*/_jsxDEV("input", {
-            type: "text",
-            placeholder: "Search by exercise, muscle, or equipment...",
-            value: librarySearch,
-            onChange: e => setLibrarySearch(e.target.value),
-            style: {
-              width: "100%",
-              padding: "10px 14px",
-              borderRadius: 10,
-              border: "1.5px solid #e5e5ea",
-              fontSize: 13,
-              fontFamily: "Inter,sans-serif",
-              outline: "none",
-              boxSizing: "border-box",
-              background: "#f9f9f9"
-            }
-          }, void 0, false)
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            gap: 6,
-            padding: "6px 14px",
-            overflowX: "auto",
-            flexShrink: 0,
-            background: "#fff",
-            borderBottom: "1px solid #e5e5ea"
-          },
-          children: [/*#__PURE__*/_jsxDEV("button", {
-            onClick: () => {
-              setLibraryFilterSection(null);
-              setLibraryFilterMuscle(null);
-            },
-            style: {
-              flexShrink: 0,
-              padding: "5px 12px",
-              fontSize: 11,
-              fontWeight: 700,
-              borderRadius: 14,
-              border: !libraryFilterSection && !libraryFilterMuscle ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
-              background: !libraryFilterSection && !libraryFilterMuscle ? "rgba(0,194,255,0.08)" : "#fff",
-              color: !libraryFilterSection && !libraryFilterMuscle ? "#00c2ff" : "#8e8e93",
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif"
-            },
-            children: "All"
-          }, void 0, false), sections.map(sec => /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => {
-              setLibraryFilterSection(libraryFilterSection === sec ? null : sec);
-              setLibraryFilterMuscle(null);
-            },
-            style: {
-              flexShrink: 0,
-              padding: "5px 12px",
-              fontSize: 11,
-              fontWeight: 700,
-              borderRadius: 14,
-              border: libraryFilterSection === sec ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
-              background: libraryFilterSection === sec ? "rgba(0,194,255,0.08)" : "#fff",
-              color: libraryFilterSection === sec ? "#00c2ff" : "#000",
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif"
-            },
-            children: sec
-          }, sec, false)), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              width: 1,
-              background: "#e5e5ea",
-              margin: "0 4px",
-              flexShrink: 0
-            }
-          }, void 0, false), musclesInDB.filter(m => !libraryFilterSection || EXERCISE_DB.find(e => e.muscle === m && e.section === libraryFilterSection)).map(m => /*#__PURE__*/_jsxDEV("button", {
-            onClick: () => setLibraryFilterMuscle(libraryFilterMuscle === m ? null : m),
-            style: {
-              flexShrink: 0,
-              padding: "5px 12px",
-              fontSize: 11,
-              fontWeight: 600,
-              borderRadius: 14,
-              border: libraryFilterMuscle === m ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
-              background: libraryFilterMuscle === m ? "rgba(0,194,255,0.08)" : "#fff",
-              color: libraryFilterMuscle === m ? "#00c2ff" : "#8e8e93",
-              cursor: "pointer",
-              fontFamily: "Inter,sans-serif"
-            },
-            children: m
-          }, m, false))]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            flex: 1,
-            overflowY: "auto",
-            padding: "10px 14px 40px"
-          },
-          children: [Object.keys(grouped).sort().map(muscle => /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              marginBottom: 16
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                fontWeight: 800,
-                color: "#8e8e93",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-                padding: "6px 4px 6px"
-              },
-              children: [muscle, " (", grouped[muscle].length, ")"]
-            }, void 0, true), grouped[muscle].map(ex => {
-              const isOpen = libraryExpanded === ex.id;
-              const altCount = (EQUIPMENT_ALTERNATIVES[ex.id] || []).length;
-              return /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  background: "#fff",
-                  borderRadius: 12,
-                  border: "1.5px solid #e5e5ea",
-                  marginBottom: 6,
-                  overflow: "hidden",
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.04)"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  onClick: () => setLibraryExpanded(isOpen ? null : ex.id),
-                  style: {
-                    padding: "10px 14px",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: 8
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      flex: 1,
-                      minWidth: 0
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 14,
-                        fontWeight: 700,
-                        color: "#000"
-                      },
-                      children: ex.name
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 11,
-                        color: "#8e8e93",
-                        marginTop: 1
-                      },
-                      children: [ex.equipment, " · ", ex.muscleHead]
-                    }, void 0, true)]
-                  }, void 0, true), /*#__PURE__*/_jsxDEV(ChevronDown, {
-                    size: 14,
-                    strokeWidth: 2.5,
-                    color: "#00c2ff",
-                    style: {
-                      transform: isOpen ? "rotate(180deg)" : "none",
-                      transition: "transform 0.2s"
-                    }
-                  }, void 0, false)]
-                }, void 0, true), isOpen && /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    padding: "0 14px 12px",
-                    borderTop: "1px solid #F0F0F0",
-                    background: "#fafafa"
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      display: "grid",
-                      gridTemplateColumns: "100px 1fr",
-                      gap: "4px 10px",
-                      padding: "10px 0",
-                      fontSize: 12
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#8e8e93",
-                        fontWeight: 600
-                      },
-                      children: "Body Section"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#000",
-                        fontWeight: 600
-                      },
-                      children: ex.section
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#8e8e93",
-                        fontWeight: 600
-                      },
-                      children: "Muscle"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#000",
-                        fontWeight: 600
-                      },
-                      children: ex.muscle
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#8e8e93",
-                        fontWeight: 600
-                      },
-                      children: "Muscle Head"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#000",
-                        fontWeight: 600
-                      },
-                      children: ex.muscleHead
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#8e8e93",
-                        fontWeight: 600
-                      },
-                      children: "Equipment"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#000",
-                        fontWeight: 600
-                      },
-                      children: ex.equipment
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#8e8e93",
-                        fontWeight: 600
-                      },
-                      children: "Calculator"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#000",
-                        fontWeight: 600,
-                        textTransform: "capitalize"
-                      },
-                      children: ex.calculator
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: "#8e8e93",
-                        fontWeight: 600
-                      },
-                      children: "Bench Setup"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        color: ex.bench && ex.bench !== "N/A" ? "#00c2ff" : "#000",
-                        fontWeight: 600
-                      },
-                      children: ex.bench || "N/A"
-                    }, void 0, false)]
-                  }, void 0, true), ex.variations && ex.variations.length > 0 && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      marginTop: 4
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 11,
-                        fontWeight: 700,
-                        color: "#8e8e93",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                        marginBottom: 6
-                      },
-                      children: ["Variations (", ex.variations.length, ")"]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: 5
-                      },
-                      children: ex.variations.map((v, i) => /*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          padding: "4px 10px",
-                          borderRadius: 12,
-                          background: "#F0F0F0",
-                          border: "1px solid #e5e5ea",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          color: "#000"
-                        },
-                        children: v
-                      }, i, false))
-                    }, void 0, false)]
-                  }, void 0, true), altCount > 0 && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      marginTop: 10
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 11,
-                        fontWeight: 700,
-                        color: "#8e8e93",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                        marginBottom: 6
-                      },
-                      children: ["Also available on (", altCount, ")"]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: 5
-                      },
-                      children: [(EQUIPMENT_ALTERNATIVES[ex.id] || []).slice(0, 10).map(altId => {
-                        const alt = EXERCISE_DB.find(e => e.id === altId);
-                        if (!alt) return null;
-                        return /*#__PURE__*/_jsxDEV("div", {
-                          style: {
-                            padding: "4px 10px",
-                            borderRadius: 12,
-                            background: "rgba(0,194,255,0.06)",
-                            border: "1px solid rgba(0,194,255,0.3)",
-                            fontSize: 11,
-                            fontWeight: 600,
-                            color: "#00c2ff"
-                          },
-                          children: alt.equipment
-                        }, altId, false);
-                      }), altCount > 10 && /*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          padding: "4px 10px",
-                          fontSize: 11,
-                          color: "#8e8e93"
-                        },
-                        children: ["+ ", altCount - 10, " more"]
-                      }, void 0, true)]
-                    }, void 0, true)]
-                  }, void 0, true)]
-                }, void 0, true)]
-              }, ex.id, true);
-            })]
-          }, muscle, true)), filtered.length === 0 && /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              textAlign: "center",
-              padding: "40px 20px",
-              color: "#8e8e93",
-              fontSize: 13
-            },
-            children: "No exercises match your filters"
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true);
-    })(), equipSheet && (() => {
-      const currentEx = exercises.find(e => e.id === equipSheet);
-      if (!currentEx) return null;
-      const lookupId = currentEx.baseId || currentEx.id;
-      const alts = EQUIPMENT_ALTERNATIVES[lookupId] || [];
-      // Base exercise for the "current" display (or fallback to current)
-      const baseEx = currentEx.baseId ? EXERCISE_DB.find(e => e.id === currentEx.baseId) : currentEx;
-      const options = [baseEx || currentEx, ...alts.map(id => EXERCISE_DB.find(e => e.id === id)).filter(Boolean)].filter((v, i, a) => a.findIndex(x => x.id === v.id) === i); // dedupe
-      return /*#__PURE__*/_jsxDEV("div", {
-        style: {
-          position: "fixed",
-          inset: 0,
-          background: "rgba(0,0,0,0.5)",
-          zIndex: 200,
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center"
-        },
-        onClick: () => setEquipSheet(null),
-        children: /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            background: "#F0F0F0",
-            borderRadius: "24px 24px 0 0",
-            width: "100%",
-            maxWidth: 700,
-            maxHeight: "80vh",
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden"
-          },
-          onClick: e => e.stopPropagation(),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              width: 40,
-              height: 5,
-              background: "#c7c7cc",
-              borderRadius: 3,
-              margin: "12px auto 8px",
-              flexShrink: 0
-            }
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              padding: "8px 20px 12px",
-              borderBottom: "1px solid #e5e5ea",
-              flexShrink: 0
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 18,
-                fontWeight: 800,
-                color: "#000"
-              },
-              children: "Change Equipment"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#8e8e93",
-                marginTop: 2
-              },
-              children: ["How are you doing ", currentEx.muscleHead || currentEx.muscle, "?"]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1,
-              overflowY: "auto",
-              padding: "12px 14px 24px",
-              display: "flex",
-              flexDirection: "column",
-              gap: 8
-            },
-            children: options.map(opt => {
-              const selected = opt.id === currentEx.id || opt.id === currentEx.baseId;
-              return /*#__PURE__*/_jsxDEV("div", {
-                onClick: () => {
-                  if (selected) {
-                    setEquipSheet(null);
-                    return;
-                  }
-                  // Swap the exercise while keeping the sets
-                  setExercises(p => p.map(x => x.id !== currentEx.id ? x : {
-                    ...opt,
-                    sets: x.sets
-                  }));
-                  setEquipSheet(null);
-                  showToast(`Switched to ${opt.equipment}`);
-                },
-                style: {
-                  background: "#fff",
-                  borderRadius: 12,
-                  padding: "12px 14px",
-                  border: selected ? "2px solid #00c2ff" : "1.5px solid #e5e5ea",
-                  boxShadow: selected ? "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)" : "0 1px 3px rgba(0,0,0,0.06)",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    flex: 1,
-                    minWidth: 0
-                  },
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#000"
-                    },
-                    children: opt.equipment
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 11,
-                      color: "#8e8e93",
-                      marginTop: 2
-                    },
-                    children: opt.name
-                  }, void 0, false), opt.bench && opt.bench !== "N/A" && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      fontSize: 10,
-                      color: "#00c2ff",
-                      marginTop: 2,
-                      fontWeight: 600
-                    },
-                    children: opt.bench
-                  }, void 0, false)]
-                }, void 0, true), selected && /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    color: "#00c2ff",
-                    fontWeight: 700,
-                    padding: "2px 8px",
-                    background: "rgba(0,194,255,0.1)",
-                    borderRadius: 6
-                  },
-                  children: "Current"
-                }, void 0, false)]
-              }, opt.id, true);
-            })
-          }, void 0, false)]
-        }, void 0, true)
-      }, void 0, false);
-    })(), swapSheet && (() => {
-      const currentEx = exercises.find(e => e.id === swapSheet);
-      if (!currentEx) return null;
-      const alreadyAdded = new Set(exercises.map(e => e.id));
-
-      // Priority 1: Same muscle head (most direct swap)
-      const sameHead = EXERCISE_DB.filter(e => e.muscleHead === currentEx.muscleHead && e.id !== currentEx.id && !alreadyAdded.has(e.id));
-
-      // Priority 2: Same muscle group but different head
-      const sameMuscle = EXERCISE_DB.filter(e => e.muscle === currentEx.muscle && e.muscleHead !== currentEx.muscleHead && !alreadyAdded.has(e.id));
-      const doSwap = (targetEx, variationIdx = null) => {
-        let finalEx = targetEx;
-        if (variationIdx !== null && targetEx.variations && targetEx.variations[variationIdx]) {
-          const variationName = targetEx.variations[variationIdx];
-          const variationId = `${targetEx.id}-v${variationIdx}-${Date.now()}`;
-          finalEx = {
-            ...targetEx,
-            id: variationId,
-            baseId: targetEx.id,
-            name: `${targetEx.name} (${variationName})`
+        setExercises(p => p.map(x => {
+          if (x.id === supersetPickerExId) return {
+            ...x,
+            supersetGroup: groupLetter,
+            supersetPosition: 1
           };
-        }
-        const prev = lastSets(finalEx.id);
-        const initSets = prev ? prev.map(s => ({
-          ...s,
-          done: false
-        })) : [{
-          weight: "",
-          reps: "",
-          done: false
-        }];
-        setExercises(p => p.map(ex => ex.id === swapSheet ? {
-          ...finalEx,
-          sets: initSets
-        } : ex));
-        setExpanded(p => {
-          const n = {
-            ...p
+          if (x.id === cand.id) return {
+            ...x,
+            supersetGroup: groupLetter,
+            supersetPosition: 2
           };
-          const wasOpen = !!n[swapSheet];
-          delete n[swapSheet];
-          n[finalEx.id] = wasOpen;
-          return n;
-        });
-        setSwapSheet(null);
-        setSwapExpandedId(null);
-        showToast(`Switched to ${finalEx.name}`);
-      };
-      return /*#__PURE__*/_jsxDEV("div", {
-        className: "swap-overlay",
-        onClick: () => {
-          setSwapSheet(null);
-          setSwapExpandedId(null);
-        },
-        children: /*#__PURE__*/_jsxDEV("div", {
-          className: "swap-sheet",
-          onClick: e => e.stopPropagation(),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "swap-handle"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "swap-header",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "swap-title",
-              children: "Change exercise"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "swap-current",
-              children: currentEx.name
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "swap-list",
-            children: [sameHead.length > 0 && /*#__PURE__*/_jsxDEV(_Fragment, {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                className: "swap-group-label",
-                children: [currentEx.muscleHead, " — same muscle head"]
-              }, void 0, true), sameHead.map(ex => {
-                const Icon = EX_ICON[ex.equipment] || Dumbbell;
-                const hasVariations = ex.variations && ex.variations.length > 0;
-                const isExpanded = swapExpandedId === ex.id;
-                return /*#__PURE__*/_jsxDEV(React.Fragment, {
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "swap-item",
-                    onClick: () => {
-                      if (hasVariations) setSwapExpandedId(isExpanded ? null : ex.id);else doSwap(ex);
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "swap-item-icon",
-                      children: /*#__PURE__*/_jsxDEV(Icon, {
-                        size: 18,
-                        strokeWidth: 2.5,
-                        color: "#000"
-                      }, void 0, false)
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        flex: 1,
-                        minWidth: 0
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "swap-item-name",
-                        children: ex.name
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "swap-item-sub",
-                        children: [ex.equipment, ex.bench && ex.bench !== "N/A" && /*#__PURE__*/_jsxDEV("span", {
-                          style: {
-                            color: "#00c2ff"
-                          },
-                          children: [" · ", ex.bench]
-                        }, void 0, true)]
-                      }, void 0, true)]
-                    }, void 0, true), hasVariations && /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 10,
-                        color: "#00c2ff",
-                        fontWeight: 700,
-                        padding: "3px 8px",
-                        border: "1px solid #00c2ff",
-                        borderRadius: 6,
-                        flexShrink: 0,
-                        marginRight: 6
-                      },
-                      children: isExpanded ? "Hide" : "Variations"
-                    }, void 0, false)]
-                  }, void 0, true), isExpanded && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      background: "#f9f9f9",
-                      padding: "4px 0",
-                      borderRadius: "0 0 8px 8px"
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      onClick: () => doSwap(ex),
-                      style: {
-                        padding: "10px 40px 10px 56px",
-                        cursor: "pointer",
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: "#000",
-                        borderBottom: "1px solid #e5e5ea"
-                      },
-                      children: ["Standard ", ex.name]
-                    }, void 0, true), ex.variations.map((v, vi) => /*#__PURE__*/_jsxDEV("div", {
-                      onClick: () => doSwap(ex, vi),
-                      style: {
-                        padding: "10px 40px 10px 56px",
-                        cursor: "pointer",
-                        fontSize: 13,
-                        fontWeight: 500,
-                        color: "#000",
-                        borderBottom: vi === ex.variations.length - 1 ? "none" : "1px solid #F0F0F0"
-                      },
-                      children: v
-                    }, vi, false))]
-                  }, void 0, true)]
-                }, ex.id, true);
-              })]
-            }, void 0, true), sameMuscle.length > 0 && /*#__PURE__*/_jsxDEV(_Fragment, {
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                className: "swap-group-label",
-                children: ["Other ", currentEx.muscle, " exercises"]
-              }, void 0, true), sameMuscle.map(ex => {
-                const Icon = EX_ICON[ex.equipment] || Dumbbell;
-                const hasVariations = ex.variations && ex.variations.length > 0;
-                const isExpanded = swapExpandedId === ex.id;
-                return /*#__PURE__*/_jsxDEV(React.Fragment, {
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "swap-item",
-                    onClick: () => {
-                      if (hasVariations) setSwapExpandedId(isExpanded ? null : ex.id);else doSwap(ex);
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "swap-item-icon",
-                      children: /*#__PURE__*/_jsxDEV(Icon, {
-                        size: 18,
-                        strokeWidth: 2.5,
-                        color: "#000"
-                      }, void 0, false)
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        flex: 1,
-                        minWidth: 0
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "swap-item-name",
-                        children: ex.name
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "swap-item-sub",
-                        children: [ex.equipment, " · ", ex.muscleHead]
-                      }, void 0, true)]
-                    }, void 0, true), hasVariations && /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 10,
-                        color: "#00c2ff",
-                        fontWeight: 700,
-                        padding: "3px 8px",
-                        border: "1px solid #00c2ff",
-                        borderRadius: 6,
-                        flexShrink: 0,
-                        marginRight: 6
-                      },
-                      children: isExpanded ? "Hide" : "Variations"
-                    }, void 0, false)]
-                  }, void 0, true), isExpanded && /*#__PURE__*/_jsxDEV("div", {
-                    style: {
-                      background: "#f9f9f9",
-                      padding: "4px 0",
-                      borderRadius: "0 0 8px 8px"
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      onClick: () => doSwap(ex),
-                      style: {
-                        padding: "10px 40px 10px 56px",
-                        cursor: "pointer",
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: "#000",
-                        borderBottom: "1px solid #e5e5ea"
-                      },
-                      children: ["Standard ", ex.name]
-                    }, void 0, true), ex.variations.map((v, vi) => /*#__PURE__*/_jsxDEV("div", {
-                      onClick: () => doSwap(ex, vi),
-                      style: {
-                        padding: "10px 40px 10px 56px",
-                        cursor: "pointer",
-                        fontSize: 13,
-                        fontWeight: 500,
-                        color: "#000",
-                        borderBottom: vi === ex.variations.length - 1 ? "none" : "1px solid #F0F0F0"
-                      },
-                      children: v
-                    }, vi, false))]
-                  }, void 0, true)]
-                }, ex.id, true);
-              })]
-            }, void 0, true)]
-          }, void 0, true)]
-        }, void 0, true)
-      }, void 0, false);
-    })(), calcSwitchOpen && /*#__PURE__*/_jsxDEV("div", {
+          return x;
+        }));
+        showToast(`Superset ${groupLetter} created`);
+        setSupersetPickerExId(null);
+      },
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "12px 14px",
+        background: "#fafafa",
+        borderRadius: 10,
+        cursor: "pointer",
+        border: "1px solid #f0f0f0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#000"
+      }
+    }, cand.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 1
+      }
+    }, cand.muscleHead || cand.muscle)), /*#__PURE__*/React.createElement(Link, {
+      size: 14,
+      strokeWidth: 2.5,
+      color: "#00c2ff"
+    })))), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setSupersetPickerExId(null),
+      style: {
+        width: "100%",
+        padding: "10px",
+        background: "#F0F0F0",
+        color: "#8e8e93",
+        border: "none",
+        borderRadius: 10,
+        fontSize: 13,
+        fontWeight: 600,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        marginTop: 12
+      }
+    }, "Cancel")));
+  })(), attachmentSheetExId && (() => {
+    const ex = exercises.find(e => e.id === attachmentSheetExId);
+    if (!ex) return null;
+    const baseId = (ex.baseId || ex.id).split("-v")[0];
+    const currentAtt = getAttachment(baseId);
+    const isDefault = !attachmentPrefs[baseId];
+    const categories = [...new Set(CABLE_ATTACHMENTS.map(a => a.category))];
+    return /*#__PURE__*/React.createElement("div", {
       style: {
         position: "fixed",
         inset: 0,
         background: "rgba(0,0,0,0.5)",
+        zIndex: 250,
         display: "flex",
         alignItems: "flex-end",
-        justifyContent: "center",
-        zIndex: 300
+        justifyContent: "center"
       },
-      onClick: () => setCalcSwitchOpen(false),
-      children: /*#__PURE__*/_jsxDEV("div", {
+      onClick: () => setAttachmentSheetExId(null)
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#F0F0F0",
+        borderRadius: "24px 24px 0 0",
+        width: "100%",
+        maxWidth: 700,
+        maxHeight: "88vh",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden"
+      },
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 40,
+        height: 5,
+        background: "#c7c7cc",
+        borderRadius: 3,
+        margin: "12px auto 8px",
+        flexShrink: 0
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "8px 20px 12px",
+        borderBottom: "1px solid #e5e5ea",
+        flexShrink: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 18,
+        fontWeight: 800,
+        color: "#000"
+      }
+    }, "Attachment"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#8e8e93",
+        marginTop: 2
+      }
+    }, ex.name, " · your preference saves permanently"), currentAtt && /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 6,
+        display: "flex",
+        alignItems: "center",
+        gap: 6
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#ff9f0a",
+        padding: "2px 8px",
+        background: "rgba(255,159,10,0.12)",
+        borderRadius: 6
+      }
+    }, isDefault ? "App default" : "Your preference", ": ", currentAtt.name), !isDefault && /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setAttachmentPrefs(p => {
+          const n = {
+            ...p
+          };
+          delete n[baseId];
+          return n;
+        });
+        showToast("Reset to default");
+      },
+      style: {
+        fontSize: 10,
+        color: "#8e8e93",
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        fontWeight: 600
+      }
+    }, "Reset"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        overflowY: "auto",
+        padding: "8px 14px 32px"
+      }
+    }, categories.map(cat => {
+      const atts = CABLE_ATTACHMENTS.filter(a => a.category === cat);
+      return /*#__PURE__*/React.createElement("div", {
+        key: cat
+      }, /*#__PURE__*/React.createElement("div", {
         style: {
-          background: "#F0F0F0",
-          borderRadius: "24px 24px 0 0",
-          width: "100%",
-          maxWidth: 700,
-          paddingBottom: 32
-        },
-        onClick: e => e.stopPropagation(),
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 40,
-            height: 5,
-            background: "#c7c7cc",
-            borderRadius: 3,
-            margin: "12px auto 16px"
-          }
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            fontSize: 13,
-            fontWeight: 700,
-            color: "#8e8e93",
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            padding: "0 20px 12px",
-            borderBottom: "1px solid #e5e5ea",
-            marginBottom: 8
+          fontSize: 10,
+          fontWeight: 700,
+          color: "#c7c7cc",
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+          padding: "10px 4px 4px"
+        }
+      }, cat), atts.map(att => {
+        const selected = currentAtt?.id === att.id;
+        return /*#__PURE__*/React.createElement("div", {
+          key: att.id,
+          onClick: () => {
+            setAttachmentPref(baseId, att.id);
+            setAttachmentSheetExId(null);
+            showToast(`check ${ex.name} → ${att.name}`);
           },
-          children: "Switch Calculator"
-        }, void 0, false), [{
-          type: "plate",
-          label: "Plate Loaded",
-          sub: "Barbell, leg press, preacher"
-        }, {
-          type: "stack",
-          label: "Stack / Machine",
-          sub: "Cable, pec deck, leg ext"
-        }, {
-          type: "dumbbell",
-          label: "Dumbbell",
-          sub: "REP x Pepin, Snode, Fixed"
-        }, {
-          type: "mx100",
-          label: "MX100 Selectorized",
-          sub: "28-100lb . 10 dial positions"
-        }, {
-          type: "kettlebell",
-          label: "Kettlebell",
-          sub: "26.5lb & 52.9lb"
-        }].map(opt => /*#__PURE__*/_jsxDEV("div", {
-          onClick: () => switchCalculator(opt.type),
           style: {
-            padding: "14px 20px",
+            background: "#fff",
+            borderRadius: 12,
+            padding: "12px 14px",
+            marginBottom: 6,
+            border: selected ? "2px solid #ff9f0a" : "1.5px solid #e5e5ea",
+            boxShadow: selected ? "0 0 0 1px #ff9f0a, 0 0 12px rgba(255,159,10,0.15)" : "0 1px 3px rgba(0,0,0,0.06)",
             cursor: "pointer",
             display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            borderBottom: "1px solid #F0F0F0"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 15,
-              fontWeight: 600,
-              color: "#000"
-            },
-            children: opt.label
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#8e8e93"
-            },
-            children: opt.sub
-          }, void 0, false)]
-        }, opt.type, true))]
-      }, void 0, true)
-    }, void 0, false), equipEditTarget && /*#__PURE__*/_jsxDEV("div", {
-      className: "equip-type-sheet",
-      onClick: () => setEquipEditTarget(null),
-      children: /*#__PURE__*/_jsxDEV("div", {
-        className: "equip-type-panel",
-        onClick: e => e.stopPropagation(),
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          style: {
-            width: 40,
-            height: 5,
-            background: "#c7c7cc",
-            borderRadius: 3,
-            margin: "0 auto 14px"
-          }
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "equip-type-title",
-          children: equipEditTarget
-        }, void 0, false), WEIGHT_TYPES.map(type => /*#__PURE__*/_jsxDEV("div", {
-          className: `equip-type-option ${equipConfig[equipEditTarget] === type ? "selected" : ""}`,
-          onClick: () => {
-            setEquipConfig(p => ({
-              ...p,
-              [equipEditTarget]: type
-            }));
-            setEquipEditTarget(null);
-            showToast(`${equipEditTarget} -> ${type}`);
-          },
-          children: [type, equipConfig[equipEditTarget] === type && /*#__PURE__*/_jsxDEV("span", {
-            style: {
-              color: "#00c2ff"
-            },
-            children: "check"
-          }, void 0, false)]
-        }, type, true))]
-      }, void 0, true)
-    }, void 0, false), mx100Open && /*#__PURE__*/_jsxDEV("div", {
-      className: "db-overlay",
-      onClick: () => setMx100Open(false),
-      children: /*#__PURE__*/_jsxDEV("div", {
-        className: "db-sheet",
-        onClick: e => e.stopPropagation(),
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          className: "db-handle"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "db-header",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "db-title",
-            children: "MX100 Selectorized Bar"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 8,
-              alignItems: "center"
-            },
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              onClick: () => setCalcSwitchOpen(true),
-              style: {
-                background: "#F0F0F0",
-                border: "1.5px solid #e5e5ea",
-                borderRadius: 8,
-                padding: "5px 10px",
-                fontSize: 12,
-                fontWeight: 700,
-                color: "#8e8e93",
-                cursor: "pointer",
-                fontFamily: "Inter,sans-serif"
-              },
-              children: "Switch"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-              className: "db-close",
-              onClick: () => setMx100Open(false),
-              children: "x"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "db-info-row",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "db-last",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "db-last-label",
-              children: "Last set"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "db-last-num",
-              style: {
-                color: mx100Target?.prevSetWeight ? "#000" : "#c7c7cc"
-              },
-              children: mx100Target?.prevSetWeight || "--"
-            }, void 0, false), mx100Target?.prevSetWeight && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93"
-              },
-              children: "lb"
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              flex: 1,
-              textAlign: "center"
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                fontWeight: 700,
-                color: "#000"
-              },
-              children: "MX Select MX100"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93"
-              },
-              children: "28-100lb . Straight or Curl Bar"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            padding: "0 14px 8px",
-            fontSize: 11,
-            fontWeight: 700,
-            color: "#8e8e93",
-            textTransform: "uppercase",
-            letterSpacing: "0.05em"
-          },
-          children: "Select Dial Position"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "db-grid-wrap",
-          children: /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "grid",
-              gridTemplateColumns: "repeat(2,1fr)",
-              gap: 8
-            },
-            children: MX100_WEIGHTS.map((w, idx) => {
-              const isCurrent = mx100Target?.prevSetWeight === String(w);
-              return /*#__PURE__*/_jsxDEV("button", {
-                onClick: () => {
-                  if (!mx100Target) return;
-                  const {
-                    exId,
-                    setIdx
-                  } = mx100Target;
-                  setExercises(p => p.map(ex => ex.id !== exId ? ex : {
-                    ...ex,
-                    sets: ex.sets.map((s, i) => i !== setIdx ? s : {
-                      ...s,
-                      weight: String(w)
-                    })
-                  }));
-                  setMx100Open(false);
-                  showToast(`${w}lb (Dial ${idx + 1})`);
-                },
-                style: {
-                  padding: "14px",
-                  borderRadius: 12,
-                  border: `1.5px solid ${isCurrent ? "#00c2ff" : "#e5e5ea"}`,
-                  background: isCurrent ? "#000" : "#fff",
-                  cursor: "pointer",
-                  fontFamily: "DM Mono,monospace",
-                  textAlign: "left",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.07)"
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 22,
-                    fontWeight: 700,
-                    color: isCurrent ? "#fff" : "#000"
-                  },
-                  children: [w, /*#__PURE__*/_jsxDEV("span", {
-                    style: {
-                      fontSize: 12,
-                      fontWeight: 500,
-                      color: isCurrent ? "#8e8e93" : "#c7c7cc"
-                    },
-                    children: " lb"
-                  }, void 0, false)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 11,
-                    color: isCurrent ? "#00c2ff" : "#8e8e93",
-                    marginTop: 2
-                  },
-                  children: ["Dial ", idx + 1]
-                }, void 0, true)]
-              }, w, true);
-            })
-          }, void 0, false)
-        }, void 0, false)]
-      }, void 0, true)
-    }, void 0, false), dbOpen && (() => {
-      const brand = DB_BRANDS.find(b => b.id === dbBrand) || DB_BRANDS[0];
-      const currentW = dbTarget?.currentWeight ? parseFloat(dbTarget.currentWeight) : null;
-      const prevW = dbTarget?.prevSetWeight;
-      return /*#__PURE__*/_jsxDEV("div", {
-        className: "db-overlay",
-        onClick: () => setDbOpen(false),
-        children: /*#__PURE__*/_jsxDEV("div", {
-          className: "db-sheet",
-          onClick: e => e.stopPropagation(),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "db-handle"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "db-header",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "db-title",
-              children: "Dumbbell"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                gap: 8,
-                alignItems: "center"
-              },
-              children: [/*#__PURE__*/_jsxDEV("button", {
-                onClick: () => setCalcSwitchOpen(true),
-                style: {
-                  background: "#F0F0F0",
-                  border: "1.5px solid #e5e5ea",
-                  borderRadius: 8,
-                  padding: "5px 10px",
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#8e8e93",
-                  cursor: "pointer",
-                  fontFamily: "Inter,sans-serif"
-                },
-                children: "Switch"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                className: "db-close",
-                onClick: () => setDbOpen(false),
-                children: "x"
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "db-brand-row",
-            children: /*#__PURE__*/_jsxDEV("div", {
-              className: "db-brand-pills",
-              children: DB_BRANDS.map(b => /*#__PURE__*/_jsxDEV("div", {
-                className: `db-brand-pill ${dbBrand === b.id ? "on" : ""}`,
-                onClick: () => setDbBrand(b.id),
-                children: b.name
-              }, b.id, false))
-            }, void 0, false)
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "db-info-row",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "db-last",
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                className: "db-last-label",
-                children: "Last set"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                className: "db-last-num",
-                style: {
-                  color: prevW ? "#000" : "#c7c7cc"
-                },
-                children: prevW || "--"
-              }, void 0, false), prevW && /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 11,
-                  color: "#8e8e93"
-                },
-                children: "lb"
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 12,
-                color: "#8e8e93",
-                textAlign: "center",
-                flex: 1
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontWeight: 700,
-                  color: "#000",
-                  fontSize: 13
-                },
-                children: brand.name
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                children: ["Up to ", brand.max, "lb"]
-              }, void 0, true)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              className: "db-side-toggle",
-              children: [/*#__PURE__*/_jsxDEV("button", {
-                className: `db-side-btn ${dbSide === "both" ? "on" : ""}`,
-                onClick: () => setDbSide("both"),
-                children: "Both"
-              }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-                className: `db-side-btn ${dbSide === "single" ? "on" : ""}`,
-                onClick: () => setDbSide("single"),
-                children: "Single"
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "db-grid-wrap",
-            children: /*#__PURE__*/_jsxDEV("div", {
-              className: "db-grid",
-              children: brand.weights.map(w => /*#__PURE__*/_jsxDEV("button", {
-                className: `db-weight-btn ${currentW === w ? "current" : ""}`,
-                onClick: () => applyDumbbellWeight(w),
-                children: w % 1 === 0 ? w : w.toFixed(1)
-              }, w, false))
-            }, void 0, false)
-          }, void 0, false)]
-        }, void 0, true)
-      }, void 0, false);
-    })(), stackOpen && /*#__PURE__*/_jsxDEV("div", {
-      className: "stack-overlay",
-      onClick: () => setStackOpen(false),
-      children: /*#__PURE__*/_jsxDEV("div", {
-        className: "stack-sheet",
-        onClick: e => e.stopPropagation(),
-        children: [/*#__PURE__*/_jsxDEV("div", {
-          className: "stack-handle"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-header",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "stack-title",
-            children: "Stack Calculator"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 8,
-              alignItems: "center"
-            },
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              onClick: () => setCalcSwitchOpen(true),
-              style: {
-                background: "#F0F0F0",
-                border: "1.5px solid #e5e5ea",
-                borderRadius: 8,
-                padding: "5px 10px",
-                fontSize: 12,
-                fontWeight: 700,
-                color: "#8e8e93",
-                cursor: "pointer",
-                fontFamily: "Inter,sans-serif"
-              },
-              children: "Switch"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-              className: "stack-close",
-              onClick: () => setStackOpen(false),
-              children: "x"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-machine-row",
-          children: /*#__PURE__*/_jsxDEV("div", {
-            className: "stack-machine-pills",
-            children: MACHINES.map(m => /*#__PURE__*/_jsxDEV("div", {
-              className: `stack-machine-pill ${stackMachine === m.id ? "on" : ""}`,
-              onClick: () => {
-                setStackMachine(m.id);
-                setStackBase(0);
-              },
-              children: m.name
-            }, m.id, false))
-          }, void 0, false)
-        }, void 0, false), stackRatio === 2 && /*#__PURE__*/_jsxDEV("div", {
-          className: "ratio-note",
-          children: ["(!) Cable is 2:1 ratio -- selected weight feels like half. ", stackSelectedWeight, "lb selected = ", /*#__PURE__*/_jsxDEV("strong", {
-            children: [stackEffective, "lb felt"]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-total-card",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "stack-total-left",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "stack-total-label",
-              children: stackRatio === 2 ? "Selected / Felt" : "Total Weight"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              children: [/*#__PURE__*/_jsxDEV("span", {
-                className: "stack-total-num",
-                children: stackRatio === 2 ? `${stackSelectedWeight} / ${stackEffective}` : stackSelectedWeight
-              }, void 0, false), /*#__PURE__*/_jsxDEV("span", {
-                className: "stack-total-unit",
-                children: "lb"
-              }, void 0, false)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "stack-last",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "stack-last-label",
-              children: "Last set"
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "stack-last-num",
-              style: {
-                color: stackTarget?.prevSetWeight ? "#000" : "#c7c7cc"
-              },
-              children: stackTarget?.prevSetWeight || "--"
-            }, void 0, false), stackTarget?.prevSetWeight && /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                fontSize: 11,
-                color: "#8e8e93"
-              },
-              children: "lb"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-section",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "stack-section-label",
-            children: ["Main Stack -- ", stackMachineConfig.brand, " (", stackIncrement, "lb steps)"]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: "stack-scroll",
-            children: stackIncrements.map(v => /*#__PURE__*/_jsxDEV("button", {
-              className: `stack-val-btn ${stackBase === v ? "on" : ""}`,
-              onClick: () => setStackBase(stackBase === v ? 0 : v),
-              children: v
-            }, v, false))
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-section",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "stack-section-label",
-            children: "Top Plate"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "addon-row",
-            children: /*#__PURE__*/_jsxDEV("button", {
-              className: `addon-btn ${stackTop5 ? "on" : ""}`,
-              onClick: () => setStackTop5(!stackTop5),
-              children: ["+", stackTopPlateWeight, "lb top plate"]
-            }, void 0, true)
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-section",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "stack-section-label",
-            children: "Add-On Weights (magnetic micro)"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "addon-row",
-            children: [0, 1.25, 2.5, 3.75].map(v => /*#__PURE__*/_jsxDEV("button", {
-              className: `addon-btn ${snodeMag === v ? "on" : ""}`,
-              onClick: () => setSnodeMag(v),
-              children: v === 0 ? "None" : `+${v}lb`
-            }, v, false))
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-section",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "stack-section-label",
-            children: "GymPin -- Extra Plate on Stack"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "addon-row",
-            children: [/*#__PURE__*/_jsxDEV("button", {
-              className: `addon-btn ${gymPinPlate === null ? "on" : ""}`,
-              onClick: () => setGymPinPlate(null),
-              children: "None"
-            }, void 0, false), GYMPIN_PLATES.map(v => /*#__PURE__*/_jsxDEV("button", {
-              className: `addon-btn ${gymPinPlate === v ? "on" : ""}`,
-              onClick: () => setGymPinPlate(gymPinPlate === v ? null : v),
-              children: ["+", v, "lb"]
-            }, v, true))]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "stack-section",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "stack-section-label",
-            children: "Band Add-On (note only)"
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "band-row",
-            children: BAND_LEVELS.map(b => /*#__PURE__*/_jsxDEV("button", {
-              className: `band-btn ${bandLevel === b ? "on" : ""}`,
-              onClick: () => setBandLevel(bandLevel === b ? null : b),
-              children: b
-            }, b, false))
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("button", {
-          className: "stack-use-btn",
-          onClick: applyStackWeight,
-          children: ["Use ", stackSelectedWeight, "lb", bandLevel ? ` + ${bandLevel} band` : "", stackRatio === 2 ? ` (${stackEffective}lb felt)` : ""]
-        }, void 0, true)]
-      }, void 0, true)
-    }, void 0, false), showPicker && /*#__PURE__*/_jsxDEV("div", {
-      className: "picker-overlay",
-      children: [/*#__PURE__*/_jsxDEV("div", {
-        className: "picker-topbar",
-        children: [/*#__PURE__*/_jsxDEV("button", {
-          className: "picker-close",
-          onClick: () => {
-            if (pickerStep > 1) {
-              if (pickerStep === 2) {
-                setPickerStep(1);
-                setPickerMuscle(null);
-              }
-              if (pickerStep === 3) {
-                setPickerStep(2);
-                setPickerEquip(null);
-              }
-              if (pickerStep === 4) {
-                setPickerStep(3);
-                setPickerExercise(null);
-              }
-            } else {
-              setShowPicker(false);
-            }
-          },
-          children: pickerStep > 1 ? "‹" : "×"
-        }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-          style: {
-            display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            gap: 2
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "picker-title",
-            children: [pickerStep === 1 && "What muscle?", pickerStep === 2 && (pickerMuscle || "Equipment"), pickerStep === 3 && (pickerEquip || "Exercise"), pickerStep === 4 && (pickerExercise?.name || "Variations")]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "flex",
-              gap: 5,
-              marginTop: 2
-            },
-            children: [1, 2, 3, 4].map(s => /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                width: s <= pickerStep ? 20 : 6,
-                height: 6,
-                borderRadius: 3,
-                background: s <= pickerStep ? "#00c2ff" : "#e5e5ea",
-                transition: "all 0.2s"
-              }
-            }, s, false))
-          }, void 0, false)]
-        }, void 0, true), pendingIds.length > 0 ? /*#__PURE__*/_jsxDEV("button", {
-          className: "picker-cart",
-          onClick: confirmAdd,
-          children: ["Done ", /*#__PURE__*/_jsxDEV("div", {
-            className: "picker-cart-count",
-            children: pendingIds.length
-          }, void 0, false)]
-        }, void 0, true) : /*#__PURE__*/_jsxDEV("div", {
+            gap: 12
+          }
+        }, /*#__PURE__*/React.createElement("div", {
           style: {
-            width: 60
+            flex: 1,
+            minWidth: 0
           }
-        }, void 0, false)]
-      }, void 0, true), pickerStep === 1 && (() => {
-        const muscleStatus = analyzeMuscleStatus(history);
-        const allEx = [...EXERCISE_DB, ...(customExercises || [])];
-        const searchTrim = search.trim().toLowerCase();
-        const searchResults = searchTrim.length > 0 ? allEx.filter(e => {
-          try {
-            return (e.name || "").toLowerCase().includes(searchTrim) || (e.muscle || "").toLowerCase().includes(searchTrim) || (e.muscleHead || "").toLowerCase().includes(searchTrim) || (e.equipment || "").toLowerCase().includes(searchTrim) || (e.primaryMuscle || "").toLowerCase().includes(searchTrim);
-          } catch (err) {
-            return false;
+        }, /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 14,
+            fontWeight: 700,
+            color: "#000"
           }
-        }) : [];
-        return /*#__PURE__*/_jsxDEV("div", {
-          className: "picker-list",
+        }, att.name), /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 11,
+            color: "#8e8e93",
+            marginTop: 2
+          }
+        }, att.note)), selected && /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 11,
+            color: "#ff9f0a",
+            fontWeight: 700,
+            padding: "2px 8px",
+            background: "rgba(255,159,10,0.1)",
+            borderRadius: 6,
+            flexShrink: 0
+          }
+        }, "✓ Active"));
+      }));
+    }))));
+  })(), bwSheetTarget && (() => {
+    const ex = exercises.find(e => e.id === bwSheetTarget.exId);
+    const total = bodyWeight + bwAdded;
+    const addOptions = [0, 10, 25, 35, 45, 55, 65];
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.5)",
+        zIndex: 150,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center"
+      },
+      onClick: () => setBwSheetTarget(null)
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#F0F0F0",
+        borderRadius: "24px 24px 0 0",
+        width: "100%",
+        maxWidth: 700,
+        padding: "0 0 32px"
+      },
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 40,
+        height: 5,
+        background: "#c7c7cc",
+        borderRadius: 3,
+        margin: "12px auto 16px"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "0 20px 16px",
+        borderBottom: "1px solid #e5e5ea"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 18,
+        fontWeight: 800,
+        color: "#000"
+      }
+    }, "Bodyweight"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#8e8e93",
+        marginTop: 2
+      }
+    }, ex?.name)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "16px 20px"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 14,
+        fontWeight: 600,
+        color: "#000"
+      }
+    }, "Your body weight"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      value: bodyWeight,
+      onChange: e => setBodyWeight(parseFloat(e.target.value) || 0),
+      style: {
+        width: 72,
+        padding: "6px 10px",
+        borderRadius: 8,
+        border: "1.5px solid #e5e5ea",
+        fontSize: 16,
+        fontFamily: "DM Mono,monospace",
+        fontWeight: 700,
+        textAlign: "center",
+        outline: "none",
+        background: "#fff"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 13,
+        color: "#8e8e93"
+      }
+    }, "lb"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.05em",
+        marginBottom: 8
+      }
+    }, "Added weight (vest / belt / dumbbell)"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        flexWrap: "wrap"
+      }
+    }, addOptions.map(w => /*#__PURE__*/React.createElement("button", {
+      key: w,
+      onClick: () => setBwAdded(w),
+      style: {
+        padding: "8px 14px",
+        borderRadius: 10,
+        border: "none",
+        background: bwAdded === w ? "#000" : "#fff",
+        color: bwAdded === w ? "#00c2ff" : "#000",
+        fontSize: 14,
+        fontWeight: 700,
+        fontFamily: "DM Mono,monospace",
+        boxShadow: bwAdded === w ? "0 0 0 1.5px #00c2ff" : "0 1px 3px rgba(0,0,0,0.08)",
+        cursor: "pointer"
+      }
+    }, w === 0 ? "None" : `+${w}`)))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 14,
+        padding: "14px 16px",
+        marginBottom: 16,
+        border: "1.5px solid #e5e5ea",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 14,
+        fontWeight: 600,
+        color: "#8e8e93"
+      }
+    }, "Total logged"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 28,
+        fontWeight: 800,
+        fontFamily: "DM Mono,monospace",
+        color: "#000"
+      }
+    }, total, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 14,
+        color: "#8e8e93",
+        marginLeft: 4
+      }
+    }, "lb"))), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        const {
+          exId,
+          setIdx
+        } = bwSheetTarget;
+        setExercises(p => p.map(x => x.id !== exId ? x : {
+          ...x,
+          sets: x.sets.map((s, i) => i !== setIdx ? s : {
+            ...s,
+            weight: String(total)
+          })
+        }));
+        setBwSheetTarget(null);
+        showToast(`Logged ${total}lb`);
+      },
+      style: {
+        width: "100%",
+        padding: "16px",
+        background: "#000",
+        color: "#fff",
+        border: "none",
+        borderRadius: 16,
+        fontSize: 17,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)"
+      }
+    }, "Use ", total, "lb"))));
+  })(), plateOpen && /*#__PURE__*/React.createElement("div", {
+    className: "plate-overlay",
+    onClick: () => setPlateOpen(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plate-sheet",
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plate-handle"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "plate-header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plate-header-title"
+  }, "Plate Calculator"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setCalcSwitchOpen(true),
+    style: {
+      background: "#F0F0F0",
+      border: "1.5px solid #e5e5ea",
+      borderRadius: 8,
+      padding: "5px 10px",
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#8e8e93",
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif"
+    }
+  }, "Switch"), /*#__PURE__*/React.createElement("button", {
+    className: "plate-close",
+    onClick: () => setPlateOpen(false)
+  }, "x"))), /*#__PURE__*/React.createElement("div", {
+    className: "bar-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bar-pills"
+  }, BARS.map(b => /*#__PURE__*/React.createElement("div", {
+    key: b.name,
+    className: `bar-pill ${selectedBar === b.name ? "on" : ""}`,
+    onClick: () => setSelectedBar(selectedBar === b.name ? "No Bar" : b.name)
+  }, b.name, b.weight > 0 ? ` ${b.weight}lb` : "")))), /*#__PURE__*/React.createElement("div", {
+    className: "plate-total-section",
+    style: {
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plate-total-label"
+  }, "Total Weight"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "plate-total-num"
+  }, totalWeight % 1 === 0 ? totalWeight : totalWeight.toFixed(2)), /*#__PURE__*/React.createElement("span", {
+    className: "plate-total-unit"
+  }, "lb")), (() => {
+    const count = plateCounts[selectedPlate] || 0;
+    if (!count) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#8e8e93",
+        marginTop: 4
+      }
+    }, count, " x ", selectedPlate, "lb plate", count !== 1 ? "s" : "");
+  })()), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 2
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: "#8e8e93",
+      textTransform: "uppercase",
+      letterSpacing: "0.05em"
+    }
+  }, "Last set"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 24,
+      fontWeight: 700,
+      fontFamily: "DM Mono,monospace",
+      lineHeight: 1,
+      color: plateTarget?.prevSetWeight ? "#000" : "#c7c7cc"
+    }
+  }, plateTarget?.prevSetWeight || "--"), plateTarget?.prevSetWeight && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "lb")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      display: "flex",
+      justifyContent: "flex-end"
+    }
+  }, (() => {
+    const count = plateCounts[selectedPlate] || 0;
+    return /*#__PURE__*/React.createElement(BigPlateToggle, {
+      count: count,
+      onAdd: () => adjustPlate(selectedPlate, 1),
+      onRemove: () => adjustPlate(selectedPlate, -1)
+    });
+  })())), /*#__PURE__*/React.createElement("div", {
+    className: "load-mode-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "load-mode-label"
+  }, "Loading"), /*#__PURE__*/React.createElement("div", {
+    className: "load-mode-toggle"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: `load-mode-btn ${loadMode === "both" ? "on" : ""}`,
+    onClick: () => setLoadMode("both")
+  }, "Both sides"), /*#__PURE__*/React.createElement("button", {
+    className: `load-mode-btn ${loadMode === "single" ? "on" : ""}`,
+    onClick: () => setLoadMode("single")
+  }, "One side"))), /*#__PURE__*/React.createElement("div", {
+    className: "plate-grid-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plate-grid"
+  }, PLATE_SIZES.map(p => {
+    const count = plateCounts[p.weight] || 0;
+    const isSelected = selectedPlate === p.weight;
+    const hasPlates = count > 0;
+    return /*#__PURE__*/React.createElement("div", {
+      key: p.weight,
+      className: `plate-card ${isSelected ? "selected" : ""}`,
+      onClick: () => setSelectedPlate(p.weight)
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "plate-card-weight",
+      style: {
+        color: isSelected ? "#00c2ff" : hasPlates ? "#000" : "#c7c7cc"
+      }
+    }, p.label), /*#__PURE__*/React.createElement("div", {
+      className: "plate-card-unit"
+    }, "lb"), /*#__PURE__*/React.createElement("div", {
+      className: "plate-card-count",
+      style: {
+        color: hasPlates ? "#00c2ff" : "transparent"
+      }
+    }, hasPlates ? `x${count}` : "x0"));
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "stack-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-section-label"
+  }, "Band Add-On (note only)"), /*#__PURE__*/React.createElement("div", {
+    className: "band-row"
+  }, BAND_LEVELS.map(b => /*#__PURE__*/React.createElement("button", {
+    key: b,
+    className: `band-btn ${plateBand === b ? "on" : ""}`,
+    onClick: () => setPlateBand(plateBand === b ? null : b)
+  }, b)))), /*#__PURE__*/React.createElement("button", {
+    className: "plate-use-btn",
+    onClick: applyPlateWeight
+  }, "Use ", totalWeight % 1 === 0 ? totalWeight : totalWeight.toFixed(2), "lb", plateBand ? ` + ${plateBand} band` : ""))), recoveryOpen && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.5)",
+      zIndex: 300,
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#F0F0F0",
+      borderRadius: "24px 24px 0 0",
+      width: "100%",
+      maxWidth: 700,
+      padding: "0 0 36px"
+    },
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 40,
+      height: 5,
+      background: "#c7c7cc",
+      borderRadius: 3,
+      margin: "12px auto 20px"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "0 20px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20,
+      fontWeight: 800,
+      color: "#000",
+      marginBottom: 4
+    }
+  }, "How's your recovery?"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: "#8e8e93",
+      marginBottom: 20
+    }
+  }, "Rate how you feel going into today's session"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      marginBottom: 20
+    }
+  }, [{
+    r: 1,
+    label: "💀",
+    sub: "Dead"
+  }, {
+    r: 2,
+    label: "😓",
+    sub: "Rough"
+  }, {
+    r: 3,
+    label: "😐",
+    sub: "OK"
+  }, {
+    r: 4,
+    label: "💪",
+    sub: "Good"
+  }, {
+    r: 5,
+    label: "Z",
+    sub: "Fired up"
+  }].map(({
+    r,
+    label,
+    sub
+  }) => /*#__PURE__*/React.createElement("div", {
+    key: r,
+    onClick: () => setRecoveryRating(r),
+    style: {
+      flex: 1,
+      padding: "12px 4px",
+      borderRadius: 12,
+      border: recoveryRating === r ? "2px solid #00c2ff" : "1.5px solid #e5e5ea",
+      background: recoveryRating === r ? "#000" : "#fff",
+      cursor: "pointer",
+      textAlign: "center",
+      transition: "all 0.15s",
+      boxShadow: recoveryRating === r ? "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.3)" : "0 1px 3px rgba(0,0,0,0.06)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20,
+      marginBottom: 2
+    }
+  }, label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: recoveryRating === r ? "#fff" : "#8e8e93"
+    }
+  }, sub)))), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setRecoveryOpen(false),
+    style: {
+      width: "100%",
+      padding: "16px",
+      background: "#000",
+      color: "#fff",
+      border: "none",
+      borderRadius: 14,
+      fontSize: 15,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)"
+    }
+  }, recoveryRating ? `Let's go -- feeling ${["", "dead", "rough", "OK", "good", "fired up"][recoveryRating]}!` : "Skip")))), warmupOpen && /*#__PURE__*/React.createElement("div", {
+    className: "warmup-overlay",
+    onClick: () => setWarmupOpen(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "warmup-sheet",
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "warmup-handle"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "warmup-header"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "warmup-title"
+  }, "Warm Up"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      marginTop: 2
+    }
+  }, "Auto-generated for your workout")), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setWarmupDone(true);
+      setWarmupOpen(false);
+      showToast("check Warm up complete!");
+    },
+    style: {
+      background: "#000",
+      color: "#fff",
+      border: "none",
+      borderRadius: 10,
+      padding: "8px 16px",
+      fontSize: 13,
+      fontWeight: 700,
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      boxShadow: "0 0 0 1.5px #00c2ff"
+    }
+  }, "Done")), /*#__PURE__*/React.createElement("div", {
+    className: "warmup-body"
+  }, warmupSets.map((ws, i) => /*#__PURE__*/React.createElement("div", {
+    key: ws.id,
+    className: `warmup-row ${ws.done ? "done-row" : ""}`
+  }, /*#__PURE__*/React.createElement("button", {
+    className: `warmup-check ${ws.done ? "checked" : ""}`,
+    onClick: () => setWarmupSets(p => p.map((s, j) => j === i ? {
+      ...s,
+      done: !s.done
+    } : s))
+  }, ws.done ? "✓" : ""), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, ws.editing ? /*#__PURE__*/React.createElement("input", {
+    autoFocus: true,
+    value: ws.name,
+    onChange: e => setWarmupSets(p => p.map((s, j) => j === i ? {
+      ...s,
+      name: e.target.value
+    } : s)),
+    onBlur: () => setWarmupSets(p => p.map((s, j) => j === i ? {
+      ...s,
+      editing: false
+    } : s)),
+    onKeyDown: e => {
+      if (e.key === "Enter") setWarmupSets(p => p.map((s, j) => j === i ? {
+        ...s,
+        editing: false
+      } : s));
+    },
+    placeholder: "Exercise name...",
+    style: {
+      width: "100%",
+      padding: "4px 8px",
+      border: "1.5px solid #00c2ff",
+      borderRadius: 6,
+      fontSize: 14,
+      fontWeight: 600,
+      fontFamily: "Inter,sans-serif",
+      outline: "none"
+    }
+  }) : /*#__PURE__*/React.createElement("div", {
+    className: "warmup-label",
+    onClick: () => ws.isCustom && setWarmupSets(p => p.map((s, j) => j === i ? {
+      ...s,
+      editing: true
+    } : s)),
+    style: ws.isCustom ? {
+      cursor: "pointer"
+    } : {}
+  }, ws.name), /*#__PURE__*/React.createElement("div", {
+    className: "warmup-meta"
+  }, ws.weight && /*#__PURE__*/React.createElement("span", null, ws.weight, " . "), ws.reps, " reps")), ws.isFeeder && /*#__PURE__*/React.createElement("span", {
+    className: "warmup-tag feeder"
+  }, "Feeder"), ws.isGeneral && /*#__PURE__*/React.createElement("span", {
+    className: "warmup-tag general"
+  }, "Mobility"), ws.isCustom && /*#__PURE__*/React.createElement("button", {
+    onClick: () => setWarmupSets(p => p.filter((_, j) => j !== i)),
+    style: {
+      background: "none",
+      border: "none",
+      color: "#ff3b30",
+      fontSize: 16,
+      cursor: "pointer",
+      padding: "4px 8px"
+    }
+  }, "×"))), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setWarmupSets(p => [...p, {
+        id: `wu-custom-${Date.now()}`,
+        name: "",
+        weight: "",
+        reps: "10",
+        done: false,
+        isCustom: true,
+        editing: true
+      }]);
+    },
+    style: {
+      background: "#fff",
+      border: "1.5px dashed #e5e5ea",
+      borderRadius: 12,
+      padding: "12px",
+      width: "100%",
+      fontSize: 13,
+      fontWeight: 600,
+      color: "#8e8e93",
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif",
+      marginTop: 4
+    }
+  }, "+ Add exercise")))), libraryOpen && (() => {
+    // Filter exercises
+    const filtered = EXERCISE_DB.filter(ex => {
+      if (libraryFilterSection && ex.section !== libraryFilterSection) return false;
+      if (libraryFilterMuscle && ex.muscle !== libraryFilterMuscle) return false;
+      if (librarySearch) {
+        const s = librarySearch.toLowerCase();
+        return ex.name.toLowerCase().includes(s) || ex.muscle.toLowerCase().includes(s) || ex.muscleHead.toLowerCase().includes(s) || ex.equipment.toLowerCase().includes(s);
+      }
+      return true;
+    });
+
+    // Group by muscle for display
+    const grouped = {};
+    filtered.forEach(ex => {
+      if (!grouped[ex.muscle]) grouped[ex.muscle] = [];
+      grouped[ex.muscle].push(ex);
+    });
+    const sections = ["Upper", "Lower", "Full Body"];
+    const musclesInDB = [...new Set(EXERCISE_DB.map(e => e.muscle))].sort();
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "fixed",
+        inset: 0,
+        background: "#F0F0F0",
+        zIndex: 200,
+        display: "flex",
+        flexDirection: "column"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "16px 20px 12px",
+        background: "#fff",
+        borderBottom: "1px solid #e5e5ea",
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        flexShrink: 0
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setLibraryOpen(false);
+        setLibrarySearch("");
+        setLibraryExpanded(null);
+        setLibraryFilterSection(null);
+        setLibraryFilterMuscle(null);
+      },
+      style: {
+        background: "#e5e5ea",
+        border: "none",
+        color: "#555",
+        fontSize: 14,
+        cursor: "pointer",
+        width: 30,
+        height: 30,
+        borderRadius: "50%",
+        fontWeight: 700,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }
+    }, "×"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 16,
+        fontWeight: 800,
+        color: "#000"
+      }
+    }, "Exercise Library"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93"
+      }
+    }, filtered.length, " of ", EXERCISE_DB.length, " exercises"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "10px 14px 6px",
+        background: "#fff",
+        flexShrink: 0
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      placeholder: "Search by exercise, muscle, or equipment...",
+      value: librarySearch,
+      onChange: e => setLibrarySearch(e.target.value),
+      style: {
+        width: "100%",
+        padding: "10px 14px",
+        borderRadius: 10,
+        border: "1.5px solid #e5e5ea",
+        fontSize: 13,
+        fontFamily: "Inter,sans-serif",
+        outline: "none",
+        boxSizing: "border-box",
+        background: "#f9f9f9"
+      }
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6,
+        padding: "6px 14px",
+        overflowX: "auto",
+        flexShrink: 0,
+        background: "#fff",
+        borderBottom: "1px solid #e5e5ea"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setLibraryFilterSection(null);
+        setLibraryFilterMuscle(null);
+      },
+      style: {
+        flexShrink: 0,
+        padding: "5px 12px",
+        fontSize: 11,
+        fontWeight: 700,
+        borderRadius: 14,
+        border: !libraryFilterSection && !libraryFilterMuscle ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
+        background: !libraryFilterSection && !libraryFilterMuscle ? "rgba(0,194,255,0.08)" : "#fff",
+        color: !libraryFilterSection && !libraryFilterMuscle ? "#00c2ff" : "#8e8e93",
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "All"), sections.map(sec => /*#__PURE__*/React.createElement("button", {
+      key: sec,
+      onClick: () => {
+        setLibraryFilterSection(libraryFilterSection === sec ? null : sec);
+        setLibraryFilterMuscle(null);
+      },
+      style: {
+        flexShrink: 0,
+        padding: "5px 12px",
+        fontSize: 11,
+        fontWeight: 700,
+        borderRadius: 14,
+        border: libraryFilterSection === sec ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
+        background: libraryFilterSection === sec ? "rgba(0,194,255,0.08)" : "#fff",
+        color: libraryFilterSection === sec ? "#00c2ff" : "#000",
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, sec)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 1,
+        background: "#e5e5ea",
+        margin: "0 4px",
+        flexShrink: 0
+      }
+    }), musclesInDB.filter(m => !libraryFilterSection || EXERCISE_DB.find(e => e.muscle === m && e.section === libraryFilterSection)).map(m => /*#__PURE__*/React.createElement("button", {
+      key: m,
+      onClick: () => setLibraryFilterMuscle(libraryFilterMuscle === m ? null : m),
+      style: {
+        flexShrink: 0,
+        padding: "5px 12px",
+        fontSize: 11,
+        fontWeight: 600,
+        borderRadius: 14,
+        border: libraryFilterMuscle === m ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
+        background: libraryFilterMuscle === m ? "rgba(0,194,255,0.08)" : "#fff",
+        color: libraryFilterMuscle === m ? "#00c2ff" : "#8e8e93",
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, m))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        overflowY: "auto",
+        padding: "10px 14px 40px"
+      }
+    }, Object.keys(grouped).sort().map(muscle => /*#__PURE__*/React.createElement("div", {
+      key: muscle,
+      style: {
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 800,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.06em",
+        padding: "6px 4px 6px"
+      }
+    }, muscle, " (", grouped[muscle].length, ")"), grouped[muscle].map(ex => {
+      const isOpen = libraryExpanded === ex.id;
+      const altCount = (EQUIPMENT_ALTERNATIVES[ex.id] || []).length;
+      return /*#__PURE__*/React.createElement("div", {
+        key: ex.id,
+        style: {
+          background: "#fff",
+          borderRadius: 12,
+          border: "1.5px solid #e5e5ea",
+          marginBottom: 6,
+          overflow: "hidden",
+          boxShadow: "0 1px 2px rgba(0,0,0,0.04)"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        onClick: () => setLibraryExpanded(isOpen ? null : ex.id),
+        style: {
+          padding: "10px 14px",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 8
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 14,
+          fontWeight: 700,
+          color: "#000"
+        }
+      }, ex.name), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93",
+          marginTop: 1
+        }
+      }, ex.equipment, " · ", ex.muscleHead)), /*#__PURE__*/React.createElement(ChevronDown, {
+        size: 14,
+        strokeWidth: 2.5,
+        color: "#00c2ff",
+        style: {
+          transform: isOpen ? "rotate(180deg)" : "none",
+          transition: "transform 0.2s"
+        }
+      })), isOpen && /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "0 14px 12px",
+          borderTop: "1px solid #F0F0F0",
+          background: "#fafafa"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "grid",
+          gridTemplateColumns: "100px 1fr",
+          gap: "4px 10px",
+          padding: "10px 0",
+          fontSize: 12
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#8e8e93",
+          fontWeight: 600
+        }
+      }, "Body Section"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#000",
+          fontWeight: 600
+        }
+      }, ex.section), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#8e8e93",
+          fontWeight: 600
+        }
+      }, "Muscle"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#000",
+          fontWeight: 600
+        }
+      }, ex.muscle), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#8e8e93",
+          fontWeight: 600
+        }
+      }, "Muscle Head"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#000",
+          fontWeight: 600
+        }
+      }, ex.muscleHead), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#8e8e93",
+          fontWeight: 600
+        }
+      }, "Equipment"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#000",
+          fontWeight: 600
+        }
+      }, ex.equipment), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#8e8e93",
+          fontWeight: 600
+        }
+      }, "Calculator"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#000",
+          fontWeight: 600,
+          textTransform: "capitalize"
+        }
+      }, ex.calculator), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#8e8e93",
+          fontWeight: 600
+        }
+      }, "Bench Setup"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: ex.bench && ex.bench !== "N/A" ? "#00c2ff" : "#000",
+          fontWeight: 600
+        }
+      }, ex.bench || "N/A")), ex.variations && ex.variations.length > 0 && /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginTop: 4
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          fontWeight: 700,
+          color: "#8e8e93",
+          textTransform: "uppercase",
+          letterSpacing: "0.05em",
+          marginBottom: 6
+        }
+      }, "Variations (", ex.variations.length, ")"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 5
+        }
+      }, ex.variations.map((v, i) => /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          padding: "4px 10px",
+          borderRadius: 12,
+          background: "#F0F0F0",
+          border: "1px solid #e5e5ea",
+          fontSize: 11,
+          fontWeight: 600,
+          color: "#000"
+        }
+      }, v)))), altCount > 0 && /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginTop: 10
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          fontWeight: 700,
+          color: "#8e8e93",
+          textTransform: "uppercase",
+          letterSpacing: "0.05em",
+          marginBottom: 6
+        }
+      }, "Also available on (", altCount, ")"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 5
+        }
+      }, (EQUIPMENT_ALTERNATIVES[ex.id] || []).slice(0, 10).map(altId => {
+        const alt = EXERCISE_DB.find(e => e.id === altId);
+        if (!alt) return null;
+        return /*#__PURE__*/React.createElement("div", {
+          key: altId,
+          style: {
+            padding: "4px 10px",
+            borderRadius: 12,
+            background: "rgba(0,194,255,0.06)",
+            border: "1px solid rgba(0,194,255,0.3)",
+            fontSize: 11,
+            fontWeight: 600,
+            color: "#00c2ff"
+          }
+        }, alt.equipment);
+      }), altCount > 10 && /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "4px 10px",
+          fontSize: 11,
+          color: "#8e8e93"
+        }
+      }, "+ ", altCount - 10, " more")))));
+    }))), filtered.length === 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        padding: "40px 20px",
+        color: "#8e8e93",
+        fontSize: 13
+      }
+    }, "No exercises match your filters")));
+  })(), equipSheet && (() => {
+    const currentEx = exercises.find(e => e.id === equipSheet);
+    if (!currentEx) return null;
+    const lookupId = currentEx.baseId || currentEx.id;
+    const alts = EQUIPMENT_ALTERNATIVES[lookupId] || [];
+    // Base exercise for the "current" display (or fallback to current)
+    const baseEx = currentEx.baseId ? EXERCISE_DB.find(e => e.id === currentEx.baseId) : currentEx;
+    const options = [baseEx || currentEx, ...alts.map(id => EXERCISE_DB.find(e => e.id === id)).filter(Boolean)].filter((v, i, a) => a.findIndex(x => x.id === v.id) === i); // dedupe
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.5)",
+        zIndex: 200,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center"
+      },
+      onClick: () => setEquipSheet(null)
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#F0F0F0",
+        borderRadius: "24px 24px 0 0",
+        width: "100%",
+        maxWidth: 700,
+        maxHeight: "80vh",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden"
+      },
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 40,
+        height: 5,
+        background: "#c7c7cc",
+        borderRadius: 3,
+        margin: "12px auto 8px",
+        flexShrink: 0
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "8px 20px 12px",
+        borderBottom: "1px solid #e5e5ea",
+        flexShrink: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 18,
+        fontWeight: 800,
+        color: "#000"
+      }
+    }, "Change Equipment"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#8e8e93",
+        marginTop: 2
+      }
+    }, "How are you doing ", currentEx.muscleHead || currentEx.muscle, "?")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        overflowY: "auto",
+        padding: "12px 14px 24px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 8
+      }
+    }, options.map(opt => {
+      const selected = opt.id === currentEx.id || opt.id === currentEx.baseId;
+      return /*#__PURE__*/React.createElement("div", {
+        key: opt.id,
+        onClick: () => {
+          if (selected) {
+            setEquipSheet(null);
+            return;
+          }
+          // Swap the exercise while keeping the sets
+          setExercises(p => p.map(x => x.id !== currentEx.id ? x : {
+            ...opt,
+            sets: x.sets
+          }));
+          setEquipSheet(null);
+          showToast(`Switched to ${opt.equipment}`);
+        },
+        style: {
+          background: "#fff",
+          borderRadius: 12,
+          padding: "12px 14px",
+          border: selected ? "2px solid #00c2ff" : "1.5px solid #e5e5ea",
+          boxShadow: selected ? "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)" : "0 1px 3px rgba(0,0,0,0.06)",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          gap: 12
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 14,
+          fontWeight: 700,
+          color: "#000"
+        }
+      }, opt.equipment), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93",
+          marginTop: 2
+        }
+      }, opt.name), opt.bench && opt.bench !== "N/A" && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          color: "#00c2ff",
+          marginTop: 2,
+          fontWeight: 600
+        }
+      }, opt.bench)), selected && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#00c2ff",
+          fontWeight: 700,
+          padding: "2px 8px",
+          background: "rgba(0,194,255,0.1)",
+          borderRadius: 6
+        }
+      }, "Current"));
+    }))));
+  })(), swapSheet && (() => {
+    const currentEx = exercises.find(e => e.id === swapSheet);
+    if (!currentEx) return null;
+    const alreadyAdded = new Set(exercises.map(e => e.id));
+
+    // Priority 1: Same muscle head (most direct swap)
+    const sameHead = EXERCISE_DB.filter(e => e.muscleHead === currentEx.muscleHead && e.id !== currentEx.id && !alreadyAdded.has(e.id));
+
+    // Priority 2: Same muscle group but different head
+    const sameMuscle = EXERCISE_DB.filter(e => e.muscle === currentEx.muscle && e.muscleHead !== currentEx.muscleHead && !alreadyAdded.has(e.id));
+    const doSwap = (targetEx, variationIdx = null) => {
+      let finalEx = targetEx;
+      if (variationIdx !== null && targetEx.variations && targetEx.variations[variationIdx]) {
+        const variationName = targetEx.variations[variationIdx];
+        const variationId = `${targetEx.id}-v${variationIdx}-${Date.now()}`;
+        finalEx = {
+          ...targetEx,
+          id: variationId,
+          baseId: targetEx.id,
+          name: `${targetEx.name} (${variationName})`
+        };
+      }
+      const prev = lastSets(finalEx.id);
+      const initSets = prev ? prev.map(s => ({
+        ...s,
+        done: false
+      })) : [{
+        weight: "",
+        reps: "",
+        done: false
+      }];
+      setExercises(p => p.map(ex => ex.id === swapSheet ? {
+        ...finalEx,
+        sets: initSets
+      } : ex));
+      setExpanded(p => {
+        const n = {
+          ...p
+        };
+        const wasOpen = !!n[swapSheet];
+        delete n[swapSheet];
+        n[finalEx.id] = wasOpen;
+        return n;
+      });
+      setSwapSheet(null);
+      setSwapExpandedId(null);
+      showToast(`Switched to ${finalEx.name}`);
+    };
+    return /*#__PURE__*/React.createElement("div", {
+      className: "swap-overlay",
+      onClick: () => {
+        setSwapSheet(null);
+        setSwapExpandedId(null);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "swap-sheet",
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "swap-handle"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "swap-header"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "swap-title"
+    }, "Change exercise"), /*#__PURE__*/React.createElement("div", {
+      className: "swap-current"
+    }, currentEx.name)), /*#__PURE__*/React.createElement("div", {
+      className: "swap-list"
+    }, sameHead.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "swap-group-label"
+    }, currentEx.muscleHead, " — same muscle head"), sameHead.map(ex => {
+      const Icon = EX_ICON[ex.equipment] || Dumbbell;
+      const hasVariations = ex.variations && ex.variations.length > 0;
+      const isExpanded = swapExpandedId === ex.id;
+      return /*#__PURE__*/React.createElement(React.Fragment, {
+        key: ex.id
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "swap-item",
+        onClick: () => {
+          if (hasVariations) setSwapExpandedId(isExpanded ? null : ex.id);else doSwap(ex);
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "swap-item-icon"
+      }, /*#__PURE__*/React.createElement(Icon, {
+        size: 18,
+        strokeWidth: 2.5,
+        color: "#000"
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "swap-item-name"
+      }, ex.name), /*#__PURE__*/React.createElement("div", {
+        className: "swap-item-sub"
+      }, ex.equipment, ex.bench && ex.bench !== "N/A" && /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#00c2ff"
+        }
+      }, " · ", ex.bench))), hasVariations && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          color: "#00c2ff",
+          fontWeight: 700,
+          padding: "3px 8px",
+          border: "1px solid #00c2ff",
+          borderRadius: 6,
+          flexShrink: 0,
+          marginRight: 6
+        }
+      }, isExpanded ? "Hide" : "Variations")), isExpanded && /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "#f9f9f9",
+          padding: "4px 0",
+          borderRadius: "0 0 8px 8px"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        onClick: () => doSwap(ex),
+        style: {
+          padding: "10px 40px 10px 56px",
+          cursor: "pointer",
+          fontSize: 13,
+          fontWeight: 600,
+          color: "#000",
+          borderBottom: "1px solid #e5e5ea"
+        }
+      }, "Standard ", ex.name), ex.variations.map((v, vi) => /*#__PURE__*/React.createElement("div", {
+        key: vi,
+        onClick: () => doSwap(ex, vi),
+        style: {
+          padding: "10px 40px 10px 56px",
+          cursor: "pointer",
+          fontSize: 13,
+          fontWeight: 500,
+          color: "#000",
+          borderBottom: vi === ex.variations.length - 1 ? "none" : "1px solid #F0F0F0"
+        }
+      }, v))));
+    })), sameMuscle.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "swap-group-label"
+    }, "Other ", currentEx.muscle, " exercises"), sameMuscle.map(ex => {
+      const Icon = EX_ICON[ex.equipment] || Dumbbell;
+      const hasVariations = ex.variations && ex.variations.length > 0;
+      const isExpanded = swapExpandedId === ex.id;
+      return /*#__PURE__*/React.createElement(React.Fragment, {
+        key: ex.id
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "swap-item",
+        onClick: () => {
+          if (hasVariations) setSwapExpandedId(isExpanded ? null : ex.id);else doSwap(ex);
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "swap-item-icon"
+      }, /*#__PURE__*/React.createElement(Icon, {
+        size: 18,
+        strokeWidth: 2.5,
+        color: "#000"
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "swap-item-name"
+      }, ex.name), /*#__PURE__*/React.createElement("div", {
+        className: "swap-item-sub"
+      }, ex.equipment, " · ", ex.muscleHead)), hasVariations && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          color: "#00c2ff",
+          fontWeight: 700,
+          padding: "3px 8px",
+          border: "1px solid #00c2ff",
+          borderRadius: 6,
+          flexShrink: 0,
+          marginRight: 6
+        }
+      }, isExpanded ? "Hide" : "Variations")), isExpanded && /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "#f9f9f9",
+          padding: "4px 0",
+          borderRadius: "0 0 8px 8px"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        onClick: () => doSwap(ex),
+        style: {
+          padding: "10px 40px 10px 56px",
+          cursor: "pointer",
+          fontSize: 13,
+          fontWeight: 600,
+          color: "#000",
+          borderBottom: "1px solid #e5e5ea"
+        }
+      }, "Standard ", ex.name), ex.variations.map((v, vi) => /*#__PURE__*/React.createElement("div", {
+        key: vi,
+        onClick: () => doSwap(ex, vi),
+        style: {
+          padding: "10px 40px 10px 56px",
+          cursor: "pointer",
+          fontSize: 13,
+          fontWeight: 500,
+          color: "#000",
+          borderBottom: vi === ex.variations.length - 1 ? "none" : "1px solid #F0F0F0"
+        }
+      }, v))));
+    })))));
+  })(), calcSwitchOpen && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.5)",
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center",
+      zIndex: 300
+    },
+    onClick: () => setCalcSwitchOpen(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#F0F0F0",
+      borderRadius: "24px 24px 0 0",
+      width: "100%",
+      maxWidth: 700,
+      paddingBottom: 32
+    },
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 40,
+      height: 5,
+      background: "#c7c7cc",
+      borderRadius: 3,
+      margin: "12px auto 16px"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: "#8e8e93",
+      textTransform: "uppercase",
+      letterSpacing: "0.05em",
+      padding: "0 20px 12px",
+      borderBottom: "1px solid #e5e5ea",
+      marginBottom: 8
+    }
+  }, "Switch Calculator"), [{
+    type: "plate",
+    label: "Plate Loaded",
+    sub: "Barbell, leg press, preacher"
+  }, {
+    type: "stack",
+    label: "Stack / Machine",
+    sub: "Cable, pec deck, leg ext"
+  }, {
+    type: "dumbbell",
+    label: "Dumbbell",
+    sub: "REP x Pepin, Snode, Fixed"
+  }, {
+    type: "mx100",
+    label: "MX100 Selectorized",
+    sub: "28-100lb . 10 dial positions"
+  }, {
+    type: "kettlebell",
+    label: "Kettlebell",
+    sub: "26.5lb & 52.9lb"
+  }].map(opt => /*#__PURE__*/React.createElement("div", {
+    key: opt.type,
+    onClick: () => switchCalculator(opt.type),
+    style: {
+      padding: "14px 20px",
+      cursor: "pointer",
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      borderBottom: "1px solid #F0F0F0"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 600,
+      color: "#000"
+    }
+  }, opt.label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93"
+    }
+  }, opt.sub))))), equipEditTarget && /*#__PURE__*/React.createElement("div", {
+    className: "equip-type-sheet",
+    onClick: () => setEquipEditTarget(null)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "equip-type-panel",
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 40,
+      height: 5,
+      background: "#c7c7cc",
+      borderRadius: 3,
+      margin: "0 auto 14px"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "equip-type-title"
+  }, equipEditTarget), WEIGHT_TYPES.map(type => /*#__PURE__*/React.createElement("div", {
+    key: type,
+    className: `equip-type-option ${equipConfig[equipEditTarget] === type ? "selected" : ""}`,
+    onClick: () => {
+      setEquipConfig(p => ({
+        ...p,
+        [equipEditTarget]: type
+      }));
+      setEquipEditTarget(null);
+      showToast(`${equipEditTarget} -> ${type}`);
+    }
+  }, type, equipConfig[equipEditTarget] === type && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#00c2ff"
+    }
+  }, "check"))))), mx100Open && /*#__PURE__*/React.createElement("div", {
+    className: "db-overlay",
+    onClick: () => setMx100Open(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "db-sheet",
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "db-handle"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "db-header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "db-title"
+  }, "MX100 Selectorized Bar"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setCalcSwitchOpen(true),
+    style: {
+      background: "#F0F0F0",
+      border: "1.5px solid #e5e5ea",
+      borderRadius: 8,
+      padding: "5px 10px",
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#8e8e93",
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif"
+    }
+  }, "Switch"), /*#__PURE__*/React.createElement("button", {
+    className: "db-close",
+    onClick: () => setMx100Open(false)
+  }, "x"))), /*#__PURE__*/React.createElement("div", {
+    className: "db-info-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "db-last"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "db-last-label"
+  }, "Last set"), /*#__PURE__*/React.createElement("div", {
+    className: "db-last-num",
+    style: {
+      color: mx100Target?.prevSetWeight ? "#000" : "#c7c7cc"
+    }
+  }, mx100Target?.prevSetWeight || "--"), mx100Target?.prevSetWeight && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "lb")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, "MX Select MX100"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "28-100lb . Straight or Curl Bar"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "0 14px 8px",
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#8e8e93",
+      textTransform: "uppercase",
+      letterSpacing: "0.05em"
+    }
+  }, "Select Dial Position"), /*#__PURE__*/React.createElement("div", {
+    className: "db-grid-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(2,1fr)",
+      gap: 8
+    }
+  }, MX100_WEIGHTS.map((w, idx) => {
+    const isCurrent = mx100Target?.prevSetWeight === String(w);
+    return /*#__PURE__*/React.createElement("button", {
+      key: w,
+      onClick: () => {
+        if (!mx100Target) return;
+        const {
+          exId,
+          setIdx
+        } = mx100Target;
+        setExercises(p => p.map(ex => ex.id !== exId ? ex : {
+          ...ex,
+          sets: ex.sets.map((s, i) => i !== setIdx ? s : {
+            ...s,
+            weight: String(w)
+          })
+        }));
+        setMx100Open(false);
+        showToast(`${w}lb (Dial ${idx + 1})`);
+      },
+      style: {
+        padding: "14px",
+        borderRadius: 12,
+        border: `1.5px solid ${isCurrent ? "#00c2ff" : "#e5e5ea"}`,
+        background: isCurrent ? "#000" : "#fff",
+        cursor: "pointer",
+        fontFamily: "DM Mono,monospace",
+        textAlign: "left",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.07)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 22,
+        fontWeight: 700,
+        color: isCurrent ? "#fff" : "#000"
+      }
+    }, w, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        fontWeight: 500,
+        color: isCurrent ? "#8e8e93" : "#c7c7cc"
+      }
+    }, " lb")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: isCurrent ? "#00c2ff" : "#8e8e93",
+        marginTop: 2
+      }
+    }, "Dial ", idx + 1));
+  }))))), dbOpen && (() => {
+    const brand = DB_BRANDS.find(b => b.id === dbBrand) || DB_BRANDS[0];
+    const currentW = dbTarget?.currentWeight ? parseFloat(dbTarget.currentWeight) : null;
+    const prevW = dbTarget?.prevSetWeight;
+    return /*#__PURE__*/React.createElement("div", {
+      className: "db-overlay",
+      onClick: () => setDbOpen(false)
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "db-sheet",
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "db-handle"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "db-header"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "db-title"
+    }, "Dumbbell"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        alignItems: "center"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => setCalcSwitchOpen(true),
+      style: {
+        background: "#F0F0F0",
+        border: "1.5px solid #e5e5ea",
+        borderRadius: 8,
+        padding: "5px 10px",
+        fontSize: 12,
+        fontWeight: 700,
+        color: "#8e8e93",
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Switch"), /*#__PURE__*/React.createElement("button", {
+      className: "db-close",
+      onClick: () => setDbOpen(false)
+    }, "x"))), /*#__PURE__*/React.createElement("div", {
+      className: "db-brand-row"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "db-brand-pills"
+    }, DB_BRANDS.map(b => /*#__PURE__*/React.createElement("div", {
+      key: b.id,
+      className: `db-brand-pill ${dbBrand === b.id ? "on" : ""}`,
+      onClick: () => setDbBrand(b.id)
+    }, b.name)))), /*#__PURE__*/React.createElement("div", {
+      className: "db-info-row"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "db-last"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "db-last-label"
+    }, "Last set"), /*#__PURE__*/React.createElement("div", {
+      className: "db-last-num",
+      style: {
+        color: prevW ? "#000" : "#c7c7cc"
+      }
+    }, prevW || "--"), prevW && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93"
+      }
+    }, "lb")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#8e8e93",
+        textAlign: "center",
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 700,
+        color: "#000",
+        fontSize: 13
+      }
+    }, brand.name), /*#__PURE__*/React.createElement("div", null, "Up to ", brand.max, "lb")), /*#__PURE__*/React.createElement("div", {
+      className: "db-side-toggle"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: `db-side-btn ${dbSide === "both" ? "on" : ""}`,
+      onClick: () => setDbSide("both")
+    }, "Both"), /*#__PURE__*/React.createElement("button", {
+      className: `db-side-btn ${dbSide === "single" ? "on" : ""}`,
+      onClick: () => setDbSide("single")
+    }, "Single"))), /*#__PURE__*/React.createElement("div", {
+      className: "db-grid-wrap"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "db-grid"
+    }, brand.weights.map(w => /*#__PURE__*/React.createElement("button", {
+      key: w,
+      className: `db-weight-btn ${currentW === w ? "current" : ""}`,
+      onClick: () => applyDumbbellWeight(w)
+    }, w % 1 === 0 ? w : w.toFixed(1)))))));
+  })(), stackOpen && /*#__PURE__*/React.createElement("div", {
+    className: "stack-overlay",
+    onClick: () => setStackOpen(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-sheet",
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-handle"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "stack-header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-title"
+  }, "Stack Calculator"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setCalcSwitchOpen(true),
+    style: {
+      background: "#F0F0F0",
+      border: "1.5px solid #e5e5ea",
+      borderRadius: 8,
+      padding: "5px 10px",
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#8e8e93",
+      cursor: "pointer",
+      fontFamily: "Inter,sans-serif"
+    }
+  }, "Switch"), /*#__PURE__*/React.createElement("button", {
+    className: "stack-close",
+    onClick: () => setStackOpen(false)
+  }, "x"))), /*#__PURE__*/React.createElement("div", {
+    className: "stack-machine-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-machine-pills"
+  }, MACHINES.map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.id,
+    className: `stack-machine-pill ${stackMachine === m.id ? "on" : ""}`,
+    onClick: () => {
+      setStackMachine(m.id);
+      setStackBase(0);
+    }
+  }, m.name)))), stackRatio === 2 && /*#__PURE__*/React.createElement("div", {
+    className: "ratio-note"
+  }, "(!) Cable is 2:1 ratio -- selected weight feels like half. ", stackSelectedWeight, "lb selected = ", /*#__PURE__*/React.createElement("strong", null, stackEffective, "lb felt")), /*#__PURE__*/React.createElement("div", {
+    className: "stack-total-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-total-left"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-total-label"
+  }, stackRatio === 2 ? "Selected / Felt" : "Total Weight"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "stack-total-num"
+  }, stackRatio === 2 ? `${stackSelectedWeight} / ${stackEffective}` : stackSelectedWeight), /*#__PURE__*/React.createElement("span", {
+    className: "stack-total-unit"
+  }, "lb"))), /*#__PURE__*/React.createElement("div", {
+    className: "stack-last"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-last-label"
+  }, "Last set"), /*#__PURE__*/React.createElement("div", {
+    className: "stack-last-num",
+    style: {
+      color: stackTarget?.prevSetWeight ? "#000" : "#c7c7cc"
+    }
+  }, stackTarget?.prevSetWeight || "--"), stackTarget?.prevSetWeight && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#8e8e93"
+    }
+  }, "lb"))), /*#__PURE__*/React.createElement("div", {
+    className: "stack-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-section-label"
+  }, "Main Stack -- ", stackMachineConfig.brand, " (", stackIncrement, "lb steps)"), /*#__PURE__*/React.createElement("div", {
+    className: "stack-scroll"
+  }, stackIncrements.map(v => /*#__PURE__*/React.createElement("button", {
+    key: v,
+    className: `stack-val-btn ${stackBase === v ? "on" : ""}`,
+    onClick: () => setStackBase(stackBase === v ? 0 : v)
+  }, v)))), /*#__PURE__*/React.createElement("div", {
+    className: "stack-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-section-label"
+  }, "Top Plate"), /*#__PURE__*/React.createElement("div", {
+    className: "addon-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: `addon-btn ${stackTop5 ? "on" : ""}`,
+    onClick: () => setStackTop5(!stackTop5)
+  }, "+", stackTopPlateWeight, "lb top plate"))), /*#__PURE__*/React.createElement("div", {
+    className: "stack-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-section-label"
+  }, "Add-On Weights (magnetic micro)"), /*#__PURE__*/React.createElement("div", {
+    className: "addon-row"
+  }, [0, 1.25, 2.5, 3.75].map(v => /*#__PURE__*/React.createElement("button", {
+    key: v,
+    className: `addon-btn ${snodeMag === v ? "on" : ""}`,
+    onClick: () => setSnodeMag(v)
+  }, v === 0 ? "None" : `+${v}lb`)))), /*#__PURE__*/React.createElement("div", {
+    className: "stack-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-section-label"
+  }, "GymPin -- Extra Plate on Stack"), /*#__PURE__*/React.createElement("div", {
+    className: "addon-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: `addon-btn ${gymPinPlate === null ? "on" : ""}`,
+    onClick: () => setGymPinPlate(null)
+  }, "None"), GYMPIN_PLATES.map(v => /*#__PURE__*/React.createElement("button", {
+    key: v,
+    className: `addon-btn ${gymPinPlate === v ? "on" : ""}`,
+    onClick: () => setGymPinPlate(gymPinPlate === v ? null : v)
+  }, "+", v, "lb")))), /*#__PURE__*/React.createElement("div", {
+    className: "stack-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stack-section-label"
+  }, "Band Add-On (note only)"), /*#__PURE__*/React.createElement("div", {
+    className: "band-row"
+  }, BAND_LEVELS.map(b => /*#__PURE__*/React.createElement("button", {
+    key: b,
+    className: `band-btn ${bandLevel === b ? "on" : ""}`,
+    onClick: () => setBandLevel(bandLevel === b ? null : b)
+  }, b)))), /*#__PURE__*/React.createElement("button", {
+    className: "stack-use-btn",
+    onClick: applyStackWeight
+  }, "Use ", stackSelectedWeight, "lb", bandLevel ? ` + ${bandLevel} band` : "", stackRatio === 2 ? ` (${stackEffective}lb felt)` : ""))), showPicker && /*#__PURE__*/React.createElement("div", {
+    className: "picker-overlay"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "picker-topbar"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "picker-close",
+    onClick: () => {
+      if (pickerStep > 1) {
+        if (pickerStep === 2) {
+          setPickerStep(1);
+          setPickerMuscle(null);
+        }
+        if (pickerStep === 3) {
+          setPickerStep(2);
+          setPickerEquip(null);
+        }
+        if (pickerStep === 4) {
+          setPickerStep(3);
+          setPickerExercise(null);
+        }
+      } else {
+        setShowPicker(false);
+      }
+    }
+  }, pickerStep > 1 ? "‹" : "×"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 2
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "picker-title"
+  }, pickerStep === 1 && "What muscle?", pickerStep === 2 && (pickerMuscle || "Equipment"), pickerStep === 3 && (pickerEquip || "Exercise"), pickerStep === 4 && (pickerExercise?.name || "Variations")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 5,
+      marginTop: 2
+    }
+  }, [1, 2, 3, 4].map(s => /*#__PURE__*/React.createElement("div", {
+    key: s,
+    style: {
+      width: s <= pickerStep ? 20 : 6,
+      height: 6,
+      borderRadius: 3,
+      background: s <= pickerStep ? "#00c2ff" : "#e5e5ea",
+      transition: "all 0.2s"
+    }
+  })))), pendingIds.length > 0 ? /*#__PURE__*/React.createElement("button", {
+    className: "picker-cart",
+    onClick: confirmAdd
+  }, "Done ", /*#__PURE__*/React.createElement("div", {
+    className: "picker-cart-count"
+  }, pendingIds.length)) : /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 60
+    }
+  })), pickerStep === 1 && (() => {
+    const muscleStatus = analyzeMuscleStatus(history);
+    const allEx = [...EXERCISE_DB, ...(customExercises || [])];
+    const searchTrim = search.trim().toLowerCase();
+    const searchResults = searchTrim.length > 0 ? allEx.filter(e => {
+      try {
+        return (e.name || "").toLowerCase().includes(searchTrim) || (e.muscle || "").toLowerCase().includes(searchTrim) || (e.muscleHead || "").toLowerCase().includes(searchTrim) || (e.equipment || "").toLowerCase().includes(searchTrim) || (e.primaryMuscle || "").toLowerCase().includes(searchTrim);
+      } catch (err) {
+        return false;
+      }
+    }) : [];
+    return /*#__PURE__*/React.createElement("div", {
+      className: "picker-list",
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "10px 16px 8px",
+        background: "#fff",
+        borderBottom: "1px solid #f0f0f0",
+        position: "sticky",
+        top: 0,
+        zIndex: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        background: "#F0F0F0",
+        borderRadius: 12,
+        padding: "8px 12px"
+      }
+    }, /*#__PURE__*/React.createElement("svg", {
+      width: "14",
+      height: "14",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "#8e8e93",
+      strokeWidth: "2.5",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, /*#__PURE__*/React.createElement("circle", {
+      cx: "11",
+      cy: "11",
+      r: "8"
+    }), /*#__PURE__*/React.createElement("line", {
+      x1: "21",
+      y1: "21",
+      x2: "16.65",
+      y2: "16.65"
+    })), /*#__PURE__*/React.createElement("input", {
+      value: search,
+      onChange: e => setSearch(e.target.value),
+      placeholder: "Search exercises, muscles, equipment...",
+      style: {
+        flex: 1,
+        border: "none",
+        background: "transparent",
+        fontSize: 14,
+        fontFamily: "Inter,sans-serif",
+        outline: "none",
+        color: "#000"
+      },
+      autoFocus: false
+    }), search ? /*#__PURE__*/React.createElement("button", {
+      onClick: () => setSearch(""),
+      style: {
+        border: "none",
+        background: "none",
+        padding: 0,
+        cursor: "pointer",
+        color: "#8e8e93",
+        fontSize: 16,
+        lineHeight: 1
+      }
+    }, "x") : null)), searchTrim.length > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "10px 16px 4px",
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.06em"
+      }
+    }, searchResults.length, " result", searchResults.length !== 1 ? "s" : ""), searchResults.length === 0 ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "24px 16px",
+        textAlign: "center",
+        color: "#8e8e93",
+        fontSize: 14
+      }
+    }, "No exercises found") : searchResults.map(ex => {
+      const isPending = pendingIds.includes(ex.id);
+      return /*#__PURE__*/React.createElement("div", {
+        key: ex.id,
+        className: "picker-item",
+        style: {
+          background: isPending ? "rgba(0,194,255,0.06)" : undefined
+        },
+        onClick: () => {
+          setPendingIds(p => p.includes(ex.id) ? p.filter(x => x !== ex.id) : [...p, ex.id]);
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-img",
+        style: {
+          background: "#F0F0F0"
+        }
+      }, /*#__PURE__*/React.createElement(Dumbbell, {
+        size: 20,
+        strokeWidth: 2,
+        color: "#000"
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-text"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-name"
+      }, ex.name), /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-sub"
+      }, ex.muscle || "", ex.muscleHead ? " · " + ex.muscleHead : "", " · ", ex.equipment || "")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          width: 24,
+          height: 24,
+          borderRadius: "50%",
+          border: isPending ? "none" : "2px solid #c7c7cc",
+          background: isPending ? "#00c2ff" : "transparent",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0
+        }
+      }, isPending && /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#fff",
+          fontSize: 13,
+          fontWeight: 700
+        }
+      }, "✓")));
+    })) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "12px 16px 6px",
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.06em"
+      }
+    }, "By Muscle Group"), ["Upper", "Lower", "Full Body"].map(section => {
+      const muscles = [...new Set(EXERCISE_DB.filter(e => e.section === section).map(e => e.muscle))];
+      return /*#__PURE__*/React.createElement("div", {
+        key: section
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "8px 16px",
+          fontSize: 10,
+          fontWeight: 700,
+          color: "#c7c7cc",
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+          background: "#f9f9f9"
+        }
+      }, section), muscles.map(muscle => {
+        const count = EXERCISE_DB.filter(e => e.muscle === muscle).length;
+        const m = MUSCLES.find(mu => mu.label === muscle || mu.id === muscle.toLowerCase());
+        const Icon = m ? m.Icon : Dumbbell;
+        const s = muscleStatus[muscle];
+        const showHint = s && (s.priority === "red" || s.priority === "orange");
+        const hintColor = s?.priority === "red" ? "#ff3b30" : "#ff9f0a";
+        return /*#__PURE__*/React.createElement("div", {
+          key: muscle,
+          className: "picker-item",
+          onClick: () => {
+            setPickerMuscle(muscle);
+            setPickerStep(2);
+          }
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "picker-item-img",
+          style: {
+            background: "#F0F0F0"
+          }
+        }, /*#__PURE__*/React.createElement(Icon, {
+          size: 22,
+          strokeWidth: 2,
+          color: "#000"
+        })), /*#__PURE__*/React.createElement("div", {
+          className: "picker-item-text"
+        }, /*#__PURE__*/React.createElement("div", {
           style: {
             display: "flex",
-            flexDirection: "column",
-            gap: 0
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              padding: "10px 16px 8px",
-              background: "#fff",
-              borderBottom: "1px solid #f0f0f0",
-              position: "sticky",
-              top: 0,
-              zIndex: 10
-            },
-            children: /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                background: "#F0F0F0",
-                borderRadius: 12,
-                padding: "8px 12px"
-              },
-              children: [/*#__PURE__*/_jsxDEV("svg", {
-                width: "14",
-                height: "14",
-                viewBox: "0 0 24 24",
-                fill: "none",
-                stroke: "#8e8e93",
-                strokeWidth: "2.5",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                children: [/*#__PURE__*/_jsxDEV("circle", {
-                  cx: "11",
-                  cy: "11",
-                  r: "8"
-                }, void 0, false), /*#__PURE__*/_jsxDEV("line", {
-                  x1: "21",
-                  y1: "21",
-                  x2: "16.65",
-                  y2: "16.65"
-                }, void 0, false)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("input", {
-                value: search,
-                onChange: e => setSearch(e.target.value),
-                placeholder: "Search exercises, muscles, equipment...",
-                style: {
-                  flex: 1,
-                  border: "none",
-                  background: "transparent",
-                  fontSize: 14,
-                  fontFamily: "Inter,sans-serif",
-                  outline: "none",
-                  color: "#000"
-                },
-                autoFocus: false
-              }, void 0, false), search ? /*#__PURE__*/_jsxDEV("button", {
-                onClick: () => setSearch(""),
-                style: {
-                  border: "none",
-                  background: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  color: "#8e8e93",
-                  fontSize: 16,
-                  lineHeight: 1
-                },
-                children: "x"
-              }, void 0, false) : null]
-            }, void 0, true)
-          }, void 0, false), searchTrim.length > 0 ? /*#__PURE__*/_jsxDEV(_Fragment, {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "10px 16px 4px",
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#8e8e93",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em"
-              },
-              children: [searchResults.length, " result", searchResults.length !== 1 ? "s" : ""]
-            }, void 0, true), searchResults.length === 0 ? /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "24px 16px",
-                textAlign: "center",
-                color: "#8e8e93",
-                fontSize: 14
-              },
-              children: "No exercises found"
-            }, void 0, false) : searchResults.map(ex => {
-              const isPending = pendingIds.includes(ex.id);
-              return /*#__PURE__*/_jsxDEV("div", {
-                className: "picker-item",
-                style: {
-                  background: isPending ? "rgba(0,194,255,0.06)" : undefined
-                },
-                onClick: () => {
-                  setPendingIds(p => p.includes(ex.id) ? p.filter(x => x !== ex.id) : [...p, ex.id]);
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  className: "picker-item-img",
-                  style: {
-                    background: "#F0F0F0"
-                  },
-                  children: /*#__PURE__*/_jsxDEV(Dumbbell, {
-                    size: 20,
-                    strokeWidth: 2,
-                    color: "#000"
-                  }, void 0, false)
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  className: "picker-item-text",
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "picker-item-name",
-                    children: ex.name
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    className: "picker-item-sub",
-                    children: [ex.muscle || "", ex.muscleHead ? " · " + ex.muscleHead : "", " · ", ex.equipment || ""]
-                  }, void 0, true)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    width: 24,
-                    height: 24,
-                    borderRadius: "50%",
-                    border: isPending ? "none" : "2px solid #c7c7cc",
-                    background: isPending ? "#00c2ff" : "transparent",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0
-                  },
-                  children: isPending && /*#__PURE__*/_jsxDEV("span", {
-                    style: {
-                      color: "#fff",
-                      fontSize: 13,
-                      fontWeight: 700
-                    },
-                    children: "✓"
-                  }, void 0, false)
-                }, void 0, false)]
-              }, ex.id, true);
-            })]
-          }, void 0, true) : /*#__PURE__*/_jsxDEV(_Fragment, {
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "12px 16px 6px",
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#8e8e93",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em"
-              },
-              children: "By Muscle Group"
-            }, void 0, false), ["Upper", "Lower", "Full Body"].map(section => {
-              const muscles = [...new Set(EXERCISE_DB.filter(e => e.section === section).map(e => e.muscle))];
-              return /*#__PURE__*/_jsxDEV("div", {
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    padding: "8px 16px",
-                    fontSize: 10,
-                    fontWeight: 700,
-                    color: "#c7c7cc",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.08em",
-                    background: "#f9f9f9"
-                  },
-                  children: section
-                }, void 0, false), muscles.map(muscle => {
-                  const count = EXERCISE_DB.filter(e => e.muscle === muscle).length;
-                  const m = MUSCLES.find(mu => mu.label === muscle || mu.id === muscle.toLowerCase());
-                  const Icon = m ? m.Icon : Dumbbell;
-                  const s = muscleStatus[muscle];
-                  const showHint = s && (s.priority === "red" || s.priority === "orange");
-                  const hintColor = s?.priority === "red" ? "#ff3b30" : "#ff9f0a";
-                  return /*#__PURE__*/_jsxDEV("div", {
-                    className: "picker-item",
-                    onClick: () => {
-                      setPickerMuscle(muscle);
-                      setPickerStep(2);
-                    },
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "picker-item-img",
-                      style: {
-                        background: "#F0F0F0"
-                      },
-                      children: /*#__PURE__*/_jsxDEV(Icon, {
-                        size: 22,
-                        strokeWidth: 2,
-                        color: "#000"
-                      }, void 0, false)
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: "picker-item-text",
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        style: {
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 6
-                        },
-                        children: [/*#__PURE__*/_jsxDEV("div", {
-                          className: "picker-item-name",
-                          children: muscle
-                        }, void 0, false), showHint && /*#__PURE__*/_jsxDEV("span", {
-                          style: {
-                            fontSize: 9,
-                            fontWeight: 700,
-                            color: hintColor,
-                            padding: "2px 6px",
-                            background: hintColor + "22",
-                            borderRadius: 8,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.03em"
-                          },
-                          children: s.priority === "red" ? "Overdue" : "Due"
-                        }, void 0, false)]
-                      }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                        className: "picker-item-sub",
-                        children: showHint ? s.reason : `${count} exercises available`
-                      }, void 0, false)]
-                    }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 18,
-                        color: "#c7c7cc",
-                        fontWeight: 300
-                      },
-                      children: ">"
-                    }, void 0, false)]
-                  }, muscle, true);
-                })]
-              }, section, true);
-            }), /*#__PURE__*/_jsxDEV("div", {
-              style: {
-                padding: "12px 16px 6px",
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#8e8e93",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-                marginTop: 8
-              },
-              children: "By Equipment"
-            }, void 0, false), [...new Set(EXERCISE_DB.map(e => e.equipment))].sort().map(equip => {
-              const count = EXERCISE_DB.filter(e => e.equipment === equip).length;
-              const Icon = EX_ICON[equip] || Dumbbell;
-              return /*#__PURE__*/_jsxDEV("div", {
-                className: "picker-item",
-                onClick: () => {
-                  setPickerEquip(equip);
-                  setPickerMuscle(null);
-                  setPickerStep(3);
-                },
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  className: "picker-item-img",
-                  style: {
-                    background: "#F0F0F0"
-                  },
-                  children: /*#__PURE__*/_jsxDEV(Icon, {
-                    size: 22,
-                    strokeWidth: 2,
-                    color: "#000"
-                  }, void 0, false)
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  className: "picker-item-text",
-                  children: [/*#__PURE__*/_jsxDEV("div", {
-                    className: "picker-item-name",
-                    children: equip
-                  }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                    className: "picker-item-sub",
-                    children: [count, " exercises"]
-                  }, void 0, true)]
-                }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                  style: {
-                    fontSize: 18,
-                    color: "#c7c7cc",
-                    fontWeight: 300
-                  },
-                  children: ">"
-                }, void 0, false)]
-              }, equip, true);
-            })]
-          }, void 0, true)]
-        }, void 0, true);
-      })(), pickerStep === 2 && pickerMuscle && (() => {
-        const equips = [...new Set(EXERCISE_DB.filter(e => e.muscle === pickerMuscle).map(e => e.equipment))].sort();
-        return /*#__PURE__*/_jsxDEV("div", {
-          className: "picker-list",
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              padding: "12px 16px 6px",
-              fontSize: 11,
-              fontWeight: 700,
-              color: "#8e8e93",
-              textTransform: "uppercase",
-              letterSpacing: "0.06em"
-            },
-            children: ["Available equipment for ", pickerMuscle]
-          }, void 0, true), equips.map(equip => {
-            const exs = EXERCISE_DB.filter(e => e.muscle === pickerMuscle && e.equipment === equip);
-            const Icon = EX_ICON[equip] || Dumbbell;
-            return /*#__PURE__*/_jsxDEV("div", {
-              className: "picker-item",
-              onClick: () => {
-                setPickerEquip(equip);
-                setPickerStep(3);
-              },
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                className: "picker-item-img",
-                style: {
-                  background: "#F0F0F0"
-                },
-                children: /*#__PURE__*/_jsxDEV(Icon, {
-                  size: 22,
-                  strokeWidth: 2,
-                  color: "#000"
-                }, void 0, false)
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                className: "picker-item-text",
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  className: "picker-item-name",
-                  children: equip
-                }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                  className: "picker-item-sub",
-                  children: [exs.length, " exercises · ", [...new Set(exs.map(e => e.muscleHead))].join(", ")]
-                }, void 0, true)]
-              }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-                style: {
-                  fontSize: 18,
-                  color: "#c7c7cc",
-                  fontWeight: 300
-                },
-                children: ">"
-              }, void 0, false)]
-            }, equip, true);
-          })]
-        }, void 0, true);
-      })(), pickerStep === 3 && pickerEquip && (() => {
-        const exs = EXERCISE_DB.filter(e => e.equipment === pickerEquip && (!pickerMuscle || e.muscle === pickerMuscle));
-        // Group by muscle head
-        const heads = [...new Set(exs.map(e => e.muscleHead))];
-        return /*#__PURE__*/_jsxDEV(_Fragment, {
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "picker-search-wrap",
-            children: /*#__PURE__*/_jsxDEV("input", {
-              className: "picker-search",
-              placeholder: "Search " + pickerEquip + " exercises...",
-              value: search,
-              onChange: e => setSearch(e.target.value)
-            }, void 0, false)
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            className: "picker-list",
-            children: [heads.map(head => {
-              const headExs = exs.filter(e => e.muscleHead === head && (!search || e.name.toLowerCase().includes(search.toLowerCase())));
-              if (!headExs.length) return null;
-              return /*#__PURE__*/_jsxDEV("div", {
-                children: [/*#__PURE__*/_jsxDEV("div", {
-                  className: "picker-alpha",
-                  children: head
-                }, void 0, false), headExs.map(ex => {
-                  const isAdded = !!exercises.find(a => a.id === ex.id);
-                  const isPending = pendingIds.includes(ex.id);
-                  const hasVariations = ex.variations && ex.variations.length > 0;
-                  return /*#__PURE__*/_jsxDEV("div", {
-                    className: `picker-item ${isAdded ? "added" : ""}`,
-                    children: [/*#__PURE__*/_jsxDEV("div", {
-                      className: "picker-item-text",
-                      style: {
-                        flex: 1
-                      },
-                      onClick: () => {
-                        if (isAdded) return; // Already in workout, can't change
-                        if (isPending) {
-                          togglePending(ex.id);
-                          return;
-                        } // Unselect
-                        if (hasVariations) {
-                          setPickerExercise(ex);
-                          setPickerStep(4);
-                        } else togglePending(ex.id);
-                      },
-                      children: [/*#__PURE__*/_jsxDEV("div", {
-                        className: "picker-item-name",
-                        children: ex.name
-                      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                        className: "picker-item-sub",
-                        children: [ex.muscleHead, ex.bench && ex.bench !== "N/A" && /*#__PURE__*/_jsxDEV("span", {
-                          style: {
-                            color: "#00c2ff"
-                          },
-                          children: [" · ", ex.bench]
-                        }, void 0, true)]
-                      }, void 0, true)]
-                    }, void 0, true), hasVariations && !isAdded && !isPending && /*#__PURE__*/_jsxDEV("div", {
-                      style: {
-                        fontSize: 10,
-                        color: "#00c2ff",
-                        fontWeight: 700,
-                        padding: "4px 8px",
-                        border: "1px solid #00c2ff",
-                        borderRadius: 6,
-                        cursor: "pointer",
-                        flexShrink: 0,
-                        marginRight: 6
-                      },
-                      onClick: () => {
-                        setPickerExercise(ex);
-                        setPickerStep(4);
-                      },
-                      children: "Variations"
-                    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                      className: `picker-add ${isPending || isAdded ? "selected" : ""}`,
-                      onClick: () => {
-                        if (!isAdded) togglePending(ex.id);
-                      },
-                      style: {
-                        fontSize: isPending || isAdded ? 14 : 18
-                      },
-                      children: isPending || isAdded ? "✓" : "+"
-                    }, void 0, false)]
-                  }, ex.id, true);
-                })]
-              }, head, true);
-            }), exs.length === 0 && /*#__PURE__*/_jsxDEV("div", {
-              className: "picker-empty",
-              children: "No exercises found"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true);
-      })(), pickerStep === 4 && pickerExercise && /*#__PURE__*/_jsxDEV("div", {
-        className: "picker-list",
-        children: [/*#__PURE__*/_jsxDEV("div", {
+            alignItems: "center",
+            gap: 6
+          }
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "picker-item-name"
+        }, muscle), showHint && /*#__PURE__*/React.createElement("span", {
           style: {
-            padding: "12px 16px",
-            background: "#f9f9f9",
-            borderBottom: "1px solid #e5e5ea"
-          },
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 15,
-              fontWeight: 700,
-              color: "#000"
-            },
-            children: pickerExercise.name
-          }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 12,
-              color: "#8e8e93",
-              marginTop: 2
-            },
-            children: [pickerExercise.muscleHead, " · ", pickerExercise.equipment]
-          }, void 0, true), pickerExercise.bench && pickerExercise.bench !== "N/A" && /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              fontSize: 11,
-              color: "#00c2ff",
-              marginTop: 4,
-              fontWeight: 600
-            },
-            children: pickerExercise.bench
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-          className: "picker-item",
-          onClick: () => togglePending(pickerExercise.id),
-          children: [/*#__PURE__*/_jsxDEV("div", {
-            className: "picker-item-text",
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "picker-item-name",
-              children: pickerExercise.name
-            }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-              className: "picker-item-sub",
-              children: "Standard"
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-            className: `picker-add ${pendingIds.includes(pickerExercise.id) ? "selected" : ""}`,
-            style: {
-              fontSize: pendingIds.includes(pickerExercise.id) ? 14 : 18
-            },
-            children: pendingIds.includes(pickerExercise.id) ? "✓" : "+"
-          }, void 0, false)]
-        }, void 0, true), (pickerExercise.variations || []).filter(v => v.toLowerCase() !== "standard").map((v, i) => {
-          const varId = `${pickerExercise.id}-v${i}`;
-          const isPending = pendingIds.includes(varId);
-          return /*#__PURE__*/_jsxDEV("div", {
-            className: "picker-item",
-            onClick: () => {
-              if (isPending) setPendingIds(p => p.filter(x => x !== varId));else {
-                // Create a variation exercise object
-                const varEx = {
-                  ...pickerExercise,
-                  id: varId,
-                  baseId: pickerExercise.id,
-                  name: `${pickerExercise.name} (${v})`
-                };
-                setPendingIds(p => [...p, varId]);
-                // Store variation exercise for confirmAdd
-                window._varExercises = window._varExercises || {};
-                window._varExercises[varId] = varEx;
-              }
-            },
-            children: [/*#__PURE__*/_jsxDEV("div", {
-              className: "picker-item-text",
-              children: [/*#__PURE__*/_jsxDEV("div", {
-                className: "picker-item-name",
-                style: {
-                  fontSize: 14
-                },
-                children: v
-              }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-                className: "picker-item-sub",
-                children: pickerExercise.name
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_jsxDEV("div", {
-              className: `picker-add ${isPending ? "selected" : ""}`,
-              style: {
-                fontSize: isPending ? 14 : 18
-              },
-              children: isPending ? "✓" : "+"
-            }, void 0, false)]
-          }, varId, true);
-        })]
-      }, void 0, true), pendingIds.length > 0 && /*#__PURE__*/_jsxDEV("div", {
+            fontSize: 9,
+            fontWeight: 700,
+            color: hintColor,
+            padding: "2px 6px",
+            background: hintColor + "22",
+            borderRadius: 8,
+            textTransform: "uppercase",
+            letterSpacing: "0.03em"
+          }
+        }, s.priority === "red" ? "Overdue" : "Due")), /*#__PURE__*/React.createElement("div", {
+          className: "picker-item-sub"
+        }, showHint ? s.reason : `${count} exercises available`)), /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 18,
+            color: "#c7c7cc",
+            fontWeight: 300
+          }
+        }, ">"));
+      }));
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "12px 16px 6px",
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.06em",
+        marginTop: 8
+      }
+    }, "By Equipment"), [...new Set(EXERCISE_DB.map(e => e.equipment))].sort().map(equip => {
+      const count = EXERCISE_DB.filter(e => e.equipment === equip).length;
+      const Icon = EX_ICON[equip] || Dumbbell;
+      return /*#__PURE__*/React.createElement("div", {
+        key: equip,
+        className: "picker-item",
+        onClick: () => {
+          setPickerEquip(equip);
+          setPickerMuscle(null);
+          setPickerStep(3);
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-img",
         style: {
-          padding: "8px 12px",
-          background: "rgba(0,194,255,0.08)",
-          borderTop: "1px solid rgba(0,194,255,0.3)",
-          display: "flex",
-          gap: 6,
-          flexWrap: "wrap",
-          maxHeight: "80px",
-          overflowY: "auto"
-        },
-        children: pendingIds.map(pid => {
-          const varEx = (window._varExercises || {})[pid];
-          const ex = varEx || EXERCISE_DB.find(e => e.id === pid) || (customExercises || []).find(e => e.id === pid);
-          if (!ex) return null;
-          return /*#__PURE__*/_jsxDEV("div", {
-            style: {
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 4,
-              background: "#fff",
-              border: "1px solid #00c2ff",
-              borderRadius: 12,
-              padding: "4px 6px 4px 10px",
-              fontSize: 11,
-              fontWeight: 600,
-              color: "#000"
-            },
-            children: [/*#__PURE__*/_jsxDEV("span", {
-              style: {
-                maxWidth: 180,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap"
-              },
-              children: ex.name
-            }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-              onClick: () => {
-                setPendingIds(p => p.filter(x => x !== pid));
-                if (window._varExercises) delete window._varExercises[pid];
-              },
-              style: {
-                background: "#ff3b30",
-                color: "#fff",
-                border: "none",
-                borderRadius: "50%",
-                width: 16,
-                height: 16,
-                fontSize: 11,
-                fontWeight: 700,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                lineHeight: 1,
-                padding: 0
-              },
-              children: "×"
-            }, void 0, false)]
-          }, pid, true);
-        })
-      }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-        className: "picker-done-bar",
-        children: /*#__PURE__*/_jsxDEV("button", {
-          className: "picker-done-btn",
-          onClick: pendingIds.length > 0 ? confirmAdd : () => setShowPicker(false),
-          children: pendingIds.length > 0 ? `Add ${pendingIds.length} exercise${pendingIds.length !== 1 ? "s" : ""}` : "Done"
-        }, void 0, false)
-      }, void 0, false)]
-    }, void 0, true)]
-  }, void 0, true);
+          background: "#F0F0F0"
+        }
+      }, /*#__PURE__*/React.createElement(Icon, {
+        size: 22,
+        strokeWidth: 2,
+        color: "#000"
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-text"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-name"
+      }, equip), /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-sub"
+      }, count, " exercises")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 18,
+          color: "#c7c7cc",
+          fontWeight: 300
+        }
+      }, ">"));
+    })));
+  })(), pickerStep === 2 && pickerMuscle && (() => {
+    const equips = [...new Set(EXERCISE_DB.filter(e => e.muscle === pickerMuscle).map(e => e.equipment))].sort();
+    return /*#__PURE__*/React.createElement("div", {
+      className: "picker-list"
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "12px 16px 6px",
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.06em"
+      }
+    }, "Available equipment for ", pickerMuscle), equips.map(equip => {
+      const exs = EXERCISE_DB.filter(e => e.muscle === pickerMuscle && e.equipment === equip);
+      const Icon = EX_ICON[equip] || Dumbbell;
+      return /*#__PURE__*/React.createElement("div", {
+        key: equip,
+        className: "picker-item",
+        onClick: () => {
+          setPickerEquip(equip);
+          setPickerStep(3);
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-img",
+        style: {
+          background: "#F0F0F0"
+        }
+      }, /*#__PURE__*/React.createElement(Icon, {
+        size: 22,
+        strokeWidth: 2,
+        color: "#000"
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-text"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-name"
+      }, equip), /*#__PURE__*/React.createElement("div", {
+        className: "picker-item-sub"
+      }, exs.length, " exercises · ", [...new Set(exs.map(e => e.muscleHead))].join(", "))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 18,
+          color: "#c7c7cc",
+          fontWeight: 300
+        }
+      }, ">"));
+    }));
+  })(), pickerStep === 3 && pickerEquip && (() => {
+    const exs = EXERCISE_DB.filter(e => e.equipment === pickerEquip && (!pickerMuscle || e.muscle === pickerMuscle));
+    // Group by muscle head
+    const heads = [...new Set(exs.map(e => e.muscleHead))];
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "picker-search-wrap"
+    }, /*#__PURE__*/React.createElement("input", {
+      className: "picker-search",
+      placeholder: "Search " + pickerEquip + " exercises...",
+      value: search,
+      onChange: e => setSearch(e.target.value)
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "picker-list"
+    }, heads.map(head => {
+      const headExs = exs.filter(e => e.muscleHead === head && (!search || e.name.toLowerCase().includes(search.toLowerCase())));
+      if (!headExs.length) return null;
+      return /*#__PURE__*/React.createElement("div", {
+        key: head
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "picker-alpha"
+      }, head), headExs.map(ex => {
+        const isAdded = !!exercises.find(a => a.id === ex.id);
+        const isPending = pendingIds.includes(ex.id);
+        const hasVariations = ex.variations && ex.variations.length > 0;
+        return /*#__PURE__*/React.createElement("div", {
+          key: ex.id,
+          className: `picker-item ${isAdded ? "added" : ""}`
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "picker-item-text",
+          style: {
+            flex: 1
+          },
+          onClick: () => {
+            if (isAdded) return; // Already in workout, can't change
+            if (isPending) {
+              togglePending(ex.id);
+              return;
+            } // Unselect
+            if (hasVariations) {
+              setPickerExercise(ex);
+              setPickerStep(4);
+            } else togglePending(ex.id);
+          }
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "picker-item-name"
+        }, ex.name), /*#__PURE__*/React.createElement("div", {
+          className: "picker-item-sub"
+        }, ex.muscleHead, ex.bench && ex.bench !== "N/A" && /*#__PURE__*/React.createElement("span", {
+          style: {
+            color: "#00c2ff"
+          }
+        }, " · ", ex.bench))), hasVariations && !isAdded && !isPending && /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 10,
+            color: "#00c2ff",
+            fontWeight: 700,
+            padding: "4px 8px",
+            border: "1px solid #00c2ff",
+            borderRadius: 6,
+            cursor: "pointer",
+            flexShrink: 0,
+            marginRight: 6
+          },
+          onClick: () => {
+            setPickerExercise(ex);
+            setPickerStep(4);
+          }
+        }, "Variations"), /*#__PURE__*/React.createElement("div", {
+          className: `picker-add ${isPending || isAdded ? "selected" : ""}`,
+          onClick: () => {
+            if (!isAdded) togglePending(ex.id);
+          },
+          style: {
+            fontSize: isPending || isAdded ? 14 : 18
+          }
+        }, isPending || isAdded ? "✓" : "+"));
+      }));
+    }), exs.length === 0 && /*#__PURE__*/React.createElement("div", {
+      className: "picker-empty"
+    }, "No exercises found")));
+  })(), pickerStep === 4 && pickerExercise && /*#__PURE__*/React.createElement("div", {
+    className: "picker-list"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "12px 16px",
+      background: "#f9f9f9",
+      borderBottom: "1px solid #e5e5ea"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 700,
+      color: "#000"
+    }
+  }, pickerExercise.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      marginTop: 2
+    }
+  }, pickerExercise.muscleHead, " · ", pickerExercise.equipment), pickerExercise.bench && pickerExercise.bench !== "N/A" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#00c2ff",
+      marginTop: 4,
+      fontWeight: 600
+    }
+  }, pickerExercise.bench)), /*#__PURE__*/React.createElement("div", {
+    className: "picker-item",
+    onClick: () => togglePending(pickerExercise.id)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "picker-item-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "picker-item-name"
+  }, pickerExercise.name), /*#__PURE__*/React.createElement("div", {
+    className: "picker-item-sub"
+  }, "Standard")), /*#__PURE__*/React.createElement("div", {
+    className: `picker-add ${pendingIds.includes(pickerExercise.id) ? "selected" : ""}`,
+    style: {
+      fontSize: pendingIds.includes(pickerExercise.id) ? 14 : 18
+    }
+  }, pendingIds.includes(pickerExercise.id) ? "✓" : "+")), (pickerExercise.variations || []).filter(v => v.toLowerCase() !== "standard").map((v, i) => {
+    const varId = `${pickerExercise.id}-v${i}`;
+    const isPending = pendingIds.includes(varId);
+    return /*#__PURE__*/React.createElement("div", {
+      key: varId,
+      className: "picker-item",
+      onClick: () => {
+        if (isPending) setPendingIds(p => p.filter(x => x !== varId));else {
+          // Create a variation exercise object
+          const varEx = {
+            ...pickerExercise,
+            id: varId,
+            baseId: pickerExercise.id,
+            name: `${pickerExercise.name} (${v})`
+          };
+          setPendingIds(p => [...p, varId]);
+          // Store variation exercise for confirmAdd
+          window._varExercises = window._varExercises || {};
+          window._varExercises[varId] = varEx;
+        }
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "picker-item-text"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "picker-item-name",
+      style: {
+        fontSize: 14
+      }
+    }, v), /*#__PURE__*/React.createElement("div", {
+      className: "picker-item-sub"
+    }, pickerExercise.name)), /*#__PURE__*/React.createElement("div", {
+      className: `picker-add ${isPending ? "selected" : ""}`,
+      style: {
+        fontSize: isPending ? 14 : 18
+      }
+    }, isPending ? "✓" : "+"));
+  })), pendingIds.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "8px 12px",
+      background: "rgba(0,194,255,0.08)",
+      borderTop: "1px solid rgba(0,194,255,0.3)",
+      display: "flex",
+      gap: 6,
+      flexWrap: "wrap",
+      maxHeight: "80px",
+      overflowY: "auto"
+    }
+  }, pendingIds.map(pid => {
+    const varEx = (window._varExercises || {})[pid];
+    const ex = varEx || EXERCISE_DB.find(e => e.id === pid) || (customExercises || []).find(e => e.id === pid);
+    if (!ex) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      key: pid,
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        background: "#fff",
+        border: "1px solid #00c2ff",
+        borderRadius: 12,
+        padding: "4px 6px 4px 10px",
+        fontSize: 11,
+        fontWeight: 600,
+        color: "#000"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        maxWidth: 180,
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
+      }
+    }, ex.name), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setPendingIds(p => p.filter(x => x !== pid));
+        if (window._varExercises) delete window._varExercises[pid];
+      },
+      style: {
+        background: "#ff3b30",
+        color: "#fff",
+        border: "none",
+        borderRadius: "50%",
+        width: 16,
+        height: 16,
+        fontSize: 11,
+        fontWeight: 700,
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        lineHeight: 1,
+        padding: 0
+      }
+    }, "×"));
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "picker-done-bar"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "picker-done-btn",
+    onClick: pendingIds.length > 0 ? confirmAdd : () => setShowPicker(false)
+  }, pendingIds.length > 0 ? `Add ${pendingIds.length} exercise${pendingIds.length !== 1 ? "s" : ""}` : "Done"))));
 }
 
 // ---- PIN lock + sync bootstrap --------------------------------------
@@ -15173,7 +14116,7 @@ function PinScreen({
     } catch (e) {}
     onUnlock();
   };
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       position: "fixed",
       inset: 0,
@@ -15184,78 +14127,73 @@ function PinScreen({
       justifyContent: "center",
       padding: 24,
       fontFamily: "Inter,sans-serif"
+    }
+  }, /*#__PURE__*/React.createElement(Lock, {
+    size: 32,
+    strokeWidth: 2,
+    color: "#00c2ff"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20,
+      fontWeight: 800,
+      color: "#fff",
+      marginTop: 16,
+      letterSpacing: "0.02em"
+    }
+  }, "Locked"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#8e8e93",
+      marginTop: 4,
+      marginBottom: 24
+    }
+  }, "Enter your PIN to continue"), /*#__PURE__*/React.createElement("input", {
+    type: "password",
+    inputMode: "numeric",
+    autoFocus: true,
+    value: pin,
+    onChange: e => setPin(e.target.value),
+    onKeyDown: e => {
+      if (e.key === "Enter") submit();
     },
-    children: [/*#__PURE__*/_jsxDEV(Lock, {
-      size: 32,
-      strokeWidth: 2,
-      color: "#00c2ff"
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        fontSize: 20,
-        fontWeight: 800,
-        color: "#fff",
-        marginTop: 16,
-        letterSpacing: "0.02em"
-      },
-      children: "Locked"
-    }, void 0, false), /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        fontSize: 12,
-        color: "#8e8e93",
-        marginTop: 4,
-        marginBottom: 24
-      },
-      children: "Enter your PIN to continue"
-    }, void 0, false), /*#__PURE__*/_jsxDEV("input", {
-      type: "password",
-      inputMode: "numeric",
-      autoFocus: true,
-      value: pin,
-      onChange: e => setPin(e.target.value),
-      onKeyDown: e => {
-        if (e.key === "Enter") submit();
-      },
-      style: {
-        width: 200,
-        padding: "12px 16px",
-        borderRadius: 12,
-        border: "1.5px solid #2c2c2e",
-        background: "#1c1c1e",
-        color: "#fff",
-        fontSize: 20,
-        textAlign: "center",
-        letterSpacing: "0.3em",
-        fontFamily: "DM Mono,monospace"
-      },
-      placeholder: "····"
-    }, void 0, false), error && /*#__PURE__*/_jsxDEV("div", {
-      style: {
-        color: "#ff3b30",
-        fontSize: 12,
-        marginTop: 12,
-        textAlign: "center",
-        maxWidth: 240
-      },
-      children: error
-    }, void 0, false), /*#__PURE__*/_jsxDEV("button", {
-      onClick: submit,
-      disabled: checking || !pin,
-      style: {
-        marginTop: 20,
-        width: 200,
-        padding: "12px",
-        borderRadius: 12,
-        border: "none",
-        background: checking || !pin ? "#2c2c2e" : "#00c2ff",
-        color: checking || !pin ? "#8e8e93" : "#000",
-        fontSize: 14,
-        fontWeight: 800,
-        cursor: checking || !pin ? "default" : "pointer",
-        fontFamily: "Inter,sans-serif"
-      },
-      children: checking ? "Checking..." : "Unlock"
-    }, void 0, false)]
-  }, void 0, true);
+    style: {
+      width: 200,
+      padding: "12px 16px",
+      borderRadius: 12,
+      border: "1.5px solid #2c2c2e",
+      background: "#1c1c1e",
+      color: "#fff",
+      fontSize: 20,
+      textAlign: "center",
+      letterSpacing: "0.3em",
+      fontFamily: "DM Mono,monospace"
+    },
+    placeholder: "····"
+  }), error && /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: "#ff3b30",
+      fontSize: 12,
+      marginTop: 12,
+      textAlign: "center",
+      maxWidth: 240
+    }
+  }, error), /*#__PURE__*/React.createElement("button", {
+    onClick: submit,
+    disabled: checking || !pin,
+    style: {
+      marginTop: 20,
+      width: 200,
+      padding: "12px",
+      borderRadius: 12,
+      border: "none",
+      background: checking || !pin ? "#2c2c2e" : "#00c2ff",
+      color: checking || !pin ? "#8e8e93" : "#000",
+      fontSize: 14,
+      fontWeight: 800,
+      cursor: checking || !pin ? "default" : "pointer",
+      fontFamily: "Inter,sans-serif"
+    }
+  }, checking ? "Checking..." : "Unlock"));
 }
 function OfflineBanner() {
   const [online, setOnline] = useState(syncOnline);
@@ -15265,7 +14203,7 @@ function OfflineBanner() {
     return () => syncListeners.delete(fn);
   }, []);
   if (online) return null;
-  return /*#__PURE__*/_jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: {
       position: "fixed",
       top: 0,
@@ -15283,12 +14221,11 @@ function OfflineBanner() {
       justifyContent: "center",
       gap: 6,
       fontFamily: "Inter,sans-serif"
-    },
-    children: [/*#__PURE__*/_jsxDEV(WifiOff, {
-      size: 12,
-      strokeWidth: 2.5
-    }, void 0, false), " Offline -- saving locally, will sync when connection returns"]
-  }, void 0, true);
+    }
+  }, /*#__PURE__*/React.createElement(WifiOff, {
+    size: 12,
+    strokeWidth: 2.5
+  }), " Offline -- saving locally, will sync when connection returns");
 }
 export default function LockedRoot() {
   const [unlocked, setUnlocked] = useState(false);
@@ -15317,20 +14254,18 @@ export default function LockedRoot() {
     })();
   }, []);
   if (checkingSession) {
-    return /*#__PURE__*/_jsxDEV("div", {
+    return /*#__PURE__*/React.createElement("div", {
       style: {
         position: "fixed",
         inset: 0,
         background: "#000"
       }
-    }, void 0, false);
+    });
   }
   if (!unlocked) {
-    return /*#__PURE__*/_jsxDEV(PinScreen, {
+    return /*#__PURE__*/React.createElement(PinScreen, {
       onUnlock: () => setUnlocked(true)
-    }, void 0, false);
+    });
   }
-  return /*#__PURE__*/_jsxDEV(_Fragment, {
-    children: [/*#__PURE__*/_jsxDEV(OfflineBanner, {}, void 0, false), /*#__PURE__*/_jsxDEV(App, {}, void 0, false)]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(OfflineBanner, null), /*#__PURE__*/React.createElement(App, null));
 }
