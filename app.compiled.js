@@ -6657,8 +6657,47 @@ function App() {
       const title = Array.isArray(parsed) ? "Imported Workout" : parsed.title || "Imported Workout";
       const newExs = items.map((item, idx) => {
         if (!item || !item.name) return null;
-        const nameLower = item.name.toLowerCase();
-        const match = EXERCISE_DB.find(ex => ex.name.toLowerCase().includes(nameLower.split(" ").slice(0, 2).join(" ")) || nameLower.includes(ex.name.toLowerCase().split(" ").slice(0, 2).join(" ")));
+        const nameLower = item.name.toLowerCase().trim();
+        const nameWords = nameLower.split(/[\s\-\/]+/).filter(w => w.length > 2);
+
+        // Strategy 1: exact name match
+        let match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase() === nameLower);
+
+        // Strategy 2: name contains imported name or vice versa
+        if (!match) match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase().includes(nameLower) || nameLower.includes((ex.name || "").toLowerCase()));
+
+        // Strategy 3: first two words match
+        if (!match) {
+          const first2 = nameWords.slice(0, 2).join(" ");
+          if (first2.length > 3) match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase().includes(first2));
+        }
+
+        // Strategy 4: word overlap scoring — pick best match with 2+ shared words
+        if (!match && nameWords.length >= 2) {
+          let bestScore = 0,
+            bestMatch = null;
+          EXERCISE_DB.forEach(ex => {
+            const exWords = (ex.name || "").toLowerCase().split(/[\s\-\/]+/).filter(w => w.length > 2);
+            const overlap = nameWords.filter(w => exWords.some(ew => ew.includes(w) || w.includes(ew))).length;
+            if (overlap > bestScore && overlap >= 2) {
+              bestScore = overlap;
+              bestMatch = ex;
+            }
+          });
+          if (bestMatch) match = bestMatch;
+        }
+
+        // Strategy 5: key exercise words (bench, squat, deadlift, curl, press, row, fly, pulldown, extension, raise, shrug)
+        if (!match) {
+          const keywords = ["bench press", "squat", "deadlift", "romanian deadlift", "overhead press", "barbell row", "lat pulldown", "leg press", "leg curl", "leg extension", "bicep curl", "hammer curl", "tricep pushdown", "lateral raise", "cable fly", "pec deck", "face pull", "shrug", "cable row", "pull-up", "chin-up", "dip"];
+          for (const kw of keywords) {
+            if (nameLower.includes(kw)) {
+              match = EXERCISE_DB.find(ex => (ex.name || "").toLowerCase().includes(kw));
+              if (match) break;
+            }
+          }
+        }
+
         // Handle both formats: sets as array [{weight,reps}] or sets as number + reps as string
         let sets;
         if (Array.isArray(item.sets)) {
@@ -6679,7 +6718,8 @@ function App() {
         }
         if (match) return {
           ...match,
-          sets
+          sets,
+          importedName: item.name
         };
         return {
           id: `import-${idx}-${Date.now()}`,
@@ -6690,6 +6730,7 @@ function App() {
           muscleId: "fullbody",
           section: "Full Body",
           calculator: "plate",
+          unlinked: true,
           sets
         };
       }).filter(Boolean);
@@ -8720,7 +8761,37 @@ function App() {
     }))), /*#__PURE__*/React.createElement("div", {
       className: "exercise-pills",
       onClick: e => e.stopPropagation()
+    }, ex.unlinked ? /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill",
+      onClick: e => {
+        e.stopPropagation();
+        openPicker();
+      },
+      style: {
+        borderColor: "#ff3b30",
+        boxShadow: "0 0 8px rgba(255,59,48,0.35)",
+        justifyContent: "center",
+        cursor: "pointer"
+      }
     }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-label",
+      style: {
+        color: "#ff3b30"
+      }
+    }, "Link"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-val",
+      style: {
+        color: "#ff3b30",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 10
+      }
+    }, /*#__PURE__*/React.createElement(Link, {
+      size: 14,
+      strokeWidth: 2.5,
+      color: "#ff3b30"
+    }))) : /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill blue",
       onClick: e => {
         e.stopPropagation();
