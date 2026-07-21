@@ -212,13 +212,13 @@ const css = `
   .type-tag { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
   /* Exercise cards */
-  .exercise-card { background: #3a3a3c; border: none; border-radius: var(--r); overflow: hidden; margin-bottom: 12px; box-shadow: var(--shadow-md), 0 8px 24px rgba(0,0,0,0.18); contain: layout style; scroll-margin-top: 16px; }
+  .exercise-card { background: #1c1c1e; border: none; border-radius: var(--r); overflow: hidden; margin-bottom: 12px; box-shadow: var(--shadow-md), 0 10px 28px rgba(0,0,0,0.22); contain: layout style; scroll-margin-top: 16px; }
   .exercise-header { padding: 14px 16px 12px; cursor: pointer; }
   .exercise-name { font-size: 17px; font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -0.3px; }
-  .exercise-muscle-head { font-size: 12px; font-weight: 600; color: #a1a1a6; margin-top: 2px; }
+  .exercise-muscle-head { font-size: 12px; font-weight: 600; color: #98989e; margin-top: 2px; }
   .exercise-pills { display: flex; gap: 6px; margin-top: 10px; }
   .exercise-pills::-webkit-scrollbar { display: none; }
-  .exercise-pill { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6px 8px; border-radius: 8px; border: 1px solid #48484a; background: #2c2c2e; cursor: pointer; box-shadow: none; }
+  .exercise-pill { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6px 8px; border-radius: 8px; border: 1px solid #3a3a3c; background: #2c2c2e; cursor: pointer; box-shadow: none; }
   .exercise-pill-label { font-size: 9px; font-weight: 700; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.05em; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
   .exercise-pill-val { font-size: 11px; font-weight: 700; color: #fff; margin-top: 1px; white-space: nowrap; text-align: center; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
   .exercise-pill.blue { border-color: #00c2ff; background: rgba(0,194,255,0.12); }
@@ -229,7 +229,7 @@ const css = `
   .exercise-info-chip { flex: 1; padding: 2px 4px; text-align: center; border: none; border-radius: 0; background: none; box-shadow: none; }
   .exercise-info-label { font-size: 9px; font-weight: 700; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.05em; }
   .exercise-info-val { font-size: 12px; font-weight: 800; color: #fff; font-family: "DM Mono", monospace; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .exercise-chevron { color: #a1a1a6; font-size: 11px; flex-shrink: 0; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+  .exercise-chevron { color: #98989e; font-size: 11px; flex-shrink: 0; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
   .exercise-chevron.open { transform: rotate(180deg); }
   .sets-area-wrapper { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease-out; }
   .sets-area-wrapper.open { max-height: 3000px; opacity: 1; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-out 0.05s; }
@@ -238,26 +238,26 @@ const css = `
   .sets-header span { font-size: 12px; font-weight: 700; color: #8e8e93; letter-spacing: 0.02em; font-family: "DM Mono", monospace; }
   .set-row { display: grid; grid-template-columns: 18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px; gap: 6px; align-items: center; padding: 4px 4px; margin-bottom: 6px; border-radius: 10px; transition: background 0.35s ease, box-shadow 0.35s ease; }
   .set-row-done { background: linear-gradient(90deg, rgba(52,199,89,0.22) 0%, rgba(52,199,89,0.08) 100%); box-shadow: inset 3px 0 0 #34c759; }
-  .set-num { font-size: 13px; font-weight: 800; color: #a1a1a6; text-align: center; font-family: "DM Mono", monospace; }
-  .set-last { font-family: "DM Mono", monospace; font-size: 13px; font-weight: 600; color: #8e8e93; text-align: center; background: #48484a; border: 1px solid #58585a; border-radius: 10px; padding: 8px 4px; }
-  .set-input { background: #48484a; border: 1.5px solid #58585a; border-radius: 10px; padding: 6px 10px; font-family: "DM Mono", monospace; font-size: 16px; font-weight: 700; color: #fff; width: 100%; outline: none; transition: border-color 0.15s; -moz-appearance: textfield; box-sizing: border-box; }
+  .set-num { font-size: 15px; font-weight: 800; color: #fff; text-align: center; font-family: "DM Mono", monospace; }
+  .set-last { font-family: "DM Mono", monospace; font-size: 13px; font-weight: 600; color: #8e8e93; text-align: center; background: #3a3a3c; border: 1px solid #48484a; border-radius: 10px; padding: 8px 4px; }
+  .set-input { background: #3a3a3c; border: 1.5px solid #48484a; border-radius: 10px; padding: 6px 10px; font-family: "DM Mono", monospace; font-size: 16px; font-weight: 700; color: #fff; width: 100%; outline: none; transition: border-color 0.15s; -moz-appearance: textfield; box-sizing: border-box; }
   .set-input::-webkit-outer-spin-button, .set-input::-webkit-inner-spin-button { -webkit-appearance: none; }
-  .set-input:focus { border-color: #00c2ff; background: #2c2c2e; box-shadow: 0 0 0 3px rgba(0,194,255,0.25); }
+  .set-input:focus { border-color: #00c2ff; background: #1c1c1e; box-shadow: 0 0 0 3px rgba(0,194,255,0.25); }
   .set-input::placeholder { color: #6a6a6e; }
-  .set-done { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #58585a; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.15s; flex-shrink: 0; }
+  .set-done { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #48484a; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.15s; flex-shrink: 0; }
   .set-done.checked { background: var(--green); border-color: var(--green); color: #fff; }
   .set-btn-row { display: flex; gap: 8px; margin-top: 10px; }
   .add-set-btn { background: rgba(0,194,255,0.12); border: 2px solid #00c2ff; border-radius: 10px; padding: 11px; flex: 1; font-size: 14px; font-weight: 800; color: #00c2ff; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; box-shadow: 0 0 0 1px rgba(0,194,255,0.15), 0 1px 3px rgba(0,194,255,0.15); display: flex; align-items: center; justify-content: center; gap: 6px; }
   .add-set-btn:hover { background: #00c2ff; color: #0f0f10; box-shadow: 0 2px 8px rgba(0,194,255,0.4); }
   .add-set-btn:active { transform: scale(0.98); }
-  .remove-set-btn { background: #48484a; border: 2px solid #58585a; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 800; color: #a1a1a6; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; }
+  .remove-set-btn { background: #3a3a3c; border: 2px solid #48484a; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 800; color: #98989e; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; }
   .remove-set-btn:hover { background: rgba(255,69,58,0.15); border-color: #ff453a; color: #ff453a; }
   .remove-set-btn:active { transform: scale(0.98); }
   .remove-set-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .prev-hint { font-size: 11px; color: #a1a1a6; padding: 2px 2px 4px; }
-  .card-rest-timer { background: #48484a; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
-  .exercise-notes { width: 100%; border: 1.5px solid #58585a; border-radius: 8px; padding: 8px 10px; font-size: 12px; font-family: "Inter", sans-serif; color: #fff; resize: none; outline: none; background: #48484a; margin-top: 6px; box-sizing: border-box; min-height: 60px; }
-  .exercise-notes:focus { border-color: #00c2ff; }
+  .prev-hint { font-size: 11px; color: #98989e; padding: 2px 2px 4px; }
+  .card-rest-timer { background: #3a3a3c; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+  .exercise-notes { width: 100%; border: 1.5px solid #48484a; border-radius: 8px; padding: 8px 10px; font-size: 12px; font-family: "Inter", sans-serif; color: #fff; resize: none; outline: none; background: #3a3a3c; margin-top: 8px; box-sizing: border-box; min-height: 34px; transition: min-height 0.2s ease, border-color 0.15s; }
+  .exercise-notes:focus { border-color: #00c2ff; min-height: 60px; }
   .exercise-notes::placeholder { color: #8e8e93; }
   .progression-hint-text { font-size: 12px; color: #34c759; font-weight: 600; flex: 1; }
   .progression-apply { background: var(--green); color: #fff; border: none; border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; }
@@ -8943,57 +8943,44 @@ function App() {
         openPicker();
       },
       style: {
-        borderColor: "#ff3b30",
-        boxShadow: "0 0 8px rgba(255,59,48,0.35)",
         justifyContent: "center",
-        cursor: "pointer"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "exercise-pill-label",
-      style: {
-        color: "#ff3b30"
-      }
-    }, "Link"), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-pill-val",
-      style: {
-        color: "#ff3b30",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: 10
+        cursor: "pointer",
+        flexDirection: "row",
+        gap: 5
       }
     }, /*#__PURE__*/React.createElement(Link, {
-      size: 14,
+      size: 13,
       strokeWidth: 2.5,
-      color: "#ff3b30"
-    }))) : /*#__PURE__*/React.createElement("div", {
-      className: "exercise-pill blue",
+      color: "#00c2ff"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-label",
+      style: {
+        color: "#98989e",
+        fontSize: 10
+      }
+    }, "Link")) : /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill",
       onClick: e => {
         e.stopPropagation();
         setSwapSheet(ex.id);
       },
       style: {
         justifyContent: "center",
-        boxShadow: "0 0 8px rgba(0,194,255,0.35)"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "exercise-pill-label",
-      style: {
-        color: "#00c2ff"
-      }
-    }, "Swap"), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-pill-val",
-      style: {
-        color: "#00c2ff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
+        cursor: "pointer",
+        flexDirection: "row",
+        gap: 5
       }
     }, /*#__PURE__*/React.createElement(ArrowLeftRight, {
-      size: 16,
+      size: 13,
       strokeWidth: 2.5,
       color: "#00c2ff"
-    }))), ex.equipment === "Cable Machine" && (() => {
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-label",
+      style: {
+        color: "#98989e",
+        fontSize: 10
+      }
+    }, "Swap")), ex.equipment === "Cable Machine" && (() => {
       const att = getAttachment(ex.baseId || ex.id);
       return /*#__PURE__*/React.createElement("div", {
         className: "exercise-pill",
@@ -9002,8 +8989,6 @@ function App() {
           setAttachmentSheetExId(ex.id);
         },
         style: {
-          borderColor: "#ff9f0a",
-          boxShadow: "0 0 8px rgba(255,159,10,0.35)",
           cursor: "pointer",
           minWidth: 0,
           flex: 1.5
@@ -9011,12 +8996,12 @@ function App() {
       }, /*#__PURE__*/React.createElement("div", {
         className: "exercise-pill-label",
         style: {
-          color: "#ff9f0a"
+          color: "#98989e"
         }
       }, "Attachment"), /*#__PURE__*/React.createElement("div", {
         className: "exercise-pill-val",
         style: {
-          color: "#ff9f0a",
+          color: "#fff",
           overflow: "hidden",
           textOverflow: "ellipsis",
           whiteSpace: "nowrap",
@@ -9026,8 +9011,8 @@ function App() {
     })(), /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill",
       style: {
-        borderColor: "#58585a",
-        cursor: EQUIPMENT_ALTERNATIVES[ex.baseId || ex.id]?.length ? "pointer" : "default"
+        cursor: EQUIPMENT_ALTERNATIVES[ex.baseId || ex.id]?.length ? "pointer" : "default",
+        flex: 1.4
       },
       onClick: e => {
         e.stopPropagation();
@@ -9036,17 +9021,38 @@ function App() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill-label",
       style: {
-        color: "#8e8e93"
+        color: "#98989e"
       }
     }, "Setup"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 3,
+        marginTop: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("span", {
       className: "exercise-pill-val",
       style: {
-        color: "#fff"
+        color: "#fff",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap"
       }
-    }, ex.equipment || "—")), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-pill green",
+    }, ex.equipment || "—"), EQUIPMENT_ALTERNATIVES[ex.baseId || ex.id]?.length ? /*#__PURE__*/React.createElement(ChevronDown, {
+      size: 10,
+      strokeWidth: 3,
+      color: "#00c2ff",
       style: {
-        boxShadow: "0 0 8px rgba(0,255,136,0.4)"
+        transform: "rotate(-90deg)",
+        flexShrink: 0,
+        opacity: 0.85
+      }
+    }) : null)), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill",
+      style: {
+        cursor: "pointer"
       },
       onClick: e => {
         e.stopPropagation();
@@ -9064,12 +9070,12 @@ function App() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill-label",
       style: {
-        color: "#00c76b"
+        color: "#98989e"
       }
     }, "Last"), /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill-val",
       style: {
-        color: "#00c76b"
+        color: lastSets(ex.id)?.length ? "#00c2ff" : "#98989e"
       }
     }, lastSets(ex.id)?.length || "—")), /*#__PURE__*/React.createElement("a", {
       href: youtubeUrl(ex.name),
@@ -9079,56 +9085,21 @@ function App() {
       className: "exercise-pill",
       style: {
         textDecoration: "none",
-        borderColor: "#ff0844",
-        background: "#fff",
-        boxShadow: "0 0 8px rgba(255,8,68,0.35)"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "exercise-pill-label",
-      style: {
-        color: "#ff0844"
-      }
-    }, "Video"), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-pill-val",
-      style: {
-        color: "#ff0844",
-        display: "flex",
-        alignItems: "center",
         justifyContent: "center",
-        gap: 2
+        flexDirection: "row",
+        gap: 5
       }
     }, /*#__PURE__*/React.createElement(Youtube, {
-      size: 11,
-      strokeWidth: 2,
-      color: "#ff0844"
-    }), "Demo"))), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-row",
-      onClick: e => e.stopPropagation()
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-chip"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-label"
-    }, "Rest"), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-val"
-    }, fmtTime(restDuration))), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-chip"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-label"
-    }, "PR"), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-val"
-    }, pr ? `${pr.weight}lb` : "—")), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-chip"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-label"
-    }, "Set 1 Last"), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-val"
-    }, lastSets(ex.id)?.[0]?.weight ? `${lastSets(ex.id)[0].weight}lb` : "—")), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-chip"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-label"
-    }, "Best Last"), /*#__PURE__*/React.createElement("div", {
-      className: "exercise-info-val"
-    }, lw ? lw.replace("lb x ", " x ") : "—")))), !open && (() => {
+      size: 12,
+      strokeWidth: 2.2,
+      color: "#00c2ff"
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-pill-label",
+      style: {
+        color: "#98989e",
+        fontSize: 10
+      }
+    }, "Video")))), !open && (() => {
       const doneCount = ex.sets.filter(s => s.done).length;
       const totalCount = ex.sets.length;
       const pct = totalCount ? doneCount / totalCount * 100 : 0;
@@ -9164,7 +9135,7 @@ function App() {
       }, doneCount, "/", totalCount), /*#__PURE__*/React.createElement("span", {
         style: {
           fontSize: 11,
-          color: "#a1a1a6"
+          color: "#98989e"
         }
       }, "sets"), isComplete && /*#__PURE__*/React.createElement("span", {
         style: {
@@ -9174,7 +9145,7 @@ function App() {
       }, "✓")), lastDoneSet && /*#__PURE__*/React.createElement("div", {
         style: {
           fontSize: 11,
-          color: "#a1a1a6"
+          color: "#98989e"
         }
       }, "Last: ", /*#__PURE__*/React.createElement("span", {
         style: {
@@ -9191,7 +9162,7 @@ function App() {
       }, " × ", lastDoneSet.reps))), /*#__PURE__*/React.createElement("div", {
         style: {
           height: 5,
-          background: "#48484a",
+          background: "#3a3a3c",
           borderRadius: 3,
           overflow: "hidden",
           position: "relative"
@@ -9420,9 +9391,9 @@ function App() {
         gap: 10,
         marginBottom: 8,
         padding: "10px 12px",
-        background: "#48484a",
+        background: "#3a3a3c",
         borderRadius: 10,
-        border: "1px solid #58585a"
+        border: "1px solid #48484a"
       },
       onClick: e => e.stopPropagation()
     }, /*#__PURE__*/React.createElement("div", {
@@ -9456,7 +9427,7 @@ function App() {
       style: {
         fontSize: 10,
         fontWeight: 800,
-        color: "#a1a1a6",
+        color: "#98989e",
         textTransform: "uppercase",
         letterSpacing: "0.08em"
       }
@@ -9465,7 +9436,7 @@ function App() {
       return p ? /*#__PURE__*/React.createElement("div", {
         style: {
           fontSize: 10,
-          color: "#a1a1a6",
+          color: "#98989e",
           marginTop: 1
         }
       }, "Hit ", /*#__PURE__*/React.createElement("span", {
@@ -9603,8 +9574,8 @@ function App() {
       title: ex.sets.length > 1 ? "Tap to delete this set" : ""
     }, i + 1), /*#__PURE__*/React.createElement("div", {
       style: {
-        background: set.weight ? "rgba(0,194,255,0.15)" : "#48484a",
-        border: set.weight ? "1.5px solid #00c2ff" : "1.5px solid #58585a",
+        background: set.weight ? "rgba(0,194,255,0.15)" : "#3a3a3c",
+        border: set.weight ? "1.5px solid #00c2ff" : "1.5px solid #48484a",
         borderRadius: 10,
         padding: "7px 6px",
         cursor: "pointer",
@@ -9641,10 +9612,10 @@ function App() {
         fontWeight: 800,
         letterSpacing: "-0.02em"
       }
-    }, set.weight || "—"), /*#__PURE__*/React.createElement(ChevronDown, {
+    }, set.weight || "—"), set.weight && /*#__PURE__*/React.createElement(ChevronDown, {
       size: 11,
       strokeWidth: 3,
-      color: set.weight ? "#00c2ff" : "#c7c7cc",
+      color: "#00c2ff",
       style: {
         transform: "rotate(-90deg)",
         flexShrink: 0,
@@ -9974,16 +9945,46 @@ function App() {
         fontFamily: "Inter,sans-serif",
         boxShadow: "0 0 0 1.5px #00c2ff"
       }
-    }, "Skip")), /*#__PURE__*/React.createElement("textarea", {
+    }, "Skip")), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-row",
+      onClick: e => e.stopPropagation(),
+      style: {
+        marginTop: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-chip"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-label"
+    }, "Rest"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-val"
+    }, fmtTime(restDuration))), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-chip"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-label"
+    }, "PR"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-val"
+    }, pr ? `${pr.weight}lb` : "—")), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-chip"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-label"
+    }, "Set 1 Last"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-val"
+    }, lastSets(ex.id)?.[0]?.weight ? `${lastSets(ex.id)[0].weight}lb` : "—")), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-chip"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-label"
+    }, "Best Last"), /*#__PURE__*/React.createElement("div", {
+      className: "exercise-info-val"
+    }, lw ? lw.replace("lb x ", " x ") : "—"))), /*#__PURE__*/React.createElement("textarea", {
       className: "exercise-notes",
-      placeholder: "Notes for this exercise (saved permanently)...",
+      placeholder: "Notes...",
       value: exerciseNotes[ex.id] || "",
       onChange: e => setExerciseNotes(p => ({
         ...p,
         [ex.id]: e.target.value
       })),
       onClick: e => e.stopPropagation(),
-      rows: 2
+      rows: 1
     }), /*#__PURE__*/React.createElement("div", {
       style: {
         marginTop: 12,
@@ -10033,9 +10034,9 @@ function App() {
     }, "Remove"), /*#__PURE__*/React.createElement("button", {
       onClick: () => setRemoveConfirm(null),
       style: {
-        background: "#48484a",
-        border: "1.5px solid #58585a",
-        color: "#a1a1a6",
+        background: "#3a3a3c",
+        border: "1.5px solid #48484a",
+        color: "#98989e",
         borderRadius: 8,
         padding: "6px 12px",
         fontSize: 12,
@@ -10059,9 +10060,9 @@ function App() {
       },
       style: {
         flex: 1,
-        background: ex.supersetGroup ? "rgba(0,194,255,0.18)" : "#48484a",
-        border: ex.supersetGroup ? "1.5px solid #00c2ff" : "1.5px solid #58585a",
-        color: ex.supersetGroup ? "#00c2ff" : "#a1a1a6",
+        background: ex.supersetGroup ? "rgba(0,194,255,0.18)" : "#3a3a3c",
+        border: ex.supersetGroup ? "1.5px solid #00c2ff" : "1.5px solid #48484a",
+        color: ex.supersetGroup ? "#00c2ff" : "#98989e",
         fontSize: 12,
         fontWeight: 700,
         cursor: "pointer",
