@@ -212,53 +212,54 @@ const css = `
   .type-tag { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
   /* Exercise cards */
-  .exercise-card { background: #fff; border: none; border-radius: var(--r); overflow: hidden; margin-bottom: 12px; box-shadow: var(--shadow-md); contain: layout style; scroll-margin-top: 16px; }
-  .exercise-header { padding: 12px 14px 10px; cursor: pointer; }
-  .exercise-name { font-size: 17px; font-weight: 800; color: #000; line-height: 1.15; letter-spacing: -0.3px; }
-  .exercise-muscle-head { font-size: 12px; font-weight: 600; color: #8e8e93; margin-top: 2px; }
-  .exercise-pills { display: flex; gap: 6px; margin-top: 8px; }
+  .exercise-card { background: #3a3a3c; border: none; border-radius: var(--r); overflow: hidden; margin-bottom: 12px; box-shadow: var(--shadow-md), 0 8px 24px rgba(0,0,0,0.18); contain: layout style; scroll-margin-top: 16px; }
+  .exercise-header { padding: 14px 16px 12px; cursor: pointer; }
+  .exercise-name { font-size: 17px; font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -0.3px; }
+  .exercise-muscle-head { font-size: 12px; font-weight: 600; color: #a1a1a6; margin-top: 2px; }
+  .exercise-pills { display: flex; gap: 6px; margin-top: 10px; }
   .exercise-pills::-webkit-scrollbar { display: none; }
-  .exercise-pill { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5px 8px; border-radius: 8px; border: 1.5px solid #e5e5ea; background: #fff; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+  .exercise-pill { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6px 8px; border-radius: 8px; border: 1px solid #48484a; background: #2c2c2e; cursor: pointer; box-shadow: none; }
   .exercise-pill-label { font-size: 9px; font-weight: 700; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.05em; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-  .exercise-pill-val { font-size: 11px; font-weight: 700; color: #000; margin-top: 1px; white-space: nowrap; text-align: center; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-  .exercise-pill.blue { border-color: #00c2ff; background: #fff; }
+  .exercise-pill-val { font-size: 11px; font-weight: 700; color: #fff; margin-top: 1px; white-space: nowrap; text-align: center; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .exercise-pill.blue { border-color: #00c2ff; background: rgba(0,194,255,0.12); }
   .exercise-pill.blue .exercise-pill-val { color: #00c2ff; }
-  .exercise-pill.green { border-color: #00ff88; background: #fff; }
-  .exercise-pill.green .exercise-pill-val { color: #00ff88; }
-  .exercise-info-row { display: flex; gap: 6px; margin-top: 10px; }
-  .exercise-info-chip { flex: 1; padding: 5px 10px; text-align: center; border: 1.5px solid #8e8e93; border-radius: 8px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-  .exercise-info-chip:last-child { border-right: 1.5px solid #8e8e93; }
+  .exercise-pill.green { border-color: #34c759; background: rgba(52,199,89,0.12); }
+  .exercise-pill.green .exercise-pill-val { color: #34c759; }
+  .exercise-info-row { display: flex; gap: 6px; margin-top: 12px; padding: 10px 14px; background: #2c2c2e; border-radius: 10px; margin-left: -2px; margin-right: -2px; }
+  .exercise-info-chip { flex: 1; padding: 2px 4px; text-align: center; border: none; border-radius: 0; background: none; box-shadow: none; }
   .exercise-info-label { font-size: 9px; font-weight: 700; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.05em; }
-  .exercise-info-val { font-size: 11px; font-weight: 700; color: #8e8e93; font-family: "DM Mono", monospace; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .exercise-chevron { color: var(--muted); font-size: 11px; flex-shrink: 0; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+  .exercise-info-val { font-size: 12px; font-weight: 800; color: #fff; font-family: "DM Mono", monospace; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .exercise-chevron { color: #a1a1a6; font-size: 11px; flex-shrink: 0; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
   .exercise-chevron.open { transform: rotate(180deg); }
   .sets-area-wrapper { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease-out; }
   .sets-area-wrapper.open { max-height: 3000px; opacity: 1; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-out 0.05s; }
-  .sets-area { padding: 0 14px 12px; display: flex; flex-direction: column; gap: 6px; background: var(--card); }
-  .sets-header { display: grid; grid-template-columns: 18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px; gap: 6px; padding: 0 4px 4px; align-items: center; }
+  .sets-area { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; background: #2c2c2e; }
+  .sets-header { display: grid; grid-template-columns: 18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px; gap: 6px; padding: 0 4px 6px; align-items: center; }
   .sets-header span { font-size: 12px; font-weight: 700; color: #8e8e93; letter-spacing: 0.02em; font-family: "DM Mono", monospace; }
   .set-row { display: grid; grid-template-columns: 18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px; gap: 6px; align-items: center; padding: 4px 4px; margin-bottom: 6px; border-radius: 10px; transition: background 0.35s ease, box-shadow 0.35s ease; }
-  .set-row-done { background: linear-gradient(90deg, rgba(52,199,89,0.14) 0%, rgba(52,199,89,0.06) 100%); box-shadow: inset 3px 0 0 #34c759; }
-  .set-last { font-family: "DM Mono", monospace; font-size: 13px; font-weight: 600; color: #8e8e93; text-align: center; background: #f2f2f7; border: 1px solid #e5e5ea; border-radius: 10px; padding: 8px 4px; }
-  .set-input { background: #EEF1F5; border: 1.5px solid #e5e5ea; border-radius: 10px; padding: 6px 10px; font-family: "DM Mono", monospace; font-size: 16px; font-weight: 700; color: #000; width: 100%; outline: none; transition: border-color 0.15s; -moz-appearance: textfield; box-sizing: border-box; }
+  .set-row-done { background: linear-gradient(90deg, rgba(52,199,89,0.22) 0%, rgba(52,199,89,0.08) 100%); box-shadow: inset 3px 0 0 #34c759; }
+  .set-num { font-size: 13px; font-weight: 800; color: #a1a1a6; text-align: center; font-family: "DM Mono", monospace; }
+  .set-last { font-family: "DM Mono", monospace; font-size: 13px; font-weight: 600; color: #8e8e93; text-align: center; background: #48484a; border: 1px solid #58585a; border-radius: 10px; padding: 8px 4px; }
+  .set-input { background: #48484a; border: 1.5px solid #58585a; border-radius: 10px; padding: 6px 10px; font-family: "DM Mono", monospace; font-size: 16px; font-weight: 700; color: #fff; width: 100%; outline: none; transition: border-color 0.15s; -moz-appearance: textfield; box-sizing: border-box; }
   .set-input::-webkit-outer-spin-button, .set-input::-webkit-inner-spin-button { -webkit-appearance: none; }
-  .set-input:focus { border-color: #00c2ff; background: #fff; box-shadow: 0 0 0 3px rgba(0,194,255,0.12); }
-  .set-input::placeholder { color: #d1d1d6; }
-  .set-done { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--rim); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.15s; flex-shrink: 0; }
+  .set-input:focus { border-color: #00c2ff; background: #2c2c2e; box-shadow: 0 0 0 3px rgba(0,194,255,0.25); }
+  .set-input::placeholder { color: #6a6a6e; }
+  .set-done { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #58585a; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.15s; flex-shrink: 0; }
   .set-done.checked { background: var(--green); border-color: var(--green); color: #fff; }
-  .set-btn-row { display: flex; gap: 8px; margin-top: 6px; }
-  .add-set-btn { background: #f2f2f7; border: 2px solid #00c2ff; border-radius: 10px; padding: 11px; flex: 1; font-size: 14px; font-weight: 800; color: #00c2ff; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; box-shadow: 0 0 0 1px rgba(0,194,255,0.15), 0 1px 3px rgba(0,194,255,0.15); display: flex; align-items: center; justify-content: center; gap: 6px; }
-  .add-set-btn:hover { background: #00c2ff; color: #fff; box-shadow: 0 2px 8px rgba(0,194,255,0.4); }
+  .set-btn-row { display: flex; gap: 8px; margin-top: 10px; }
+  .add-set-btn { background: rgba(0,194,255,0.12); border: 2px solid #00c2ff; border-radius: 10px; padding: 11px; flex: 1; font-size: 14px; font-weight: 800; color: #00c2ff; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; box-shadow: 0 0 0 1px rgba(0,194,255,0.15), 0 1px 3px rgba(0,194,255,0.15); display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .add-set-btn:hover { background: #00c2ff; color: #0f0f10; box-shadow: 0 2px 8px rgba(0,194,255,0.4); }
   .add-set-btn:active { transform: scale(0.98); }
-  .remove-set-btn { background: #fff; border: 2px solid #e5e5ea; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 800; color: #8e8e93; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; }
-  .remove-set-btn:hover { background: #fff5f5; border-color: #ff453a; color: #ff453a; }
+  .remove-set-btn { background: #48484a; border: 2px solid #58585a; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 800; color: #a1a1a6; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; }
+  .remove-set-btn:hover { background: rgba(255,69,58,0.15); border-color: #ff453a; color: #ff453a; }
   .remove-set-btn:active { transform: scale(0.98); }
   .remove-set-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .prev-hint { font-size: 11px; color: var(--muted); padding: 2px 2px 4px; }
-  .card-rest-timer { background: #EEF1F5; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
-  .exercise-notes { width: 100%; border: 1.5px solid #e5e5ea; border-radius: 8px; padding: 8px 10px; font-size: 12px; font-family: "Inter", sans-serif; color: #000; resize: none; outline: none; background: #fafafa; margin-top: 6px; box-sizing: border-box; min-height: 60px; }
+  .prev-hint { font-size: 11px; color: #a1a1a6; padding: 2px 2px 4px; }
+  .card-rest-timer { background: #48484a; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+  .exercise-notes { width: 100%; border: 1.5px solid #58585a; border-radius: 8px; padding: 8px 10px; font-size: 12px; font-family: "Inter", sans-serif; color: #fff; resize: none; outline: none; background: #48484a; margin-top: 6px; box-sizing: border-box; min-height: 60px; }
   .exercise-notes:focus { border-color: #00c2ff; }
-  .progression-hint-text { font-size: 12px; color: #1a8c3a; font-weight: 600; flex: 1; }
+  .exercise-notes::placeholder { color: #8e8e93; }
+  .progression-hint-text { font-size: 12px; color: #34c759; font-weight: 600; flex: 1; }
   .progression-apply { background: var(--green); color: #fff; border: none; border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; }
 
   /* Buttons */
@@ -8899,7 +8900,7 @@ function App() {
       className: "exercise-name"
     }, /*#__PURE__*/React.createElement("span", {
       style: {
-        color: "#636366",
+        color: "#8e8e93",
         fontWeight: 800,
         fontSize: 13,
         marginRight: 6,
@@ -9025,7 +9026,7 @@ function App() {
     })(), /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill",
       style: {
-        borderColor: "#000",
+        borderColor: "#58585a",
         cursor: EQUIPMENT_ALTERNATIVES[ex.baseId || ex.id]?.length ? "pointer" : "default"
       },
       onClick: e => {
@@ -9035,12 +9036,12 @@ function App() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill-label",
       style: {
-        color: "#000"
+        color: "#8e8e93"
       }
     }, "Setup"), /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill-val",
       style: {
-        color: "#000"
+        color: "#fff"
       }
     }, ex.equipment || "—")), /*#__PURE__*/React.createElement("div", {
       className: "exercise-pill green",
@@ -9135,8 +9136,8 @@ function App() {
       const isComplete = doneCount === totalCount && totalCount > 0;
       return /*#__PURE__*/React.createElement("div", {
         style: {
-          padding: "8px 14px 12px",
-          borderTop: "1px solid #f5f5f5"
+          padding: "10px 16px 14px",
+          borderTop: "1px solid rgba(255,255,255,0.06)"
         }
       }, /*#__PURE__*/React.createElement("div", {
         style: {
@@ -9157,13 +9158,13 @@ function App() {
         style: {
           fontSize: 11,
           fontWeight: 800,
-          color: isComplete ? "#34c759" : "#1c1c1e",
+          color: isComplete ? "#34c759" : "#fff",
           fontFamily: "DM Mono,monospace"
         }
       }, doneCount, "/", totalCount), /*#__PURE__*/React.createElement("span", {
         style: {
           fontSize: 11,
-          color: "#8e8e93"
+          color: "#a1a1a6"
         }
       }, "sets"), isComplete && /*#__PURE__*/React.createElement("span", {
         style: {
@@ -9173,24 +9174,24 @@ function App() {
       }, "✓")), lastDoneSet && /*#__PURE__*/React.createElement("div", {
         style: {
           fontSize: 11,
-          color: "#8e8e93"
+          color: "#a1a1a6"
         }
       }, "Last: ", /*#__PURE__*/React.createElement("span", {
         style: {
-          color: "#1c1c1e",
+          color: "#fff",
           fontWeight: 700,
           fontFamily: "DM Mono,monospace"
         }
       }, lastDoneSet.weight || "—"), lastDoneSet.reps && /*#__PURE__*/React.createElement("span", {
         style: {
-          color: "#1c1c1e",
+          color: "#fff",
           fontWeight: 700,
           fontFamily: "DM Mono,monospace"
         }
       }, " × ", lastDoneSet.reps))), /*#__PURE__*/React.createElement("div", {
         style: {
           height: 5,
-          background: "#f2f2f7",
+          background: "#48484a",
           borderRadius: 3,
           overflow: "hidden",
           position: "relative"
@@ -9419,10 +9420,9 @@ function App() {
         gap: 10,
         marginBottom: 8,
         padding: "10px 12px",
-        background: "linear-gradient(135deg, #fff 0%, #f9fbff 100%)",
+        background: "#48484a",
         borderRadius: 10,
-        border: "1.5px solid #e5e5ea",
-        boxShadow: "0 1px 2px rgba(0,0,0,0.03)"
+        border: "1px solid #58585a"
       },
       onClick: e => e.stopPropagation()
     }, /*#__PURE__*/React.createElement("div", {
@@ -9438,7 +9438,7 @@ function App() {
         width: 26,
         height: 26,
         borderRadius: "50%",
-        background: "rgba(0,194,255,0.12)",
+        background: "rgba(0,194,255,0.2)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -9456,7 +9456,7 @@ function App() {
       style: {
         fontSize: 10,
         fontWeight: 800,
-        color: "#8e8e93",
+        color: "#a1a1a6",
         textTransform: "uppercase",
         letterSpacing: "0.08em"
       }
@@ -9465,7 +9465,7 @@ function App() {
       return p ? /*#__PURE__*/React.createElement("div", {
         style: {
           fontSize: 10,
-          color: "#8e8e93",
+          color: "#a1a1a6",
           marginTop: 1
         }
       }, "Hit ", /*#__PURE__*/React.createElement("span", {
@@ -9484,7 +9484,7 @@ function App() {
     })(), !ex.targetRepRange && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 10,
-        color: "#c7c7cc",
+        color: "#6a6a6e",
         marginTop: 1
       }
     }, "Set a range for color feedback"))), /*#__PURE__*/React.createElement("input", {
@@ -9507,7 +9507,7 @@ function App() {
       style: {
         width: 64,
         border: "1.5px solid #00c2ff",
-        background: "#fff",
+        background: "#2c2c2e",
         fontSize: 14,
         fontFamily: "DM Mono,monospace",
         fontWeight: 800,
@@ -9517,31 +9517,31 @@ function App() {
         borderRadius: 8,
         padding: "6px 4px",
         flexShrink: 0,
-        boxShadow: "0 0 0 1px rgba(0,194,255,0.15)"
+        boxShadow: "0 0 0 1px rgba(0,194,255,0.25)"
       }
     })), /*#__PURE__*/React.createElement("div", {
       className: "sets-header"
     }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", {
       style: {
-        color: "#1c1c1e",
+        color: "#fff",
         fontWeight: 800
       }
     }, "WT"), /*#__PURE__*/React.createElement("span", {
       style: {
         textAlign: "center",
-        color: "#c7c7cc",
+        color: "#6a6a6e",
         fontSize: 11
       }
     }, "LAST"), /*#__PURE__*/React.createElement("span", {
       style: {
         textAlign: "center",
-        color: "#c7c7cc",
+        color: "#6a6a6e",
         fontSize: 11
       }
     }, "LAST"), /*#__PURE__*/React.createElement("span", {
       style: {
         textAlign: "center",
-        color: "#1c1c1e",
+        color: "#fff",
         fontWeight: 800
       }
     }, "REPS"), /*#__PURE__*/React.createElement("span", null)), ex.planTargetReps && /*#__PURE__*/React.createElement("div", {
@@ -9603,8 +9603,8 @@ function App() {
       title: ex.sets.length > 1 ? "Tap to delete this set" : ""
     }, i + 1), /*#__PURE__*/React.createElement("div", {
       style: {
-        background: set.weight ? "#1c1c1e" : "#f2f2f7",
-        border: set.weight ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
+        background: set.weight ? "rgba(0,194,255,0.15)" : "#48484a",
+        border: set.weight ? "1.5px solid #00c2ff" : "1.5px solid #58585a",
         borderRadius: 10,
         padding: "7px 6px",
         cursor: "pointer",
@@ -9613,7 +9613,7 @@ function App() {
         justifyContent: "center",
         gap: 3,
         userSelect: "none",
-        boxShadow: set.weight ? "0 0 0 1px rgba(0,194,255,0.15)" : "none",
+        boxShadow: set.weight ? "0 0 0 1px rgba(0,194,255,0.2), 0 0 12px rgba(0,194,255,0.15)" : "none",
         transition: "all 0.15s"
       },
       onClick: () => {
@@ -9635,7 +9635,7 @@ function App() {
       }
     }, /*#__PURE__*/React.createElement("span", {
       style: {
-        color: set.weight ? "#fff" : "#8e8e93",
+        color: set.weight ? "#00c2ff" : "#8e8e93",
         fontFamily: "DM Mono,monospace",
         fontSize: 15,
         fontWeight: 800,
@@ -9675,23 +9675,23 @@ function App() {
           return {
             ...baseStyle,
             borderColor: "#34c759",
-            background: "#f0faf3",
-            color: "#1a9e3f"
+            background: "rgba(52,199,89,0.2)",
+            color: "#34c759"
           };
         }
         if (r < set.targetRepsLow) {
           return {
             ...baseStyle,
-            borderColor: "#ff3b30",
-            background: "#fff5f5",
-            color: "#ff3b30"
+            borderColor: "#ff453a",
+            background: "rgba(255,69,58,0.2)",
+            color: "#ff6b62"
           };
         }
         // Above target range
         return {
           ...baseStyle,
           borderColor: "#00c2ff",
-          background: "#f0f9ff",
+          background: "rgba(0,194,255,0.2)",
           color: "#00c2ff"
         };
       })(),
@@ -9988,7 +9988,7 @@ function App() {
       style: {
         marginTop: 12,
         paddingTop: 12,
-        borderTop: "1px solid #EEF1F5",
+        borderTop: "1px solid rgba(255,255,255,0.08)",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -10002,14 +10002,14 @@ function App() {
         alignItems: "center",
         flex: 1,
         padding: "8px 12px",
-        background: "rgba(255,59,48,0.08)",
+        background: "rgba(255,69,58,0.15)",
         borderRadius: 10,
-        border: "1.5px solid rgba(255,59,48,0.3)"
+        border: "1.5px solid rgba(255,69,58,0.4)"
       }
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#ff453a",
+        color: "#ff6b62",
         fontWeight: 700,
         flex: 1
       }
@@ -10033,9 +10033,9 @@ function App() {
     }, "Remove"), /*#__PURE__*/React.createElement("button", {
       onClick: () => setRemoveConfirm(null),
       style: {
-        background: "#fff",
-        border: "1.5px solid #e5e5ea",
-        color: "#8e8e93",
+        background: "#48484a",
+        border: "1.5px solid #58585a",
+        color: "#a1a1a6",
         borderRadius: 8,
         padding: "6px 12px",
         fontSize: 12,
@@ -10059,9 +10059,9 @@ function App() {
       },
       style: {
         flex: 1,
-        background: ex.supersetGroup ? "rgba(0,194,255,0.1)" : "#f2f2f7",
-        border: ex.supersetGroup ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
-        color: ex.supersetGroup ? "#00c2ff" : "#3a3a3c",
+        background: ex.supersetGroup ? "rgba(0,194,255,0.18)" : "#48484a",
+        border: ex.supersetGroup ? "1.5px solid #00c2ff" : "1.5px solid #58585a",
+        color: ex.supersetGroup ? "#00c2ff" : "#a1a1a6",
         fontSize: 12,
         fontWeight: 700,
         cursor: "pointer",
@@ -10079,9 +10079,9 @@ function App() {
     }), ex.supersetGroup ? `Unlink Superset ${ex.supersetGroup}` : "Link as Superset"), /*#__PURE__*/React.createElement("button", {
       onClick: () => setRemoveConfirm(ex.id),
       style: {
-        background: "#fff",
-        border: "1.5px solid #ffcdc9",
-        color: "#ff453a",
+        background: "rgba(255,69,58,0.12)",
+        border: "1.5px solid rgba(255,69,58,0.4)",
+        color: "#ff6b62",
         fontSize: 12,
         fontWeight: 700,
         cursor: "pointer",
