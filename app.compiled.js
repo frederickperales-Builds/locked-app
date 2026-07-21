@@ -90,19 +90,29 @@ const css = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #F0F0F0;
+    --bg: #EEF1F5;
+    --bg-2: #E4E8EE;
     --card: #ffffff;
     --rim: #e5e5ea;
+    --rim-soft: #eef0f3;
     --ink: #000000;
     --muted: #8e8e93;
     --neon: #00c2ff;
     --neon-dim: rgba(0,194,255,0.1);
     --green: #34c759;
-    --r: 14px;
+    --r: 18px;
+    --r-sm: 12px;
+    --r-lg: 22px;
+    --shadow-sm: 0 1px 2px rgba(16,24,40,0.05), 0 1px 3px rgba(16,24,40,0.06);
+    --shadow-md: 0 2px 4px rgba(16,24,40,0.06), 0 6px 14px rgba(16,24,40,0.08);
+    --shadow-lg: 0 4px 8px rgba(16,24,40,0.06), 0 20px 40px rgba(16,24,40,0.12);
+    --divider: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.08) 15%, rgba(0,0,0,0.08) 85%, transparent 100%);
   }
   html, body, #root { height: 100%; background: var(--bg); }
   body { font-family: 'Inter', sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
   .app { max-width: 700px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); }
+  /* Gradient divider — fades at edges, use instead of hard borders inside cards */
+  .divider-fade { height: 1px; background: var(--divider); border: none; margin: 0; }
 
   /* Header */
   .header { padding: 14px 20px 10px; display: flex; align-items: center; justify-content: space-between; background: var(--card); border-bottom: 1px solid var(--rim); }
@@ -195,14 +205,14 @@ const css = `
 
   /* Workout type grid */
   .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .type-card { background: var(--card); border: 1.5px solid var(--rim); border-radius: var(--r); padding: 14px; cursor: pointer; transition: all 0.15s; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-  .type-card.selected { border-color: var(--neon); box-shadow: 0 0 0 1px var(--neon), 0 0 12px rgba(0,194,255,0.2); background: var(--neon-dim); }
+  .type-card { background: var(--card); border: none; border-radius: var(--r); padding: 14px; cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow-sm); }
+  .type-card.selected { box-shadow: 0 0 0 2px var(--neon), var(--shadow-md), 0 0 16px rgba(0,194,255,0.25); background: var(--neon-dim); }
   .type-icon { font-size: 22px; margin-bottom: 4px; }
   .type-name { font-size: 14px; font-weight: 700; color: var(--ink); }
   .type-tag { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
   /* Exercise cards */
-  .exercise-card { background: #fff; border: 1.5px solid #e5e5ea; border-radius: 14px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); contain: layout style; scroll-margin-top: 16px; }
+  .exercise-card { background: #fff; border: none; border-radius: var(--r); overflow: hidden; margin-bottom: 12px; box-shadow: var(--shadow-md); contain: layout style; scroll-margin-top: 16px; }
   .exercise-header { padding: 12px 14px 10px; cursor: pointer; }
   .exercise-name { font-size: 17px; font-weight: 800; color: #000; line-height: 1.15; letter-spacing: -0.3px; }
   .exercise-muscle-head { font-size: 12px; font-weight: 600; color: #8e8e93; margin-top: 2px; }
@@ -227,28 +237,33 @@ const css = `
   .sets-area { padding: 0 14px 12px; display: flex; flex-direction: column; gap: 6px; background: var(--card); }
   .sets-header { display: grid; grid-template-columns: 18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px; gap: 6px; padding: 0 4px 4px; align-items: center; }
   .sets-header span { font-size: 12px; font-weight: 700; color: #8e8e93; letter-spacing: 0.02em; font-family: "DM Mono", monospace; }
-  .set-row { display: grid; grid-template-columns: 18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px; gap: 6px; align-items: center; padding: 0 4px; margin-bottom: 6px; }
-  .set-last { font-family: "DM Mono", monospace; font-size: 14px; font-weight: 500; color: #c7c7cc; text-align: center; background: #fff; border: 1.5px solid #e5e5ea; border-radius: 10px; padding: 6px 4px; }
-  .set-last { font-family: "DM Mono", monospace; font-size: 14px; font-weight: 500; color: #c7c7cc; text-align: center; background: #fff; border: 1.5px solid #e5e5ea; border-radius: 10px; padding: 10px 4px; }
-  .set-input { background: #F0F0F0; border: 1.5px solid #e5e5ea; border-radius: 10px; padding: 6px 10px; font-family: "DM Mono", monospace; font-size: 16px; font-weight: 700; color: #000; width: 100%; outline: none; transition: border-color 0.15s; -moz-appearance: textfield; box-sizing: border-box; }
+  .set-row { display: grid; grid-template-columns: 18px minmax(52px,1.5fr) minmax(36px,1fr) minmax(36px,1fr) minmax(46px,1.2fr) 30px; gap: 6px; align-items: center; padding: 4px 4px; margin-bottom: 6px; border-radius: 10px; transition: background 0.35s ease, box-shadow 0.35s ease; }
+  .set-row-done { background: linear-gradient(90deg, rgba(52,199,89,0.14) 0%, rgba(52,199,89,0.06) 100%); box-shadow: inset 3px 0 0 #34c759; }
+  .set-last { font-family: "DM Mono", monospace; font-size: 13px; font-weight: 600; color: #8e8e93; text-align: center; background: #f2f2f7; border: 1px solid #e5e5ea; border-radius: 10px; padding: 8px 4px; }
+  .set-input { background: #EEF1F5; border: 1.5px solid #e5e5ea; border-radius: 10px; padding: 6px 10px; font-family: "DM Mono", monospace; font-size: 16px; font-weight: 700; color: #000; width: 100%; outline: none; transition: border-color 0.15s; -moz-appearance: textfield; box-sizing: border-box; }
   .set-input::-webkit-outer-spin-button, .set-input::-webkit-inner-spin-button { -webkit-appearance: none; }
   .set-input:focus { border-color: #00c2ff; background: #fff; box-shadow: 0 0 0 3px rgba(0,194,255,0.12); }
   .set-input::placeholder { color: #d1d1d6; }
   .set-done { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--rim); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.15s; flex-shrink: 0; }
   .set-done.checked { background: var(--green); border-color: var(--green); color: #fff; }
-  .add-set-btn { background: #f2f2f7; border: 2px solid #00c2ff; border-radius: 10px; padding: 11px; width: 100%; font-size: 14px; font-weight: 800; color: #00c2ff; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; margin-top: 6px; letter-spacing: 0.02em; text-transform: uppercase; box-shadow: 0 0 0 1px rgba(0,194,255,0.15), 0 1px 3px rgba(0,194,255,0.15); display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .set-btn-row { display: flex; gap: 8px; margin-top: 6px; }
+  .add-set-btn { background: #f2f2f7; border: 2px solid #00c2ff; border-radius: 10px; padding: 11px; flex: 1; font-size: 14px; font-weight: 800; color: #00c2ff; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; box-shadow: 0 0 0 1px rgba(0,194,255,0.15), 0 1px 3px rgba(0,194,255,0.15); display: flex; align-items: center; justify-content: center; gap: 6px; }
   .add-set-btn:hover { background: #00c2ff; color: #fff; box-shadow: 0 2px 8px rgba(0,194,255,0.4); }
   .add-set-btn:active { transform: scale(0.98); }
+  .remove-set-btn { background: #fff; border: 2px solid #e5e5ea; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 800; color: #8e8e93; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; }
+  .remove-set-btn:hover { background: #fff5f5; border-color: #ff453a; color: #ff453a; }
+  .remove-set-btn:active { transform: scale(0.98); }
+  .remove-set-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   .prev-hint { font-size: 11px; color: var(--muted); padding: 2px 2px 4px; }
-  .card-rest-timer { background: #F0F0F0; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+  .card-rest-timer { background: #EEF1F5; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
   .exercise-notes { width: 100%; border: 1.5px solid #e5e5ea; border-radius: 8px; padding: 8px 10px; font-size: 12px; font-family: "Inter", sans-serif; color: #000; resize: none; outline: none; background: #fafafa; margin-top: 6px; box-sizing: border-box; min-height: 60px; }
   .exercise-notes:focus { border-color: #00c2ff; }
   .progression-hint-text { font-size: 12px; color: #1a8c3a; font-weight: 600; flex: 1; }
   .progression-apply { background: var(--green); color: #fff; border: none; border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; }
 
   /* Buttons */
-  .add-exercise-btn { background: var(--card); border: 1.5px dashed var(--rim); border-radius: var(--r); padding: 16px; width: 100%; font-size: 14px; font-weight: 500; color: var(--muted); cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.15s; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-  .add-exercise-btn:hover { border-color: var(--neon); color: var(--neon); }
+  .add-exercise-btn { background: var(--card); border: 1.5px dashed var(--rim); border-radius: var(--r); padding: 16px; width: 100%; font-size: 14px; font-weight: 600; color: var(--muted); cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; box-shadow: var(--shadow-sm); }
+  .add-exercise-btn:hover { border-color: var(--neon); color: var(--neon); box-shadow: var(--shadow-md); }
   .finish-row { display: flex; gap: 8px; }
   .btn { width: 100%; padding: 16px; border-radius: var(--r); border: none; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: transform 0.1s; }
   .btn:active { transform: scale(0.98); }
@@ -258,7 +273,7 @@ const css = `
   .rest-btn.active { border-color: var(--neon); color: var(--neon); box-shadow: 0 0 0 1px var(--neon); }
 
   /* History */
-  .history-card { background: #fff; border: 1.5px solid #e5e5ea; border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .history-card { background: #fff; border: none; border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; box-shadow: var(--shadow-md); }
   .history-top { display: flex; align-items: center; justify-content: space-between; }
   .history-type { font-size: 16px; font-weight: 700; color: var(--ink); }
   .history-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
@@ -315,7 +330,7 @@ const css = `
   .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
   .cal-dow { text-align: center; font-size: 11px; font-weight: 700; color: #8e8e93; padding-bottom: 8px; letter-spacing: 0.04em; }
   .cal-day { aspect-ratio: 1; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; position: relative; transition: all 0.15s; border: 2px solid transparent; }
-  .cal-day:hover { background: #F0F0F0; }
+  .cal-day:hover { background: #EEF1F5; }
   .cal-day.other-month { opacity: 0.25; }
   .cal-day.today { background: #000 !important; border-color: transparent !important; }
   .cal-day.today .cal-day-num { color: #fff !important; font-weight: 700; }
@@ -339,7 +354,7 @@ const css = `
   .schedule-day-num-label { font-size: 13px; font-weight: 700; color: #000; }
   .schedule-day-btn.on .schedule-day-num-label { color: #fff; }
 
-  .cal-day.missed { background: #F0F0F0; border-color: transparent; }
+  .cal-day.missed { background: #EEF1F5; border-color: transparent; }
   .cal-day.missed .cal-day-num { color: #ff3b30; }
   .cal-day.cardio-done::before { content: ''; position: absolute; top: 4px; right: 4px; width: 5px; height: 5px; border-radius: 50%; background: #8a63d2; }
   .cal-day.cardio { }
@@ -353,14 +368,14 @@ const css = `
   .equip-name { font-size: 13px; font-weight: 600; color: var(--ink); }
   .equip-type-pill { font-size: 11px; font-weight: 700; color: #00c2ff; background: rgba(0,194,255,0.1); border: 1px solid rgba(0,194,255,0.25); border-radius: 20px; padding: 3px 10px; cursor: pointer; white-space: nowrap; }
   .equip-type-sheet { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; display: flex; align-items: flex-end; justify-content: center; }
-  .equip-type-panel { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; padding: 16px 0 32px; }
+  .equip-type-panel { background: #EEF1F5; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; padding: 16px 0 32px; }
   .equip-type-title { font-size: 13px; font-weight: 700; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 12px; border-bottom: 1px solid #e5e5ea; margin-bottom: 8px; }
   .equip-type-option { padding: 14px 20px; font-size: 15px; font-weight: 500; color: #000; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
   .equip-type-option:active { background: #e5e5ea; }
   .equip-type-option.selected { color: #00c2ff; font-weight: 700; }
 
   .swap-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 120; display: flex; align-items: flex-end; justify-content: center; }
-  .swap-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 70vh; display: flex; flex-direction: column; overflow: hidden; }
+  .swap-sheet { background: #EEF1F5; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 70vh; display: flex; flex-direction: column; overflow: hidden; }
   .swap-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; flex-shrink: 0; }
   .swap-header { padding: 14px 18px 10px; flex-shrink: 0; }
   .swap-title { font-size: 13px; font-weight: 600; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
@@ -370,7 +385,7 @@ const css = `
   .swap-item { background: #fff; border-radius: 12px; padding: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; cursor: pointer; border: 1.5px solid #e5e5ea; transition: all 0.15s; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
   .swap-item:hover { border-color: #00c2ff; }
   .swap-item.current { border-color: #00c2ff; background: rgba(0,194,255,0.06); }
-  .swap-item-icon { width: 40px; height: 40px; border-radius: 10px; background: #F0F0F0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid #e5e5ea; }
+  .swap-item-icon { width: 40px; height: 40px; border-radius: 10px; background: #EEF1F5; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid #e5e5ea; }
   .swap-item-name { font-size: 14px; font-weight: 600; color: #000; }
   .swap-item-sub { font-size: 11px; color: #8e8e93; margin-top: 2px; }
   .swap-item-check { margin-left: auto; color: #00c2ff; flex-shrink: 0; }
@@ -422,7 +437,7 @@ const css = `
 
   /* -- Plate Calculator -- */
   .plate-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: flex; align-items: flex-end; justify-content: center; }
-  .plate-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; padding-bottom: 28px; max-height: 92vh; overflow-y: auto; }
+  .plate-sheet { background: #EEF1F5; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; padding-bottom: 28px; max-height: 92vh; overflow-y: auto; }
   .plate-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; }
   .plate-header { padding: 12px 18px 8px; display: flex; align-items: center; justify-content: space-between; }
   .plate-header-title { font-size: 18px; font-weight: 700; color: #000; letter-spacing: -0.3px; }
@@ -477,7 +492,7 @@ const css = `
 
   /* -- Warm Up Sheet -- */
   .warmup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 250; display: flex; align-items: flex-end; justify-content: center; }
-  .warmup-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; margin-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
+  .warmup-sheet { background: #EEF1F5; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; margin-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
   .warmup-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; flex-shrink: 0; }
   .warmup-header { padding: 14px 18px 12px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 1px solid #e5e5ea; }
   .warmup-title { font-size: 18px; font-weight: 700; color: #000; }
@@ -492,7 +507,7 @@ const css = `
   .warmup-tag.general { background: rgba(0,229,204,0.15); color: #00b8a0; }
   .warmup-tag.feeder { background: rgba(0,194,255,0.12); color: #00c2ff; }
   .db-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: flex; align-items: flex-end; justify-content: center; }
-  .db-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; padding-bottom: 28px; }
+  .db-sheet { background: #EEF1F5; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; padding-bottom: 28px; }
   .db-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; flex-shrink: 0; }
   .db-header { padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .db-title { font-size: 18px; font-weight: 700; color: #000; }
@@ -514,7 +529,7 @@ const css = `
   .db-weight-btn:hover { border-color: #00c2ff; }
   .db-weight-btn.current { background: #000; color: #fff; border-color: #00c2ff; box-shadow: 0 0 0 2px #00c2ff, 0 0 12px rgba(0,194,255,0.3); }
   .stack-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: flex; align-items: flex-end; justify-content: center; }
-  .stack-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 92vh; overflow-y: auto; padding-bottom: 28px; }
+  .stack-sheet { background: #EEF1F5; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 92vh; overflow-y: auto; padding-bottom: 28px; }
   .stack-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; }
   .stack-header { padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; }
   .stack-title { font-size: 18px; font-weight: 700; color: #000; }
@@ -4185,7 +4200,7 @@ function WeeklyStats({
     }, count, " sets"))), /*#__PURE__*/React.createElement("div", {
       style: {
         height: 6,
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         borderRadius: 3,
         overflow: "hidden"
       }
@@ -4209,7 +4224,7 @@ function WeeklyStats({
     style: {
       marginTop: 12,
       paddingTop: 10,
-      borderTop: "1px solid #F0F0F0",
+      borderTop: "1px solid #EEF1F5",
       display: "flex",
       alignItems: "center",
       gap: 8
@@ -4224,7 +4239,7 @@ function WeeklyStats({
       fontSize: 12,
       fontWeight: 700,
       color: "#000",
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       borderRadius: 6,
       padding: "2px 8px"
     }
@@ -4295,7 +4310,7 @@ function MuscleIntelligence({
         padding: "10px 12px",
         background: "#fafafa",
         borderRadius: 10,
-        border: "1px solid #f0f0f0"
+        border: "1px solid #EEF1F5"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -4347,7 +4362,7 @@ function MuscleIntelligence({
       justifyContent: "center",
       marginTop: 12,
       paddingTop: 10,
-      borderTop: "1px solid #F0F0F0"
+      borderTop: "1px solid #EEF1F5"
     }
   }, [["#30d158", "Fresh (<7 days, 2+/wk)"], ["#ff9f0a", "Due soon"], ["#ff3b30", "Overdue"]].map(([c, l]) => /*#__PURE__*/React.createElement("div", {
     key: l,
@@ -4458,7 +4473,7 @@ function PRsPanel({
     style: {
       display: "flex",
       gap: 3,
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       borderRadius: 8,
       padding: 3,
       marginBottom: 12
@@ -4571,7 +4586,7 @@ function PRsPanel({
     return /*#__PURE__*/React.createElement("div", {
       key: muscle,
       style: {
-        border: "1px solid #f0f0f0",
+        border: "1px solid #EEF1F5",
         borderRadius: 10,
         overflow: "hidden"
       }
@@ -4685,7 +4700,7 @@ function PRsPanel({
         gap: 12,
         marginTop: 6,
         paddingTop: 6,
-        borderTop: "1px dashed #f0f0f0"
+        borderTop: "1px dashed #EEF1F5"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -5164,7 +5179,7 @@ function ProgressChartModal({
     onClick: onClose
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       width: "100%",
       height: "100%",
       display: "flex",
@@ -5316,7 +5331,7 @@ function ProgressChartModal({
     y1: y(tv),
     x2: W - padR,
     y2: y(tv),
-    stroke: "#f0f0f0",
+    stroke: "#EEF1F5",
     strokeWidth: "1"
   }), /*#__PURE__*/React.createElement("text", {
     x: padL - 6,
@@ -5470,7 +5485,7 @@ function ProgressChartModal({
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "10px 14px",
-      borderBottom: "1px solid #f0f0f0",
+      borderBottom: "1px solid #EEF1F5",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between"
@@ -5659,7 +5674,7 @@ function VolumeChart({
       y1: yv,
       x2: W - PAD.r,
       y2: yv,
-      stroke: "#F0F0F0",
+      stroke: "#EEF1F5",
       strokeWidth: "1"
     }), /*#__PURE__*/React.createElement("text", {
       x: PAD.l - 4,
@@ -5699,7 +5714,7 @@ function VolumeChart({
       gap: 16,
       marginTop: 8,
       paddingTop: 10,
-      borderTop: "1px solid #F0F0F0"
+      borderTop: "1px solid #EEF1F5"
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -5829,7 +5844,7 @@ function SavedWorkoutCard({
     }
   }, "Load")), expanded && /*#__PURE__*/React.createElement("div", {
     style: {
-      borderTop: "1px solid #F0F0F0",
+      borderTop: "1px solid #EEF1F5",
       padding: "8px 14px 12px"
     }
   }, workout.exerciseList.map((ex, i) => /*#__PURE__*/React.createElement("div", {
@@ -5839,14 +5854,14 @@ function SavedWorkoutCard({
       alignItems: "center",
       gap: 8,
       padding: "7px 0",
-      borderBottom: i < workout.exerciseList.length - 1 ? "1px solid #F0F0F0" : "none"
+      borderBottom: i < workout.exerciseList.length - 1 ? "1px solid #EEF1F5" : "none"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       width: 20,
       height: 20,
       borderRadius: "50%",
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -7464,16 +7479,7 @@ function App() {
     }
   }, "*"), " Claude"), /*#__PURE__*/React.createElement("div", {
     className: "header-date"
-  }, today()))), restActive && /*#__PURE__*/React.createElement("div", {
-    className: "rest-timer"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "rest-timer-label"
-  }, "REST"), /*#__PURE__*/React.createElement("div", {
-    className: "rest-timer-display"
-  }, fmtTime(restSeconds)), /*#__PURE__*/React.createElement("button", {
-    className: "rest-timer-skip",
-    onClick: skipRest
-  }, "Skip ", '>')), restActive && tab === "session" && /*#__PURE__*/React.createElement("div", {
+  }, today()))), restActive && tab === "session" && /*#__PURE__*/React.createElement("div", {
     onClick: skipRest,
     style: {
       position: "fixed",
@@ -8058,9 +8064,9 @@ function App() {
         alignItems: "center",
         gap: 0,
         background: "#1c1c1e",
-        borderRadius: 12,
+        borderRadius: 14,
         overflow: "hidden",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+        boxShadow: "0 4px 14px rgba(0,0,0,0.28), 0 0 0 2px rgba(0,194,255,0.35)",
         border: "none",
         cursor: "pointer",
         padding: 0,
@@ -8068,8 +8074,8 @@ function App() {
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        padding: "8px 12px",
-        fontSize: 13,
+        padding: "12px 16px",
+        fontSize: 16,
         fontWeight: 800,
         color: "#00c2ff",
         fontFamily: "DM Mono, monospace",
@@ -8078,13 +8084,13 @@ function App() {
     }, dayOfWeek), /*#__PURE__*/React.createElement("div", {
       style: {
         width: 1,
-        height: 18,
-        background: "rgba(255,255,255,0.15)"
+        height: 24,
+        background: "rgba(255,255,255,0.18)"
       }
     }), /*#__PURE__*/React.createElement("div", {
       style: {
-        padding: "8px 13px",
-        fontSize: 13,
+        padding: "12px 16px",
+        fontSize: 16,
         fontWeight: 700,
         color: "#fff",
         fontFamily: "DM Mono, monospace",
@@ -8092,15 +8098,24 @@ function App() {
       }
     }, monthShort, " ", dayNum), /*#__PURE__*/React.createElement("div", {
       style: {
-        padding: "8px 10px 8px 6px",
+        padding: "12px 14px 12px 4px",
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        gap: 6,
+        color: "#00c2ff"
       }
     }, /*#__PURE__*/React.createElement(Calendar, {
-      size: 13,
-      strokeWidth: 2.5,
-      color: "#8e8e93"
-    })))), /*#__PURE__*/React.createElement("div", {
+      size: 17,
+      strokeWidth: 2.5
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        fontWeight: 800,
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Open")))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 15,
         fontWeight: 500,
@@ -8657,14 +8672,7 @@ function App() {
       fontWeight: 700,
       color: "#000"
     }
-  }, workoutName || "My Workout"), workoutStartTime && /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: "#8e8e93",
-      marginTop: 2,
-      fontFamily: "DM Mono,monospace"
-    }
-  }, fmtDuration(workoutElapsed))), /*#__PURE__*/React.createElement("div", {
+  }, workoutName || "My Workout")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
@@ -8760,7 +8768,7 @@ function App() {
   })), sessionNoteOpen && /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "0 14px 12px",
-      borderTop: "1px solid #F0F0F0"
+      borderTop: "1px solid #EEF1F5"
     }
   }, /*#__PURE__*/React.createElement("textarea", {
     value: sessionNote,
@@ -9119,7 +9127,87 @@ function App() {
       className: "exercise-info-label"
     }, "Best Last"), /*#__PURE__*/React.createElement("div", {
       className: "exercise-info-val"
-    }, lw ? lw.replace("lb x ", " x ") : "—")))), /*#__PURE__*/React.createElement("div", {
+    }, lw ? lw.replace("lb x ", " x ") : "—")))), !open && (() => {
+      const doneCount = ex.sets.filter(s => s.done).length;
+      const totalCount = ex.sets.length;
+      const pct = totalCount ? doneCount / totalCount * 100 : 0;
+      const lastDoneSet = [...ex.sets].reverse().find(s => s.done);
+      const isComplete = doneCount === totalCount && totalCount > 0;
+      return /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "8px 14px 12px",
+          borderTop: "1px solid #f5f5f5"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 8,
+          marginBottom: 6,
+          fontFamily: "Inter,sans-serif"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 6
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 11,
+          fontWeight: 800,
+          color: isComplete ? "#34c759" : "#1c1c1e",
+          fontFamily: "DM Mono,monospace"
+        }
+      }, doneCount, "/", totalCount), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93"
+        }
+      }, "sets"), isComplete && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 11,
+          marginLeft: 2
+        }
+      }, "✓")), lastDoneSet && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93"
+        }
+      }, "Last: ", /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#1c1c1e",
+          fontWeight: 700,
+          fontFamily: "DM Mono,monospace"
+        }
+      }, lastDoneSet.weight || "—"), lastDoneSet.reps && /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#1c1c1e",
+          fontWeight: 700,
+          fontFamily: "DM Mono,monospace"
+        }
+      }, " × ", lastDoneSet.reps))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          height: 5,
+          background: "#f2f2f7",
+          borderRadius: 3,
+          overflow: "hidden",
+          position: "relative"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          bottom: 0,
+          width: `${pct}%`,
+          background: isComplete ? "linear-gradient(90deg, #34c759, #30d158)" : "linear-gradient(90deg, #00c2ff, #00a8e0)",
+          borderRadius: 3,
+          transition: "width 0.35s ease"
+        }
+      })));
+    })(), /*#__PURE__*/React.createElement("div", {
       className: `sets-area-wrapper ${open ? "open" : ""}`
     }, /*#__PURE__*/React.createElement("div", {
       className: "sets-area"
@@ -9433,17 +9521,28 @@ function App() {
       }
     })), /*#__PURE__*/React.createElement("div", {
       className: "sets-header"
-    }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null, "WEIGHT LB"), /*#__PURE__*/React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", {
       style: {
-        textAlign: "center"
+        color: "#1c1c1e",
+        fontWeight: 800
       }
-    }, "LB"), /*#__PURE__*/React.createElement("span", {
+    }, "WT"), /*#__PURE__*/React.createElement("span", {
       style: {
-        textAlign: "center"
+        textAlign: "center",
+        color: "#c7c7cc",
+        fontSize: 11
       }
-    }, "REPS"), /*#__PURE__*/React.createElement("span", {
+    }, "LAST"), /*#__PURE__*/React.createElement("span", {
       style: {
-        textAlign: "center"
+        textAlign: "center",
+        color: "#c7c7cc",
+        fontSize: 11
+      }
+    }, "LAST"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        textAlign: "center",
+        color: "#1c1c1e",
+        fontWeight: 800
       }
     }, "REPS"), /*#__PURE__*/React.createElement("span", null)), ex.planTargetReps && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -9491,7 +9590,7 @@ function App() {
     }, "· over"))), ex.sets.map((set, i) => /*#__PURE__*/React.createElement(React.Fragment, {
       key: i
     }, /*#__PURE__*/React.createElement("div", {
-      className: "set-row"
+      className: `set-row ${set.done ? "set-row-done" : ""}`
     }, /*#__PURE__*/React.createElement("div", {
       className: "set-num",
       onClick: () => {
@@ -9503,13 +9602,19 @@ function App() {
       },
       title: ex.sets.length > 1 ? "Tap to delete this set" : ""
     }, i + 1), /*#__PURE__*/React.createElement("div", {
-      className: "set-input",
       style: {
+        background: set.weight ? "#1c1c1e" : "#f2f2f7",
+        border: set.weight ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
+        borderRadius: 10,
+        padding: "7px 6px",
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        userSelect: "none"
+        gap: 3,
+        userSelect: "none",
+        boxShadow: set.weight ? "0 0 0 1px rgba(0,194,255,0.15)" : "none",
+        transition: "all 0.15s"
       },
       onClick: () => {
         const pref = calcPrefs[ex.id];
@@ -9530,9 +9635,22 @@ function App() {
       }
     }, /*#__PURE__*/React.createElement("span", {
       style: {
-        color: set.weight ? "#000" : "#c7c7cc"
+        color: set.weight ? "#fff" : "#8e8e93",
+        fontFamily: "DM Mono,monospace",
+        fontSize: 15,
+        fontWeight: 800,
+        letterSpacing: "-0.02em"
       }
-    }, set.weight || "0")), /*#__PURE__*/React.createElement("div", {
+    }, set.weight || "—"), /*#__PURE__*/React.createElement(ChevronDown, {
+      size: 11,
+      strokeWidth: 3,
+      color: set.weight ? "#00c2ff" : "#c7c7cc",
+      style: {
+        transform: "rotate(-90deg)",
+        flexShrink: 0,
+        opacity: 0.85
+      }
+    })), /*#__PURE__*/React.createElement("div", {
       className: "set-last"
     }, lastSets(ex.id)?.[i]?.weight || "—"), /*#__PURE__*/React.createElement("div", {
       className: "set-last"
@@ -9805,13 +9923,26 @@ function App() {
       style: {
         fontSize: 12
       }
-    }, "↓"), " drop")))), /*#__PURE__*/React.createElement("button", {
+    }, "↓"), " drop")))), /*#__PURE__*/React.createElement("div", {
+      className: "set-btn-row"
+    }, /*#__PURE__*/React.createElement("button", {
       className: "add-set-btn",
       onClick: () => addSet(ex.id)
     }, /*#__PURE__*/React.createElement(Plus, {
       size: 16,
       strokeWidth: 3
-    }), " Add Set"), restActive && /*#__PURE__*/React.createElement("div", {
+    }), " Add Set"), /*#__PURE__*/React.createElement("button", {
+      className: "remove-set-btn",
+      onClick: () => {
+        if (ex.sets.length <= 1) return;
+        removeSet(ex.id, ex.sets.length - 1);
+      },
+      disabled: ex.sets.length <= 1,
+      title: ex.sets.length > 1 ? "Remove last set" : "Need at least 1 set"
+    }, /*#__PURE__*/React.createElement(X, {
+      size: 16,
+      strokeWidth: 3
+    }), " Set")), restActive && /*#__PURE__*/React.createElement("div", {
       className: "card-rest-timer"
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -9857,7 +9988,7 @@ function App() {
       style: {
         marginTop: 12,
         paddingTop: 12,
-        borderTop: "1px solid #f0f0f0",
+        borderTop: "1px solid #EEF1F5",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -10090,7 +10221,7 @@ function App() {
       style: {
         position: "fixed",
         inset: 0,
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         zIndex: 1950,
         display: "flex",
         flexDirection: "column",
@@ -10511,7 +10642,7 @@ function App() {
     })), scheduleOpen && /*#__PURE__*/React.createElement("div", {
       style: {
         padding: "0 16px 14px",
-        borderTop: "1px solid #F0F0F0"
+        borderTop: "1px solid #EEF1F5"
       },
       onClick: e => e.stopPropagation()
     }, /*#__PURE__*/React.createElement("div", {
@@ -10680,7 +10811,7 @@ function App() {
           fontWeight: 600,
           color: "#8e8e93",
           padding: "2px 8px",
-          background: "#F0F0F0",
+          background: "#EEF1F5",
           borderRadius: 10
         }
       }, g.entries.length, " workout", g.entries.length !== 1 ? "s" : "")), /*#__PURE__*/React.createElement(ChevronDown, {
@@ -10717,7 +10848,7 @@ function App() {
         }
       }, /*#__PURE__*/React.createElement("span", {
         style: {
-          background: "#F0F0F0",
+          background: "#EEF1F5",
           borderRadius: 5,
           padding: "1px 6px",
           fontWeight: 600
@@ -10795,7 +10926,7 @@ function App() {
         }
       })), /*#__PURE__*/React.createElement("div", {
         style: {
-          borderTop: "1px solid #F0F0F0",
+          borderTop: "1px solid #EEF1F5",
           paddingTop: 10,
           marginTop: 10,
           display: "flex",
@@ -11233,7 +11364,7 @@ function App() {
     style: {
       position: "fixed",
       inset: 0,
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       zIndex: 1950,
       display: "flex",
       flexDirection: "column",
@@ -11493,7 +11624,7 @@ function App() {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "12px 16px",
-        borderBottom: "1px solid #F0F0F0",
+        borderBottom: "1px solid #EEF1F5",
         gap: 12
       }
     }, /*#__PURE__*/React.createElement("div", {
@@ -11817,7 +11948,7 @@ function App() {
     style: {
       position: "fixed",
       inset: 0,
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       zIndex: 1900,
       display: "flex",
       flexDirection: "column",
@@ -11929,7 +12060,7 @@ function App() {
       fontWeight: 700,
       color: "#000",
       padding: "3px 8px",
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       borderRadius: 8
     }
   }, plan.duration, " weeks"), /*#__PURE__*/React.createElement("div", {
@@ -11938,7 +12069,7 @@ function App() {
       fontWeight: 700,
       color: "#000",
       padding: "3px 8px",
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       borderRadius: 8
     }
   }, plan.daysPerWeek, " days/week"), /*#__PURE__*/React.createElement("div", {
@@ -11947,7 +12078,7 @@ function App() {
       fontWeight: 700,
       color: "#000",
       padding: "3px 8px",
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       borderRadius: 8
     }
   }, plan.level)), /*#__PURE__*/React.createElement("div", {
@@ -11979,7 +12110,7 @@ function App() {
       style: {
         position: "fixed",
         inset: 0,
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         zIndex: 1950,
         display: "flex",
         flexDirection: "column",
@@ -12062,7 +12193,7 @@ function App() {
         fontWeight: 700,
         color: "#000",
         padding: "4px 10px",
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         borderRadius: 8
       }
     }, plan.duration, " weeks"), /*#__PURE__*/React.createElement("div", {
@@ -12071,7 +12202,7 @@ function App() {
         fontWeight: 700,
         color: "#000",
         padding: "4px 10px",
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         borderRadius: 8
       }
     }, plan.daysPerWeek, " days/week"), /*#__PURE__*/React.createElement("div", {
@@ -12080,7 +12211,7 @@ function App() {
         fontWeight: 700,
         color: "#000",
         padding: "4px 10px",
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         borderRadius: 8
       }
     }, plan.level)), /*#__PURE__*/React.createElement("div", {
@@ -12149,7 +12280,7 @@ function App() {
       key: day.id,
       style: {
         padding: "10px 0",
-        borderTop: di > 0 ? "1px solid #F0F0F0" : "none"
+        borderTop: di > 0 ? "1px solid #EEF1F5" : "none"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -12207,7 +12338,7 @@ function App() {
         color: "#8e8e93",
         marginTop: 10,
         paddingTop: 10,
-        borderTop: "1px solid #F0F0F0"
+        borderTop: "1px solid #EEF1F5"
       }
     }, /*#__PURE__*/React.createElement("span", {
       style: {
@@ -12420,7 +12551,7 @@ function App() {
         background: "#fafafa",
         borderRadius: 10,
         cursor: "pointer",
-        border: "1px solid #f0f0f0"
+        border: "1px solid #EEF1F5"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -12448,7 +12579,7 @@ function App() {
       style: {
         width: "100%",
         padding: "10px",
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         color: "#8e8e93",
         border: "none",
         borderRadius: 10,
@@ -12479,7 +12610,7 @@ function App() {
       onClick: () => setAttachmentSheetExId(null)
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         borderRadius: "24px 24px 0 0",
         width: "100%",
         maxWidth: 700,
@@ -12639,7 +12770,7 @@ function App() {
       onClick: () => setBwSheetTarget(null)
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         borderRadius: "24px 24px 0 0",
         width: "100%",
         maxWidth: 700,
@@ -12830,7 +12961,7 @@ function App() {
   }, /*#__PURE__*/React.createElement("button", {
     onClick: () => setCalcSwitchOpen(true),
     style: {
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       border: "1.5px solid #e5e5ea",
       borderRadius: 8,
       padding: "5px 10px",
@@ -12980,7 +13111,7 @@ function App() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       borderRadius: "24px 24px 0 0",
       width: "100%",
       maxWidth: 700,
@@ -13236,7 +13367,7 @@ function App() {
       style: {
         position: "fixed",
         inset: 0,
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         zIndex: 200,
         display: "flex",
         flexDirection: "column"
@@ -13448,7 +13579,7 @@ function App() {
       })), isOpen && /*#__PURE__*/React.createElement("div", {
         style: {
           padding: "0 14px 12px",
-          borderTop: "1px solid #F0F0F0",
+          borderTop: "1px solid #EEF1F5",
           background: "#fafafa"
         }
       }, /*#__PURE__*/React.createElement("div", {
@@ -13544,7 +13675,7 @@ function App() {
         style: {
           padding: "4px 10px",
           borderRadius: 12,
-          background: "#F0F0F0",
+          background: "#EEF1F5",
           border: "1px solid #e5e5ea",
           fontSize: 11,
           fontWeight: 600,
@@ -13620,7 +13751,7 @@ function App() {
       onClick: () => setEquipSheet(null)
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         borderRadius: "24px 24px 0 0",
         width: "100%",
         maxWidth: 700,
@@ -13864,7 +13995,7 @@ function App() {
           fontSize: 13,
           fontWeight: 500,
           color: "#000",
-          borderBottom: vi === ex.variations.length - 1 ? "none" : "1px solid #F0F0F0"
+          borderBottom: vi === ex.variations.length - 1 ? "none" : "1px solid #EEF1F5"
         }
       }, v))));
     })), sameMuscle.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
@@ -13931,7 +14062,7 @@ function App() {
           fontSize: 13,
           fontWeight: 500,
           color: "#000",
-          borderBottom: vi === ex.variations.length - 1 ? "none" : "1px solid #F0F0F0"
+          borderBottom: vi === ex.variations.length - 1 ? "none" : "1px solid #EEF1F5"
         }
       }, v))));
     })))));
@@ -13948,7 +14079,7 @@ function App() {
     onClick: () => setCalcSwitchOpen(false)
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       borderRadius: "24px 24px 0 0",
       width: "100%",
       maxWidth: 700,
@@ -14003,7 +14134,7 @@ function App() {
       display: "flex",
       flexDirection: "column",
       gap: 2,
-      borderBottom: "1px solid #F0F0F0"
+      borderBottom: "1px solid #EEF1F5"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -14068,7 +14199,7 @@ function App() {
   }, /*#__PURE__*/React.createElement("button", {
     onClick: () => setCalcSwitchOpen(true),
     style: {
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       border: "1.5px solid #e5e5ea",
       borderRadius: 8,
       padding: "5px 10px",
@@ -14204,7 +14335,7 @@ function App() {
     }, /*#__PURE__*/React.createElement("button", {
       onClick: () => setCalcSwitchOpen(true),
       style: {
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         border: "1.5px solid #e5e5ea",
         borderRadius: 8,
         padding: "5px 10px",
@@ -14292,7 +14423,7 @@ function App() {
   }, /*#__PURE__*/React.createElement("button", {
     onClick: () => setCalcSwitchOpen(true),
     style: {
-      background: "#F0F0F0",
+      background: "#EEF1F5",
       border: "1.5px solid #e5e5ea",
       borderRadius: 8,
       padding: "5px 10px",
@@ -14476,7 +14607,7 @@ function App() {
       style: {
         padding: "10px 16px 8px",
         background: "#fff",
-        borderBottom: "1px solid #f0f0f0",
+        borderBottom: "1px solid #EEF1F5",
         position: "sticky",
         top: 0,
         zIndex: 10
@@ -14486,7 +14617,7 @@ function App() {
         display: "flex",
         alignItems: "center",
         gap: 8,
-        background: "#F0F0F0",
+        background: "#EEF1F5",
         borderRadius: 12,
         padding: "8px 12px"
       }
@@ -14563,7 +14694,7 @@ function App() {
       }, /*#__PURE__*/React.createElement("div", {
         className: "picker-item-img",
         style: {
-          background: "#F0F0F0"
+          background: "#EEF1F5"
         }
       }, /*#__PURE__*/React.createElement(Dumbbell, {
         size: 20,
@@ -14634,7 +14765,7 @@ function App() {
         }, /*#__PURE__*/React.createElement("div", {
           className: "picker-item-img",
           style: {
-            background: "#F0F0F0"
+            background: "#EEF1F5"
           }
         }, /*#__PURE__*/React.createElement(Icon, {
           size: 22,
@@ -14695,7 +14826,7 @@ function App() {
       }, /*#__PURE__*/React.createElement("div", {
         className: "picker-item-img",
         style: {
-          background: "#F0F0F0"
+          background: "#EEF1F5"
         }
       }, /*#__PURE__*/React.createElement(Icon, {
         size: 22,
@@ -14741,7 +14872,7 @@ function App() {
       }, /*#__PURE__*/React.createElement("div", {
         className: "picker-item-img",
         style: {
-          background: "#F0F0F0"
+          background: "#EEF1F5"
         }
       }, /*#__PURE__*/React.createElement(Icon, {
         size: 22,
