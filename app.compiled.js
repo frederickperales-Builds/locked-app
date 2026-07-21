@@ -7699,6 +7699,14 @@ function App() {
   }, "Pick exercises and build as you go"))), /*#__PURE__*/React.createElement("button", {
     className: "plus-sheet-btn",
     onClick: () => {
+      if (activePlan) {
+        const plan = PLAN_TEMPLATES.find(p => p.id === activePlan.planId);
+        const planName = plan ? plan.name : "Current plan";
+        const confirmSwitch = window.confirm(`You already have "${planName}" in progress (Week ${activePlan.currentWeek}, Day ${activePlan.currentDayIndex + 1}).\n\nStart a new plan? This will cancel your current plan and reset progress.`);
+        if (!confirmSwitch) return;
+        setActivePlan(null);
+        showToast(`${planName} cancelled`);
+      }
       setPlusSheetOpen(false);
       setPlansBrowseOpen(true);
     }
@@ -7713,7 +7721,7 @@ function App() {
     className: "plus-sheet-btn-label"
   }, "Lock In a Training Program"), /*#__PURE__*/React.createElement("span", {
     className: "plus-sheet-btn-sub"
-  }, "Pick a program day and follow the plan"))))), /*#__PURE__*/React.createElement("input", {
+  }, activePlan ? "You have one active — tap to switch" : "Pick a program day and follow the plan"))))), /*#__PURE__*/React.createElement("input", {
     ref: importRef,
     type: "file",
     accept: "image/*",
@@ -8271,7 +8279,14 @@ function App() {
         flexShrink: 0
       }
     })), plan && planDay ? /*#__PURE__*/React.createElement("div", {
-      onClick: () => setPlusSheetOpen(true),
+      onClick: () => {
+        if (exercises.length > 0) {
+          showToast("Finish current session first");
+          return;
+        }
+        loadPlanSession();
+        setTab("session");
+      },
       style: {
         background: "linear-gradient(135deg, #00c2ff 0%, #00a8e0 100%)",
         borderRadius: 16,
@@ -8333,7 +8348,7 @@ function App() {
         letterSpacing: "0.02em",
         backdropFilter: "blur(4px)"
       }
-    }, "Stay on plan → Tap + to start")) : isTrainingDay ? /*#__PURE__*/React.createElement("div", {
+    }, "Tap to start ▸")) : isTrainingDay ? /*#__PURE__*/React.createElement("div", {
       onClick: () => setPlusSheetOpen(true),
       style: {
         background: "linear-gradient(135deg, #00c2ff 0%, #00a8e0 100%)",
@@ -8719,15 +8734,15 @@ function App() {
     }
   }, fmtTime(s)))))), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#fff",
-      borderRadius: 12,
-      border: "1.5px solid #e5e5ea",
-      boxShadow: "0 1px 2px rgba(0,0,0,0.05)"
+      background: "#1c1c1e",
+      borderRadius: 14,
+      border: "none",
+      boxShadow: "var(--shadow-md), 0 8px 20px rgba(0,0,0,0.18)"
     }
   }, /*#__PURE__*/React.createElement("div", {
     onClick: () => setSessionNoteOpen(!sessionNoteOpen),
     style: {
-      padding: "10px 14px",
+      padding: "12px 16px",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
@@ -8742,16 +8757,16 @@ function App() {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      fontWeight: 700,
-      color: "#8e8e93",
-      letterSpacing: "0.05em",
+      fontWeight: 800,
+      color: "#98989e",
+      letterSpacing: "0.06em",
       textTransform: "uppercase"
     }
   }, "Session Note"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: sessionNote ? "#000" : "#c7c7cc",
-      marginTop: 2,
+      color: sessionNote ? "#fff" : "#6a6a6e",
+      marginTop: 3,
       fontStyle: sessionNote ? "normal" : "italic",
       overflow: "hidden",
       textOverflow: "ellipsis",
@@ -8768,8 +8783,8 @@ function App() {
     }
   })), sessionNoteOpen && /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "0 14px 12px",
-      borderTop: "1px solid #EEF1F5"
+      padding: "0 16px 14px",
+      borderTop: "1px solid rgba(255,255,255,0.06)"
     }
   }, /*#__PURE__*/React.createElement("textarea", {
     value: sessionNote,
@@ -8778,55 +8793,67 @@ function App() {
     rows: 3,
     style: {
       width: "100%",
-      border: "1px solid #e5e5ea",
-      borderRadius: 8,
-      padding: "8px 10px",
+      border: "1.5px solid #48484a",
+      borderRadius: 10,
+      padding: "10px 12px",
       fontSize: 13,
       fontFamily: "Inter,sans-serif",
       resize: "none",
-      marginTop: 10,
+      marginTop: 12,
       boxSizing: "border-box",
       outline: "none",
-      color: "#000"
+      color: "#fff",
+      background: "#3a3a3c"
     },
     onFocus: e => e.target.style.borderColor = "#00c2ff",
-    onBlur: e => e.target.style.borderColor = "#e5e5ea"
+    onBlur: e => e.target.style.borderColor = "#48484a"
   }))), !warmupDone ? /*#__PURE__*/React.createElement("button", {
     onClick: generateWarmup,
     style: {
       width: "100%",
-      padding: "12px",
-      borderRadius: 12,
-      border: "1.5px solid #00c2ff",
-      background: "#fff",
+      padding: "14px",
+      borderRadius: 14,
+      border: "none",
+      background: "#1c1c1e",
       color: "#00c2ff",
-      fontSize: 13,
-      fontWeight: 700,
+      fontSize: 14,
+      fontWeight: 800,
       cursor: "pointer",
       fontFamily: "Inter,sans-serif",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       gap: 8,
-      boxShadow: "0 0 8px rgba(0,194,255,0.3)"
+      letterSpacing: "0.02em",
+      textTransform: "uppercase",
+      boxShadow: "var(--shadow-md), 0 0 0 2px rgba(0,194,255,0.35), 0 8px 20px rgba(0,0,0,0.18)"
     }
   }, /*#__PURE__*/React.createElement(Zap, {
-    size: 15,
-    strokeWidth: 2.5,
+    size: 16,
+    strokeWidth: 2.8,
     color: "#00c2ff"
   }), " Warm Up") : /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "8px 12px",
-      borderRadius: 10,
-      background: "#fff",
-      border: "1px solid #00c2ff",
+      padding: "10px 14px",
+      borderRadius: 12,
+      background: "#1c1c1e",
+      border: "none",
       fontSize: 12,
-      fontWeight: 600,
-      color: "#00c2ff",
+      fontWeight: 700,
+      color: "#34c759",
       textAlign: "center",
-      boxShadow: "0 0 8px rgba(0,194,255,0.3)"
+      boxShadow: "var(--shadow-md), 0 0 0 2px rgba(52,199,89,0.35)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 6
     }
-  }, "check Warm up complete -- let's go!"), exercises.map((ex, exIdx) => {
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "#34c759",
+      fontSize: 14
+    }
+  }, "✓"), " Warm up complete"), exercises.map((ex, exIdx) => {
     const lw = lastWeightLabel(ex.id);
     const open = expanded[ex.id];
     const ExIcon = EX_ICON[ex.equipment] || Dumbbell;
@@ -8834,7 +8861,7 @@ function App() {
     const pr = personalRecord(ex.id);
     const isGlowing = lastTouchedId === ex.id;
     return /*#__PURE__*/React.createElement("div", {
-      key: isGlowing ? ex.id + "-g-" + lastTouchedTime : ex.id,
+      key: ex.id,
       className: "exercise-card",
       "data-card-id": ex.id,
       style: {
@@ -9139,8 +9166,10 @@ function App() {
         }
       }, "sets"), isComplete && /*#__PURE__*/React.createElement("span", {
         style: {
-          fontSize: 11,
-          marginLeft: 2
+          fontSize: 12,
+          marginLeft: 2,
+          color: "#34c759",
+          fontWeight: 800
         }
       }, "✓")), lastDoneSet && /*#__PURE__*/React.createElement("div", {
         style: {
@@ -9335,7 +9364,7 @@ function App() {
         }));
         showToast(`Applied ${progression.suggestedWeight}lb to all sets`);
       }
-    }, "Apply")), ex.bench && ex.bench !== "N/A" && /*#__PURE__*/React.createElement("div", {
+    }, "Apply")), ex.bench && !ex.bench.startsWith("N/A") && /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
         color: "#00c2ff",
@@ -13649,7 +13678,7 @@ function App() {
         }
       }, "Bench Setup"), /*#__PURE__*/React.createElement("div", {
         style: {
-          color: ex.bench && ex.bench !== "N/A" ? "#00c2ff" : "#000",
+          color: ex.bench && !ex.bench.startsWith("N/A") ? "#00c2ff" : "#000",
           fontWeight: 600
         }
       }, ex.bench || "N/A")), ex.variations && ex.variations.length > 0 && /*#__PURE__*/React.createElement("div", {
@@ -13843,7 +13872,7 @@ function App() {
           color: "#8e8e93",
           marginTop: 2
         }
-      }, opt.name), opt.bench && opt.bench !== "N/A" && /*#__PURE__*/React.createElement("div", {
+      }, opt.name), opt.bench && !opt.bench.startsWith("N/A") && /*#__PURE__*/React.createElement("div", {
         style: {
           fontSize: 10,
           color: "#00c2ff",
@@ -13956,7 +13985,7 @@ function App() {
         className: "swap-item-name"
       }, ex.name), /*#__PURE__*/React.createElement("div", {
         className: "swap-item-sub"
-      }, ex.equipment, ex.bench && ex.bench !== "N/A" && /*#__PURE__*/React.createElement("span", {
+      }, ex.equipment, ex.bench && !ex.bench.startsWith("N/A") && /*#__PURE__*/React.createElement("span", {
         style: {
           color: "#00c2ff"
         }
@@ -14940,7 +14969,7 @@ function App() {
           className: "picker-item-name"
         }, ex.name), /*#__PURE__*/React.createElement("div", {
           className: "picker-item-sub"
-        }, ex.muscleHead, ex.bench && ex.bench !== "N/A" && /*#__PURE__*/React.createElement("span", {
+        }, ex.muscleHead, ex.bench && !ex.bench.startsWith("N/A") && /*#__PURE__*/React.createElement("span", {
           style: {
             color: "#00c2ff"
           }
@@ -14993,7 +15022,7 @@ function App() {
       color: "#8e8e93",
       marginTop: 2
     }
-  }, pickerExercise.muscleHead, " · ", pickerExercise.equipment), pickerExercise.bench && pickerExercise.bench !== "N/A" && /*#__PURE__*/React.createElement("div", {
+  }, pickerExercise.muscleHead, " · ", pickerExercise.equipment), pickerExercise.bench && !pickerExercise.bench.startsWith("N/A") && /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
       color: "#00c2ff",
