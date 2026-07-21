@@ -6090,6 +6090,8 @@ function App() {
   const [progressChartExId, setProgressChartExId] = useState(null);
   const [supersetPickerExId, setSupersetPickerExId] = useState(null);
   const [plansBrowseOpen, setPlansBrowseOpen] = useState(false);
+  const [managePlanOpen, setManagePlanOpen] = useState(false);
+  const [substitutePickerOpen, setSubstitutePickerOpen] = useState(false);
   const [planDetailId, setPlanDetailId] = useState(null);
   const [planCancelConfirm, setPlanCancelConfirm] = useState(false); // "link this exercise with..."
   // Plate calculator
@@ -11193,7 +11195,165 @@ function App() {
       size: 18,
       strokeWidth: 2,
       color: "#8e8e93"
-    }))), /*#__PURE__*/React.createElement(AccordionRow, {
+    }))), activePlan && (() => {
+      const plan = PLAN_TEMPLATES.find(p => p.id === activePlan.planId);
+      if (!plan) return null;
+      const day = plan.days[activePlan.currentDayIndex];
+      const totalSessions = plan.duration * plan.days.length;
+      const completedCount = (activePlan.completedSessions || []).length;
+      const progressPct = totalSessions ? completedCount / totalSessions * 100 : 0;
+      return /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "#1c1c1e",
+          borderRadius: 16,
+          padding: "16px 18px",
+          marginBottom: 14,
+          border: "none",
+          boxShadow: "var(--shadow-md), 0 0 0 2px rgba(0,194,255,0.35), 0 10px 24px rgba(0,0,0,0.22)",
+          position: "relative",
+          overflow: "hidden"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          position: "absolute",
+          top: 0,
+          right: -20,
+          width: 120,
+          height: "100%",
+          background: "linear-gradient(120deg, transparent 40%, rgba(0,194,255,0.08) 50%, transparent 60%)",
+          pointerEvents: "none"
+        }
+      }), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 4
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          fontWeight: 800,
+          color: "#00c2ff",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          fontFamily: "Inter,sans-serif"
+        }
+      }, "▸ Active Program"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 9,
+          fontWeight: 800,
+          color: "#00c2ff",
+          background: "rgba(0,194,255,0.15)",
+          padding: "2px 8px",
+          borderRadius: 12,
+          letterSpacing: "0.08em"
+        }
+      }, "ACTIVE")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 18,
+          fontWeight: 800,
+          color: "#fff",
+          fontFamily: "Inter,sans-serif",
+          letterSpacing: "-0.3px"
+        }
+      }, plan.name), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          color: "#98989e",
+          marginTop: 2,
+          fontFamily: "Inter,sans-serif",
+          fontWeight: 600
+        }
+      }, "Week ", activePlan.currentWeek, "/", plan.duration, " · ", day ? day.name : "—", " today"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginTop: 12,
+          display: "flex",
+          alignItems: "center",
+          gap: 8
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          height: 5,
+          background: "#3a3a3c",
+          borderRadius: 3,
+          overflow: "hidden"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          height: "100%",
+          width: `${progressPct}%`,
+          background: "linear-gradient(90deg, #00c2ff, #00a8e0)",
+          borderRadius: 3,
+          transition: "width 0.35s ease"
+        }
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          fontWeight: 800,
+          color: "#98989e",
+          fontFamily: "DM Mono,monospace",
+          flexShrink: 0
+        }
+      }, completedCount, "/", totalSessions)), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 8,
+          marginTop: 14
+        }
+      }, /*#__PURE__*/React.createElement("button", {
+        onClick: () => {
+          if (exercises.length > 0) {
+            showToast("Finish current session first");
+            return;
+          }
+          loadPlanSession();
+        },
+        style: {
+          flex: 1,
+          background: "#00c2ff",
+          color: "#0f0f10",
+          border: "none",
+          borderRadius: 10,
+          padding: "10px 12px",
+          fontSize: 13,
+          fontWeight: 800,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif",
+          letterSpacing: "0.02em",
+          textTransform: "uppercase",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 6
+        }
+      }, /*#__PURE__*/React.createElement(Zap, {
+        size: 14,
+        strokeWidth: 2.8
+      }), " Continue"), /*#__PURE__*/React.createElement("button", {
+        onClick: () => setManagePlanOpen(true),
+        style: {
+          flex: 1,
+          background: "#3a3a3c",
+          color: "#fff",
+          border: "1.5px solid #48484a",
+          borderRadius: 10,
+          padding: "10px 12px",
+          fontSize: 13,
+          fontWeight: 700,
+          cursor: "pointer",
+          fontFamily: "Inter,sans-serif",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 6
+        }
+      }, /*#__PURE__*/React.createElement(Settings, {
+        size: 14,
+        strokeWidth: 2.5
+      }), " Manage")));
+    })(), /*#__PURE__*/React.createElement(AccordionRow, {
       rowKey: "presets",
       label: "Preset Workouts",
       count: PRESET_WORKOUTS.length,
@@ -11248,35 +11408,55 @@ function App() {
       label: "Training Programs",
       count: PLAN_TEMPLATES.length,
       accentColor: "#ff453a"
-    }, PLAN_TEMPLATES.map(plan => /*#__PURE__*/React.createElement("div", {
-      key: plan.id,
-      style: {
-        borderBottom: "1px solid #f5f5f5",
-        padding: "10px 4px"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 13,
-        fontWeight: 600,
-        color: "#1c1c1e",
-        fontFamily: "Inter,sans-serif"
-      }
-    }, plan.name), /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 11,
-        color: "#8e8e93",
-        marginTop: 2,
-        fontFamily: "Inter,sans-serif"
-      }
-    }, plan.duration, " weeks · ", plan.daysPerWeek, " days/week · ", plan.days?.length || 0, " workout days"), plan.description && /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 11,
-        color: "#8e8e93",
-        marginTop: 4,
-        fontStyle: "italic",
-        fontFamily: "Inter,sans-serif"
-      }
-    }, plan.description)))), /*#__PURE__*/React.createElement(AccordionRow, {
+    }, PLAN_TEMPLATES.map(plan => {
+      const isActive = activePlan?.planId === plan.id;
+      return /*#__PURE__*/React.createElement("div", {
+        key: plan.id,
+        style: {
+          borderBottom: "1px solid #f5f5f5",
+          padding: "10px 4px"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          flexWrap: "wrap"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          fontWeight: 600,
+          color: "#1c1c1e",
+          fontFamily: "Inter,sans-serif"
+        }
+      }, plan.name), isActive && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 9,
+          fontWeight: 800,
+          color: "#00c2ff",
+          background: "rgba(0,194,255,0.15)",
+          padding: "2px 7px",
+          borderRadius: 10,
+          letterSpacing: "0.08em"
+        }
+      }, "ACTIVE · W", activePlan.currentWeek)), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93",
+          marginTop: 2,
+          fontFamily: "Inter,sans-serif"
+        }
+      }, plan.duration, " weeks · ", plan.daysPerWeek, " days/week · ", plan.days?.length || 0, " workout days"), plan.description && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93",
+          marginTop: 4,
+          fontStyle: "italic",
+          fontFamily: "Inter,sans-serif"
+        }
+      }, plan.description));
+    })), /*#__PURE__*/React.createElement(AccordionRow, {
       rowKey: "saved",
       label: "Saved from History",
       count: savedFromHistoryList.length || null,
@@ -13243,7 +13423,446 @@ function App() {
       fontFamily: "Inter,sans-serif",
       boxShadow: "0 0 0 2px #00c2ff, 0 0 16px rgba(0,194,255,0.3)"
     }
-  }, recoveryRating ? `Let's go -- feeling ${["", "dead", "rough", "OK", "good", "fired up"][recoveryRating]}!` : "Skip")))), warmupOpen && /*#__PURE__*/React.createElement("div", {
+  }, recoveryRating ? `Let's go -- feeling ${["", "dead", "rough", "OK", "good", "fired up"][recoveryRating]}!` : "Skip")))), managePlanOpen && activePlan && (() => {
+    const plan = PLAN_TEMPLATES.find(p => p.id === activePlan.planId);
+    if (!plan) return null;
+    const currentDay = plan.days[activePlan.currentDayIndex];
+    // Build upcoming preview: next 4 days
+    const upcoming = [];
+    let ptrDay = activePlan.currentDayIndex + 1;
+    let ptrWeek = activePlan.currentWeek;
+    for (let i = 0; i < 4; i++) {
+      if (ptrDay >= plan.days.length) {
+        ptrDay = 0;
+        ptrWeek += 1;
+      }
+      if (ptrWeek > plan.duration) break;
+      upcoming.push({
+        week: ptrWeek,
+        dayIndex: ptrDay,
+        day: plan.days[ptrDay]
+      });
+      ptrDay += 1;
+    }
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.6)",
+        zIndex: 250,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center"
+      },
+      onClick: () => setManagePlanOpen(false)
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#EEF1F5",
+        borderRadius: "24px 24px 0 0",
+        width: "100%",
+        maxWidth: 700,
+        maxHeight: "88vh",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+        marginBottom: "calc(56px + env(safe-area-inset-bottom, 0px))"
+      },
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 40,
+        height: 5,
+        background: "#c7c7cc",
+        borderRadius: 3,
+        margin: "12px auto 0",
+        flexShrink: 0
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "14px 18px 12px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexShrink: 0,
+        borderBottom: "1px solid #e5e5ea"
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 18,
+        fontWeight: 800,
+        color: "#1c1c1e",
+        fontFamily: "Inter,sans-serif",
+        letterSpacing: "-0.3px"
+      }
+    }, plan.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#8e8e93",
+        marginTop: 2,
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Manage your active program")), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setManagePlanOpen(false),
+      style: {
+        background: "none",
+        border: "none",
+        color: "#8e8e93",
+        fontSize: 22,
+        cursor: "pointer",
+        padding: 6
+      }
+    }, "×")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        overflowY: "auto",
+        padding: "14px 16px 24px"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 800,
+        color: "#00c2ff",
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+        fontFamily: "Inter,sans-serif",
+        marginBottom: 8
+      }
+    }, "▸ Today · Week ", activePlan.currentWeek, ", Day ", activePlan.currentDayIndex + 1), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#1c1c1e",
+        borderRadius: 14,
+        padding: "14px 16px",
+        marginBottom: 16,
+        boxShadow: "0 0 0 2px rgba(0,194,255,0.35)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 16,
+        fontWeight: 800,
+        color: "#fff",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, currentDay?.name || "—"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#98989e",
+        marginTop: 2,
+        fontFamily: "Inter,sans-serif"
+      }
+    }, currentDay?.exercises?.length || 0, " exercises prescribed"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        marginTop: 12,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        if (exercises.length > 0) {
+          showToast("Finish current session first");
+          return;
+        }
+        loadPlanSession();
+        setManagePlanOpen(false);
+      },
+      style: {
+        flex: "1 1 100px",
+        background: "#00c2ff",
+        color: "#0f0f10",
+        border: "none",
+        borderRadius: 9,
+        padding: "9px 10px",
+        fontSize: 12,
+        fontWeight: 800,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        textTransform: "uppercase",
+        letterSpacing: "0.02em"
+      }
+    }, "Start"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setSubstitutePickerOpen(true);
+      },
+      style: {
+        flex: "1 1 100px",
+        background: "#fff",
+        color: "#1c1c1e",
+        border: "1.5px solid #e5e5ea",
+        borderRadius: 9,
+        padding: "9px 10px",
+        fontSize: 12,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Substitute"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        if (window.confirm(`Skip ${currentDay?.name || "today's session"} and advance to the next day?`)) {
+          advancePlan();
+          showToast("Skipped to next day");
+        }
+      },
+      style: {
+        flex: "1 1 80px",
+        background: "#fff",
+        color: "#8e8e93",
+        border: "1.5px solid #e5e5ea",
+        borderRadius: 9,
+        padding: "9px 10px",
+        fontSize: 12,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Skip"))), upcoming.length > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 800,
+        color: "#8e8e93",
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+        fontFamily: "Inter,sans-serif",
+        marginBottom: 8
+      }
+    }, "Upcoming"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        borderRadius: 12,
+        overflow: "hidden",
+        marginBottom: 16,
+        boxShadow: "var(--shadow-sm)"
+      }
+    }, upcoming.map((u, idx) => /*#__PURE__*/React.createElement("div", {
+      key: idx,
+      style: {
+        padding: "12px 14px",
+        borderBottom: idx < upcoming.length - 1 ? "1px solid #f0f0f0" : "none",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        minWidth: 0,
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#1c1c1e",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, u.day?.name || "—"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 1,
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Week ", u.week, ", Day ", u.dayIndex + 1, " · ", u.day?.exercises?.length || 0, " exercises")))))), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        if (window.confirm(`Cancel "${plan.name}"? Your progress will be lost. Completed workouts in your history stay intact.`)) {
+          setActivePlan(null);
+          setManagePlanOpen(false);
+          showToast(`${plan.name} cancelled`);
+        }
+      },
+      style: {
+        width: "100%",
+        background: "rgba(255,69,58,0.08)",
+        color: "#ff453a",
+        border: "1.5px solid rgba(255,69,58,0.3)",
+        borderRadius: 10,
+        padding: "12px",
+        fontSize: 13,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontFamily: "Inter,sans-serif",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 6
+      }
+    }, /*#__PURE__*/React.createElement(X, {
+      size: 14,
+      strokeWidth: 2.5
+    }), " Cancel Plan"))));
+  })(), substitutePickerOpen && activePlan && (() => {
+    const plan = PLAN_TEMPLATES.find(p => p.id === activePlan.planId);
+    if (!plan) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.6)",
+        zIndex: 260,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center"
+      },
+      onClick: () => setSubstitutePickerOpen(false)
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#EEF1F5",
+        borderRadius: "24px 24px 0 0",
+        width: "100%",
+        maxWidth: 700,
+        maxHeight: "80vh",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+        marginBottom: "calc(56px + env(safe-area-inset-bottom, 0px))"
+      },
+      onClick: e => e.stopPropagation()
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 40,
+        height: 5,
+        background: "#c7c7cc",
+        borderRadius: 3,
+        margin: "12px auto 0",
+        flexShrink: 0
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "14px 18px 12px",
+        flexShrink: 0,
+        borderBottom: "1px solid #e5e5ea"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 16,
+        fontWeight: 800,
+        color: "#1c1c1e",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Do a different day"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#8e8e93",
+        marginTop: 2,
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Pick another day from ", plan.name, " to do today instead")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        overflowY: "auto",
+        padding: "12px 14px 24px"
+      }
+    }, plan.days.map((day, idx) => {
+      const isCurrent = idx === activePlan.currentDayIndex;
+      return /*#__PURE__*/React.createElement("button", {
+        key: day.id || idx,
+        onClick: () => {
+          // Jump to that day for today's session
+          setActivePlan(p => ({
+            ...p,
+            currentDayIndex: idx
+          }));
+          setSubstitutePickerOpen(false);
+          setManagePlanOpen(false);
+          setTimeout(() => {
+            if (exercises.length > 0) {
+              showToast(`Set to ${day.name} — finish current session first`);
+              return;
+            }
+            // Reload plan session with new day
+            const newExs = day.exercises.map(prescription => {
+              const ex = EXERCISE_DB.find(e => e.id === prescription.id);
+              if (!ex) return null;
+              const prev = lastSets(prescription.id);
+              const initSets = Array.from({
+                length: prescription.sets
+              }, (_, i) => ({
+                weight: prev?.[i]?.weight || "",
+                reps: "",
+                done: false,
+                targetRepsLow: prescription.repsLow,
+                targetRepsHigh: prescription.repsHigh
+              }));
+              return {
+                ...ex,
+                sets: initSets,
+                planTargetReps: `${prescription.repsLow}-${prescription.repsHigh}`,
+                isMainLift: !!prescription.isMainLift
+              };
+            }).filter(Boolean);
+            if (newExs.length === 0) {
+              showToast(`No exercises for ${day.name}`);
+              return;
+            }
+            setWorkoutType(`plan:${plan.id}:${day.id}`);
+            setWorkoutName(`${plan.name} · W${activePlan.currentWeek} · ${day.name}`);
+            setExercises(newExs);
+            setExpanded({});
+            setWorkoutStartTime(Date.now());
+            setTab("session");
+            showToast(`${day.name} loaded`);
+          }, 100);
+        },
+        style: {
+          width: "100%",
+          background: "#fff",
+          border: isCurrent ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
+          borderRadius: 12,
+          padding: "12px 14px",
+          marginBottom: 8,
+          cursor: "pointer",
+          textAlign: "left",
+          fontFamily: "Inter,sans-serif",
+          boxShadow: "var(--shadow-sm)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 8
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          minWidth: 0,
+          flex: 1
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          flexWrap: "wrap"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          fontWeight: 700,
+          color: "#1c1c1e"
+        }
+      }, day.name), isCurrent && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 9,
+          fontWeight: 800,
+          color: "#00c2ff",
+          background: "rgba(0,194,255,0.15)",
+          padding: "2px 7px",
+          borderRadius: 10,
+          letterSpacing: "0.06em"
+        }
+      }, "CURRENT")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "#8e8e93",
+          marginTop: 2
+        }
+      }, "Day ", idx + 1, " · ", day.exercises?.length || 0, " exercises")), /*#__PURE__*/React.createElement(ChevronDown, {
+        size: 16,
+        color: "#c7c7cc",
+        strokeWidth: 2.5,
+        style: {
+          transform: "rotate(-90deg)",
+          flexShrink: 0
+        }
+      }));
+    }))));
+  })(), warmupOpen && /*#__PURE__*/React.createElement("div", {
     className: "warmup-overlay",
     onClick: () => setWarmupOpen(false)
   }, /*#__PURE__*/React.createElement("div", {
