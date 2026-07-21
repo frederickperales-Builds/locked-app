@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { Dumbbell, Zap, ArrowUp, Layers, RotateCcw, Activity, HeartPulse, ChevronDown, TrendingUp, Lightbulb, ClipboardList, Weight, Link, Flame, Wind, BarChart2, Anchor, Camera, Youtube, Calendar, ChevronLeft, ChevronRight, Download, Upload, ArrowLeftRight, Lock, WifiOff, Target, User, Plus, Settings, X, UserRound, BookText } from "lucide-react";
+import { Dumbbell, Zap, ArrowUp, Layers, RotateCcw, Activity, HeartPulse, ChevronDown, TrendingUp, Lightbulb, ClipboardList, Weight, Link, Flame, Wind, BarChart2, Anchor, Camera, Youtube, Calendar, ChevronLeft, ChevronRight, Download, Upload, ArrowLeftRight, Lock, WifiOff, Target, User, Plus, Settings, X, UserRound, BookText, Sun, Moon, Sunset, Sunrise } from "lucide-react";
 
 // ---- Sync layer -----------------------------------------------------
 // window.__LOCKED_SYNC__ is set up by index.html before this file loads:
@@ -5902,6 +5902,8 @@ function App() {
   const [plusSheetOpen, setPlusSheetOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsOpenSections, setSettingsOpenSections] = useState({});
+  const [presetPickerOpen, setPresetPickerOpen] = useState(false);
+  const [miPickerOpen, setMiPickerOpen] = useState(false);
   const toggleSettingsSection = key => setSettingsOpenSections(p => ({
     ...p,
     [key]: !p[key]
@@ -7594,11 +7596,7 @@ function App() {
     className: "plus-sheet-btn",
     onClick: () => {
       setPlusSheetOpen(false);
-      setTab("freddy");
-      // scroll to preset section — handled by freddy tab rendering
-      setTimeout(() => {
-        window.__openPresets && window.__openPresets();
-      }, 100);
+      setPresetPickerOpen(true);
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "plus-sheet-btn-icon"
@@ -7615,10 +7613,9 @@ function App() {
     className: "plus-sheet-btn",
     onClick: () => {
       setPlusSheetOpen(false);
-      // trigger import flow
       setTimeout(() => {
-        window.__openImport && window.__openImport();
-      }, 100);
+        if (importRef.current) importRef.current.click();
+      }, 200);
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "plus-sheet-btn-icon"
@@ -7635,7 +7632,7 @@ function App() {
     className: "plus-sheet-btn",
     onClick: () => {
       setPlusSheetOpen(false);
-      setTab("mi");
+      setMiPickerOpen(true);
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "plus-sheet-btn-icon"
@@ -7652,13 +7649,15 @@ function App() {
     className: "plus-sheet-btn",
     onClick: () => {
       setPlusSheetOpen(false);
-      // start a blank custom workout
       setWorkoutType("custom");
       setWorkoutName("Custom Workout");
       setExercises([]);
       setWorkoutStartTime(Date.now());
       setWarmupDone(false);
       setTab("session");
+      setTimeout(() => {
+        openPicker && openPicker();
+      }, 200);
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "plus-sheet-btn-icon"
@@ -7675,7 +7674,7 @@ function App() {
     className: "plus-sheet-btn",
     onClick: () => {
       setPlusSheetOpen(false);
-      setTab("library");
+      setPlansBrowseOpen(true);
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "plus-sheet-btn-icon"
@@ -7688,7 +7687,256 @@ function App() {
     className: "plus-sheet-btn-label"
   }, "Lock In a Training Program"), /*#__PURE__*/React.createElement("span", {
     className: "plus-sheet-btn-sub"
-  }, "Pick a program day and follow the plan"))))), /*#__PURE__*/React.createElement("div", {
+  }, "Pick a program day and follow the plan"))))), /*#__PURE__*/React.createElement("input", {
+    ref: importRef,
+    type: "file",
+    accept: "image/*",
+    onChange: handleWorkoutPhoto,
+    style: {
+      display: "none"
+    }
+  }), presetPickerOpen && /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-overlay",
+    onClick: () => setPresetPickerOpen(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet",
+    onClick: e => e.stopPropagation(),
+    style: {
+      maxHeight: "85vh",
+      overflowY: "auto"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-handle"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-title",
+    style: {
+      margin: 0
+    }
+  }, "Pick a Preset"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setPresetPickerOpen(false),
+    style: {
+      background: "none",
+      border: "none",
+      color: "#8e8e93",
+      fontSize: 22,
+      cursor: "pointer",
+      padding: 0,
+      lineHeight: 1
+    }
+  }, "×")), PRESET_WORKOUTS.map(p => /*#__PURE__*/React.createElement("button", {
+    key: p.id,
+    className: "plus-sheet-btn",
+    onClick: () => {
+      setPresetPickerOpen(false);
+      loadPreset(p);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-icon"
+  }, /*#__PURE__*/React.createElement(p.Icon, {
+    size: 18,
+    color: "#00c2ff"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-text"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-label"
+  }, p.name), /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-sub"
+  }, p.tag, " · ", p.exercises.length, " exercises")))))), miPickerOpen && (() => {
+    const muscleLastHit = {};
+    history.forEach(h => {
+      const ts = h.dateISO ? new Date(h.dateISO).getTime() : h.id;
+      (h.exercises || []).forEach(ex => {
+        const m = ex.muscle || ex.primaryMuscle;
+        if (m && (!muscleLastHit[m] || muscleLastHit[m] < ts)) muscleLastHit[m] = ts;
+      });
+    });
+    const allMuscles = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quads", "Hamstrings", "Glutes", "Calves", "Core", "Traps"];
+    const ranked = allMuscles.map(m => ({
+      m,
+      daysAgo: muscleLastHit[m] ? Math.floor((Date.now() - muscleLastHit[m]) / 86400000) : 999
+    })).sort((a, b) => b.daysAgo - a.daysAgo);
+    const topThree = ranked.slice(0, 3);
+    const targetMuscles = topThree.map(x => x.m);
+    const pickedExs = [];
+    targetMuscles.forEach(m => {
+      const candidates = EXERCISES.filter(e => e.muscle === m || e.primaryMuscle === m);
+      if (candidates.length > 0) {
+        pickedExs.push(candidates[0]);
+        if (candidates.length > 1) pickedExs.push(candidates[1]);
+      }
+    });
+    return /*#__PURE__*/React.createElement("div", {
+      className: "plus-sheet-overlay",
+      onClick: () => setMiPickerOpen(false)
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "plus-sheet",
+      onClick: e => e.stopPropagation(),
+      style: {
+        maxHeight: "85vh",
+        overflowY: "auto"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "plus-sheet-handle"
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "plus-sheet-title",
+      style: {
+        margin: 0,
+        color: "#af52de"
+      }
+    }, "MI Catch-Up"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setMiPickerOpen(false),
+      style: {
+        background: "none",
+        border: "none",
+        color: "#8e8e93",
+        fontSize: 22,
+        cursor: "pointer",
+        padding: 0,
+        lineHeight: 1
+      }
+    }, "×")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#f2f2f7",
+        borderRadius: 12,
+        padding: "12px 14px",
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        fontFamily: "Inter,sans-serif",
+        marginBottom: 6
+      }
+    }, "Muscles to hit"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 6
+      }
+    }, topThree.map(({
+      m,
+      daysAgo
+    }) => /*#__PURE__*/React.createElement("div", {
+      key: m,
+      style: {
+        background: "#fff",
+        padding: "4px 10px",
+        borderRadius: 16,
+        fontSize: 12,
+        fontWeight: 600,
+        color: "#1c1c1e",
+        fontFamily: "Inter,sans-serif",
+        border: "1.5px solid #af52de"
+      }
+    }, m, " ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#af52de",
+        fontWeight: 700
+      }
+    }, "· ", daysAgo >= 999 ? "never" : `${daysAgo}d`))))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: "#8e8e93",
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        fontFamily: "Inter,sans-serif",
+        marginBottom: 8
+      }
+    }, "Suggested exercises (", pickedExs.length, ")"), pickedExs.map((ex, i) => /*#__PURE__*/React.createElement("div", {
+      key: ex.id,
+      style: {
+        padding: "10px 4px",
+        borderBottom: "1px solid #f5f5f5",
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "#c7c7cc",
+        fontFamily: "DM Mono,monospace",
+        fontSize: 11,
+        width: 20
+      }
+    }, i + 1, "."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 600,
+        color: "#1c1c1e"
+      }
+    }, ex.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        marginTop: 2
+      }
+    }, ex.muscle || ex.primaryMuscle, " · ", ex.equipment)))), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setMiPickerOpen(false);
+        const newExs = pickedExs.map(ex => ({
+          ...ex,
+          sets: [{
+            weight: "",
+            reps: "",
+            done: false
+          }, {
+            weight: "",
+            reps: "",
+            done: false
+          }, {
+            weight: "",
+            reps: "",
+            done: false
+          }]
+        }));
+        setWorkoutType("mi-catchup");
+        setWorkoutName("MI Catch-Up");
+        setExercises(newExs);
+        setExpanded({});
+        setWorkoutStartTime(Date.now());
+        setWarmupDone(false);
+        setTab("session");
+      },
+      style: {
+        width: "100%",
+        marginTop: 16,
+        padding: "14px 18px",
+        borderRadius: 14,
+        background: "#af52de",
+        color: "#fff",
+        border: "none",
+        fontSize: 15,
+        fontWeight: 700,
+        fontFamily: "Inter,sans-serif",
+        cursor: "pointer",
+        boxShadow: "0 4px 12px rgba(175,82,222,0.35)"
+      }
+    }, "Lock In This Workout")));
+  })(), /*#__PURE__*/React.createElement("div", {
     className: "content",
     ref: contentRef,
     onTouchStart: handleTouchStart,
@@ -7712,7 +7960,8 @@ function App() {
     const yearNum = now.getFullYear();
     const hour = now.getHours();
     const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-    const timeIcon = hour < 6 ? "🌙" : hour < 12 ? "☀️" : hour < 18 ? "🌤️" : hour < 21 ? "🌆" : "🌙";
+    const TimeIcon = hour < 6 ? Moon : hour < 12 ? Sunrise : hour < 18 ? Sun : hour < 21 ? Sunset : Moon;
+    const timeIconColor = hour < 6 ? "#8e8e93" : hour < 12 ? "#ff9f0a" : hour < 18 ? "#ffcc00" : hour < 21 ? "#ff6b6b" : "#8e8e93";
     const userName = "Freddy";
 
     // Streak calc
@@ -7785,8 +8034,8 @@ function App() {
       style: {
         display: "flex",
         alignItems: "center",
-        gap: 8,
-        marginBottom: 14
+        gap: 10,
+        marginBottom: 16
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -7794,14 +8043,14 @@ function App() {
         alignItems: "center",
         gap: 0,
         background: "#1c1c1e",
-        borderRadius: 10,
+        borderRadius: 12,
         overflow: "hidden",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
+        boxShadow: "0 2px 10px rgba(0,0,0,0.2)"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        padding: "5px 9px",
-        fontSize: 10,
+        padding: "8px 12px",
+        fontSize: 13,
         fontWeight: 800,
         color: "#00c2ff",
         fontFamily: "DM Mono, monospace",
@@ -7810,13 +8059,13 @@ function App() {
     }, dayOfWeek), /*#__PURE__*/React.createElement("div", {
       style: {
         width: 1,
-        height: 14,
+        height: 18,
         background: "rgba(255,255,255,0.15)"
       }
     }), /*#__PURE__*/React.createElement("div", {
       style: {
-        padding: "5px 10px",
-        fontSize: 10,
+        padding: "8px 13px",
+        fontSize: 13,
         fontWeight: 700,
         color: "#fff",
         fontFamily: "DM Mono, monospace",
@@ -7824,10 +8073,21 @@ function App() {
       }
     }, monthShort, " ", dayNum)), /*#__PURE__*/React.createElement("div", {
       style: {
-        fontSize: 22,
-        lineHeight: 1
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 38,
+        height: 38,
+        borderRadius: "50%",
+        background: "#fff",
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
       }
-    }, timeIcon)), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(TimeIcon, {
+      size: 20,
+      strokeWidth: 2.2,
+      color: timeIconColor
+    }))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 15,
         fontWeight: 500,
@@ -8234,9 +8494,10 @@ function App() {
       style: {
         background: "#fff",
         borderRadius: 14,
-        padding: "14px 16px",
+        padding: "14px 14px 14px 12px",
         marginBottom: 12,
         border: "1.5px solid #e5e5ea",
+        borderLeft: "5px solid #00c2ff",
         cursor: "pointer",
         boxShadow: "0 1px 3px rgba(0,0,0,0.05)"
       }
@@ -8276,7 +8537,7 @@ function App() {
         marginTop: 2,
         fontFamily: "Inter,sans-serif"
       }
-    }, lastWorkout.date, " · ", lastWorkout.exercises?.length || 0, " exercises", lastWorkout.duration && ` · ${fmtDuration(lastWorkout.duration)}`)), /*#__PURE__*/React.createElement(ChevronDown, {
+    }, lastWorkout.date, " · ", lastWorkout.exercises?.length || 0, " exercises", lastWorkout.duration ? ` · ${fmtDuration(lastWorkout.duration)}` : "")), /*#__PURE__*/React.createElement(ChevronDown, {
       size: 16,
       strokeWidth: 2.5,
       color: "#8e8e93",
