@@ -106,7 +106,7 @@ const css = `
 
   /* Header */
   .header { padding: 14px 20px 10px; display: flex; align-items: center; justify-content: space-between; background: var(--card); border-bottom: 1px solid var(--rim); }
-  .header-logo { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.2em; color: var(--neon); text-transform: uppercase; }
+  .header-logo { font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 800; letter-spacing: 0.22em; color: var(--neon); text-transform: uppercase; display: inline-flex; align-items: center; gap: 7px; text-shadow: 0 0 12px rgba(0,194,255,0.4); }
   .header-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
 
   /* Rest timer */
@@ -236,8 +236,9 @@ const css = `
   .set-input::placeholder { color: #d1d1d6; }
   .set-done { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--rim); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.15s; flex-shrink: 0; }
   .set-done.checked { background: var(--green); border-color: var(--green); color: #fff; }
-  .add-set-btn { background: none; border: 1.5px dashed var(--rim); border-radius: 8px; padding: 8px; width: 100%; font-size: 12px; color: var(--muted); cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; margin-top: 2px; }
-  .add-set-btn:hover { border-color: var(--neon); color: var(--neon); }
+  .add-set-btn { background: #f2f2f7; border: 2px solid #00c2ff; border-radius: 10px; padding: 11px; width: 100%; font-size: 14px; font-weight: 800; color: #00c2ff; cursor: pointer; font-family: "Inter", sans-serif; transition: all 0.15s; margin-top: 6px; letter-spacing: 0.02em; text-transform: uppercase; box-shadow: 0 0 0 1px rgba(0,194,255,0.15), 0 1px 3px rgba(0,194,255,0.15); display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .add-set-btn:hover { background: #00c2ff; color: #fff; box-shadow: 0 2px 8px rgba(0,194,255,0.4); }
+  .add-set-btn:active { transform: scale(0.98); }
   .prev-hint { font-size: 11px; color: var(--muted); padding: 2px 2px 4px; }
   .card-rest-timer { background: #F0F0F0; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
   .exercise-notes { width: 100%; border: 1.5px solid #e5e5ea; border-radius: 8px; padding: 8px 10px; font-size: 12px; font-family: "Inter", sans-serif; color: #000; resize: none; outline: none; background: #fafafa; margin-top: 6px; box-sizing: border-box; min-height: 60px; }
@@ -475,8 +476,8 @@ const css = `
   .rest-btn.active { border-color: var(--neon); color: var(--neon); box-shadow: 0 0 0 1px var(--neon); }
 
   /* -- Warm Up Sheet -- */
-  .warmup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: flex; align-items: flex-end; justify-content: center; }
-  .warmup-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; }
+  .warmup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 250; display: flex; align-items: flex-end; justify-content: center; }
+  .warmup-sheet { background: #F0F0F0; border-radius: 24px 24px 0 0; width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; margin-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
   .warmup-handle { width: 40px; height: 5px; background: #c7c7cc; border-radius: 3px; margin: 12px auto 0; flex-shrink: 0; }
   .warmup-header { padding: 14px 18px 12px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 1px solid #e5e5ea; }
   .warmup-title { font-size: 18px; font-weight: 700; color: #000; }
@@ -5904,6 +5905,7 @@ function App() {
   const [settingsOpenSections, setSettingsOpenSections] = useState({});
   const [presetPickerOpen, setPresetPickerOpen] = useState(false);
   const [miPickerOpen, setMiPickerOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   const toggleSettingsSection = key => setSettingsOpenSections(p => ({
     ...p,
     [key]: !p[key]
@@ -7212,6 +7214,20 @@ function App() {
       })
     }));
   };
+  const removeSet = (exId, si) => {
+    setExercises(p => p.map(ex => {
+      if (ex.id !== exId) return ex;
+      if (ex.sets.length <= 1) {
+        showToast("Need at least 1 set");
+        return ex;
+      }
+      return {
+        ...ex,
+        sets: ex.sets.filter((_, i) => i !== si)
+      };
+    }));
+    touchExercise(exId);
+  };
   const addSet = exId => {
     setExercises(p => p.map(ex => {
       if (ex.id !== exId) return ex;
@@ -7414,7 +7430,10 @@ function App() {
     className: "header"
   }, /*#__PURE__*/React.createElement("div", {
     className: "header-logo"
-  }, "Locked"), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Dumbbell, {
+    size: 17,
+    strokeWidth: 2.8
+  }), "Locked"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -7458,7 +7477,7 @@ function App() {
     onClick: skipRest,
     style: {
       position: "fixed",
-      bottom: 90,
+      bottom: `calc(80px + env(safe-area-inset-bottom, 0px))`,
       right: 16,
       zIndex: 500,
       width: 68,
@@ -7960,8 +7979,6 @@ function App() {
     const yearNum = now.getFullYear();
     const hour = now.getHours();
     const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-    const TimeIcon = hour < 6 ? Moon : hour < 12 ? Sunrise : hour < 18 ? Sun : hour < 21 ? Sunset : Moon;
-    const timeIconColor = hour < 6 ? "#8e8e93" : hour < 12 ? "#ff9f0a" : hour < 18 ? "#ffcc00" : hour < 21 ? "#ff6b6b" : "#8e8e93";
     const userName = "Freddy";
 
     // Streak calc
@@ -8032,12 +8049,10 @@ function App() {
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
         marginBottom: 16
       }
-    }, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => setCalendarOpen(true),
       style: {
         display: "inline-flex",
         alignItems: "center",
@@ -8045,7 +8060,11 @@ function App() {
         background: "#1c1c1e",
         borderRadius: 12,
         overflow: "hidden",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.2)"
+        boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+        border: "none",
+        cursor: "pointer",
+        padding: 0,
+        fontFamily: "inherit"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -8071,23 +8090,17 @@ function App() {
         fontFamily: "DM Mono, monospace",
         letterSpacing: "0.08em"
       }
-    }, monthShort, " ", dayNum)), /*#__PURE__*/React.createElement("div", {
+    }, monthShort, " ", dayNum), /*#__PURE__*/React.createElement("div", {
       style: {
+        padding: "8px 10px 8px 6px",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 38,
-        height: 38,
-        borderRadius: "50%",
-        background: "#fff",
-        border: "1.5px solid #e5e5ea",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.06)"
+        alignItems: "center"
       }
-    }, /*#__PURE__*/React.createElement(TimeIcon, {
-      size: 20,
-      strokeWidth: 2.2,
-      color: timeIconColor
-    }))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(Calendar, {
+      size: 13,
+      strokeWidth: 2.5,
+      color: "#8e8e93"
+    })))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 15,
         fontWeight: 500,
@@ -9147,19 +9160,20 @@ function App() {
           setProgressChartExId(ex.baseId || ex.id);
         },
         style: {
-          background: "#f9f9f9",
-          borderRadius: 8,
-          padding: "10px 12px",
+          background: "#1c1c1e",
+          borderRadius: 10,
+          padding: "12px 14px",
           marginBottom: 8,
-          border: "1px solid #f0f0f0",
-          cursor: "pointer"
+          border: "1px solid #2c2c2e",
+          cursor: "pointer",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.15)"
         }
       }, /*#__PURE__*/React.createElement("div", {
         style: {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          marginBottom: 6,
+          marginBottom: 8,
           gap: 8
         }
       }, /*#__PURE__*/React.createElement("div", {
@@ -9170,12 +9184,15 @@ function App() {
           textTransform: "uppercase",
           letterSpacing: "0.06em"
         }
-      }, "Weight Trend · Last ", trend.length, " sessions · Tap to expand"), /*#__PURE__*/React.createElement("div", {
+      }, "Weight Trend · Last ", trend.length, " · Tap to expand"), /*#__PURE__*/React.createElement("div", {
         style: {
           fontSize: 11,
-          fontWeight: 700,
-          color: diff >= 0 ? "#34c759" : "#ff3b30",
-          whiteSpace: "nowrap"
+          fontWeight: 800,
+          color: diff >= 0 ? "#34c759" : "#ff453a",
+          whiteSpace: "nowrap",
+          background: diff >= 0 ? "rgba(52,199,89,0.15)" : "rgba(255,69,58,0.15)",
+          padding: "2px 8px",
+          borderRadius: 12
         }
       }, diff >= 0 ? "+" : "", diff, "lb (", pct, "%)")), /*#__PURE__*/React.createElement("svg", {
         width: "100%",
@@ -9186,12 +9203,12 @@ function App() {
         }
       }, /*#__PURE__*/React.createElement("path", {
         d: fillPath,
-        fill: "rgba(0,194,255,0.08)"
+        fill: "rgba(0,194,255,0.15)"
       }), /*#__PURE__*/React.createElement("path", {
         d: path,
         fill: "none",
         stroke: "#00c2ff",
-        strokeWidth: "1.5",
+        strokeWidth: "1.8",
         strokeLinecap: "round",
         strokeLinejoin: "round"
       }), trend.map((t, i) => /*#__PURE__*/React.createElement("circle", {
@@ -9200,7 +9217,7 @@ function App() {
         cy: y(t.w),
         r: "3",
         fill: "#00c2ff",
-        stroke: "#fff",
+        stroke: "#1c1c1e",
         strokeWidth: "1.5"
       })), /*#__PURE__*/React.createElement("text", {
         x: lastX,
@@ -9311,30 +9328,80 @@ function App() {
       style: {
         display: "flex",
         alignItems: "center",
-        gap: 8,
-        marginBottom: 6,
-        padding: "6px 10px",
-        background: "#f9f9f9",
-        borderRadius: 8,
-        border: "1px solid #f0f0f0"
+        gap: 10,
+        marginBottom: 8,
+        padding: "10px 12px",
+        background: "linear-gradient(135deg, #fff 0%, #f9fbff 100%)",
+        borderRadius: 10,
+        border: "1.5px solid #e5e5ea",
+        boxShadow: "0 1px 2px rgba(0,0,0,0.03)"
       },
       onClick: e => e.stopPropagation()
-    }, /*#__PURE__*/React.createElement(Target, {
-      size: 12,
-      strokeWidth: 2.5,
-      color: "#8e8e93"
-    }), /*#__PURE__*/React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("div", {
       style: {
-        fontSize: 11,
-        fontWeight: 700,
-        color: "#8e8e93",
-        textTransform: "uppercase",
-        letterSpacing: "0.05em",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 26,
+        height: 26,
+        borderRadius: "50%",
+        background: "rgba(0,194,255,0.12)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         flexShrink: 0
       }
-    }, "Target Reps"), /*#__PURE__*/React.createElement("input", {
+    }, /*#__PURE__*/React.createElement(Target, {
+      size: 13,
+      strokeWidth: 2.5,
+      color: "#00c2ff"
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 800,
+        color: "#8e8e93",
+        textTransform: "uppercase",
+        letterSpacing: "0.08em"
+      }
+    }, "Target Reps"), ex.targetRepRange && (() => {
+      const p = ex.targetRepRange.match(/^(\d+)\s*[-\u2013]\s*(\d+)$/);
+      return p ? /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          color: "#8e8e93",
+          marginTop: 1
+        }
+      }, "Hit ", /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#34c759",
+          fontWeight: 700
+        }
+      }, p[1], "–", p[2]), " to progress") : /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          color: "#ff453a",
+          marginTop: 1,
+          fontWeight: 600
+        }
+      }, "Try format: 8-12");
+    })(), !ex.targetRepRange && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#c7c7cc",
+        marginTop: 1
+      }
+    }, "Set a range for color feedback"))), /*#__PURE__*/React.createElement("input", {
       type: "text",
-      placeholder: "e.g. 8-12",
+      placeholder: "8-12",
       value: ex.targetRepRange || "",
       onChange: e => {
         const val = e.target.value;
@@ -9350,28 +9417,21 @@ function App() {
         }));
       },
       style: {
-        flex: 1,
-        border: "none",
-        background: "transparent",
-        fontSize: 13,
+        width: 64,
+        border: "1.5px solid #00c2ff",
+        background: "#fff",
+        fontSize: 14,
         fontFamily: "DM Mono,monospace",
-        fontWeight: 700,
+        fontWeight: 800,
         color: "#00c2ff",
         outline: "none",
         textAlign: "center",
-        minWidth: 0
+        borderRadius: 8,
+        padding: "6px 4px",
+        flexShrink: 0,
+        boxShadow: "0 0 0 1px rgba(0,194,255,0.15)"
       }
-    }), ex.targetRepRange ? /*#__PURE__*/React.createElement("span", {
-      style: {
-        fontSize: 9,
-        fontWeight: 700,
-        color: "#8e8e93",
-        whiteSpace: "nowrap"
-      }
-    }, (() => {
-      const p = ex.targetRepRange.match(/^(\d+)\s*[-\u2013]\s*(\d+)$/);
-      return p ? "in range = green" : "invalid format";
-    })()) : null), /*#__PURE__*/React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("div", {
       className: "sets-header"
     }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null, "WEIGHT LB"), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -9433,7 +9493,15 @@ function App() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "set-row"
     }, /*#__PURE__*/React.createElement("div", {
-      className: "set-num"
+      className: "set-num",
+      onClick: () => {
+        if (ex.sets.length <= 1) return;
+        if (window.confirm(`Delete set ${i + 1}?`)) removeSet(ex.id, i);
+      },
+      style: {
+        cursor: ex.sets.length > 1 ? "pointer" : "default"
+      },
+      title: ex.sets.length > 1 ? "Tap to delete this set" : ""
     }, i + 1), /*#__PURE__*/React.createElement("div", {
       className: "set-input",
       style: {
@@ -9473,8 +9541,8 @@ function App() {
       type: "number",
       inputMode: "numeric",
       placeholder: "",
-      maxLength: 3,
-      value: set.reps,
+      key: `reps-${ex.id}-${i}`,
+      value: set.reps || "",
       style: (() => {
         const baseStyle = {
           textAlign: "center",
@@ -9510,7 +9578,8 @@ function App() {
         };
       })(),
       onChange: e => {
-        const v = e.target.value.slice(0, 3);
+        const v = e.target.value;
+        if (v.length > 3) return;
         updateSet(ex.id, i, "reps", v);
       },
       onKeyDown: e => {
@@ -9739,7 +9808,10 @@ function App() {
     }, "↓"), " drop")))), /*#__PURE__*/React.createElement("button", {
       className: "add-set-btn",
       onClick: () => addSet(ex.id)
-    }, "+ set"), restActive && /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(Plus, {
+      size: 16,
+      strokeWidth: 3
+    }), " Add Set"), restActive && /*#__PURE__*/React.createElement("div", {
       className: "card-rest-timer"
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -9783,24 +9855,32 @@ function App() {
       rows: 2
     }), /*#__PURE__*/React.createElement("div", {
       style: {
-        marginTop: 8,
+        marginTop: 12,
+        paddingTop: 12,
+        borderTop: "1px solid #f0f0f0",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
-        gap: 14
+        gap: 10
       }
     }, removeConfirm === ex.id ? /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
         gap: 8,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        flex: 1,
+        padding: "8px 12px",
+        background: "rgba(255,59,48,0.08)",
+        borderRadius: 10,
+        border: "1.5px solid rgba(255,59,48,0.3)"
       }
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 12,
-        color: "#ff3b30",
-        fontWeight: 600
+        color: "#ff453a",
+        fontWeight: 700,
+        flex: 1
       }
     }, "Remove \"", ex.name, "\"?"), /*#__PURE__*/React.createElement("button", {
       onClick: () => {
@@ -9809,26 +9889,26 @@ function App() {
         showToast(`Removed ${ex.name}`);
       },
       style: {
-        background: "#ff3b30",
+        background: "#ff453a",
         color: "#fff",
         border: "none",
-        borderRadius: 6,
-        padding: "4px 12px",
-        fontSize: 11,
-        fontWeight: 700,
+        borderRadius: 8,
+        padding: "6px 14px",
+        fontSize: 12,
+        fontWeight: 800,
         cursor: "pointer",
         fontFamily: "Inter,sans-serif"
       }
-    }, "Yes, remove"), /*#__PURE__*/React.createElement("button", {
+    }, "Remove"), /*#__PURE__*/React.createElement("button", {
       onClick: () => setRemoveConfirm(null),
       style: {
-        background: "none",
+        background: "#fff",
         border: "1.5px solid #e5e5ea",
         color: "#8e8e93",
-        borderRadius: 6,
-        padding: "4px 10px",
-        fontSize: 11,
-        fontWeight: 600,
+        borderRadius: 8,
+        padding: "6px 12px",
+        fontSize: 12,
+        fontWeight: 700,
         cursor: "pointer",
         fontFamily: "Inter,sans-serif"
       }
@@ -9847,34 +9927,46 @@ function App() {
         }
       },
       style: {
-        background: "none",
-        border: "none",
-        color: ex.supersetGroup ? "#00c2ff" : "#c7c7cc",
-        fontSize: 11,
-        fontWeight: 600,
+        flex: 1,
+        background: ex.supersetGroup ? "rgba(0,194,255,0.1)" : "#f2f2f7",
+        border: ex.supersetGroup ? "1.5px solid #00c2ff" : "1.5px solid #e5e5ea",
+        color: ex.supersetGroup ? "#00c2ff" : "#3a3a3c",
+        fontSize: 12,
+        fontWeight: 700,
         cursor: "pointer",
         fontFamily: "Inter,sans-serif",
-        padding: "4px 8px",
+        padding: "9px 12px",
         display: "flex",
         alignItems: "center",
-        gap: 4
+        justifyContent: "center",
+        gap: 6,
+        borderRadius: 10
       }
     }, /*#__PURE__*/React.createElement(Link, {
-      size: 11,
+      size: 13,
       strokeWidth: 2.5
-    }), ex.supersetGroup ? `Unlink superset ${ex.supersetGroup}` : "Link as superset"), /*#__PURE__*/React.createElement("button", {
+    }), ex.supersetGroup ? `Unlink Superset ${ex.supersetGroup}` : "Link as Superset"), /*#__PURE__*/React.createElement("button", {
       onClick: () => setRemoveConfirm(ex.id),
       style: {
-        background: "none",
-        border: "none",
-        color: "#c7c7cc",
-        fontSize: 11,
-        fontWeight: 600,
+        background: "#fff",
+        border: "1.5px solid #ffcdc9",
+        color: "#ff453a",
+        fontSize: 12,
+        fontWeight: 700,
         cursor: "pointer",
         fontFamily: "Inter,sans-serif",
-        padding: "4px 8px"
+        padding: "9px 14px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 6,
+        borderRadius: 10,
+        flexShrink: 0
       }
-    }, "Remove exercise"))))));
+    }, /*#__PURE__*/React.createElement(X, {
+      size: 13,
+      strokeWidth: 2.5
+    }), "Remove"))))));
   }), /*#__PURE__*/React.createElement("button", {
     className: "add-exercise-btn",
     onClick: openPicker
@@ -9915,7 +10007,7 @@ function App() {
       width: "100%",
       padding: "4px 0"
     }
-  }, "Discard workout")), tab === "freddy" && false && (() => {
+  }, "Discard workout")), calendarOpen && (() => {
     const {
       year,
       month
@@ -9996,6 +10088,58 @@ function App() {
     const selectedEntry = calSelected ? loggedMap[calSelected] : null;
     return /*#__PURE__*/React.createElement("div", {
       style: {
+        position: "fixed",
+        inset: 0,
+        background: "#F0F0F0",
+        zIndex: 1950,
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "#fff",
+        padding: "14px 16px",
+        borderBottom: "1px solid #e5e5ea",
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        flexShrink: 0
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => setCalendarOpen(false),
+      style: {
+        background: "none",
+        border: "none",
+        fontSize: 22,
+        color: "#00c2ff",
+        cursor: "pointer",
+        padding: 0,
+        fontWeight: 400,
+        lineHeight: 1
+      }
+    }, "‹"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 15,
+        fontWeight: 800,
+        color: "#000",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Calendar"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8e8e93",
+        fontFamily: "Inter,sans-serif"
+      }
+    }, "Streak, training days, logged workouts"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        overflowY: "auto",
+        padding: 16,
         display: "flex",
         flexDirection: "column",
         gap: 16
@@ -10460,7 +10604,7 @@ function App() {
         cardioDays: cardioDays,
         history: history
       }));
-    })());
+    })()));
   })(), tab === "activity" && /*#__PURE__*/React.createElement(React.Fragment, null, history.length === 0 ? /*#__PURE__*/React.createElement("div", {
     className: "empty-state"
   }, /*#__PURE__*/React.createElement("div", {
