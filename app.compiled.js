@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { Dumbbell, Zap, ArrowUp, Layers, RotateCcw, Activity, HeartPulse, ChevronDown, TrendingUp, Lightbulb, ClipboardList, Weight, Link, Flame, Wind, BarChart2, Anchor, Camera, Youtube, Calendar, ChevronLeft, ChevronRight, Download, Upload, ArrowLeftRight, Lock, WifiOff, Target } from "lucide-react";
+import { Dumbbell, Zap, ArrowUp, Layers, RotateCcw, Activity, HeartPulse, ChevronDown, TrendingUp, Lightbulb, ClipboardList, Weight, Link, Flame, Wind, BarChart2, Anchor, Camera, Youtube, Calendar, ChevronLeft, ChevronRight, Download, Upload, ArrowLeftRight, Lock, WifiOff, Target, User, Plus, Settings, X } from "lucide-react";
 
 // ---- Sync layer -----------------------------------------------------
 // window.__LOCKED_SYNC__ is set up by index.html before this file loads:
@@ -115,11 +115,78 @@ const css = `
   .rest-timer-display { font-family: 'DM Mono', monospace; font-size: 22px; color: var(--ink); }
   .rest-timer-skip { font-size: 12px; color: var(--muted); background: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
 
-  /* Tabs */
-  .tabs { display: flex; padding: 0 4px; background: var(--card); border-bottom: 1px solid var(--rim); }
-  .tab { flex: 1; padding: 8px 0; font-size: 10px; font-weight: 600; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: color 0.15s, border-color 0.15s; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: center; gap: 3px; letter-spacing: 0.02em; }
-  .tab.active { color: var(--neon); border-bottom-color: var(--neon); }
+  /* Bottom Tab Bar — frosted glass */
+  .tabs {
+    display: flex; align-items: center;
+    padding: 0 8px 0 8px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border-top: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.04), 0 -4px 20px rgba(0,0,0,0.06);
+    position: relative;
+    z-index: 100;
+    min-height: 56px;
+  }
+  .tab {
+    flex: 1; padding: 8px 0 6px; font-size: 9.5px; font-weight: 600;
+    color: #8e8e93; background: none; border: none; cursor: pointer;
+    font-family: 'Inter', sans-serif; display: flex; flex-direction: column;
+    align-items: center; gap: 3px; letter-spacing: 0.02em;
+    transition: color 0.15s; -webkit-tap-highlight-color: transparent;
+  }
+  .tab.active { color: #00c2ff; }
   .tab span { line-height: 1; }
+  /* Center + / dumbbell button */
+  .tab-center-btn {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px; border: none; background: none;
+    cursor: pointer; padding: 4px 0 6px; position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tab-center-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: #1c1c1e;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.28), 0 0 0 3px rgba(255,255,255,0.9);
+    position: relative; top: -10px;
+    transition: background 0.2s;
+  }
+  .tab-center-icon.session-active {
+    background: #00c2ff;
+    box-shadow: 0 2px 12px rgba(0,194,255,0.4), 0 0 0 3px rgba(255,255,255,0.9);
+    animation: centerPulse 2s ease-in-out infinite;
+  }
+  @keyframes centerPulse {
+    0%,100% { box-shadow: 0 2px 12px rgba(0,194,255,0.4), 0 0 0 3px rgba(255,255,255,0.9); }
+    50% { box-shadow: 0 2px 20px rgba(0,194,255,0.7), 0 0 0 3px rgba(255,255,255,0.9), 0 0 0 7px rgba(0,194,255,0.15); }
+  }
+  .tab-center-label { font-size: 9.5px; font-weight: 600; color: #8e8e93; font-family: 'Inter', sans-serif; margin-top: -6px; letter-spacing: 0.02em; }
+
+  /* Plus bottom sheet */
+  .plus-sheet-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; display: flex; align-items: flex-end; }
+  .plus-sheet {
+    width: 100%; background: #fff; border-radius: 24px 24px 0 0;
+    padding: 12px 20px 32px; box-shadow: 0 -4px 40px rgba(0,0,0,0.18);
+    animation: sheetUp 0.28s cubic-bezier(0.32,0.72,0,1);
+  }
+  @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .plus-sheet-handle { width: 36px; height: 4px; background: #d1d1d6; border-radius: 2px; margin: 0 auto 20px; }
+  .plus-sheet-title { font-size: 13px; font-weight: 700; color: #8e8e93; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; font-family: 'Inter', sans-serif; }
+  .plus-sheet-btn {
+    width: 100%; padding: 16px 18px; border-radius: 14px; border: none;
+    background: #f2f2f7; margin-bottom: 10px; cursor: pointer;
+    display: flex; align-items: center; gap: 14px;
+    font-family: 'Inter', sans-serif; text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.12s;
+  }
+  .plus-sheet-btn:active { background: #e5e5ea; }
+  .plus-sheet-btn-icon { width: 36px; height: 36px; border-radius: 10px; background: #1c1c1e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .plus-sheet-btn-text { display: flex; flex-direction: column; gap: 2px; }
+  .plus-sheet-btn-label { font-size: 15px; font-weight: 600; color: #1c1c1e; }
+  .plus-sheet-btn-sub { font-size: 12px; color: #8e8e93; }
 
   /* Content */
   .content { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; overflow-anchor: none; }
@@ -5822,7 +5889,8 @@ function youtubeUrl(exerciseName) {
   return `https://www.youtube.com/results?search_query=${query}`;
 }
 function App() {
-  const [tab, setTab] = useState("workout");
+  const [tab, setTab] = useState("freddy");
+  const [plusSheetOpen, setPlusSheetOpen] = useState(false);
   const contentRef = useRef(null);
   // Scroll to top on tab change - scroll BOTH contentRef and window/document
   // because on mobile, the actual scroll container is often <html>/<body>, not .content
@@ -6497,7 +6565,7 @@ function App() {
     // Cards start collapsed for easier navigation
     setExpanded({});
     setWorkoutStartTime(Date.now());
-    setTab("myworkout");
+    setTab("session");
     // Force scroll to top after render
     setTimeout(() => {
       if (contentRef.current) contentRef.current.scrollTo({
@@ -6569,7 +6637,7 @@ function App() {
     setExercises(newExs);
     setExpanded({});
     setWorkoutStartTime(Date.now());
-    setTab("myworkout");
+    setTab("session");
     setTimeout(() => {
       if (contentRef.current) contentRef.current.scrollTop = 0;
       window.scrollTo(0, 0);
@@ -6624,7 +6692,7 @@ function App() {
     setWorkoutStartTime(Date.now());
     setRecoveryRating(null);
     setRecoveryOpen(true);
-    setTab("myworkout");
+    setTab("session");
     showToast(`"${saved.name}" loaded`);
   };
   const deleteSaved = id => {
@@ -6775,7 +6843,7 @@ function App() {
       })));
       setWorkoutType("imported");
       setWorkoutName(title);
-      setTab("myworkout");
+      setTab("session");
       showToast(`check "${title}" imported`);
     } catch (err) {
       showToast("Import failed -- try again");
@@ -7201,7 +7269,7 @@ function App() {
     try {
       localStorage.removeItem("locked_workout_draft");
     } catch (e) {}
-    setTab("history");
+    setTab("activity");
     showToast(`check Workout saved . ${fmtDuration(duration)}`);
   };
 
@@ -7250,7 +7318,7 @@ function App() {
   const stackIncrements = Array.from({
     length: Math.floor((stackMachineConfig.maxStack - stackStart) / stackIncrement) + 1
   }, (_, i) => stackStart + i * stackIncrement);
-  const TABS = ["workout", "myworkout", "calendar", "history", "gym"];
+  const TABS = ["freddy", "library", "session", "activity", "mi"];
   const swipeStart = useRef(null);
   const handleTouchStart = e => {
     swipeStart.current = e.touches[0].clientX;
@@ -7358,7 +7426,7 @@ function App() {
   }, fmtTime(restSeconds)), /*#__PURE__*/React.createElement("button", {
     className: "rest-timer-skip",
     onClick: skipRest
-  }, "Skip ", '>')), restActive && tab === "myworkout" && /*#__PURE__*/React.createElement("div", {
+  }, "Skip ", '>')), restActive && tab === "session" && /*#__PURE__*/React.createElement("div", {
     onClick: skipRest,
     style: {
       position: "fixed",
@@ -7404,54 +7472,164 @@ function App() {
   }, "tap skip")), /*#__PURE__*/React.createElement("div", {
     className: "tabs"
   }, /*#__PURE__*/React.createElement("button", {
-    className: `tab ${tab === "workout" ? "active" : ""}`,
-    onClick: () => setTab("workout")
-  }, /*#__PURE__*/React.createElement(Dumbbell, {
-    size: 14,
-    strokeWidth: 2.5
-  }), /*#__PURE__*/React.createElement("span", null, "Workouts")), /*#__PURE__*/React.createElement("button", {
-    className: `tab ${tab === "myworkout" ? "active" : ""}`,
-    onClick: () => setTab("myworkout"),
-    style: {
-      position: "relative"
-    }
-  }, /*#__PURE__*/React.createElement(Zap, {
-    size: 14,
-    strokeWidth: 2.5
-  }), /*#__PURE__*/React.createElement("span", null, "Session"), exercises.length > 0 && /*#__PURE__*/React.createElement("span", {
-    style: {
-      position: "absolute",
-      top: 6,
-      right: "calc(50% - 26px)",
-      width: 6,
-      height: 6,
-      borderRadius: "50%",
-      background: "#00c2ff"
-    }
-  })), /*#__PURE__*/React.createElement("button", {
-    className: `tab ${tab === "calendar" ? "active" : ""}`,
-    onClick: () => setTab("calendar")
-  }, /*#__PURE__*/React.createElement(Calendar, {
-    size: 14,
-    strokeWidth: 2.5
-  }), /*#__PURE__*/React.createElement("span", null, "Calendar")), /*#__PURE__*/React.createElement("button", {
-    className: `tab ${tab === "history" ? "active" : ""}`,
-    onClick: () => setTab("history")
+    className: `tab ${tab === "freddy" ? "active" : ""}`,
+    onClick: () => setTab("freddy")
+  }, /*#__PURE__*/React.createElement(User, {
+    size: 18,
+    strokeWidth: 2
+  }), /*#__PURE__*/React.createElement("span", null, "Freddy")), /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === "library" ? "active" : ""}`,
+    onClick: () => setTab("library")
   }, /*#__PURE__*/React.createElement(ClipboardList, {
-    size: 14,
-    strokeWidth: 2.5
-  }), /*#__PURE__*/React.createElement("span", null, "History")), /*#__PURE__*/React.createElement("button", {
-    className: `tab ${tab === "gym" ? "active" : ""}`,
-    onClick: () => setTab("gym")
-  }, /*#__PURE__*/React.createElement(BarChart2, {
-    size: 14,
-    strokeWidth: 2.5
-  }), /*#__PURE__*/React.createElement("span", null, "My Gym"))), /*#__PURE__*/React.createElement("div", {
+    size: 18,
+    strokeWidth: 2
+  }), /*#__PURE__*/React.createElement("span", null, "Library")), /*#__PURE__*/React.createElement("button", {
+    className: "tab-center-btn",
+    onClick: () => {
+      if (exercises.length > 0) {
+        setTab("session");
+      } else {
+        setPlusSheetOpen(true);
+      }
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: `tab-center-icon${exercises.length > 0 ? " session-active" : ""}`
+  }, exercises.length > 0 ? /*#__PURE__*/React.createElement(Dumbbell, {
+    size: 22,
+    strokeWidth: 2.5,
+    color: "#fff"
+  }) : /*#__PURE__*/React.createElement(Plus, {
+    size: 24,
+    strokeWidth: 2.5,
+    color: "#fff"
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "tab-center-label"
+  }, exercises.length > 0 ? "Session" : "")), /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === "activity" ? "active" : ""}`,
+    onClick: () => setTab("activity")
+  }, /*#__PURE__*/React.createElement(Zap, {
+    size: 18,
+    strokeWidth: 2
+  }), /*#__PURE__*/React.createElement("span", null, "Activity")), /*#__PURE__*/React.createElement("button", {
+    className: `tab ${tab === "mi" ? "active" : ""}`,
+    onClick: () => setTab("mi")
+  }, /*#__PURE__*/React.createElement(Target, {
+    size: 18,
+    strokeWidth: 2
+  }), /*#__PURE__*/React.createElement("span", null, "M.I."))), plusSheetOpen && /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-overlay",
+    onClick: () => setPlusSheetOpen(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet",
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-handle"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-title"
+  }, "Start a Workout"), /*#__PURE__*/React.createElement("button", {
+    className: "plus-sheet-btn",
+    onClick: () => {
+      setPlusSheetOpen(false);
+      setTab("freddy");
+      // scroll to preset section — handled by freddy tab rendering
+      setTimeout(() => {
+        window.__openPresets && window.__openPresets();
+      }, 100);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-icon"
+  }, /*#__PURE__*/React.createElement(ClipboardList, {
+    size: 18,
+    color: "#00c2ff"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-text"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-label"
+  }, "Start Preset Workout"), /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-sub"
+  }, "Choose from your saved plans & routines"))), /*#__PURE__*/React.createElement("button", {
+    className: "plus-sheet-btn",
+    onClick: () => {
+      setPlusSheetOpen(false);
+      // trigger import flow
+      setTimeout(() => {
+        window.__openImport && window.__openImport();
+      }, 100);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-icon"
+  }, /*#__PURE__*/React.createElement(Upload, {
+    size: 18,
+    color: "#30d158"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-text"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-label"
+  }, "Import Trainer Workout"), /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-sub"
+  }, "Photo or text import"))), /*#__PURE__*/React.createElement("button", {
+    className: "plus-sheet-btn",
+    onClick: () => {
+      setPlusSheetOpen(false);
+      setTab("mi");
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-icon"
+  }, /*#__PURE__*/React.createElement(Target, {
+    size: 18,
+    color: "#af52de"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-text"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-label"
+  }, "M.I. Catch-Up Workout"), /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-sub"
+  }, "AI-suggested based on recovery"))), /*#__PURE__*/React.createElement("button", {
+    className: "plus-sheet-btn",
+    onClick: () => {
+      setPlusSheetOpen(false);
+      // start a blank custom workout
+      setWorkoutType("custom");
+      setWorkoutName("Custom Workout");
+      setExercises([]);
+      setWorkoutStartTime(Date.now());
+      setWarmupDone(false);
+      setTab("session");
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-icon"
+  }, /*#__PURE__*/React.createElement(Plus, {
+    size: 18,
+    color: "#ff9f0a"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-text"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-label"
+  }, "Create Custom Workout"), /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-sub"
+  }, "Build your own from scratch"))), /*#__PURE__*/React.createElement("button", {
+    className: "plus-sheet-btn",
+    onClick: () => {
+      setPlusSheetOpen(false);
+      setTab("library");
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-icon"
+  }, /*#__PURE__*/React.createElement(Layers, {
+    size: 18,
+    color: "#ff6b6b"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "plus-sheet-btn-text"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-label"
+  }, "Start Training Program"), /*#__PURE__*/React.createElement("span", {
+    className: "plus-sheet-btn-sub"
+  }, "Follow a structured multi-week plan"))))), /*#__PURE__*/React.createElement("div", {
     className: "content",
     ref: contentRef,
     onTouchStart: handleTouchStart,
     onTouchEnd: handleTouchEnd
-  }, tab === "workout" && /*#__PURE__*/React.createElement("div", null, (() => {
+  }, tab === "freddy" && /*#__PURE__*/React.createElement("div", null, (() => {
     const now = new Date();
     const dayIdx = now.getDay();
     const dateKey = now.toISOString().slice(0, 10);
@@ -8047,7 +8225,7 @@ function App() {
           setExercises(newExs);
           setExpanded({});
           setWorkoutStartTime(Date.now());
-          setTab("myworkout");
+          setTab("session");
           setTimeout(() => {
             if (contentRef.current) contentRef.current.scrollTo({
               top: 0,
@@ -8173,7 +8351,7 @@ function App() {
           [monthKey]: true
         }));
         setHighlightHistoryId(lastWorkout.id);
-        setTab("history");
+        setTab("activity");
         // Scroll to the workout after render
         setTimeout(() => {
           const el = document.querySelector(`[data-history-id="${lastWorkout.id}"]`);
@@ -8281,7 +8459,7 @@ function App() {
         setExercises([]);
         setShowNameInput(false);
         setNewWorkoutName("");
-        setTab("myworkout");
+        setTab("session");
         setTimeout(() => openPicker(), 100);
       }
     }
@@ -8315,7 +8493,7 @@ function App() {
       setExercises([]);
       setShowNameInput(false);
       setNewWorkoutName("");
-      setTab("myworkout");
+      setTab("session");
       setTimeout(() => openPicker(), 100);
     },
     style: {
@@ -8492,7 +8670,7 @@ function App() {
       cursor: "pointer",
       boxShadow: "0 0 0 1px #00c2ff, 0 0 12px rgba(0,194,255,0.15)"
     },
-    onClick: () => setTab("myworkout")
+    onClick: () => setTab("session")
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
@@ -8512,11 +8690,11 @@ function App() {
     style: {
       transform: "rotate(-90deg)"
     }
-  }))), tab === "myworkout" && /*#__PURE__*/React.createElement(React.Fragment, null, exercises.length === 0 ? /*#__PURE__*/React.createElement("div", {
+  }))), tab === "session" && /*#__PURE__*/React.createElement(React.Fragment, null, exercises.length === 0 ? /*#__PURE__*/React.createElement("div", {
     className: "empty-state"
   }, /*#__PURE__*/React.createElement("div", {
     className: "empty-icon"
-  }, /*#__PURE__*/React.createElement(Zap, {
+  }, /*#__PURE__*/React.createElement(Dumbbell, {
     size: 36,
     strokeWidth: 1.5,
     color: "#c7c7cc"
@@ -8524,7 +8702,7 @@ function App() {
     style: {
       fontSize: 12
     }
-  }, "Go to Workouts to start one"), /*#__PURE__*/React.createElement("div", {
+  }, "Tap ", /*#__PURE__*/React.createElement("strong", null, "+"), " below to start a workout"), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16
     }
@@ -8534,8 +8712,8 @@ function App() {
       width: "auto",
       padding: "12px 24px"
     },
-    onClick: () => setTab("workout")
-  }, "Go to Workouts"))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setPlusSheetOpen(true)
+  }, "Start Workout"))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -9809,7 +9987,7 @@ function App() {
       try {
         localStorage.removeItem("locked_workout_draft");
       } catch (e) {}
-      setTab("workout");
+      setTab("freddy");
       showToast("Workout discarded");
     },
     style: {
@@ -9824,7 +10002,7 @@ function App() {
       width: "100%",
       padding: "4px 0"
     }
-  }, "Discard workout"))), tab === "calendar" && (() => {
+  }, "Discard workout"))), tab === "freddy" && false && (() => {
     const {
       year,
       month
@@ -10370,7 +10548,7 @@ function App() {
         history: history
       }));
     })());
-  })(), tab === "history" && /*#__PURE__*/React.createElement(React.Fragment, null, history.length === 0 ? /*#__PURE__*/React.createElement("div", {
+  })(), tab === "activity" && /*#__PURE__*/React.createElement(React.Fragment, null, history.length === 0 ? /*#__PURE__*/React.createElement("div", {
     className: "empty-state"
   }, /*#__PURE__*/React.createElement("div", {
     className: "empty-icon"
@@ -10592,7 +10770,7 @@ function App() {
         onClick: () => showToast("^ Sent to Google Health")
       }, "Export"))))));
     });
-  })())), tab === "gym" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  })())), tab === "library" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "section-label"
   }, "Exercise Library"), /*#__PURE__*/React.createElement("div", {
     onClick: () => setLibraryOpen(true),
@@ -11061,7 +11239,64 @@ function App() {
       textAlign: "center",
       lineHeight: 1.4
     }
-  }, "Import replaces all current data. Export first if you want to keep it.")))), plansBrowseOpen && /*#__PURE__*/React.createElement("div", {
+  }, "Import replaces all current data. Export first if you want to keep it."))), tab === "mi" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: 320,
+      gap: 16,
+      paddingTop: 40
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 72,
+      height: 72,
+      borderRadius: "50%",
+      background: "#f2f2f7",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement(Target, {
+    size: 32,
+    strokeWidth: 1.5,
+    color: "#af52de"
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 700,
+      color: "#1c1c1e",
+      fontFamily: "Inter,sans-serif"
+    }
+  }, "M.I. — Muscle Intelligence"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: "#8e8e93",
+      marginTop: 6,
+      fontFamily: "Inter,sans-serif",
+      maxWidth: 260,
+      lineHeight: 1.5
+    }
+  }, "Recovery wheel, volume tracker, PR history & AI suggestions — coming in Phase 3")), /*#__PURE__*/React.createElement("button", {
+    style: {
+      padding: "12px 24px",
+      borderRadius: 12,
+      background: "#af52de",
+      color: "#fff",
+      border: "none",
+      fontSize: 14,
+      fontWeight: 600,
+      fontFamily: "Inter,sans-serif",
+      cursor: "pointer"
+    },
+    onClick: () => setPlusSheetOpen(true)
+  }, "Start a Workout"))), plansBrowseOpen && /*#__PURE__*/React.createElement("div", {
     style: {
       position: "fixed",
       inset: 0,
